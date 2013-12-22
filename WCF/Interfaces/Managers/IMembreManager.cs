@@ -8,6 +8,12 @@ namespace SolarSystem.Earth.WCF.Interfaces.Managers
     interface IMembreManager
     {
         [OperationContract]
+        int Login(string username, string password);
+
+        [OperationContract]
+        bool Exists(string username, string password);
+
+        [OperationContract]
         Membre GetMembre(int code, string username, string password);
 
         [OperationContract]
