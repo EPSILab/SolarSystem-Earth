@@ -8,6 +8,18 @@ namespace SolarSystem.Earth.WCF
 {
     public partial class ManagersService : IMembreManager
     {
+        public int Login(string username, string password)
+        {
+            ILogin business = new MembreBusiness();
+            return business.Login(username, password);
+        }
+
+        public bool Exists(string username, string password)
+        {
+            ILogin business = new MembreBusiness();
+            return business.Exists(username, password);
+        }
+
         public Membre GetMembre(int code, string username, string password)
         {
             IManager<Membre> business = new MembreBusiness();
