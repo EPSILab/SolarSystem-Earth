@@ -107,9 +107,11 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
                              where membre.Pseudo == username && membre.Mot_de_passe == password
                              select membre).First();
 
+            DateTime limit = DateTime.Now.AddDays(-2);
+
             // Clean all old lost password requests
             IEnumerable<RecupMotDePasse> requests = (from r in Db.RecupMotDePasse
-                                                     where r.Date.AddDays(2) < DateTime.Now
+                                                     where r.Date < limit
                                                      select r);
 
             foreach (var request in requests)
