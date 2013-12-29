@@ -448,6 +448,24 @@ namespace SolarSystem.Earth.DataAccess.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Le nom utilisateur et/ou le mot de passe sont incorrects..
+        /// </summary>
+        internal static string UTILISATEUR_INTROUVABLE {
+            get {
+                return ResourceManager.GetString("UTILISATEUR_INTROUVABLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to La ville ne possède aucun libellé..
         /// </summary>
         internal static string VILLE_AUCUN_LIBELLE {

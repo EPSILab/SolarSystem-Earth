@@ -157,18 +157,24 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
         {
             Membre result = (from membre in Db.Membre
                              where membre.Pseudo == username
-                             select membre).First();
+                             select membre).FirstOrDefault();
 
-            RecupMotDePasse recupMotDePasse = new RecupMotDePasse
+            if (result != null)
             {
-                Code_Membre = result.Code_Membre,
-                Date = DateTime.Now,
-                Cle = MD5HasherUtil.Hash(string.Format("{0}{1}", result.Pseudo, DateTime.Now))
-            };
 
-            Db.RecupMotDePasse.AddObject(recupMotDePasse);
+                RecupMotDePasse recupMotDePasse = new RecupMotDePasse
+                {
+                    Code_Membre = result.Code_Membre,
+                    Date = DateTime.Now,
+                    Cle = MD5HasherUtil.Hash(string.Format("{0}{1}", result.Pseudo, DateTime.Now))
+                };
 
-            return recupMotDePasse;
+                Db.RecupMotDePasse.AddObject(recupMotDePasse);
+
+                return recupMotDePasse;
+            }
+
+            throw new UserNotExistsException(ErrorMessages_FR.UTILISATEUR_INTROUVABLE);
         }
 
         #endregion
@@ -207,7 +213,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
                 return element.Code_Membre;
             }
-                throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
+            throw new AccessDeniedException(ErrorMessages_FR.ACCES_REFUSE);
         }
 
         public void Edit(Membre element, string username, string password)
@@ -244,7 +250,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
             }
             else
             {
-                throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
+                throw new AccessDeniedException(ErrorMessages_FR.ACCES_REFUSE);
             }
         }
 
@@ -259,7 +265,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
             }
             else
             {
-                throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
+                throw new AccessDeniedException(ErrorMessages_FR.ACCES_REFUSE);
             }
         }
 

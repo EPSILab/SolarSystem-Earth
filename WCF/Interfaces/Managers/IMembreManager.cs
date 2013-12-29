@@ -20,6 +20,9 @@ namespace SolarSystem.Earth.WCF.Interfaces.Managers
         Membre Login(string username, string password);
 
         [OperationContract]
+        void ChangePassword(string username, string oldPassword, string newPassword);
+
+        [OperationContract]
         bool ExistsUsername(string username);
 
         [OperationContract]
@@ -27,6 +30,9 @@ namespace SolarSystem.Earth.WCF.Interfaces.Managers
 
         [OperationContract]
         int Register(Membre membre);
+
+        [OperationContract]
+        void LostPassword(string username, string email);
 
         [OperationContract]
         int AddMembre(Membre element, string username, string password);

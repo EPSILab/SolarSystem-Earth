@@ -103,7 +103,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
                 return element.Code_News;
             }
-            throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
+            throw new AccessDeniedException(ErrorMessages_FR.ACCES_REFUSE);
         }
 
         public void Edit(News element, string username, string password)
@@ -126,7 +126,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
             }
             else
             {
-                throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
+                throw new AccessDeniedException(ErrorMessages_FR.ACCES_REFUSE);
             }
         }
 
@@ -141,7 +141,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
             }
             else
             {
-                throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
+                throw new AccessDeniedException(ErrorMessages_FR.ACCES_REFUSE);
             }
         }
 

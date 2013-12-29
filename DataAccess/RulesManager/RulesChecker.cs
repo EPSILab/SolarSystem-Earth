@@ -8,7 +8,7 @@ namespace SolarSystem.Earth.DataAccess.RulesManager
         {
             if (field == 0)
             {
-                throw new AssociationManquanteException(message);
+                throw new NoAssociationException(message);
             }
         }
 
@@ -16,7 +16,7 @@ namespace SolarSystem.Earth.DataAccess.RulesManager
         {
             if (string.IsNullOrWhiteSpace(field))
             {
-                throw new ValeurNulleException(message);
+                throw new NullValueException(message);
             }
         }
 
@@ -24,7 +24,7 @@ namespace SolarSystem.Earth.DataAccess.RulesManager
         {
             if (field < 0 || field > 100)
             {
-                throw new ValeurIncorrecteException(message);
+                throw new IncorrectValueException(message);
             }
         }
 
@@ -32,7 +32,7 @@ namespace SolarSystem.Earth.DataAccess.RulesManager
         {
             if (field < reference)
             {
-                throw new ValeurIncorrecteException(message);
+                throw new IncorrectValueException(message);
             }
         }
     }

@@ -246,6 +246,12 @@
   <data name="SALON_AUCUN_NOM" xml:space="preserve">
     <value>Le salon ne possède de nom.</value>
   </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UTILISATEUR_INTROUVABLE" xml:space="preserve">
+    <value>Le nom utilisateur et/ou le mot de passe sont incorrects.</value>
+  </data>
   <data name="VILLE_AUCUN_LIBELLE" xml:space="preserve">
     <value>La ville ne possède aucun libellé.</value>
   </data>

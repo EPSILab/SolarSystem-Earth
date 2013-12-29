@@ -33,6 +33,12 @@ namespace SolarSystem.Earth.WCF
             return business.Login(username, password);
         }
 
+        public void ChangePassword(string username, string oldPassword, string newPassword)
+        {
+            ILogin<Membre, RecupMotDePasse> business = new MembreBusiness();
+            business.ChangePassword(username, oldPassword, newPassword);
+        }
+
         public bool ExistsMembre(string username, string password)
         {
             ILogin<Membre, RecupMotDePasse> business = new MembreBusiness();
@@ -49,6 +55,12 @@ namespace SolarSystem.Earth.WCF
         {
             ILogin<Membre, RecupMotDePasse> business = new MembreBusiness();
             return business.Register(membre);
+        }
+
+        public void LostPassword(string username, string email)
+        {
+            ILogin<Membre, RecupMotDePasse> business = new MembreBusiness();
+            business.LostPassword(username, email);
         }
 
         public int AddMembre(Membre element, string username, string password)

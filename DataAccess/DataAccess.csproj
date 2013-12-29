@@ -65,11 +65,12 @@
     <Compile Include="DataAccess\RoleDAL.cs" />
     <Compile Include="DataAccess\SalonDAL.cs" />
     <Compile Include="DataAccess\VilleDAL.cs" />
-    <Compile Include="Exceptions\AccesRefuseException.cs" />
-    <Compile Include="Exceptions\AnneeInvalideException.cs" />
-    <Compile Include="Exceptions\AssociationManquanteException.cs" />
-    <Compile Include="Exceptions\ValeurIncorrecteException.cs" />
-    <Compile Include="Exceptions\ValeurNulleException.cs" />
+    <Compile Include="Exceptions\AccessDeniedException.cs" />
+    <Compile Include="Exceptions\YearInvalidException.cs" />
+    <Compile Include="Exceptions\NoAssociationException.cs" />
+    <Compile Include="Exceptions\UserNotExistsException.cs" />
+    <Compile Include="Exceptions\IncorrectValueException.cs" />
+    <Compile Include="Exceptions\NullValueException.cs" />
     <Compile Include="Model\SunModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
