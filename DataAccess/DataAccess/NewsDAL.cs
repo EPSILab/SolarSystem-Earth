@@ -1,4 +1,6 @@
 ﻿using SolarSystem.Earth.Common.Interfaces;
+using SolarSystem.Earth.DataAccess.ErrorMessages;
+using SolarSystem.Earth.DataAccess.Exceptions;
 using SolarSystem.Earth.DataAccess.Model;
 using SolarSystem.Earth.DataAccess.RulesManager;
 using System.Collections.Generic;
@@ -89,29 +91,6 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
         #region IManager methods
 
-        public IEnumerable<News> Get(int indexFirstResult, int numberOfResults, string username, string password)
-        {
-            if (_membreDAL.Exists(username, password))
-            {
-                IEnumerable<News> results = (from n in Db.News
-                                             orderby n.Date_Heure descending
-                                             select n);
-                return results;
-            }
-
-            return null;
-        }
-
-        public News Get(int code, string username, string password)
-        {
-            if (_membreDAL.Exists(username, password))
-            {
-                return Get(code);
-            }
-
-            return null;
-        }
-
         public int Add(News element, string username, string password)
         {
             if (_membreDAL.Exists(username, password))
@@ -124,8 +103,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
                 return element.Code_News;
             }
-
-            return 0;
+            throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
         }
 
         public void Edit(News element, string username, string password)
@@ -146,6 +124,10 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
                 Db.SaveChanges();
             }
+            else
+            {
+                throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
+            }
         }
 
         public void Delete(int code, string username, string password)
@@ -156,6 +138,10 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
                 Db.News.DeleteObject(news);
 
                 Db.SaveChanges();
+            }
+            else
+            {
+                throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
             }
         }
 

@@ -8,17 +8,23 @@ namespace SolarSystem.Earth.WCF
 {
     public partial class ManagersService : ILienManager
     {
-        public Lien GetLien(int code, string username, string password)
+        #region ILienReader methods
+
+        public Lien GetLien(int code)
         {
-            IManager<Lien> business = new LienBusiness();
-            return business.Get(code, username, password);
+            IReader<Lien> business = new LienBusiness();
+            return business.Get(code);
         }
 
-        public IEnumerable<Lien> GetLiens(int indexFirstResult, int numberOfResults, string username, string password)
+        public IEnumerable<Lien> GetLiens()
         {
-            IManager<Lien> business = new LienBusiness();
-            return business.Get(indexFirstResult, numberOfResults, username, password);
+            IReader<Lien> business = new LienBusiness();
+            return business.Get();
         }
+
+        #endregion
+
+        #region ILienManager methods
 
         public int AddLien(Lien element, string username, string password)
         {
@@ -37,5 +43,7 @@ namespace SolarSystem.Earth.WCF
             IManager<Lien> business = new LienBusiness();
             business.Delete(code, username, password);
         }
+
+        #endregion
     }
 }

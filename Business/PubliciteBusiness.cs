@@ -8,7 +8,7 @@ using PubliciteDTO = SolarSystem.Earth.Common.Publicite;
 
 namespace SolarSystem.Earth.Business
 {
-    public class PubliciteBusiness : IReader<PubliciteDTO>, IManager<PubliciteDTO>
+    public class PubliciteBusiness : IManager<PubliciteDTO>
     {
         #region Attributes
 
@@ -17,7 +17,7 @@ namespace SolarSystem.Earth.Business
 
         #endregion
 
-        #region IReader methods
+        #region IManager methods
 
         public PubliciteDTO Get(int code)
         {
@@ -34,23 +34,17 @@ namespace SolarSystem.Earth.Business
             return dto;
         }
 
-        #endregion
-
-        #region IManager methods
-
-        public IEnumerable<PubliciteDTO> Get(int indexFirstResult, int numberOfResults, string username, string password)
+        public IEnumerable<PubliciteDTO> Get(int indexFirstElement, int numberOfResults)
         {
-            IEnumerable<PubliciteDAO> dao = _publiciteDAL.Get(indexFirstResult, numberOfResults, username, password);
+            IEnumerable<PubliciteDAO> dao = _publiciteDAL.Get(indexFirstElement, numberOfResults);
             IEnumerable<PubliciteDTO> dto = dao.Select(p => _mapper.ToDTO(p));
 
             return dto;
         }
 
-        public PubliciteDTO Get(int code, string username, string password)
+        public int GetLastInsertedId()
         {
-            PubliciteDAO dao = _publiciteDAL.Get(code, username, password);
-            PubliciteDTO dto = _mapper.ToDTO(dao);
-            return dto;
+            return _publiciteDAL.GetLastInsertedId();
         }
 
         public int Add(PubliciteDTO element, string username, string password)

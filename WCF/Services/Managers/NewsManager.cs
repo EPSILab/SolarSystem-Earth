@@ -3,22 +3,54 @@ using SolarSystem.Earth.Common;
 using SolarSystem.Earth.Common.Interfaces;
 using SolarSystem.Earth.WCF.Interfaces.Managers;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace SolarSystem.Earth.WCF
 {
     public partial class ManagersService : INewsManager
     {
-        public IEnumerable<News> GetNewsList(int indexFirstResult, int numberOfResults, string username, string password)
+
+        #region INewsReader methods
+
+        public News GetNews(int code)
         {
-            IManager<News> business = new NewsBusiness();
-            return business.Get(indexFirstResult, numberOfResults, username, password);
+            IReader<News> business = new NewsBusiness();
+            return business.Get(code);
         }
 
-        public News GetNews(int code, string username, string password)
+        public IEnumerable<News> GetListNews()
         {
-            IManager<News> business = new NewsBusiness();
-            return business.Get(code, username, password);
+            IReader<News> business = new NewsBusiness();
+            return business.Get();
         }
+
+        public IEnumerable<News> GetListNewsLimited(int indexFirstElement, int numberOfResults)
+        {
+            IReaderLimit<News> business = new NewsBusiness();
+            return business.Get(indexFirstElement, numberOfResults);
+        }
+
+        public IEnumerable<News> GetListNewsSorted(int indexFirstElement, int numberOrResults, SortOrder order)
+        {
+            IReaderSort<News> business = new NewsBusiness();
+            return business.Get(indexFirstElement, numberOrResults, order);
+        }
+
+        public int GetNewsLastInsertedId()
+        {
+            IReaderLimit<News> business = new NewsBusiness();
+            return business.GetLastInsertedId();
+        }
+
+        public IEnumerable<News> SearchNews(string keywords)
+        {
+            ISearchable<News> business = new NewsBusiness();
+            return business.Search(keywords);
+        }
+
+        #endregion
+
+        #region INewsManager methods
 
         public int AddNews(News element, string username, string password)
         {
@@ -37,5 +69,7 @@ namespace SolarSystem.Earth.WCF
             IManager<News> business = new NewsBusiness();
             business.Delete(code, username, password);
         }
+
+        #endregion
     }
 }

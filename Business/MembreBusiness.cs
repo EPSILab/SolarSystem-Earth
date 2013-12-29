@@ -89,22 +89,6 @@ namespace SolarSystem.Earth.Business
 
         #region IManager methods
 
-        public IEnumerable<MembreDTO> Get(int indexFirstResult, int numberOfResults, string username, string password)
-        {
-            IEnumerable<MembreDAO> dao = _membreDAL.Get(indexFirstResult, numberOfResults, username, password);
-            IEnumerable<MembreDTO> dto = dao.Select(m => _mapper.ToDTO(m));
-
-            return dto;
-        }
-
-        public MembreDTO Get(int code, string username, string password)
-        {
-            MembreDAO dao = _membreDAL.Get(code, username, password);
-            MembreDTO dto = _mapper.ToDTO(dao);
-
-            return dto;
-        }
-
         public int Add(MembreDTO element, string username, string password)
         {
             MembreDAO dao = _mapper.ToDAO(element);

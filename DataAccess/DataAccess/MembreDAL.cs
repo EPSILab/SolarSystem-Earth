@@ -1,4 +1,6 @@
 ﻿using SolarSystem.Earth.Common.Interfaces;
+using SolarSystem.Earth.DataAccess.ErrorMessages;
+using SolarSystem.Earth.DataAccess.Exceptions;
 using SolarSystem.Earth.DataAccess.Model;
 using SolarSystem.Earth.DataAccess.RulesManager;
 using System.Collections.Generic;
@@ -153,29 +155,6 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
             return membres;
         }
 
-        public IEnumerable<Membre> Get(int indexFirstResult, int numberOfResults, string username, string password)
-        {
-            if (Exists(username, password))
-            {
-                IEnumerable<Membre> results = (from m in Db.Membre
-                                               select m);
-
-                return results;
-            }
-
-            return null;
-        }
-
-        public Membre Get(int code, string username, string password)
-        {
-            if (Exists(username, password))
-            {
-                return Get(code);
-            }
-
-            return null;
-        }
-
         public int Add(Membre element, string username, string password)
         {
             if (Exists(username, password))
@@ -188,8 +167,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
                 return element.Code_Membre;
             }
-
-            return 0;
+                throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
         }
 
         public void Edit(Membre element, string username, string password)
@@ -224,6 +202,10 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
                 Db.SaveChanges();
             }
+            else
+            {
+                throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
+            }
         }
 
         public void Delete(int code, string username, string password)
@@ -234,6 +216,10 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
                 Db.Membre.DeleteObject(membre);
 
                 Db.SaveChanges();
+            }
+            else
+            {
+                throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
             }
         }
 

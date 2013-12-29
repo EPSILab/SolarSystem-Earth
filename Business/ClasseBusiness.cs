@@ -19,20 +19,33 @@ namespace SolarSystem.Earth.Business
 
         #region IManager methods
 
-        public ClasseDTO Get(int code, string username, string password)
+        public ClasseDTO Get(int code)
         {
-            ClasseDAO dao = _classeDAL.Get(code, username, password);
+            ClasseDAO dao = _classeDAL.Get(code);
             ClasseDTO dto = _mapper.ToDTO(dao);
 
             return dto;
         }
 
-        public IEnumerable<ClasseDTO> Get(int indexFirstResult, int numberOfResults, string username, string password)
+        public IEnumerable<ClasseDTO> Get()
         {
-            IEnumerable<ClasseDAO> dao = _classeDAL.Get(indexFirstResult, numberOfResults, username, password);
+            IEnumerable<ClasseDAO> dao = _classeDAL.Get();
             IEnumerable<ClasseDTO> dto = dao.Select(c => _mapper.ToDTO(c));
 
             return dto;
+        }
+
+        public IEnumerable<ClasseDTO> Get(int indexFirstResult, int numberOfResults)
+        {
+            IEnumerable<ClasseDAO> dao = _classeDAL.Get(indexFirstResult, numberOfResults);
+            IEnumerable<ClasseDTO> dto = dao.Select(c => _mapper.ToDTO(c));
+
+            return dto;
+        }
+
+        public int GetLastInsertedId()
+        {
+            return _classeDAL.GetLastInsertedId();
         }
 
         public int Add(ClasseDTO element, string username, string password)

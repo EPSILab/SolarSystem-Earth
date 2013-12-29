@@ -1,18 +1,12 @@
 ﻿using SolarSystem.Earth.Common;
-using System.Collections.Generic;
+using SolarSystem.Earth.WCF.Interfaces.Readers;
 using System.ServiceModel;
 
 namespace SolarSystem.Earth.WCF.Interfaces.Managers
 {
     [ServiceContract]
-    interface ISalonManager
+    interface ISalonManager : ISalonReader
     {
-        [OperationContract]
-        Salon GetSalon(int code, string username, string password);
-
-        [OperationContract]
-        IEnumerable<Salon> GetSalons(int indexFirstResult, int numberOfResults, string username, string password);
-
         [OperationContract]
         int AddSalon(Salon element, string username, string password);
 

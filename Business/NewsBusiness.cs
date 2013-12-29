@@ -18,7 +18,7 @@ namespace SolarSystem.Earth.Business
 
         #endregion
 
-        #region IReadableSortable methods
+        #region IReadableSort methods
 
         public NewsDTO Get(int code)
         {
@@ -71,23 +71,7 @@ namespace SolarSystem.Earth.Business
 
         #endregion
 
-        #region ICrudable methods
-
-        public IEnumerable<NewsDTO> Get(int indexFirstResult, int numberOfResults, string username, string password)
-        {
-            IEnumerable<NewsDAO> dao = _newsDAL.Get(indexFirstResult, numberOfResults, username, password);
-            IEnumerable<NewsDTO> dto = dao.Select(n => _mapper.ToDTO(n));
-
-            return dto;
-        }
-
-        public NewsDTO Get(int code, string username, string password)
-        {
-            NewsDAO dao = _newsDAL.Get(code, username, password);
-            NewsDTO dto =  _mapper.ToDTO(dao);
-
-            return dto;
-        }
+        #region IManager methods
 
         public int Add(NewsDTO element, string username, string password)
         {

@@ -8,7 +8,7 @@ using VilleDTO = SolarSystem.Earth.Common.Ville;
 
 namespace SolarSystem.Earth.Business
 {
-    public class VilleBusiness : IReader<VilleDTO>, IManager<VilleDTO>
+    public class VilleBusiness : IManager<VilleDTO>
     {
         #region Attributes
 
@@ -33,23 +33,21 @@ namespace SolarSystem.Earth.Business
             return dto;
         }
 
-        #endregion
-
-        #region IManager methods
-
-        public IEnumerable<VilleDTO> Get(int indexFirstResult, int numberOfResults, string username, string password)
+        public IEnumerable<VilleDTO> Get(int indexFirstElement, int numberOfResults)
         {
-            IEnumerable<VilleDAO> dao = _villeDAL.Get(indexFirstResult, numberOfResults, username, password);
+            IEnumerable<VilleDAO> dao = _villeDAL.Get(indexFirstElement, numberOfResults);
             IEnumerable<VilleDTO> dto = dao.Select(v => _mapper.ToDTO(v));
             return dto;
         }
 
-        public VilleDTO Get(int code, string username, string password)
+        public int GetLastInsertedId()
         {
-            VilleDAO dao = _villeDAL.Get(code, username, password);
-            VilleDTO dto = _mapper.ToDTO(dao);
-            return dto;
+            return _villeDAL.GetLastInsertedId();
         }
+
+        #endregion
+
+        #region IManager methods
 
         public int Add(VilleDTO element, string username, string password)
         {

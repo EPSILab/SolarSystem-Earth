@@ -61,6 +61,15 @@ namespace SolarSystem.Earth.DataAccess.ErrorMessages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vous n&apos;avez pas l&apos;autorisation pour effectuer cette action..
+        /// </summary>
+        internal static string ACCES_REFUSE {
+            get {
+                return ResourceManager.GetString("ACCES_REFUSE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to L&apos;année de la promo est incorrecte..
         /// </summary>
         internal static string CLASSE_ANNEE_PROMO_INVALIDE {

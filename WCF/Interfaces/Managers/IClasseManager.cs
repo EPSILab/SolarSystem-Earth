@@ -8,10 +8,10 @@ namespace SolarSystem.Earth.WCF.Interfaces.Managers
     interface IClasseManager
     {
         [OperationContract]
-        Classe GetClasse(int code, string username, string password);
+        Classe GetClasse(int code);
 
         [OperationContract]
-        IEnumerable<Classe> GetClasses(int indexFirstResult, int numberOfResults, string username, string password);
+        IEnumerable<Classe> GetClasses();
 
         [OperationContract]
         int AddClasse(Classe element, string username, string password);

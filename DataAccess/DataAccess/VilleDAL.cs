@@ -1,4 +1,6 @@
 ﻿using SolarSystem.Earth.Common.Interfaces;
+using SolarSystem.Earth.DataAccess.ErrorMessages;
+using SolarSystem.Earth.DataAccess.Exceptions;
 using SolarSystem.Earth.DataAccess.Model;
 using SolarSystem.Earth.DataAccess.RulesManager;
 using System.Collections.Generic;
@@ -6,7 +8,7 @@ using System.Linq;
 
 namespace SolarSystem.Earth.DataAccess.DataAccess
 {
-    public class VilleDAL : DALBase, IReaderLimit<Ville>, IManager<Ville>
+    public class VilleDAL : DALBase, IManager<Ville>
     {
         #region Attributes
 
@@ -47,32 +49,12 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
         {
             return (from ville in Db.Ville
                     orderby ville.Code_Ville descending
-                    select ville).First().Code_Ville; 
+                    select ville).First().Code_Ville;
         }
 
         #endregion
 
         #region IManager methods
-
-        public IEnumerable<Ville> Get(int indexFirstResult, int numberOfResults, string username, string password)
-        {
-            if (_membreDAL.Exists(username, password))
-            {
-                return Get(indexFirstResult, numberOfResults);
-            }
-
-            return null;
-        }
-
-        public Ville Get(int code, string username, string password)
-        {
-            if (_membreDAL.Exists(username, password))
-            {
-                return Get(code);
-            }
-
-            return null;
-        }
 
         public int Add(Ville element, string username, string password)
         {
@@ -84,7 +66,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
                 return element.Code_Ville;
             }
 
-            return 0;
+            throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
         }
 
         public void Edit(Ville element, string username, string password)
@@ -99,6 +81,10 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
                 Db.SaveChanges();
             }
+            else
+            {
+                throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
+            }
         }
 
         public void Delete(int code, string username, string password)
@@ -109,6 +95,10 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
                 Db.Ville.DeleteObject(v);
 
                 Db.SaveChanges();
+            }
+            else
+            {
+                throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
             }
         }
 

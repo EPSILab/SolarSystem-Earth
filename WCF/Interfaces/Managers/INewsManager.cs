@@ -1,18 +1,12 @@
 ﻿using SolarSystem.Earth.Common;
-using System.Collections.Generic;
+using SolarSystem.Earth.WCF.Interfaces.Readers;
 using System.ServiceModel;
 
 namespace SolarSystem.Earth.WCF.Interfaces.Managers
 {
     [ServiceContract]
-    interface INewsManager
+    interface INewsManager : INewsReader
     {
-        [OperationContract]
-        IEnumerable<News> GetNewsList(int indexFirstResult, int numberOfResults, string username, string password);
-
-        [OperationContract]
-        News GetNews(int code, string username, string password);
-
         [OperationContract]
         int AddNews(News element, string username, string password);
 

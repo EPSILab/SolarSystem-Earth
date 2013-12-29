@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using SolarSystem.Earth.Common.Interfaces;
+﻿using SolarSystem.Earth.Common.Interfaces;
 using NewsDAO = SolarSystem.Earth.DataAccess.Model.News;
 using NewsDTO = SolarSystem.Earth.Common.News;
 
