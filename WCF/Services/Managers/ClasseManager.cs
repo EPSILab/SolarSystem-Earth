@@ -20,6 +20,12 @@ namespace SolarSystem.Earth.WCF
             return business.Get();
         }
 
+        public IEnumerable<Classe> GetClassesAvailables()
+        {
+            IAvailable<Classe> business = new ClasseBusiness();
+            return business.GetAvailables();
+        }
+
         public int AddClasse(Classe element, string username, string password)
         {
             IManager<Classe> business = new ClasseBusiness();

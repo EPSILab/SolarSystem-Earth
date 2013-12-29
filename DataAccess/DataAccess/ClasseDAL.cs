@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace SolarSystem.Earth.DataAccess.DataAccess
 {
-    public class ClasseDAL : DALBase, IManager<Classe>
+    public class ClasseDAL : DALBase, IManager<Classe>, IAvailable<Classe>
     {
         #region Attributes
 
@@ -105,6 +105,20 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
             {
                 throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
             }
+        }
+
+        #endregion
+
+        #region IManager methods
+
+        public IEnumerable<Classe> GetAvailables()
+        {
+            IEnumerable<Classe> results = (from c in Db.Classe
+                                           where c.Encore_Presente == true
+                                           orderby c.Annee_Promo_Sortante descending
+                                           select c);
+
+            return results;
         }
 
         #endregion

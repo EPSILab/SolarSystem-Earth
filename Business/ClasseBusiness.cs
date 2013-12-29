@@ -8,7 +8,7 @@ using ClasseDTO = SolarSystem.Earth.Common.Classe;
 
 namespace SolarSystem.Earth.Business
 {
-    public class ClasseBusiness : IManager<ClasseDTO>
+    public class ClasseBusiness : IManager<ClasseDTO>, IAvailable<ClasseDTO>
     {
         #region Attributes
 
@@ -63,6 +63,18 @@ namespace SolarSystem.Earth.Business
         public void Delete(int code, string username, string password)
         {
             _classeDAL.Delete(code, username, password);
+        }
+
+        #endregion
+
+        #region IAvailable methods
+
+        public IEnumerable<ClasseDTO> GetAvailables()
+        {
+            IEnumerable<ClasseDAO> dao = _classeDAL.GetAvailables();
+            IEnumerable<ClasseDTO> dto = dao.Select(c => _mapper.ToDTO(c));
+
+            return dto;
         }
 
         #endregion

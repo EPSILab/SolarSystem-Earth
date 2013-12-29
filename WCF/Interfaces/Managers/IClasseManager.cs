@@ -14,6 +14,9 @@ namespace SolarSystem.Earth.WCF.Interfaces.Managers
         IEnumerable<Classe> GetClasses();
 
         [OperationContract]
+        IEnumerable<Classe> GetClassesAvailables();
+
+        [OperationContract]
         int AddClasse(Classe element, string username, string password);
 
         [OperationContract]
