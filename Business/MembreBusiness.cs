@@ -13,7 +13,7 @@ using VilleDTO = SolarSystem.Earth.Common.Ville;
 
 namespace SolarSystem.Earth.Business
 {
-    public class MembreBusiness : IReaderTwoFilters<MembreDTO, VilleDTO, RoleDTO>, IManager<MembreDTO>, ISearchable<MembreDTO>, ILogin
+    public class MembreBusiness : IReaderTwoFilters<MembreDTO, VilleDTO, RoleDTO>, IManager<MembreDTO>, ISearchable<MembreDTO>, ILogin<MembreDTO>
     {
         #region Attributes
 
@@ -138,14 +138,22 @@ namespace SolarSystem.Earth.Business
 
         #region ILogin methods
 
-        public int Login(string username, string password)
+        public MembreDTO Login(string username, string password)
         {
-            return _membreDAL.Login(username, password);
+            MembreDAO dao = _membreDAL.Login(username, password);
+            MembreDTO dto = _mapper.ToDTO(dao);
+            return dto;
         }
 
         public bool Exists(string username, string password)
         {
             return _membreDAL.Exists(username, password);
+        }
+
+        public int Register(MembreDTO membre)
+        {
+            MembreDAO dao = _mapper.ToDAO(membre);
+            return _membreDAL.Register(dao);
         }
 
         #endregion

@@ -1,9 +1,13 @@
-﻿namespace SolarSystem.Earth.Common.Interfaces
+﻿using System.Runtime.InteropServices;
+
+namespace SolarSystem.Earth.Common.Interfaces
 {
-    public interface ILogin
+    public interface ILogin<T>
     {
-        int Login(string username, string password);
+        T Login(string username, string password);
 
         bool Exists(string username, string password);
+
+        int Register(T membre);
     }
 }

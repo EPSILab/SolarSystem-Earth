@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace SolarSystem.Earth.DataAccess.DataAccess
 {
-    public class MembreDAL : DALBase, IReaderTwoFilters<Membre, Ville, Role>, ISearchable<Membre>, ILogin, IManager<Membre>
+    public class MembreDAL : DALBase, IReaderTwoFilters<Membre, Ville, Role>, ISearchable<Membre>, ILogin<Membre>, IManager<Membre>
     {
         #region IReaderTwoFilters methods
 
@@ -96,6 +96,41 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
         #endregion
 
+        #region ILogin methods
+
+        public Membre Login(string username, string password)
+        {
+            Membre result = (from membre in Db.Membre
+                             where membre.Pseudo == username && membre.Mot_de_passe == password
+                             select membre).First();
+
+            return result;
+        }
+
+        public bool Exists(string username, string password)
+        {
+            bool exists = (from membre in Db.Membre
+                           where membre.Pseudo == username && membre.Mot_de_passe == password
+                           select membre).Any();
+
+            return exists;
+        }
+
+        public int Register(Membre membre)
+        {
+            membre.Code_Role = 0;
+
+            IRulesManager<Membre> rulesManager = new MembreRulesManager();
+            rulesManager.Check(membre);
+
+            Db.Membre.AddObject(membre);
+            Db.SaveChanges();
+
+            return membre.Code_Membre;
+        }
+
+        #endregion
+
         #region IManager methods
 
         public IEnumerable<Membre> Search(string keywords)
@@ -116,24 +151,6 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
             }
 
             return membres;
-        }
-
-        public int Login(string username, string password)
-        {
-            Membre results = (from membre in Db.Membre
-                              where membre.Pseudo == username && membre.Mot_de_passe == password
-                              select membre).First();
-
-            return results != null ? results.Code_Membre : 0;
-        }
-
-        public bool Exists(string username, string password)
-        {
-            bool exists = (from membre in Db.Membre
-                           where membre.Pseudo == username && membre.Mot_de_passe == password
-                           select membre).Any();
-
-            return exists;
         }
 
         public IEnumerable<Membre> Get(int indexFirstResult, int numberOfResults, string username, string password)

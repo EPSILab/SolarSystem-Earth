@@ -1,4 +1,5 @@
-﻿using SolarSystem.Earth.Common;
+﻿using System.ServiceModel.PeerResolvers;
+using SolarSystem.Earth.Common;
 using System.Collections.Generic;
 using System.ServiceModel;
 
@@ -8,10 +9,13 @@ namespace SolarSystem.Earth.WCF.Interfaces.Managers
     interface IMembreManager
     {
         [OperationContract]
-        int Login(string username, string password);
+        Membre Login(string username, string password);
 
         [OperationContract]
         bool Exists(string username, string password);
+
+        [OperationContract]
+        int Register(Membre membre);
 
         [OperationContract]
         Membre GetMembre(int code, string username, string password);
