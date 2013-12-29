@@ -51,6 +51,7 @@
     <Compile Include="ProjetMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PubliciteMapper.cs" />
+    <Compile Include="RecupMotDePasseMapper.cs" />
     <Compile Include="RoleMapper.cs" />
     <Compile Include="SalonMapper.cs" />
     <Compile Include="VilleMapper.cs" />

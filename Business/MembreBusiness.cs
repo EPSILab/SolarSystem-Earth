@@ -1,11 +1,17 @@
 ﻿using SolarSystem.Earth.Common.Interfaces;
 using SolarSystem.Earth.DataAccess.DataAccess;
+using SolarSystem.Earth.DataAccess.Resources;
 using SolarSystem.Earth.Mappers;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using MembreDAO = SolarSystem.Earth.DataAccess.Model.Membre;
 using MembreDTO = SolarSystem.Earth.Common.Membre;
+using RecupMotDePasseDAO = SolarSystem.Earth.DataAccess.Model.RecupMotDePasse;
+using RecupMotDePasseDTO = SolarSystem.Earth.Common.RecupMotDePasse;
 using RoleDAO = SolarSystem.Earth.DataAccess.Model.Role;
 using RoleDTO = SolarSystem.Earth.Common.Role;
 using VilleDAO = SolarSystem.Earth.DataAccess.Model.Ville;
@@ -13,13 +19,13 @@ using VilleDTO = SolarSystem.Earth.Common.Ville;
 
 namespace SolarSystem.Earth.Business
 {
-    public class MembreBusiness : IReaderTwoFilters<MembreDTO, VilleDTO, RoleDTO>, IManager<MembreDTO>, ISearchable<MembreDTO>, ILogin<MembreDTO>
+    public class MembreBusiness : IReaderTwoFilters<MembreDTO, VilleDTO, RoleDTO>, IManager<MembreDTO>, ISearchable<MembreDTO>, ILogin<MembreDTO, RecupMotDePasseDTO>
     {
         #region Attributes
 
         private readonly MembreDAL _membreDAL = new MembreDAL();
         private readonly VilleDAL _villeDAL = new VilleDAL();
-        private readonly  RoleDAL _roleDAL = new RoleDAL();
+        private readonly RoleDAL _roleDAL = new RoleDAL();
         private readonly IMapper<MembreDAO, MembreDTO> _mapper = new MembreMapper();
 
         #endregion
@@ -129,15 +135,60 @@ namespace SolarSystem.Earth.Business
             return dto;
         }
 
+        public void ChangePassword(string username, string oldPassword, string newPassword)
+        {
+            _membreDAL.ChangePassword(username, oldPassword, newPassword);
+        }
+
         public bool Exists(string username, string password)
         {
             return _membreDAL.Exists(username, password);
+        }
+
+        public bool Exists(string username)
+        {
+            return _membreDAL.Exists(username);
         }
 
         public int Register(MembreDTO membre)
         {
             MembreDAO dao = _mapper.ToDAO(membre);
             return _membreDAL.Register(dao);
+        }
+
+        public RecupMotDePasseDTO LostPassword(string username, string email)
+        {
+            IMapper<RecupMotDePasseDAO, RecupMotDePasseDTO> mapper = new RecupMotDePasseMapper();
+            RecupMotDePasseDAO dao = _membreDAL.LostPassword(username, email);
+            RecupMotDePasseDTO dto = mapper.ToDTO(dao);
+
+            using (MailMessage mail = new MailMessage())
+            {
+                MailAddress mailReciever = new MailAddress(dto.Membre.Email_EPSI);
+                mail.To.Add(mailReciever);
+
+                mail.Subject = PasswordBackupRessources.Subject;
+                mail.IsBodyHtml = true;
+                mail.Priority = MailPriority.High;
+
+                string url = string.Format(PasswordBackupRessources.Url, dao.Membre.Pseudo, dao.Cle);
+                string message = string.Format(PasswordBackupRessources.Message, Environment.NewLine, url);
+                mail.Body = message;
+
+                SmtpClient smtp = new SmtpClient
+                {
+                    Credentials = new NetworkCredential(PasswordBackupRessources.Email, PasswordBackupRessources.Password),
+                    Host = PasswordBackupRessources.Host,
+                    Port = int.Parse(PasswordBackupRessources.Port),
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    EnableSsl = true
+                };
+
+                smtp.Send(mail);
+                smtp.Dispose();
+            }
+
+            return dto;
         }
 
         #endregion

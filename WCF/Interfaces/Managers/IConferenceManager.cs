@@ -1,12 +1,18 @@
 ﻿using SolarSystem.Earth.Common;
-using SolarSystem.Earth.WCF.Interfaces.Readers;
+using System.Collections.Generic;
 using System.ServiceModel;
 
 namespace SolarSystem.Earth.WCF.Interfaces.Managers
 {
     [ServiceContract]
-    interface IConferenceManager : IConferenceReader
+    interface IConferenceManager
     {
+        [OperationContract]
+        Conference GetConference(int code);
+
+        [OperationContract]
+        IEnumerable<Conference> GetConferences(int indexFirstResult, int numberOfResults);
+
         [OperationContract]
         int AddConference(Conference element, string username, string password);
 

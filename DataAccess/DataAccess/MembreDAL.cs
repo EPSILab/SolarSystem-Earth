@@ -1,15 +1,17 @@
 ﻿using SolarSystem.Earth.Common.Interfaces;
-using SolarSystem.Earth.DataAccess.ErrorMessages;
+using SolarSystem.Earth.Common.Utils;
 using SolarSystem.Earth.DataAccess.Exceptions;
 using SolarSystem.Earth.DataAccess.Model;
+using SolarSystem.Earth.DataAccess.Resources;
 using SolarSystem.Earth.DataAccess.RulesManager;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 
 namespace SolarSystem.Earth.DataAccess.DataAccess
 {
-    public class MembreDAL : DALBase, IReaderTwoFilters<Membre, Ville, Role>, ISearchable<Membre>, ILogin<Membre>, IManager<Membre>
+    public class MembreDAL : DALBase, IReaderTwoFilters<Membre, Ville, Role>, ISearchable<Membre>, ILogin<Membre, RecupMotDePasse>, IManager<Membre>
     {
         #region IReaderTwoFilters methods
 
@@ -109,10 +111,30 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
             return result;
         }
 
+        public void ChangePassword(string username, string oldPassword, string newPassword)
+        {
+            Membre result = (from membre in Db.Membre
+                             where membre.Pseudo == username && membre.Mot_de_passe == oldPassword
+                             select membre).First();
+
+            result.Mot_de_passe = newPassword;
+
+            Db.SaveChanges();
+        }
+
         public bool Exists(string username, string password)
         {
             bool exists = (from membre in Db.Membre
                            where membre.Pseudo == username && membre.Mot_de_passe == password
+                           select membre).Any();
+
+            return exists;
+        }
+
+        public bool Exists(string username)
+        {
+            bool exists = (from membre in Db.Membre
+                           where membre.Pseudo == username
                            select membre).Any();
 
             return exists;
@@ -129,6 +151,24 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
             Db.SaveChanges();
 
             return membre.Code_Membre;
+        }
+
+        public RecupMotDePasse LostPassword(string username, string email)
+        {
+            Membre result = (from membre in Db.Membre
+                             where membre.Pseudo == username
+                             select membre).First();
+
+            RecupMotDePasse recupMotDePasse = new RecupMotDePasse
+            {
+                Code_Membre = result.Code_Membre,
+                Date = DateTime.Now,
+                Cle = MD5HasherUtil.Hash(string.Format("{0}{1}", result.Pseudo, DateTime.Now))
+            };
+
+            Db.RecupMotDePasse.AddObject(recupMotDePasse);
+
+            return recupMotDePasse;
         }
 
         #endregion

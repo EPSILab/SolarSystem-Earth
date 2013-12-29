@@ -76,7 +76,12 @@
       <DependentUpon>SunModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ErrorMessages\ErrorMessages-FR.Designer.cs">
+    <Compile Include="Resources\PasswordBackupRessources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PasswordBackupRessources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ErrorMessages-FR.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMessages-FR.resx</DependentUpon>
@@ -94,7 +99,11 @@
     <Compile Include="RulesManager\RulesChecker.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ErrorMessages\ErrorMessages-FR.resx">
+    <EmbeddedResource Include="Resources\PasswordBackupRessources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PasswordBackupRessources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ErrorMessages-FR.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorMessages-FR.Designer.cs</LastGenOutput>
     </EmbeddedResource>

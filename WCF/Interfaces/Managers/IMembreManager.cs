@@ -1,17 +1,29 @@
 ﻿using SolarSystem.Earth.Common;
-using SolarSystem.Earth.WCF.Interfaces.Readers;
+using System.Collections.Generic;
 using System.ServiceModel;
 
 namespace SolarSystem.Earth.WCF.Interfaces.Managers
 {
     [ServiceContract]
-    interface IMembreManager : IMembreReader
+    interface IMembreManager
     {
+        [OperationContract]
+        Membre GetMembre(int code);
+
+        [OperationContract]
+        IEnumerable<Membre> GetMembres();
+
+        [OperationContract]
+        IEnumerable<Membre> GetMembresByVilleAndRole(Ville ville, Role role);
+
         [OperationContract]
         Membre Login(string username, string password);
 
         [OperationContract]
-        bool Exists(string username, string password);
+        bool ExistsUsername(string username);
+
+        [OperationContract]
+        bool ExistsMembre(string username, string password);
 
         [OperationContract]
         int Register(Membre membre);

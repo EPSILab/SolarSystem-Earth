@@ -1,5 +1,5 @@
-﻿using SolarSystem.Earth.DataAccess.ErrorMessages;
-using SolarSystem.Earth.DataAccess.Model;
+﻿using SolarSystem.Earth.DataAccess.Model;
+using SolarSystem.Earth.DataAccess.Resources;
 
 namespace SolarSystem.Earth.DataAccess.RulesManager
 {

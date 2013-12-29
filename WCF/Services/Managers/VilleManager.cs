@@ -8,8 +8,6 @@ namespace SolarSystem.Earth.WCF
 {
     public partial class ManagersService : IVilleManager
     {
-        #region IVilleReader methods
-
         public Ville GetVille(int code)
         {
             IReader<Ville> business = new VilleBusiness();
@@ -21,10 +19,6 @@ namespace SolarSystem.Earth.WCF
             IReader<Ville> business = new VilleBusiness();
             return business.Get();
         }
-
-        #endregion
-
-        #region IVilleManager methods
 
         public int AddVille(Ville element, string username, string password)
         {
@@ -43,7 +37,5 @@ namespace SolarSystem.Earth.WCF
             IManager<Ville> business = new VilleBusiness();
             business.Delete(code, username, password);
         }
-
-        #endregion
     }
 }

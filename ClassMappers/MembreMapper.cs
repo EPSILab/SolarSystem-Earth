@@ -14,7 +14,6 @@ namespace SolarSystem.Earth.Mappers
                 Nom = element.Nom,
                 Prenom = element.Prenom,
                 Pseudo = element.Pseudo,
-                // DO NOT RECOPY THE PASSWORD
                 Email_perso = element.Email_perso,
                 Email_EPSI = element.Email_EPSI,
                 Telephone_mobile = element.Telephone_mobile,
@@ -45,7 +44,6 @@ namespace SolarSystem.Earth.Mappers
                 Email_EPSI = element.Email_EPSI,
                 Email_perso = element.Email_perso,
                 Image = element.Image,
-                Mot_de_passe = element.Mot_de_passe,
                 Nom = element.Nom,
                 Prenom = element.Prenom,
                 Presentation = element.Presentation,

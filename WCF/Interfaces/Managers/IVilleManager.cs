@@ -1,12 +1,18 @@
 ﻿using SolarSystem.Earth.Common;
-using SolarSystem.Earth.WCF.Interfaces.Readers;
+using System.Collections.Generic;
 using System.ServiceModel;
 
 namespace SolarSystem.Earth.WCF.Interfaces.Managers
 {
     [ServiceContract]
-    interface IVilleManager : IVilleReader
+    interface IVilleManager
     {
+        [OperationContract]
+        Ville GetVille(int code);
+
+        [OperationContract]
+        IEnumerable<Ville> GetVilles();
+
         [OperationContract]
         int AddVille(Ville element, string username, string password);
 

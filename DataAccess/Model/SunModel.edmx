@@ -280,6 +280,11 @@
             <End Role="Ville" EntitySet="Ville" />
             <End Role="Projet" EntitySet="Projet" />
           </AssociationSet>
+          <EntitySet Name="RecupMotDePasse" EntityType="SunModel.RecupMotDePasse" />
+          <AssociationSet Name="MembreRecupMotDePasse" Association="SunModel.MembreRecupMotDePasse">
+            <End Role="Membre" EntitySet="Membre" />
+            <End Role="RecupMotDePasse" EntitySet="RecupMotDePasse" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Classe">
           <Key>
@@ -347,6 +352,7 @@
           <NavigationProperty Name="Role" Relationship="SunModel.FK_Membre_Role" FromRole="Membre" ToRole="Role" />
           <NavigationProperty Name="Ville" Relationship="SunModel.FK_Membre_Ville" FromRole="Membre" ToRole="Ville" />
           <NavigationProperty Name="News" Relationship="SunModel.FK_News_Membre" FromRole="Membre" ToRole="News" />
+          <NavigationProperty Name="RecupMotDePasse" Relationship="SunModel.MembreRecupMotDePasse" FromRole="Membre" ToRole="RecupMotDePasse" />
         </EntityType>
         <EntityType Name="News">
           <Key>
@@ -492,6 +498,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="RecupMotDePasse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="Membre" Relationship="SunModel.MembreRecupMotDePasse" FromRole="RecupMotDePasse" ToRole="Membre" />
+          <Property Name="Code_Membre" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Cle" Type="String" Nullable="false" MaxLength="32" />
+        </EntityType>
+        <Association Name="MembreRecupMotDePasse">
+          <End Type="SunModel.Membre" Role="Membre" Multiplicity="1" />
+          <End Type="SunModel.RecupMotDePasse" Role="RecupMotDePasse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Membre">
+              <PropertyRef Name="Code_Membre" />
+            </Principal>
+            <Dependent Role="RecupMotDePasse">
+              <PropertyRef Name="Code_Membre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -615,7 +643,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="SunModel">
+      <Diagram Name="SunModel" ZoomLevel="67">
         <EntityTypeShape EntityType="SunModel.Classe" Width="1.5" PointX="3.75" PointY="8.75" Height="1.9802864583333317" IsExpanded="true" />
         <EntityTypeShape EntityType="SunModel.Conference" Width="1.5" PointX="3" PointY="4.75" Height="3.1340950520833317" IsExpanded="true" />
         <EntityTypeShape EntityType="SunModel.Lien" Width="1.5" PointX="0.75" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
@@ -652,6 +680,8 @@
           <ConnectorPoint PointX="1.5" PointY="16.432444661458334" />
           <ConnectorPoint PointX="3" PointY="16.432444661458334" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="SunModel.RecupMotDePasse" Width="1.5" PointX="8.875" PointY="3.375" />
+        <AssociationConnector Association="SunModel.MembreRecupMotDePasse" />
       </Diagram>
     </Diagrams>
   </Designer>

@@ -1,12 +1,18 @@
 ﻿using SolarSystem.Earth.Common;
-using SolarSystem.Earth.WCF.Interfaces.Readers;
+using System.Collections.Generic;
 using System.ServiceModel;
 
 namespace SolarSystem.Earth.WCF.Interfaces.Managers
 {
     [ServiceContract]
-    interface IPubliciteManager : IPubliciteReader
+    interface IPubliciteManager
     {
+        [OperationContract]
+        Publicite GetPublicite(int code);
+
+        [OperationContract]
+        IEnumerable<Publicite> GetPublicites();
+
         [OperationContract]
         int AddPublicite(Publicite element, string username, string password);
 

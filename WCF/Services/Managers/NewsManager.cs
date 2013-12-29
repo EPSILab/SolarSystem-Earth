@@ -3,15 +3,11 @@ using SolarSystem.Earth.Common;
 using SolarSystem.Earth.Common.Interfaces;
 using SolarSystem.Earth.WCF.Interfaces.Managers;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 
 namespace SolarSystem.Earth.WCF
 {
     public partial class ManagersService : INewsManager
     {
-
-        #region INewsReader methods
-
         public News GetNews(int code)
         {
             IReader<News> business = new NewsBusiness();
@@ -30,28 +26,6 @@ namespace SolarSystem.Earth.WCF
             return business.Get(indexFirstElement, numberOfResults);
         }
 
-        public IEnumerable<News> GetListNewsSorted(int indexFirstElement, int numberOrResults, SortOrder order)
-        {
-            IReaderSort<News> business = new NewsBusiness();
-            return business.Get(indexFirstElement, numberOrResults, order);
-        }
-
-        public int GetNewsLastInsertedId()
-        {
-            IReaderLimit<News> business = new NewsBusiness();
-            return business.GetLastInsertedId();
-        }
-
-        public IEnumerable<News> SearchNews(string keywords)
-        {
-            ISearchable<News> business = new NewsBusiness();
-            return business.Search(keywords);
-        }
-
-        #endregion
-
-        #region INewsManager methods
-
         public int AddNews(News element, string username, string password)
         {
             IManager<News> business = new NewsBusiness();
@@ -69,7 +43,5 @@ namespace SolarSystem.Earth.WCF
             IManager<News> business = new NewsBusiness();
             business.Delete(code, username, password);
         }
-
-        #endregion
     }
 }

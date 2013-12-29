@@ -8,12 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
@@ -24,6 +25,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("SunModel", "FK_Membre_Ville", "Ville", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SolarSystem.Earth.DataAccess.Model.Ville), "Membre", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SolarSystem.Earth.DataAccess.Model.Membre), true)]
 [assembly: EdmRelationshipAttribute("SunModel", "FK_News_Membre", "Membre", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SolarSystem.Earth.DataAccess.Model.Membre), "News", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SolarSystem.Earth.DataAccess.Model.News), true)]
 [assembly: EdmRelationshipAttribute("SunModel", "FK_Projet_Ville", "Ville", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SolarSystem.Earth.DataAccess.Model.Ville), "Projet", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SolarSystem.Earth.DataAccess.Model.Projet), true)]
+[assembly: EdmRelationshipAttribute("SunModel", "MembreRecupMotDePasse", "Membre", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SolarSystem.Earth.DataAccess.Model.Membre), "RecupMotDePasse", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SolarSystem.Earth.DataAccess.Model.RecupMotDePasse), true)]
 
 #endregion
 
@@ -234,8 +236,25 @@ namespace SolarSystem.Earth.DataAccess.Model
             }
         }
         private ObjectSet<Ville> _Ville;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<RecupMotDePasse> RecupMotDePasse
+        {
+            get
+            {
+                if ((_RecupMotDePasse == null))
+                {
+                    _RecupMotDePasse = base.CreateObjectSet<RecupMotDePasse>("RecupMotDePasse");
+                }
+                return _RecupMotDePasse;
+            }
+        }
+        private ObjectSet<RecupMotDePasse> _RecupMotDePasse;
 
         #endregion
+
         #region AddTo Methods
     
         /// <summary>
@@ -317,13 +336,21 @@ namespace SolarSystem.Earth.DataAccess.Model
         {
             base.AddObject("Ville", ville);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the RecupMotDePasse EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToRecupMotDePasse(RecupMotDePasse recupMotDePasse)
+        {
+            base.AddObject("RecupMotDePasse", recupMotDePasse);
+        }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entities
     
     /// <summary>
@@ -354,6 +381,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -456,6 +484,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         partial void OnEncore_PresenteChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -482,6 +511,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -524,6 +554,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -770,6 +801,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         partial void OnURLChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -812,6 +844,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -844,6 +877,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -994,6 +1028,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         partial void OnOrdreChanged();
 
         #endregion
+
     
     }
     
@@ -1039,6 +1074,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1549,6 +1585,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         partial void OnURLChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1687,8 +1724,31 @@ namespace SolarSystem.Earth.DataAccess.Model
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SunModel", "MembreRecupMotDePasse", "RecupMotDePasse")]
+        public EntityCollection<RecupMotDePasse> RecupMotDePasse
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RecupMotDePasse>("SunModel.MembreRecupMotDePasse", "RecupMotDePasse");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RecupMotDePasse>("SunModel.MembreRecupMotDePasse", "RecupMotDePasse", value);
+                }
+            }
+        }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1731,6 +1791,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1977,6 +2038,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         partial void OnURLChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2019,6 +2081,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2053,6 +2116,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2203,6 +2267,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         partial void OnImageChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2245,6 +2310,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2277,6 +2343,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2427,7 +2494,185 @@ namespace SolarSystem.Earth.DataAccess.Model
         partial void OnPublieeChanged();
 
         #endregion
+
     
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SunModel", Name="RecupMotDePasse")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class RecupMotDePasse : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new RecupMotDePasse object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="code_Membre">Initial value of the Code_Membre property.</param>
+        /// <param name="date">Initial value of the Date property.</param>
+        /// <param name="cle">Initial value of the Cle property.</param>
+        public static RecupMotDePasse CreateRecupMotDePasse(global::System.Int32 id, global::System.Int32 code_Membre, global::System.DateTime date, global::System.String cle)
+        {
+            RecupMotDePasse recupMotDePasse = new RecupMotDePasse();
+            recupMotDePasse.Id = id;
+            recupMotDePasse.Code_Membre = code_Membre;
+            recupMotDePasse.Date = date;
+            recupMotDePasse.Cle = cle;
+            return recupMotDePasse;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Code_Membre
+        {
+            get
+            {
+                return _Code_Membre;
+            }
+            set
+            {
+                OnCode_MembreChanging(value);
+                ReportPropertyChanging("Code_Membre");
+                _Code_Membre = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Code_Membre");
+                OnCode_MembreChanged();
+            }
+        }
+        private global::System.Int32 _Code_Membre;
+        partial void OnCode_MembreChanging(global::System.Int32 value);
+        partial void OnCode_MembreChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime Date
+        {
+            get
+            {
+                return _Date;
+            }
+            set
+            {
+                OnDateChanging(value);
+                ReportPropertyChanging("Date");
+                _Date = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Date");
+                OnDateChanged();
+            }
+        }
+        private global::System.DateTime _Date;
+        partial void OnDateChanging(global::System.DateTime value);
+        partial void OnDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Cle
+        {
+            get
+            {
+                return _Cle;
+            }
+            set
+            {
+                OnCleChanging(value);
+                ReportPropertyChanging("Cle");
+                _Cle = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Cle");
+                OnCleChanged();
+            }
+        }
+        private global::System.String _Cle;
+        partial void OnCleChanging(global::System.String value);
+        partial void OnCleChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SunModel", "MembreRecupMotDePasse", "Membre")]
+        public Membre Membre
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Membre>("SunModel.MembreRecupMotDePasse", "Membre").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Membre>("SunModel.MembreRecupMotDePasse", "Membre").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Membre> MembreReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Membre>("SunModel.MembreRecupMotDePasse", "Membre");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Membre>("SunModel.MembreRecupMotDePasse", "Membre", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>
@@ -2454,6 +2699,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2508,6 +2754,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         partial void OnLibelleChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2534,6 +2781,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2574,6 +2822,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2796,6 +3045,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         partial void OnURLChanged();
 
         #endregion
+
     
     }
     
@@ -2825,6 +3075,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2903,6 +3154,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         partial void OnEmailChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2973,8 +3225,10 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
     }
 
     #endregion
+
     
 }

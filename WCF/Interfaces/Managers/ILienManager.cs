@@ -1,12 +1,18 @@
 ﻿using SolarSystem.Earth.Common;
-using SolarSystem.Earth.WCF.Interfaces.Readers;
+using System.Collections.Generic;
 using System.ServiceModel;
 
 namespace SolarSystem.Earth.WCF.Interfaces.Managers
 {
     [ServiceContract]
-    interface ILienManager : ILienReader
+    interface ILienManager
     {
+        [OperationContract]
+        Lien GetLien(int code);
+
+        [OperationContract]
+        IEnumerable<Lien> GetLiens();
+
         [OperationContract]
         int AddLien(Lien element, string username, string password);
 

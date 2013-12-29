@@ -1,5 +1,5 @@
 ﻿using SolarSystem.Earth.Common.Interfaces;
-using SolarSystem.Earth.DataAccess.ErrorMessages;
+using SolarSystem.Earth.DataAccess.Resources;
 using SolarSystem.Earth.DataAccess.Exceptions;
 using SolarSystem.Earth.DataAccess.Model;
 using SolarSystem.Earth.DataAccess.RulesManager;

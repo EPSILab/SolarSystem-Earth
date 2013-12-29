@@ -8,8 +8,6 @@ namespace SolarSystem.Earth.WCF
 {
     public partial class ManagersService : IPubliciteManager
     {
-        #region IPubliciteReader methods
-
         public Publicite GetPublicite(int code)
         {
             IReader<Publicite> business = new PubliciteBusiness();
@@ -21,10 +19,6 @@ namespace SolarSystem.Earth.WCF
             IReader<Publicite> business = new PubliciteBusiness();
             return business.Get();
         }
-
-        #endregion
-
-        #region IPubliciteManager methods
 
         public int AddPublicite(Publicite element, string username, string password)
         {
@@ -43,7 +37,5 @@ namespace SolarSystem.Earth.WCF
             IManager<Publicite> business = new PubliciteBusiness();
             business.Delete(code, username, password);
         }
-
-        #endregion
     }
 }
