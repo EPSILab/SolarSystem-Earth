@@ -1,4 +1,6 @@
 ﻿using SolarSystem.Earth.Common.Interfaces;
+using SolarSystem.Earth.DataAccess.ErrorMessages;
+using SolarSystem.Earth.DataAccess.Exceptions;
 using SolarSystem.Earth.DataAccess.Model;
 using SolarSystem.Earth.DataAccess.RulesManager;
 using System.Collections.Generic;
@@ -75,27 +77,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
         #region IManager methods
 
-        public IEnumerable<Projet> Get(int indexFirstResult, int numberOfResults, string username, string password)
-        {
-            if (_membreDAL.Exists(username, password))
-            {
-                return Get(indexFirstResult, numberOfResults);
-            }
-
-            return null;
-        }
-
-        public Projet Get(int code, string username, string password)
-        {
-            if (_membreDAL.Exists(username, password))
-            {
-                return Get(code);
-            }
-
-            return null;
-        }
-
-        public int Add(Projet element, string username, string password)
+         public int Add(Projet element, string username, string password)
         {
             if (_membreDAL.Exists(username, password))
             {
@@ -107,8 +89,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
                 return element.Code_Projet;
             }
-
-            return 0;
+                throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
         }
 
         public void Edit(Projet element, string username, string password)
@@ -128,6 +109,10 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
                 Db.SaveChanges();
             }
+            else
+            {
+                throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
+            }
         }
 
         public void Delete(int code, string username, string password)
@@ -138,6 +123,10 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
                 Db.Projet.DeleteObject(projet);
                 Db.SaveChanges();
+            }
+            else
+            {
+                throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
             }
         }
 

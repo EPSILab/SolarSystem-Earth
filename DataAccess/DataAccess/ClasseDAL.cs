@@ -1,4 +1,6 @@
 ﻿using SolarSystem.Earth.Common.Interfaces;
+using SolarSystem.Earth.DataAccess.ErrorMessages;
+using SolarSystem.Earth.DataAccess.Exceptions;
 using SolarSystem.Earth.DataAccess.Model;
 using SolarSystem.Earth.DataAccess.RulesManager;
 using System.Collections.Generic;
@@ -16,28 +18,39 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
         #region IManager methods
 
-        public Classe Get(int code, string username, string password)
+        public Classe Get(int code)
         {
-            if (_membreDAL.Exists(username, password))
-            {
-                return (from c in Db.Classe
-                        where c.Code_Classe == code
-                        select c).First();
-            }
-
-            return null;
+            return (from c in Db.Classe
+                    where c.Code_Classe == code
+                    select c).First();
         }
 
-        public IEnumerable<Classe> Get(int indexFirstResult, int numberOfResults, string username, string password)
+        public IEnumerable<Classe> Get()
         {
-            if (_membreDAL.Exists(username, password))
+            return Get(0, 0);
+        }
+
+        public IEnumerable<Classe> Get(int indexFirstElement, int numberOfResults)
+        {
+            IEnumerable<Classe> results = (from c in Db.Classe
+                                           orderby c.Annee_Promo_Sortante
+                                           select c);
+
+            results = results.Skip(indexFirstElement);
+
+            if (numberOfResults > 0)
             {
-                return (from c in Db.Classe
-                        orderby c.Annee_Promo_Sortante
-                        select c);
+                results = results.Take(numberOfResults);
             }
 
-            return null;
+            return results;
+        }
+
+        public int GetLastInsertedId()
+        {
+            return (from c in Db.Classe
+                    orderby c.Code_Classe descending
+                    select c).First().Code_Classe;
         }
 
         public int Add(Classe element, string username, string password)
@@ -52,8 +65,8 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
                 return element.Code_Classe;
             }
-
-            return 0;
+            
+            throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
         }
 
         public void Edit(Classe element, string username, string password)
@@ -63,12 +76,16 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
                 IRulesManager<Classe> rulesManager = new ClasseRulesManager();
                 rulesManager.Check(element);
 
-                Classe c = Get(element.Code_Classe, username, password);
+                Classe c = Get(element.Code_Classe);
                 c.Libelle = element.Libelle;
                 c.Annee_Promo_Sortante = element.Annee_Promo_Sortante;
                 c.Encore_Presente = element.Encore_Presente;
 
                 Db.SaveChanges();
+            }
+            else
+            {
+                throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
             }
         }
 
@@ -76,13 +93,17 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
         {
             if (_membreDAL.Exists(username, password))
             {
-                Classe classe = Get(code, username, password);
+                Classe classe = Get(code);
 
                 if (classe != null)
                 {
                     Db.Classe.DeleteObject(classe);
                     Db.SaveChanges();
                 }
+            }
+            else
+            {
+                throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
             }
         }
 

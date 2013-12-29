@@ -8,7 +8,7 @@ using LienDTO = SolarSystem.Earth.Common.Lien;
 
 namespace SolarSystem.Earth.Business
 {
-    public class LienBusiness : IReader<LienDTO>, IManager<LienDTO>
+    public class LienBusiness : IManager<LienDTO>
     {
         #region Attributes
 
@@ -34,23 +34,17 @@ namespace SolarSystem.Earth.Business
             return dto;
         }
 
-        #endregion
-
-        #region IManager methods
-
-        public IEnumerable<LienDTO> Get(int indexFirstResult, int numberOfResults, string username, string password)
+        public IEnumerable<LienDTO> Get(int indexFirstResult, int numberOfResults)
         {
-            IEnumerable<LienDAO> dao = _lienDAL.Get(indexFirstResult, numberOfResults, username, password);
+            IEnumerable<LienDAO> dao = _lienDAL.Get(indexFirstResult, numberOfResults);
             IEnumerable<LienDTO> dto = dao.Select(l => _mapper.ToDTO(l));
 
             return dto;
         }
 
-        public LienDTO Get(int code, string username, string password)
+        public int GetLastInsertedId()
         {
-            LienDAO dao = _lienDAL.Get(code, username, password);
-            LienDTO dto = _mapper.ToDTO(dao);
-            return dto;
+            return _lienDAL.GetLastInsertedId();
         }
 
         public int Add(LienDTO element, string username, string password)

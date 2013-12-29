@@ -8,16 +8,16 @@ namespace SolarSystem.Earth.WCF
 {
     public partial class ManagersService : IClasseManager
     {
-        public Classe GetClasse(int code, string username, string password)
+        public Classe GetClasse(int code)
         {
             IManager<Classe> business = new ClasseBusiness();
-            return business.Get(code, username, password);
+            return business.Get(code);
         }
 
-        public IEnumerable<Classe> GetClasses(int indexFirstResult, int numberOfResults, string username, string password)
+        public IEnumerable<Classe> GetClasses()
         {
             IManager<Classe> business = new ClasseBusiness();
-            return business.Get(indexFirstResult, numberOfResults, username, password);
+            return business.Get();
         }
 
         public int AddClasse(Classe element, string username, string password)

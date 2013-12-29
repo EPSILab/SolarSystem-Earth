@@ -3,22 +3,53 @@ using SolarSystem.Earth.Common;
 using SolarSystem.Earth.Common.Interfaces;
 using SolarSystem.Earth.WCF.Interfaces.Managers;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace SolarSystem.Earth.WCF
 {
     public partial class ManagersService : ISalonManager
     {
-        public Salon GetSalon(int code, string username, string password)
+        #region ISalonReader methods
+
+        public Salon GetSalon(int code)
         {
-            IManager<Salon> business = new SalonBusiness();
-            return business.Get(code, username, password);
+            IReader<Salon> business = new SalonBusiness();
+            return business.Get(code);
         }
 
-        public IEnumerable<Salon> GetSalons(int indexFirstResult, int numberOfResults, string username, string password)
+        public IEnumerable<Salon> GetSalons()
         {
-            IManager<Salon> business = new SalonBusiness();
-            return business.Get(indexFirstResult, numberOfResults, username, password);
+            IReader<Salon> business = new SalonBusiness();
+            return business.Get();
         }
+
+        public IEnumerable<Salon> GetSalonsLimited(int indexFirstElement, int numberOfResults)
+        {
+            IReaderLimit<Salon> business = new SalonBusiness();
+            return business.Get(indexFirstElement, numberOfResults);
+        }
+
+        public IEnumerable<Salon> GetSalonsSorted(int indexFirstElement, int numberOfResults, SortOrder order)
+        {
+            IReaderSort<Salon> business = new SalonBusiness();
+            return business.Get(indexFirstElement, numberOfResults, order);
+        }
+
+        public int GetSalonLastInsertedId()
+        {
+            IReaderLimit<Salon> business = new SalonBusiness();
+            return business.GetLastInsertedId();
+        }
+
+        public IEnumerable<Salon> SearchSalons(string keywords)
+        {
+            ISearchable<Salon> business = new SalonBusiness();
+            return business.Search(keywords);
+        }
+
+        #endregion
+
+        #region ISalonManager methods
 
         public int AddSalon(Salon element, string username, string password)
         {
@@ -37,5 +68,7 @@ namespace SolarSystem.Earth.WCF
             IManager<Salon> business = new SalonBusiness();
             business.Delete(code, username, password);
         }
+
+        #endregion
     }
 }

@@ -1,4 +1,6 @@
 ﻿using SolarSystem.Earth.Common.Interfaces;
+using SolarSystem.Earth.DataAccess.ErrorMessages;
+using SolarSystem.Earth.DataAccess.Exceptions;
 using SolarSystem.Earth.DataAccess.Model;
 using SolarSystem.Earth.DataAccess.RulesManager;
 using System.Collections.Generic;
@@ -90,38 +92,6 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
         #region IManager methods
 
-        public IEnumerable<Salon> Get(int indexFirstResult, int numberOfResults, string username, string password)
-        {
-            if (_membreDAL.Exists(username, password))
-            {
-                IEnumerable<Salon> results = (from n in Db.Salon
-                                              orderby n.Date_Heure_Debut descending
-                                              orderby n.Date_Heure_Fin descending
-                                              select n);
-
-                results = results.Skip(indexFirstResult);
-
-                if (numberOfResults > 0)
-                {
-                    results = results.Take(numberOfResults);
-                }
-
-                return results;
-            }
-
-            return null;
-        }
-
-        public Salon Get(int code, string username, string password)
-        {
-            if (_membreDAL.Exists(username, password))
-            {
-                return Get(code);
-            }
-
-            return null;
-        }
-
         public int Add(Salon element, string username, string password)
         {
             if (_membreDAL.Exists(username, password))
@@ -135,7 +105,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
                 return element.Code_Salon;
             }
 
-            return 0;
+                throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
         }
 
         public void Edit(Salon element, string username, string password)
@@ -155,6 +125,10 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
                 Db.SaveChanges();
             }
+            else
+            {
+                throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
+            }
         }
 
         public void Delete(int code, string username, string password)
@@ -164,6 +138,10 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
                 Salon salon = Get(code);
                 Db.Salon.DeleteObject(salon);
                 Db.SaveChanges();
+            }
+            else
+            {
+                throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
             }
         }
 

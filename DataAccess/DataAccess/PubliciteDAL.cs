@@ -1,4 +1,6 @@
 ﻿using SolarSystem.Earth.Common.Interfaces;
+using SolarSystem.Earth.DataAccess.ErrorMessages;
+using SolarSystem.Earth.DataAccess.Exceptions;
 using SolarSystem.Earth.DataAccess.Model;
 using SolarSystem.Earth.DataAccess.RulesManager;
 using System.Collections.Generic;
@@ -6,7 +8,7 @@ using System.Linq;
 
 namespace SolarSystem.Earth.DataAccess.DataAccess
 {
-    public class PubliciteDAL : DALBase, IReaderLimit<Publicite>, IManager<Publicite>
+    public class PubliciteDAL : DALBase, IManager<Publicite>
     {
         #region Attributes
 
@@ -14,7 +16,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
         #endregion
 
-        #region IReaderLimit methods
+        #region IManager methods
 
         public Publicite Get(int code)
         {
@@ -51,30 +53,6 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
                     select p).First().Code_Publicite;
         }
 
-        #endregion
-
-        #region IManager methods
-
-        public IEnumerable<Publicite> Get(int indexFirstResult, int numberOfResults, string username, string password)
-        {
-            if (_membreDAL.Exists(username, password))
-            {
-                return Get(indexFirstResult, numberOfResults);
-            }
-
-            return null;
-        }
-
-        public Publicite Get(int code, string username, string password)
-        {
-            if (_membreDAL.Exists(username, password))
-            {
-                return Get(code);
-            }
-
-            return null;
-        }
-
         public int Add(Publicite element, string username, string password)
         {
             if (_membreDAL.Exists(username, password))
@@ -87,8 +65,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
                 return element.Code_Publicite;
             }
-
-            return 0;
+                throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
         }
 
         public void Edit(Publicite element, string username, string password)
@@ -104,6 +81,10 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
                 Db.SaveChanges();
             }
+            else
+            {
+                throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
+            }
         }
 
         public void Delete(int code, string username, string password)
@@ -114,6 +95,10 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
                 Db.Publicite.DeleteObject(publicite);
                 Db.SaveChanges();
+            }
+            else
+            {
+                throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
             }
         }
 

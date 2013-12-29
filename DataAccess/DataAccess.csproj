@@ -51,7 +51,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -66,6 +65,7 @@
     <Compile Include="DataAccess\RoleDAL.cs" />
     <Compile Include="DataAccess\SalonDAL.cs" />
     <Compile Include="DataAccess\VilleDAL.cs" />
+    <Compile Include="Exceptions\AccesRefuseException.cs" />
     <Compile Include="Exceptions\AnneeInvalideException.cs" />
     <Compile Include="Exceptions\AssociationManquanteException.cs" />
     <Compile Include="Exceptions\ValeurIncorrecteException.cs" />

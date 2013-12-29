@@ -3,22 +3,53 @@ using SolarSystem.Earth.Common;
 using SolarSystem.Earth.Common.Interfaces;
 using SolarSystem.Earth.WCF.Interfaces.Managers;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace SolarSystem.Earth.WCF
 {
     public partial class ManagersService : IProjetManager
     {
-        public IEnumerable<Projet> GetProjets(int indexFirstResult, int numberOfResults, string username, string password)
+        #region IProjetReader methods
+
+        public Projet GetProjet(int code)
         {
-            IManager<Projet> business = new ProjetBusiness();
-            return business.Get(indexFirstResult, numberOfResults, username, password);
+            IReader<Projet> business = new ProjetBusiness();
+            return business.Get(code);
         }
 
-        public Projet GetProjet(int code, string username, string password)
+        public IEnumerable<Projet> GetProjets()
         {
-            IManager<Projet> business = new ProjetBusiness();
-            return business.Get(code, username, password);
+            IReader<Projet> business = new ProjetBusiness();
+            return business.Get();
         }
+
+        public IEnumerable<Projet> GetProjetsLimited(int indexFirstElement, int numberOfResults)
+        {
+            IReaderLimit<Projet> business = new ProjetBusiness();
+            return business.Get(indexFirstElement, numberOfResults);
+        }
+
+        public IEnumerable<Projet> GetProjetsSorted(int indexFirstElement, int numberOfResults, SortOrder order)
+        {
+            IReaderSort<Projet> business = new ProjetBusiness();
+            return business.Get(indexFirstElement, numberOfResults, order);
+        }
+
+        public IEnumerable<Projet> GetProjetsByVille(Ville filter, int indexFirstElement, int numberOfResults, SortOrder order)
+        {
+            IReaderOneFilter<Projet, Ville> business = new ProjetBusiness();
+            return business.Get(filter, indexFirstElement, numberOfResults, order);
+        }
+
+        public int GetProjetLastInsertedId()
+        {
+            IReaderLimit<Projet> business = new ProjetBusiness();
+            return business.GetLastInsertedId();
+        }
+
+        #endregion
+
+        #region IProjetManager methods
 
         public int AddProjet(Projet element, string username, string password)
         {
@@ -37,5 +68,7 @@ namespace SolarSystem.Earth.WCF
             IManager<Projet> business = new ProjetBusiness();
             business.Delete(code, username, password);
         }
+
+        #endregion
     }
 }

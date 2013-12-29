@@ -1,12 +1,11 @@
-﻿using System.ServiceModel.PeerResolvers;
-using SolarSystem.Earth.Common;
-using System.Collections.Generic;
+﻿using SolarSystem.Earth.Common;
+using SolarSystem.Earth.WCF.Interfaces.Readers;
 using System.ServiceModel;
 
 namespace SolarSystem.Earth.WCF.Interfaces.Managers
 {
     [ServiceContract]
-    interface IMembreManager
+    interface IMembreManager : IMembreReader
     {
         [OperationContract]
         Membre Login(string username, string password);
@@ -16,12 +15,6 @@ namespace SolarSystem.Earth.WCF.Interfaces.Managers
 
         [OperationContract]
         int Register(Membre membre);
-
-        [OperationContract]
-        Membre GetMembre(int code, string username, string password);
-
-        [OperationContract]
-        IEnumerable<Membre> GetMembres(int indexFirstResult, int numberOfResults, string username, string password);
 
         [OperationContract]
         int AddMembre(Membre element, string username, string password);

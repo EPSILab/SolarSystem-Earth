@@ -1,4 +1,6 @@
 ﻿using SolarSystem.Earth.Common.Interfaces;
+using SolarSystem.Earth.DataAccess.ErrorMessages;
+using SolarSystem.Earth.DataAccess.Exceptions;
 using SolarSystem.Earth.DataAccess.Model;
 using SolarSystem.Earth.DataAccess.RulesManager;
 using System.Collections.Generic;
@@ -6,7 +8,7 @@ using System.Linq;
 
 namespace SolarSystem.Earth.DataAccess.DataAccess
 {
-    public class LienDAL : DALBase, IReaderLimit<Lien>, IManager<Lien>
+    public class LienDAL : DALBase, IManager<Lien>
     {
         #region Attributes
 
@@ -14,7 +16,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
         #endregion
 
-        #region IReaderLimit methods
+        #region IManager methods
 
         public Lien Get(int code)
         {
@@ -51,25 +53,6 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
                     select l).First().Code_Lien;
         }
 
-        #endregion
-
-        #region IManager methods
-
-        public IEnumerable<Lien> Get(int indexFirstResult, int numberOfResults, string username, string password)
-        {
-            if (_membreDAL.Exists(username, password))
-            {
-                return Get();
-            }
-
-            return null;
-        }
-
-        public Lien Get(int code, string username, string password)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public int Add(Lien element, string username, string password)
         {
             if (_membreDAL.Exists(username, password))
@@ -82,8 +65,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
                 return element.Code_Lien;
             }
-
-            return 0;
+                throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
         }
 
         public void Edit(Lien element, string username, string password)
@@ -102,6 +84,10 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
                 Db.SaveChanges();
             }
+            else
+            {
+                throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
+            }
         }
 
         public void Delete(int code, string username, string password)
@@ -112,6 +98,10 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
                 Db.Lien.DeleteObject(lien);
 
                 Db.SaveChanges();
+            }
+            else
+            {
+                throw new AccesRefuseException(ErrorMessages_FR.ACCES_REFUSE);
             }
         }
 

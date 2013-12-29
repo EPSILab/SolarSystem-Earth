@@ -16,7 +16,7 @@ namespace SolarSystem.Earth.Business
         #region Attributes
 
         private readonly ConferenceDAL _conferenceDAL = new ConferenceDAL();
-        private readonly  VilleDAL _villeDAL = new VilleDAL();
+        private readonly VilleDAL _villeDAL = new VilleDAL();
         private readonly IMapper<ConferenceDAO, ConferenceDTO> _mapper = new ConferenceMapper();
 
         #endregion
@@ -36,7 +36,7 @@ namespace SolarSystem.Earth.Business
             IEnumerable<ConferenceDAO> dao = _conferenceDAL.Get();
             IEnumerable<ConferenceDTO> dto = dao.Select(c => _mapper.ToDTO(c));
 
-            return dto; 
+            return dto;
         }
 
         public IEnumerable<ConferenceDTO> Get(int indexFirstElement, int numberOfResults)
@@ -44,7 +44,7 @@ namespace SolarSystem.Earth.Business
             IEnumerable<ConferenceDAO> dao = _conferenceDAL.Get(indexFirstElement, numberOfResults);
             IEnumerable<ConferenceDTO> dto = dao.Select(c => _mapper.ToDTO(c));
 
-            return dto; 
+            return dto;
         }
 
         public IEnumerable<ConferenceDTO> Get(int indexFirstElement, int numberOfResults, SortOrder order)
@@ -76,22 +76,6 @@ namespace SolarSystem.Earth.Business
         #endregion
 
         #region IManager methods
-
-        public IEnumerable<ConferenceDTO> Get(int indexFirstResult, int numberOfResults, string username, string password)
-        {
-            IEnumerable<ConferenceDAO> dao = _conferenceDAL.Get(indexFirstResult, numberOfResults, username, password);
-            IEnumerable<ConferenceDTO> dto = dao.Select(c => _mapper.ToDTO(c));
-
-            return dto; 
-        }
-
-        public ConferenceDTO Get(int code, string username, string password)
-        {
-            ConferenceDAO dao = _conferenceDAL.Get(code, username, password);
-            ConferenceDTO dto = _mapper.ToDTO(dao);
-
-            return dto;
-        }
 
         public int Add(ConferenceDTO element, string username, string password)
         {

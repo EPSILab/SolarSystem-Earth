@@ -8,17 +8,23 @@ namespace SolarSystem.Earth.WCF
 {
     public partial class ManagersService : IVilleManager
     {
-        public Ville GetVille(int code, string username, string password)
+        #region IVilleReader methods
+
+        public Ville GetVille(int code)
         {
-            IManager<Ville> business = new VilleBusiness();
-            return business.Get(code, username, password);
+            IReader<Ville> business = new VilleBusiness();
+            return business.Get(code);
         }
 
-        public IEnumerable<Ville> GetVilles(int indexFirstResult, int numberOfResults, string username, string password)
+        public IEnumerable<Ville> GetVilles()
         {
-            IManager<Ville> business = new VilleBusiness();
-            return business.Get(indexFirstResult, numberOfResults, username, password);
+            IReader<Ville> business = new VilleBusiness();
+            return business.Get();
         }
+
+        #endregion
+
+        #region IVilleManager methods
 
         public int AddVille(Ville element, string username, string password)
         {
@@ -37,5 +43,7 @@ namespace SolarSystem.Earth.WCF
             IManager<Ville> business = new VilleBusiness();
             business.Delete(code, username, password);
         }
+
+        #endregion
     }
 }
