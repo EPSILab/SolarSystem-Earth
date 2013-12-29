@@ -156,10 +156,10 @@ namespace SolarSystem.Earth.Business
             return _membreDAL.Register(dao);
         }
 
-        public RecupMotDePasseDTO LostPassword(string username, string email)
+        public RecupMotDePasseDTO RequestLostPassword(string username, string email)
         {
             IMapper<RecupMotDePasseDAO, RecupMotDePasseDTO> mapper = new RecupMotDePasseMapper();
-            RecupMotDePasseDAO dao = _membreDAL.LostPassword(username, email);
+            RecupMotDePasseDAO dao = _membreDAL.RequestLostPassword(username, email);
             RecupMotDePasseDTO dto = mapper.ToDTO(dao);
 
             using (MailMessage mail = new MailMessage())
@@ -189,6 +189,11 @@ namespace SolarSystem.Earth.Business
             }
 
             return dto;
+        }
+
+        public void SetNewPasswordAfterLost(string username, string newPassword, string key)
+        {
+            _membreDAL.SetNewPasswordAfterLost(username, newPassword, key);
         }
 
         #endregion

@@ -2,7 +2,6 @@
 using SolarSystem.Earth.Common.Utils;
 using SolarSystem.Earth.DataAccess.Exceptions;
 using SolarSystem.Earth.DataAccess.Model;
-using SolarSystem.Earth.DataAccess.Resources;
 using SolarSystem.Earth.DataAccess.RulesManager;
 using System;
 using System.Collections.Generic;
@@ -108,6 +107,18 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
                              where membre.Pseudo == username && membre.Mot_de_passe == password
                              select membre).First();
 
+            // Clean all old lost password requests
+            IEnumerable<RecupMotDePasse> requests = (from r in Db.RecupMotDePasse
+                                                     where r.Date.AddDays(2) < DateTime.Now
+                                                     select r);
+
+            foreach (var request in requests)
+            {
+                Db.RecupMotDePasse.DeleteObject(request);
+            }
+
+            Db.SaveChanges();
+
             return result;
         }
 
@@ -153,7 +164,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
             return membre.Code_Membre;
         }
 
-        public RecupMotDePasse LostPassword(string username, string email)
+        public RecupMotDePasse RequestLostPassword(string username, string email)
         {
             Membre result = (from membre in Db.Membre
                              where membre.Pseudo == username
@@ -174,7 +185,38 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
                 return recupMotDePasse;
             }
 
-            throw new UserNotExistsException(ErrorMessages_FR.UTILISATEUR_INTROUVABLE);
+            throw new UserNotExistsException();
+        }
+
+        public void SetNewPasswordAfterLost(string username, string newPassword, string key)
+        {
+            RecupMotDePasse recupMotDePasse = (from r in Db.RecupMotDePasse
+                                               where r.Membre.Pseudo == username && r.Cle == key
+                                               select r).FirstOrDefault();
+
+            if (recupMotDePasse == null)
+            {
+                throw new LostPasswordRequestNotFoundException();
+            }
+
+            Membre membre = (from m in Db.Membre
+                             where m.Code_Membre == recupMotDePasse.Code_Membre
+                             select m).First();
+
+            if (recupMotDePasse.Date.AddDays(2) <= DateTime.Now)
+            {
+                membre.Mot_de_passe = newPassword;
+                Db.RecupMotDePasse.DeleteObject(recupMotDePasse);
+                Db.SaveChanges();
+            }
+            else
+            {
+                Db.RecupMotDePasse.DeleteObject(recupMotDePasse);
+                Db.SaveChanges();
+
+                throw new LostPasswordTimeElapsedException();
+            }
+
         }
 
         #endregion
@@ -213,7 +255,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
                 return element.Code_Membre;
             }
-            throw new AccessDeniedException(ErrorMessages_FR.ACCES_REFUSE);
+            throw new AccessDeniedException();
         }
 
         public void Edit(Membre element, string username, string password)
@@ -250,7 +292,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
             }
             else
             {
-                throw new AccessDeniedException(ErrorMessages_FR.ACCES_REFUSE);
+                throw new AccessDeniedException();
             }
         }
 
@@ -265,7 +307,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
             }
             else
             {
-                throw new AccessDeniedException(ErrorMessages_FR.ACCES_REFUSE);
+                throw new AccessDeniedException();
             }
         }
 

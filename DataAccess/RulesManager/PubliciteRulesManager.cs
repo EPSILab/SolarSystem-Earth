@@ -7,9 +7,9 @@ namespace SolarSystem.Earth.DataAccess.RulesManager
     {
         public void Check(Publicite element)
         {
-            RulesChecker.CheckIsNotNull(element.Image, ErrorMessages_FR.PUBLICITE_AUCUNE_IMAGE);
-            RulesChecker.CheckIsNotNull(element.Nom, ErrorMessages_FR.PUBLICITE_AUCUN_NOM);
-            RulesChecker.CheckIsNotNull(element.Presentation, ErrorMessages_FR.PUBLICITE_AUCUNE_PRESENTATION);
+            RulesChecker.CheckIsNotNull(element.Image, ErrorMessages.PUBLICITE_AUCUNE_IMAGE);
+            RulesChecker.CheckIsNotNull(element.Nom, ErrorMessages.PUBLICITE_AUCUN_NOM);
+            RulesChecker.CheckIsNotNull(element.Presentation, ErrorMessages.PUBLICITE_AUCUNE_PRESENTATION);
         }
     }
 }

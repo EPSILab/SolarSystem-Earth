@@ -7,7 +7,7 @@ namespace SolarSystem.Earth.DataAccess.RulesManager
     {
         public void Check(Ville element)
         {
-            RulesChecker.CheckIsNotNull(element.Libelle, ErrorMessages_FR.VILLE_AUCUN_LIBELLE);
+            RulesChecker.CheckIsNotNull(element.Libelle, ErrorMessages.VILLE_AUCUN_LIBELLE);
         }
     }
 }

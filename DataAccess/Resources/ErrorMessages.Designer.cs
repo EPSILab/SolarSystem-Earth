@@ -22,14 +22,14 @@ namespace SolarSystem.Earth.DataAccess.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ErrorMessages_FR {
+    internal class ErrorMessages {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ErrorMessages_FR() {
+        internal ErrorMessages() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace SolarSystem.Earth.DataAccess.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SolarSystem.Earth.DataAccess.Resources.ErrorMessages-FR", typeof(ErrorMessages_FR).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SolarSystem.Earth.DataAccess.Resources.ErrorMessages", typeof(ErrorMessages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -138,6 +138,15 @@ namespace SolarSystem.Earth.DataAccess.Resources {
         internal static string CONFERENCE_AUCUNE_VILLE_SELECTIONNEE {
             get {
                 return ResourceManager.GetString("CONFERENCE_AUCUNE_VILLE_SELECTIONNEE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La demande de restauration du mot de passe pour cet utilisateur et cette clé est introuvable..
+        /// </summary>
+        internal static string DEMANDE_RECUP_MOT_DE_PASSE_INTROUVABLE {
+            get {
+                return ResourceManager.GetString("DEMANDE_RECUP_MOT_DE_PASSE_INTROUVABLE", resourceCulture);
             }
         }
         
@@ -448,11 +457,11 @@ namespace SolarSystem.Earth.DataAccess.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Vous avez dépassé les 2 jours pour pouvoir redéfinir votre mot de passe. Veuillez formuler une nouvelle demande..
         /// </summary>
-        internal static string String1 {
+        internal static string TEMPS_EXPIRE_RECUP_MOT_DE_PASSE {
             get {
-                return ResourceManager.GetString("String1", resourceCulture);
+                return ResourceManager.GetString("TEMPS_EXPIRE_RECUP_MOT_DE_PASSE", resourceCulture);
             }
         }
         

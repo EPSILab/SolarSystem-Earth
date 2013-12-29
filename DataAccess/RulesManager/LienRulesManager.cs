@@ -7,9 +7,9 @@ namespace SolarSystem.Earth.DataAccess.RulesManager
     {
         public void Check(Lien element)
         {
-            RulesChecker.CheckIsNotNull(element.Description, ErrorMessages_FR.LIEN_AUCUNE_DESCRIPTION);
-            RulesChecker.CheckIsNotNull(element.Image, ErrorMessages_FR.LIEN_AUCUNE_IMAGE);
-            RulesChecker.CheckIsNotNull(element.Nom, ErrorMessages_FR.LIEN_AUCUN_NOM);
+            RulesChecker.CheckIsNotNull(element.Description, ErrorMessages.LIEN_AUCUNE_DESCRIPTION);
+            RulesChecker.CheckIsNotNull(element.Image, ErrorMessages.LIEN_AUCUNE_IMAGE);
+            RulesChecker.CheckIsNotNull(element.Nom, ErrorMessages.LIEN_AUCUN_NOM);
         }
     }
 }

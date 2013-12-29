@@ -7,12 +7,12 @@ namespace SolarSystem.Earth.DataAccess.RulesManager
     {
         public void Check(Conference element)
         {
-            RulesChecker.CheckIsNotNull(element.Description, ErrorMessages_FR.CONFERENCE_AUCUNE_DESCRIPTION);
-            RulesChecker.CheckIsNotNull(element.Image, ErrorMessages_FR.CONFERENCE_AUCUNE_IMAGE);
-            RulesChecker.CheckIsNotNull(element.Lieu, ErrorMessages_FR.CONFERENCE_AUCUN_LIEU);
-            RulesChecker.CheckIsNotNull(element.Nom, ErrorMessages_FR.CONFERENCE_AUCUN_NOM);
-            RulesChecker.CheckIsNotNull(element.URL, ErrorMessages_FR.CONFERENCE_AUCUNE_URL);
-            RulesChecker.CheckIsNotNull(element.Code_Ville, ErrorMessages_FR.CONFERENCE_AUCUNE_VILLE_SELECTIONNEE);
+            RulesChecker.CheckIsNotNull(element.Description, ErrorMessages.CONFERENCE_AUCUNE_DESCRIPTION);
+            RulesChecker.CheckIsNotNull(element.Image, ErrorMessages.CONFERENCE_AUCUNE_IMAGE);
+            RulesChecker.CheckIsNotNull(element.Lieu, ErrorMessages.CONFERENCE_AUCUN_LIEU);
+            RulesChecker.CheckIsNotNull(element.Nom, ErrorMessages.CONFERENCE_AUCUN_NOM);
+            RulesChecker.CheckIsNotNull(element.URL, ErrorMessages.CONFERENCE_AUCUNE_URL);
+            RulesChecker.CheckIsNotNull(element.Code_Ville, ErrorMessages.CONFERENCE_AUCUNE_VILLE_SELECTIONNEE);
         }
     }
 }

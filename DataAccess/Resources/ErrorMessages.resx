@@ -144,6 +144,9 @@
   <data name="CONFERENCE_AUCUN_NOM" xml:space="preserve">
     <value>La conférence ne possède pas de nom.</value>
   </data>
+  <data name="DEMANDE_RECUP_MOT_DE_PASSE_INTROUVABLE" xml:space="preserve">
+    <value>La demande de restauration du mot de passe pour cet utilisateur et cette clé est introuvable.</value>
+  </data>
   <data name="LIEN_AUCUNE_DESCRIPTION" xml:space="preserve">
     <value>Le lien ne possède pas de description.</value>
   </data>
@@ -246,8 +249,8 @@
   <data name="SALON_AUCUN_NOM" xml:space="preserve">
     <value>Le salon ne possède de nom.</value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value />
+  <data name="TEMPS_EXPIRE_RECUP_MOT_DE_PASSE" xml:space="preserve">
+    <value>Vous avez dépassé les 2 jours pour pouvoir redéfinir votre mot de passe. Veuillez formuler une nouvelle demande.</value>
   </data>
   <data name="UTILISATEUR_INTROUVABLE" xml:space="preserve">
     <value>Le nom utilisateur et/ou le mot de passe sont incorrects.</value>

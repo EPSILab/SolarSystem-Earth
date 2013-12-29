@@ -32,7 +32,10 @@ namespace SolarSystem.Earth.WCF.Interfaces.Managers
         int Register(Membre membre);
 
         [OperationContract]
-        void LostPassword(string username, string email);
+        void RequestLostPassword(string username, string email);
+
+        [OperationContract]
+        void SetNewPasswordAfterLost(string username, string newPassword, string key);
 
         [OperationContract]
         int AddMembre(Membre element, string username, string password);

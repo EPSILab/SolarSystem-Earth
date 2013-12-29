@@ -57,10 +57,16 @@ namespace SolarSystem.Earth.WCF
             return business.Register(membre);
         }
 
-        public void LostPassword(string username, string email)
+        public void RequestLostPassword(string username, string email)
         {
             ILogin<Membre, RecupMotDePasse> business = new MembreBusiness();
-            business.LostPassword(username, email);
+            business.RequestLostPassword(username, email);
+        }
+
+        public void SetNewPasswordAfterLost(string username, string newPassword, string key)
+        {
+            ILogin<Membre, RecupMotDePasse> business = new MembreBusiness();
+            business.SetNewPasswordAfterLost(username, newPassword, key);
         }
 
         public int AddMembre(Membre element, string username, string password)

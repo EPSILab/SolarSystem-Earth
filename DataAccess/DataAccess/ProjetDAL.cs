@@ -89,7 +89,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
                 return element.Code_Projet;
             }
-                throw new AccessDeniedException(ErrorMessages_FR.ACCES_REFUSE);
+                throw new AccessDeniedException();
         }
 
         public void Edit(Projet element, string username, string password)
@@ -111,7 +111,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
             }
             else
             {
-                throw new AccessDeniedException(ErrorMessages_FR.ACCES_REFUSE);
+                throw new AccessDeniedException();
             }
         }
 
@@ -126,7 +126,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
             }
             else
             {
-                throw new AccessDeniedException(ErrorMessages_FR.ACCES_REFUSE);
+                throw new AccessDeniedException();
             }
         }
 

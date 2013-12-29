@@ -9,8 +9,8 @@ namespace SolarSystem.Earth.DataAccess.RulesManager
         {
             const int AnneeCreationEPSI = 1961;
 
-            RulesChecker.CheckIsShorter(element.Annee_Promo_Sortante, AnneeCreationEPSI, ErrorMessages_FR.CLASSE_ANNEE_PROMO_INVALIDE);
-            RulesChecker.CheckIsNotNull(element.Libelle, ErrorMessages_FR.CLASSE_AUCUN_LIBELLE);
+            RulesChecker.CheckIsShorter(element.Annee_Promo_Sortante, AnneeCreationEPSI, ErrorMessages.CLASSE_ANNEE_PROMO_INVALIDE);
+            RulesChecker.CheckIsNotNull(element.Libelle, ErrorMessages.CLASSE_AUCUN_LIBELLE);
         }
     }
 }

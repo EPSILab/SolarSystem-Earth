@@ -12,6 +12,8 @@
 
         int Register(T membre);
 
-        TService LostPassword(string username, string email);
+        TService RequestLostPassword(string username, string email);
+
+        void SetNewPasswordAfterLost(string username, string newPassword, string key);
     }
 }
