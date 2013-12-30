@@ -35,7 +35,7 @@ namespace SolarSystem.Earth.WCF
 
         public IEnumerable<Conference> GetConferencesByVille(Ville ville, int indexFirstElement, int number, SortOrder order)
         {
-            IReaderOneFilter<Conference, Ville> business = new ConferenceBusiness();
+            IReader1Filter<Conference, Ville> business = new ConferenceBusiness();
             return business.Get(ville, indexFirstElement, number, order);
         }
 

@@ -14,7 +14,7 @@ namespace SolarSystem.Earth.WCF.Interfaces.Managers
         IEnumerable<Membre> GetMembres();
 
         [OperationContract]
-        IEnumerable<Membre> GetMembresByVilleAndRole(Ville ville, Role role);
+        IEnumerable<Membre> GetMembresByVilleAndRole(Ville ville, Role role, bool actives, bool stillPresents);
 
         [OperationContract]
         Membre Login(string username, string password);

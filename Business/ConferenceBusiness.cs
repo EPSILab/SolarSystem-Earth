@@ -11,7 +11,7 @@ using VilleDTO = SolarSystem.Earth.Common.Ville;
 
 namespace SolarSystem.Earth.Business
 {
-    public class ConferenceBusiness : IReaderOneFilter<ConferenceDTO, VilleDTO>, IManager<ConferenceDTO>, ISearchable<ConferenceDTO>
+    public class ConferenceBusiness : IReader1Filter<ConferenceDTO, VilleDTO>, IManager<ConferenceDTO>, ISearchable<ConferenceDTO>
     {
         #region Attributes
 

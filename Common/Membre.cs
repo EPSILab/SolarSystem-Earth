@@ -24,5 +24,6 @@
         public string Presentation { get; set; }
         public string Image { get; set; }
         public string URL { get; set; }
+        public bool Actif { get; set; }
     }
 }

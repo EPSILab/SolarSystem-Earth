@@ -106,6 +106,7 @@
           <Property Name="Presentation" Type="text" />
           <Property Name="Image" Type="varchar" MaxLength="255" />
           <Property Name="URL" Type="varchar" MaxLength="255" />
+          <Property Name="Actif" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="News">
           <Key>
@@ -373,6 +374,7 @@
           <Property Type="String" Name="Presentation" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Image" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="URL" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="Actif" Nullable="false" />
           <NavigationProperty Name="Classe" Relationship="SunModel.FK_Membre_Classe" FromRole="Membre" ToRole="Classe" />
           <NavigationProperty Name="Role" Relationship="SunModel.FK_Membre_Role" FromRole="Membre" ToRole="Role" />
           <NavigationProperty Name="Ville" Relationship="SunModel.FK_Membre_Ville" FromRole="Membre" ToRole="Ville" />
@@ -592,6 +594,7 @@
           <EntitySetMapping Name="Membre">
             <EntityTypeMapping TypeName="SunModel.Membre">
               <MappingFragment StoreEntitySet="Membre">
+                <ScalarProperty Name="Actif" ColumnName="Actif" />
                 <ScalarProperty Name="URL" ColumnName="URL" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Presentation" ColumnName="Presentation" />
@@ -720,45 +723,45 @@
     <Diagrams>
       <Diagram Name="SunModel" ZoomLevel="67">
         <EntityTypeShape EntityType="SunModel.Classe" Width="1.5" PointX="3.75" PointY="8.875" Height="1.9802864583333317" />
-        <EntityTypeShape EntityType="SunModel.Conference" Width="1.5" PointX="3" PointY="4.875" Height="3.1340950520833388" />
+        <EntityTypeShape EntityType="SunModel.Conference" Width="1.5" PointX="3" PointY="5" Height="3.1340950520833388" />
         <EntityTypeShape EntityType="SunModel.Lien" Width="1.5" PointX="0.75" PointY="0.75" Height="2.1725878906250031" />
-        <EntityTypeShape EntityType="SunModel.Membre" Width="1.5" PointX="6" PointY="5" Height="6.0186165364583388" />
-        <EntityTypeShape EntityType="SunModel.News" Width="1.5" PointX="8.25" PointY="5" Height="3.1340950520833388" />
-        <EntityTypeShape EntityType="SunModel.Projet" Width="1.5" PointX="3" PointY="15.5" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="SunModel.Membre" Width="1.5" PointX="6" PointY="5" Height="6.210917968749996" />
+        <EntityTypeShape EntityType="SunModel.News" Width="1.5" PointX="8.25" PointY="5.125" Height="3.1340950520833388" />
+        <EntityTypeShape EntityType="SunModel.Projet" Width="1.5" PointX="3" PointY="15.75" Height="2.3648893229166674" />
         <EntityTypeShape EntityType="SunModel.Publicite" Width="1.5" PointX="2.75" PointY="0.75" Height="2.1725878906250031" />
-        <EntityTypeShape EntityType="SunModel.RecupMotDePasse" Width="1.5" PointX="8.25" PointY="8.875" Height="1.9802864583333388" />
-        <EntityTypeShape EntityType="SunModel.Role" Width="1.5" PointX="3.75" PointY="11.5" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="SunModel.RecupMotDePasse" Width="1.5" PointX="8.25" PointY="9" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="SunModel.Role" Width="1.5" PointX="3.75" PointY="11.625" Height="1.5956835937500031" />
         <EntityTypeShape EntityType="SunModel.Salon" Width="1.5" PointX="4.75" PointY="0.75" Height="2.7494921875000031" />
-        <EntityTypeShape EntityType="SunModel.Ville" Width="1.5" PointX="0.75" PointY="6.875" Height="2.1725878906250067" />
+        <EntityTypeShape EntityType="SunModel.Ville" Width="1.5" PointX="0.75" PointY="7" Height="2.1725878906250067" />
         <AssociationConnector Association="SunModel.FK_Membre_Classe" >
           <ConnectorPoint PointX="5.25" PointY="9.8651432291666659" />
           <ConnectorPoint PointX="6" PointY="9.8651432291666659" />
         </AssociationConnector>
         <AssociationConnector Association="SunModel.FK_Conference_Ville" >
-          <ConnectorPoint PointX="2.25" PointY="7.4420475260416694" />
-          <ConnectorPoint PointX="3" PointY="7.4420475260416694" />
+          <ConnectorPoint PointX="2.25" PointY="7.5670475260416694" />
+          <ConnectorPoint PointX="3" PointY="7.5670475260416694" />
         </AssociationConnector>
         <AssociationConnector Association="SunModel.FK_Membre_Role" >
-          <ConnectorPoint PointX="5.25" PointY="12.297841796875002" />
-          <ConnectorPoint PointX="6.75" PointY="12.297841796875002" />
-          <ConnectorPoint PointX="6.75" PointY="11.018616536458339" />
+          <ConnectorPoint PointX="5.25" PointY="12.422841796875002" />
+          <ConnectorPoint PointX="6.75" PointY="12.422841796875002" />
+          <ConnectorPoint PointX="6.75" PointY="11.210917968749996" />
         </AssociationConnector>
         <AssociationConnector Association="SunModel.FK_Membre_Ville" >
-          <ConnectorPoint PointX="2.25" PointY="8.44204752604167" />
-          <ConnectorPoint PointX="6" PointY="8.44204752604167" />
+          <ConnectorPoint PointX="2.25" PointY="8.50454752604167" />
+          <ConnectorPoint PointX="6" PointY="8.50454752604167" />
         </AssociationConnector>
         <AssociationConnector Association="SunModel.FK_News_Membre" >
-          <ConnectorPoint PointX="7.5" PointY="6.5670475260416694" />
-          <ConnectorPoint PointX="8.25" PointY="6.5670475260416694" />
+          <ConnectorPoint PointX="7.5" PointY="6.6920475260416694" />
+          <ConnectorPoint PointX="8.25" PointY="6.6920475260416694" />
         </AssociationConnector>
         <AssociationConnector Association="SunModel.FK_RecupMotDePasse_Membre" >
-          <ConnectorPoint PointX="7.5" PointY="9.86514322916667" />
-          <ConnectorPoint PointX="8.25" PointY="9.86514322916667" />
+          <ConnectorPoint PointX="7.5" PointY="9.99014322916667" />
+          <ConnectorPoint PointX="8.25" PointY="9.99014322916667" />
         </AssociationConnector>
         <AssociationConnector Association="SunModel.FK_Projet_Ville" >
-          <ConnectorPoint PointX="1.5" PointY="9.0475878906250067" />
-          <ConnectorPoint PointX="1.5" PointY="16.682444661458334" />
-          <ConnectorPoint PointX="3" PointY="16.682444661458334" />
+          <ConnectorPoint PointX="1.5" PointY="9.1725878906250067" />
+          <ConnectorPoint PointX="1.5" PointY="16.932444661458334" />
+          <ConnectorPoint PointX="3" PointY="16.932444661458334" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

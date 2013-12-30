@@ -1,15 +1,14 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
-using SolarSystem.Earth.DataAccess.Resources;
+﻿using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using SolarSystem.Earth.Common.Interfaces;
 using SolarSystem.Earth.DataAccess.Exceptions;
 using SolarSystem.Earth.DataAccess.Model;
 using SolarSystem.Earth.DataAccess.RulesManager;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
 
 namespace SolarSystem.Earth.DataAccess.DataAccess
 {
-    public class ProjetDAL : DALBase, IReaderOneFilter<Projet, Ville>, IManager<Projet>
+    public class ProjetDAL : DALBase, IReader1Filter<Projet, Ville>, IManager<Projet>
     {
         #region Attributes
 
@@ -17,7 +16,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
         #endregion
 
-        #region IReaderOneFilter methods
+        #region IReader1Filter methods
 
         public Projet Get(int code)
         {

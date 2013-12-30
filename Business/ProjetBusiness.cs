@@ -11,7 +11,7 @@ using VilleDTO = SolarSystem.Earth.Common.Ville;
 
 namespace SolarSystem.Earth.Business
 {
-    public class ProjetBusiness : IReaderOneFilter<ProjetDTO, VilleDTO>, IManager<ProjetDTO>
+    public class ProjetBusiness : IReader1Filter<ProjetDTO, VilleDTO>, IManager<ProjetDTO>
     {
         #region Attributes
 
@@ -21,7 +21,7 @@ namespace SolarSystem.Earth.Business
 
         #endregion
 
-        #region IReaderOneFilter methods
+        #region IReader1Filter methods
 
         public ProjetDTO Get(int code)
         {

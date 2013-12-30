@@ -46,15 +46,17 @@
   <ItemGroup>
     <Compile Include="Classe.cs" />
     <Compile Include="Conference.cs" />
+    <Compile Include="Interfaces\IReader4Filters.cs" />
     <Compile Include="Interfaces\IAvailable.cs" />
     <Compile Include="Interfaces\IManager.cs" />
     <Compile Include="Interfaces\ILogin.cs" />
     <Compile Include="Interfaces\IMapper.cs" />
     <Compile Include="Interfaces\IReader.cs" />
+    <Compile Include="Interfaces\IReader3Filters.cs" />
     <Compile Include="Interfaces\IReaderSort.cs" />
     <Compile Include="Interfaces\IReaderLimit.cs" />
-    <Compile Include="Interfaces\IReaderTwoFilters.cs" />
-    <Compile Include="Interfaces\IReaderOneFilter.cs" />
+    <Compile Include="Interfaces\IReader2Filters.cs" />
+    <Compile Include="Interfaces\IReader1Filter.cs" />
     <Compile Include="Interfaces\ISearchable.cs" />
     <Compile Include="Lien.cs" />
     <Compile Include="Membre.cs" />

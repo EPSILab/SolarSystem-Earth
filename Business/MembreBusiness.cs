@@ -1,13 +1,13 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
-using SolarSystem.Earth.DataAccess.DataAccess;
-using SolarSystem.Earth.DataAccess.Resources;
-using SolarSystem.Earth.Mappers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using SolarSystem.Earth.Common.Interfaces;
+using SolarSystem.Earth.DataAccess.DataAccess;
+using SolarSystem.Earth.DataAccess.Resources;
+using SolarSystem.Earth.Mappers;
 using MembreDAO = SolarSystem.Earth.DataAccess.Model.Membre;
 using MembreDTO = SolarSystem.Earth.Common.Membre;
 using RecupMotDePasseDAO = SolarSystem.Earth.DataAccess.Model.RecupMotDePasse;
@@ -19,7 +19,7 @@ using VilleDTO = SolarSystem.Earth.Common.Ville;
 
 namespace SolarSystem.Earth.Business
 {
-    public class MembreBusiness : IReaderTwoFilters<MembreDTO, VilleDTO, RoleDTO>, IManager<MembreDTO>, ISearchable<MembreDTO>, ILogin<MembreDTO, RecupMotDePasseDTO>
+    public class MembreBusiness : IReader4Filters<MembreDTO, VilleDTO, RoleDTO, bool, bool>, IManager<MembreDTO>, ISearchable<MembreDTO>, ILogin<MembreDTO, RecupMotDePasseDTO>
     {
         #region Attributes
 
@@ -30,7 +30,7 @@ namespace SolarSystem.Earth.Business
 
         #endregion
 
-        #region IReaderTwoFilters methods
+        #region IReader2Filters methods
 
         public MembreDTO Get(int code)
         {
@@ -66,21 +66,32 @@ namespace SolarSystem.Earth.Business
 
         public IEnumerable<MembreDTO> Get(VilleDTO ville, RoleDTO role, int indexFirstElement, int numberOfResults, SortOrder order)
         {
-            VilleDAO villeDao = null;
-
-            if (ville != null)
-            {
-                villeDao = _villeDAL.Get(ville.Code_Ville);
-            }
-
-            RoleDAO roleDao = null;
-
-            if (role != null)
-            {
-                roleDao = _roleDAL.Get(role.Code_Role);
-            }
+            VilleDAO villeDao = ville != null ? _villeDAL.Get(ville.Code_Ville) : null;
+            RoleDAO roleDao = (role != null) ? _roleDAL.Get(role.Code_Role) : null;
 
             IEnumerable<MembreDAO> dao = _membreDAL.Get(villeDao, roleDao, indexFirstElement, numberOfResults, order);
+            IEnumerable<MembreDTO> dto = dao.Select(m => _mapper.ToDTO(m));
+
+            return dto;
+        }
+
+        public IEnumerable<MembreDTO> Get(VilleDTO ville, RoleDTO role, bool actifs, int indexFirstElement, int numberOfResults, SortOrder order)
+        {
+            VilleDAO villeDao = ville != null ? _villeDAL.Get(ville.Code_Ville) : null;
+            RoleDAO roleDao = (role != null) ? _roleDAL.Get(role.Code_Role) : null;
+
+            IEnumerable<MembreDAO> dao = _membreDAL.Get(villeDao, roleDao, actifs, indexFirstElement, numberOfResults, order);
+            IEnumerable<MembreDTO> dto = dao.Select(m => _mapper.ToDTO(m));
+
+            return dto;
+        }
+
+        public IEnumerable<MembreDTO> Get(VilleDTO ville, RoleDTO role, bool actifs, bool encorePresents, int indexFirstElement, int numberOfResults, SortOrder order)
+        {
+            VilleDAO villeDao = ville != null ? _villeDAL.Get(ville.Code_Ville) : null;
+            RoleDAO roleDao = (role != null) ? _roleDAL.Get(role.Code_Role) : null;
+
+            IEnumerable<MembreDAO> dao = _membreDAL.Get(villeDao, roleDao, actifs, encorePresents, indexFirstElement, numberOfResults, order);
             IEnumerable<MembreDTO> dto = dao.Select(m => _mapper.ToDTO(m));
 
             return dto;

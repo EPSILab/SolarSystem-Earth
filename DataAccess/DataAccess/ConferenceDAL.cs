@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace SolarSystem.Earth.DataAccess.DataAccess
 {
-    public class ConferenceDAL : DALBase, IReaderOneFilter<Conference, Ville>, ISearchable<Conference>, IManager<Conference>
+    public class ConferenceDAL : DALBase, IReader1Filter<Conference, Ville>, ISearchable<Conference>, IManager<Conference>
     {
         #region Attributes
 
@@ -15,7 +15,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
         #endregion
 
-        #region IReaderOneFilter methods
+        #region IReader1Filter methods
 
         public Conference Get(int code)
         {

@@ -21,10 +21,10 @@ namespace SolarSystem.Earth.WCF
             return business.Get();
         }
 
-        public IEnumerable<Membre> GetMembresByVilleAndRole(Ville ville, Role role)
+        public IEnumerable<Membre> GetMembresByVilleAndRole(Ville ville, Role role, bool actives, bool stillPresents)
         {
-            IReaderTwoFilters<Membre, Ville, Role> business = new MembreBusiness();
-            return business.Get(ville, role, 0, 0, SortOrder.Ascending);
+            IReader4Filters<Membre, Ville, Role, bool, bool> business = new MembreBusiness();
+            return business.Get(ville, role, actives, stillPresents, 0, 0, SortOrder.Ascending);
         }
 
         public Membre Login(string username, string password)

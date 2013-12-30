@@ -35,7 +35,7 @@ namespace SolarSystem.Earth.WCF
 
         public IEnumerable<Membre> GetMembresByVilleAndRole(Ville ville, Role role, int indexFirstResult, int numberOfResults, SortOrder order)
         {
-            IReaderTwoFilters<Membre, Ville, Role> business = new MembreBusiness();
+            IReader2Filters<Membre, Ville, Role> business = new MembreBusiness();
             return business.Get(ville, role, indexFirstResult, numberOfResults, order);
         }
 

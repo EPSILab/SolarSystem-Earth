@@ -35,7 +35,7 @@ namespace SolarSystem.Earth.WCF
 
         public IEnumerable<Projet> GetProjetsByVille(Ville filter, int indexFirstElement, int numberOfResults, SortOrder order)
         {
-            IReaderOneFilter<Projet, Ville> business = new ProjetBusiness();
+            IReader1Filter<Projet, Ville> business = new ProjetBusiness();
             return business.Get(filter, indexFirstElement, numberOfResults, order);
         }
 

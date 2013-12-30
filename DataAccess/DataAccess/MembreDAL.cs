@@ -1,18 +1,18 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using SolarSystem.Earth.Common.Interfaces;
 using SolarSystem.Earth.Common.Utils;
 using SolarSystem.Earth.DataAccess.Exceptions;
 using SolarSystem.Earth.DataAccess.Model;
 using SolarSystem.Earth.DataAccess.RulesManager;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
 
 namespace SolarSystem.Earth.DataAccess.DataAccess
 {
-    public class MembreDAL : DALBase, IReaderTwoFilters<Membre, Ville, Role>, ISearchable<Membre>, ILogin<Membre, RecupMotDePasse>, IManager<Membre>
+    public class MembreDAL : DALBase, IReader4Filters<Membre, Ville, Role, bool, bool>, ISearchable<Membre>, ILogin<Membre, RecupMotDePasse>, IManager<Membre>
     {
-        #region IReaderTwoFilters methods
+        #region IReader4Filters methods
 
         public Membre Get(int code)
         {
@@ -40,6 +40,16 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
         public IEnumerable<Membre> Get(Ville ville, Role role, int indexFirstResult, int numberOfResults, SortOrder order)
         {
+            return Get(ville, role, true, indexFirstResult, numberOfResults, order);
+        }
+
+        public IEnumerable<Membre> Get(Ville ville, Role role, bool actif, int indexFirstElement, int numberOfResults, SortOrder order)
+        {
+            return Get(ville, role, true, true, indexFirstElement, numberOfResults, order);
+        }
+
+        public IEnumerable<Membre> Get(Ville ville, Role role, bool actif, bool encorePresents, int indexFirstElement, int numberOfResults, SortOrder order)
+        {
             IEnumerable<Membre> results = (from m in Db.Membre
                                            select m);
 
@@ -56,10 +66,18 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
                            where m.Role.Code_Role == role.Code_Role
                            select m);
             }
-            else
+
+            if (actif)
             {
                 results = (from m in results
-                           where m.Role.Code_Role > 0 && m.Role.Code_Role < 4
+                           where m.Actif
+                           select m);
+            }
+
+            if (encorePresents)
+            {
+                results = (from m in results
+                           where m.Classe.Encore_Presente
                            select m);
             }
 
@@ -76,7 +94,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
                            select m);
             }
 
-            results = results.Skip(indexFirstResult);
+            results = results.Skip(indexFirstElement);
 
             if (numberOfResults > 0)
             {
@@ -156,6 +174,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
         public int Register(Membre membre)
         {
             membre.Code_Role = 0;
+            membre.URL = string.Format("{0}-{1}", membre.Prenom, membre.Nom);
 
             IRulesManager<Membre> rulesManager = new MembreRulesManager();
             rulesManager.Check(membre);

@@ -1046,7 +1046,8 @@ namespace SolarSystem.Earth.DataAccess.Model
         /// <param name="email_EPSI">Initial value of the Email_EPSI property.</param>
         /// <param name="ville_origine">Initial value of the Ville_origine property.</param>
         /// <param name="statut">Initial value of the Statut property.</param>
-        public static Membre CreateMembre(global::System.Int32 code_Membre, global::System.Int32 code_Ville, global::System.Int32 code_Classe, global::System.Int32 code_Role, global::System.String nom, global::System.String prenom, global::System.String pseudo, global::System.String mot_de_passe, global::System.String email_EPSI, global::System.String ville_origine, global::System.String statut)
+        /// <param name="actif">Initial value of the Actif property.</param>
+        public static Membre CreateMembre(global::System.Int32 code_Membre, global::System.Int32 code_Ville, global::System.Int32 code_Classe, global::System.Int32 code_Role, global::System.String nom, global::System.String prenom, global::System.String pseudo, global::System.String mot_de_passe, global::System.String email_EPSI, global::System.String ville_origine, global::System.String statut, global::System.Boolean actif)
         {
             Membre membre = new Membre();
             membre.Code_Membre = code_Membre;
@@ -1060,6 +1061,7 @@ namespace SolarSystem.Earth.DataAccess.Model
             membre.Email_EPSI = email_EPSI;
             membre.Ville_origine = ville_origine;
             membre.Statut = statut;
+            membre.Actif = actif;
             return membre;
         }
 
@@ -1572,6 +1574,30 @@ namespace SolarSystem.Earth.DataAccess.Model
         private global::System.String _URL;
         partial void OnURLChanging(global::System.String value);
         partial void OnURLChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Actif
+        {
+            get
+            {
+                return _Actif;
+            }
+            set
+            {
+                OnActifChanging(value);
+                ReportPropertyChanging("Actif");
+                _Actif = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Actif");
+                OnActifChanged();
+            }
+        }
+        private global::System.Boolean _Actif;
+        partial void OnActifChanging(global::System.Boolean value);
+        partial void OnActifChanged();
 
         #endregion
     
