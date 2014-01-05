@@ -52,7 +52,12 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
         public IEnumerable<Membre> GetBureauAndMembresActives()
         {
-            return Get(null, null, true, false);
+            return GetBureauAndMembresActives(null);
+        }
+
+        public IEnumerable<Membre> GetBureauAndMembresActives(Ville ville)
+        {
+            return Get(ville, null, true, false);
         }
 
         public IEnumerable<Membre> GetAlumnis()

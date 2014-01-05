@@ -14,6 +14,9 @@ namespace SolarSystem.Earth.WCF.Interfaces.Readers
         IEnumerable<Membre> GetMembres();
 
         [OperationContract]
+        IEnumerable<Membre> GetMembresByVille(Ville ville);
+
+        [OperationContract]
         IEnumerable<Membre> GetMembresBureau();
 
         [OperationContract]

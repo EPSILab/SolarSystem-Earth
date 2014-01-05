@@ -20,6 +20,12 @@ namespace SolarSystem.Earth.WCF
             return business.GetBureauAndMembresActives();
         }
 
+        public IEnumerable<Membre> GetMembresByVille(Ville ville)
+        {
+            IMembreReader<Membre, Ville> business = new MembreBusiness();
+            return business.GetBureauAndMembresActives(ville);
+        }
+
         public IEnumerable<Membre> GetMembresBureau()
         {
             IMembreReader<Membre, Ville> business = new MembreBusiness();

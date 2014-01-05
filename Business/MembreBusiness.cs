@@ -53,6 +53,16 @@ namespace SolarSystem.Earth.Business
             return dto;
         }
 
+        public IEnumerable<MembreDTO> GetBureauAndMembresActives(VilleDTO ville)
+        {
+            VilleDAO villeDao = _mapperVille.ToDAO(ville);
+
+            IEnumerable<MembreDAO> dao = _membreDAL.GetBureauAndMembresActives(villeDao);
+            IEnumerable<MembreDTO> dto = dao.Select(m => _mapperMembre.ToDTO(m));
+
+            return dto;
+        }
+
         public IEnumerable<MembreDTO> GetBureau()
         {
             IEnumerable<MembreDAO> dao = _membreDAL.GetBureau();
