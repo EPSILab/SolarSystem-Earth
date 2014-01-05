@@ -14,19 +14,19 @@ namespace SolarSystem.Earth.WCF
             return business.Get(code);
         }
 
-        public IEnumerable<Membre> GetMembresNotInBureauByVille(Ville ville)
+        public IEnumerable<Membre> GetMembres()
         {
             IMembreReader<Membre, Ville> business = new MembreBusiness();
-            return business.GetMembresActives(ville);
+            return business.GetBureauAndMembresActives();
         }
 
-        public IEnumerable<Membre> GetMembresInBureau()
+        public IEnumerable<Membre> GetMembresBureau()
         {
             IMembreReader<Membre, Ville> business = new MembreBusiness();
             return business.GetBureau();
         }
 
-        public IEnumerable<Membre> GetMembresInBureauByVille(Ville ville)
+        public IEnumerable<Membre> GetMembresBureauByVille(Ville ville)
         {
             IMembreReader<Membre, Ville> business = new MembreBusiness();
             return business.GetBureau(ville);

@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using SolarSystem.Earth.Common;
+using System.Collections.Generic;
 using System.ServiceModel;
-using SolarSystem.Earth.Common;
 
 namespace SolarSystem.Earth.WCF.Interfaces.Readers
 {
@@ -11,13 +11,13 @@ namespace SolarSystem.Earth.WCF.Interfaces.Readers
         Membre GetMembre(int code);
 
         [OperationContract]
-        IEnumerable<Membre> GetMembresNotInBureauByVille(Ville ville);
+        IEnumerable<Membre> GetMembres();
 
         [OperationContract]
-        IEnumerable<Membre> GetMembresInBureau();
+        IEnumerable<Membre> GetMembresBureau();
 
         [OperationContract]
-        IEnumerable<Membre> GetMembresInBureauByVille(Ville ville);
+        IEnumerable<Membre> GetMembresBureauByVille(Ville ville);
 
         [OperationContract]
         IEnumerable<Membre> GetMembresAlumnis(Ville ville);
