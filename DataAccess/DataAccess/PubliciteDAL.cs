@@ -1,13 +1,13 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
+﻿using System.Collections.Generic;
+using System.Linq;
+using SolarSystem.Earth.Common.Interfaces;
 using SolarSystem.Earth.DataAccess.Exceptions;
 using SolarSystem.Earth.DataAccess.Model;
 using SolarSystem.Earth.DataAccess.RulesManager;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace SolarSystem.Earth.DataAccess.DataAccess
 {
-    public class PubliciteDAL : DALBase, IManager<Publicite>
+    public class PubliciteDAL : DALBase, IReader1Filter<Publicite, bool?>, IManager<Publicite>
     {
         #region Attributes
 
@@ -15,7 +15,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
         #endregion
 
-        #region IManager methods
+        #region IReader methods
 
         public Publicite Get(int code)
         {
@@ -31,11 +31,26 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
         public IEnumerable<Publicite> Get(int indexFirstElement, int numberOfResults)
         {
-            IEnumerable<Publicite> results = (from publicite in Db.Publicite
-                                              where publicite.Publiee
-                                              select publicite);
+            return Get(null, 0, 0);
+        }
 
-            results = results.Skip(indexFirstElement);
+        public IEnumerable<Publicite> Get(bool? published)
+        {
+            return Get(published, 0, 0);
+        }
+
+        public IEnumerable<Publicite> Get(bool? published, int indexFirstResult, int numberOfResults)
+        {
+            IEnumerable<Publicite> results = Db.Publicite;
+
+            if (published.HasValue)
+            {
+                results = (from p in results
+                           where p.Publiee == published
+                           select p);
+            }
+
+            results = results.Skip(indexFirstResult);
 
             if (numberOfResults > 0)
             {
@@ -52,6 +67,10 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
                     select p).First().Code_Publicite;
         }
 
+        #endregion
+
+        #region IManager methods
+
         public int Add(Publicite element, string username, string password)
         {
             if (_membreDAL.Exists(username, password))
@@ -64,7 +83,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
                 return element.Code_Publicite;
             }
-                throw new AccessDeniedException();
+            throw new AccessDeniedException();
         }
 
         public void Edit(Publicite element, string username, string password)

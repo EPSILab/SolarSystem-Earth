@@ -1,9 +1,8 @@
-﻿using SolarSystem.Earth.Business;
+﻿using System.Collections.Generic;
+using SolarSystem.Earth.Business;
 using SolarSystem.Earth.Common;
 using SolarSystem.Earth.Common.Interfaces;
 using SolarSystem.Earth.WCF.Interfaces.Readers;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 
 namespace SolarSystem.Earth.WCF
 {
@@ -25,12 +24,6 @@ namespace SolarSystem.Earth.WCF
         {
             IReaderLimit<Salon> business = new SalonBusiness();
             return business.Get(indexFirstElement, numberOfResults);
-        }
-
-        public IEnumerable<Salon> GetSalonsSorted(int indexFirstElement, int numberOfResults, SortOrder order)
-        {
-            IReaderSort<Salon> business = new SalonBusiness();
-            return business.Get(indexFirstElement, numberOfResults, order);
         }
 
         public int GetSalonLastInsertedId()

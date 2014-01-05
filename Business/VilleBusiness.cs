@@ -1,14 +1,14 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
+﻿using System.Collections.Generic;
+using System.Linq;
+using SolarSystem.Earth.Common.Interfaces;
 using SolarSystem.Earth.DataAccess.DataAccess;
 using SolarSystem.Earth.Mappers;
-using System.Collections.Generic;
-using System.Linq;
 using VilleDAO = SolarSystem.Earth.DataAccess.Model.Ville;
 using VilleDTO = SolarSystem.Earth.Common.Ville;
 
 namespace SolarSystem.Earth.Business
 {
-    public class VilleBusiness : IManager<VilleDTO>
+    public class VilleBusiness : IReader<VilleDTO>, IManager<VilleDTO>
     {
         #region Attributes
 
@@ -29,13 +29,6 @@ namespace SolarSystem.Earth.Business
         public IEnumerable<VilleDTO> Get()
         {
             IEnumerable<VilleDAO> dao = _villeDAL.Get();
-            IEnumerable<VilleDTO> dto = dao.Select(v => _mapper.ToDTO(v));
-            return dto;
-        }
-
-        public IEnumerable<VilleDTO> Get(int indexFirstElement, int numberOfResults)
-        {
-            IEnumerable<VilleDAO> dao = _villeDAL.Get(indexFirstElement, numberOfResults);
             IEnumerable<VilleDTO> dto = dao.Select(v => _mapper.ToDTO(v));
             return dto;
         }

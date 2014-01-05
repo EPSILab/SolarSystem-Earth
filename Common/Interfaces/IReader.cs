@@ -6,5 +6,6 @@ namespace SolarSystem.Earth.Common.Interfaces
     {
         T Get(int code);
         IEnumerable<T> Get();
+        int GetLastInsertedId();
     }
 }

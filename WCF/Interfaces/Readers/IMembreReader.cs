@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.ServiceModel;
 using SolarSystem.Earth.Common;
 
@@ -12,16 +11,16 @@ namespace SolarSystem.Earth.WCF.Interfaces.Readers
         Membre GetMembre(int code);
 
         [OperationContract]
-        IEnumerable<Membre> GetMembres();
+        IEnumerable<Membre> GetMembresNotInBureauByVille(Ville ville);
 
         [OperationContract]
-        IEnumerable<Membre> GetMembresLimited(int indexFirstElement, int numberOfResults);
+        IEnumerable<Membre> GetMembresInBureau();
 
         [OperationContract]
-        IEnumerable<Membre> GetMembresSorted(int indexFirstElement, int numberOfResults, SortOrder order);
+        IEnumerable<Membre> GetMembresInBureauByVille(Ville ville);
 
         [OperationContract]
-        IEnumerable<Membre> GetMembresByVilleAndRole(Ville ville, Role role, int indexFirstResult, int numberOfResults, SortOrder order);
+        IEnumerable<Membre> GetMembresAlumnis(Ville ville);
 
         [OperationContract]
         int GetMembreLastInsertedId();

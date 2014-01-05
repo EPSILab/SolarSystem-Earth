@@ -77,7 +77,6 @@
     <Compile Include="Interfaces\Readers\IPubliciteReader.cs" />
     <Compile Include="Interfaces\Readers\IVilleReader.cs" />
     <Compile Include="Interfaces\Readers\ISalonReader.cs" />
-    <Compile Include="Interfaces\Readers\IRoleReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Managers\VilleManager.cs" />
     <Compile Include="Services\Managers\ClasseManager.cs" />
@@ -95,7 +94,6 @@
     <Compile Include="Services\Readers\NewsReader.cs" />
     <Compile Include="Services\Readers\ProjetReader.cs" />
     <Compile Include="Services\Readers\PubliciteReader.cs" />
-    <Compile Include="Services\Readers\RoleReader.cs" />
     <Compile Include="Services\Readers\SalonReader.cs" />
     <Compile Include="Services\Readers\ReadersService.cs" />
     <Compile Include="Services\Readers\VilleReader.cs" />

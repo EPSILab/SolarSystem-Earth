@@ -1,14 +1,13 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
-using SolarSystem.Earth.DataAccess.Resources;
+﻿using System.Collections.Generic;
+using System.Linq;
+using SolarSystem.Earth.Common.Interfaces;
 using SolarSystem.Earth.DataAccess.Exceptions;
 using SolarSystem.Earth.DataAccess.Model;
 using SolarSystem.Earth.DataAccess.RulesManager;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace SolarSystem.Earth.DataAccess.DataAccess
 {
-    public class ClasseDAL : DALBase, IManager<Classe>, IAvailable<Classe>
+    public class ClasseDAL : DALBase, IReader<Classe>, IAvailable<Classe>, IManager<Classe>
     {
         #region Attributes
 
@@ -16,7 +15,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
         #endregion
 
-        #region IManager methods
+        #region IReader methods
 
         public Classe Get(int code)
         {
@@ -27,23 +26,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
         public IEnumerable<Classe> Get()
         {
-            return Get(0, 0);
-        }
-
-        public IEnumerable<Classe> Get(int indexFirstElement, int numberOfResults)
-        {
-            IEnumerable<Classe> results = (from c in Db.Classe
-                                           orderby c.Annee_Promo_Sortante
-                                           select c);
-
-            results = results.Skip(indexFirstElement);
-
-            if (numberOfResults > 0)
-            {
-                results = results.Take(numberOfResults);
-            }
-
-            return results;
+            return Db.Classe;
         }
 
         public int GetLastInsertedId()
@@ -52,6 +35,24 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
                     orderby c.Code_Classe descending
                     select c).First().Code_Classe;
         }
+
+        #endregion
+
+        #region IAvailable methods
+
+        public IEnumerable<Classe> GetAvailables()
+        {
+            IEnumerable<Classe> results = (from c in Db.Classe
+                                           where c.Encore_Presente == true
+                                           orderby c.Annee_Promo_Sortante descending
+                                           select c);
+
+            return results;
+        }
+
+        #endregion
+
+        #region IManager methods
 
         public int Add(Classe element, string username, string password)
         {
@@ -65,7 +66,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
                 return element.Code_Classe;
             }
-            
+
             throw new AccessDeniedException();
         }
 
@@ -105,20 +106,6 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
             {
                 throw new AccessDeniedException();
             }
-        }
-
-        #endregion
-
-        #region IManager methods
-
-        public IEnumerable<Classe> GetAvailables()
-        {
-            IEnumerable<Classe> results = (from c in Db.Classe
-                                           where c.Encore_Presente == true
-                                           orderby c.Annee_Promo_Sortante descending
-                                           select c);
-
-            return results;
         }
 
         #endregion

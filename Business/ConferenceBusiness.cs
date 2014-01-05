@@ -1,9 +1,8 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
+﻿using System.Collections.Generic;
+using System.Linq;
+using SolarSystem.Earth.Common.Interfaces;
 using SolarSystem.Earth.DataAccess.DataAccess;
 using SolarSystem.Earth.Mappers;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
 using ConferenceDAO = SolarSystem.Earth.DataAccess.Model.Conference;
 using ConferenceDTO = SolarSystem.Earth.Common.Conference;
 using VilleDAO = SolarSystem.Earth.DataAccess.Model.Ville;
@@ -11,22 +10,23 @@ using VilleDTO = SolarSystem.Earth.Common.Ville;
 
 namespace SolarSystem.Earth.Business
 {
-    public class ConferenceBusiness : IReader1Filter<ConferenceDTO, VilleDTO>, IManager<ConferenceDTO>, ISearchable<ConferenceDTO>
+    public class ConferenceBusiness : IReader2Filters<ConferenceDTO, VilleDTO, bool?>, ISearchable<ConferenceDTO>, IManager<ConferenceDTO>
     {
         #region Attributes
 
         private readonly ConferenceDAL _conferenceDAL = new ConferenceDAL();
-        private readonly VilleDAL _villeDAL = new VilleDAL();
-        private readonly IMapper<ConferenceDAO, ConferenceDTO> _mapper = new ConferenceMapper();
+
+        private readonly IMapper<ConferenceDAO, ConferenceDTO> _mapperConference = new ConferenceMapper();
+        private readonly IMapper<VilleDAO, VilleDTO> _mapperVille = new VilleMapper();
 
         #endregion
 
-        #region IReadableOneFilter methods
+        #region IReader2Filters methods
 
         public ConferenceDTO Get(int code)
         {
             ConferenceDAO dao = _conferenceDAL.Get(code);
-            ConferenceDTO dto = _mapper.ToDTO(dao);
+            ConferenceDTO dto = _mapperConference.ToDTO(dao);
 
             return dto;
         }
@@ -34,7 +34,7 @@ namespace SolarSystem.Earth.Business
         public IEnumerable<ConferenceDTO> Get()
         {
             IEnumerable<ConferenceDAO> dao = _conferenceDAL.Get();
-            IEnumerable<ConferenceDTO> dto = dao.Select(c => _mapper.ToDTO(c));
+            IEnumerable<ConferenceDTO> dto = dao.Select(c => _mapperConference.ToDTO(c));
 
             return dto;
         }
@@ -42,30 +42,65 @@ namespace SolarSystem.Earth.Business
         public IEnumerable<ConferenceDTO> Get(int indexFirstElement, int numberOfResults)
         {
             IEnumerable<ConferenceDAO> dao = _conferenceDAL.Get(indexFirstElement, numberOfResults);
-            IEnumerable<ConferenceDTO> dto = dao.Select(c => _mapper.ToDTO(c));
+            IEnumerable<ConferenceDTO> dto = dao.Select(c => _mapperConference.ToDTO(c));
 
             return dto;
         }
 
-        public IEnumerable<ConferenceDTO> Get(int indexFirstElement, int numberOfResults, SortOrder order)
+        public IEnumerable<ConferenceDTO> Get(bool? active)
         {
-            IEnumerable<ConferenceDAO> dao = _conferenceDAL.Get(indexFirstElement, numberOfResults, order);
-            IEnumerable<ConferenceDTO> dto = dao.Select(c => _mapper.ToDTO(c));
+            IEnumerable<ConferenceDAO> dao = _conferenceDAL.Get(active);
+            IEnumerable<ConferenceDTO> dto = dao.Select(c => _mapperConference.ToDTO(c));
 
             return dto;
         }
 
-        public IEnumerable<ConferenceDTO> Get(VilleDTO filter, int indexFirstElement, int numberOfResults, SortOrder order)
+        public IEnumerable<ConferenceDTO> Get(bool? active, int indexFirstResult, int numberOfResults)
         {
-            VilleDAO filterDao = null;
+            IEnumerable<ConferenceDAO> dao = _conferenceDAL.Get(active, indexFirstResult, numberOfResults);
+            IEnumerable<ConferenceDTO> dto = dao.Select(c => _mapperConference.ToDTO(c));
 
-            if (filter != null)
-            {
-                filterDao = _villeDAL.Get(filter.Code_Ville);
-            }
+            return dto;
+        }
 
-            IEnumerable<ConferenceDAO> dao = _conferenceDAL.Get(filterDao, indexFirstElement, numberOfResults, order);
-            return dao.Select(c => _mapper.ToDTO(c));
+        public IEnumerable<ConferenceDTO> Get(VilleDTO ville, bool? active)
+        {
+            VilleDAO villeDao = _mapperVille.ToDAO(ville);
+
+            IEnumerable<ConferenceDAO> dao = _conferenceDAL.Get(villeDao, active);
+            IEnumerable<ConferenceDTO> dto = dao.Select(c => _mapperConference.ToDTO(c));
+
+            return dto;
+        }
+
+        public IEnumerable<ConferenceDTO> Get(VilleDTO ville, bool? active, int indexFirstResult, int numberOfResults)
+        {
+            VilleDAO villeDao = _mapperVille.ToDAO(ville);
+
+            IEnumerable<ConferenceDAO> dao = _conferenceDAL.Get(villeDao, active, indexFirstResult, numberOfResults);
+            IEnumerable<ConferenceDTO> dto = dao.Select(c => _mapperConference.ToDTO(c));
+
+            return dto;
+        }
+
+        public IEnumerable<ConferenceDTO> Get(VilleDTO ville)
+        {
+            VilleDAO villeDao = _mapperVille.ToDAO(ville);
+
+            IEnumerable<ConferenceDAO> dao = _conferenceDAL.Get(villeDao);
+            IEnumerable<ConferenceDTO> dto = dao.Select(c => _mapperConference.ToDTO(c));
+
+            return dto;
+        }
+
+        public IEnumerable<ConferenceDTO> Get(VilleDTO ville, int indexFirstResult, int numberOfResults)
+        {
+            VilleDAO villeDao = _mapperVille.ToDAO(ville);
+
+            IEnumerable<ConferenceDAO> dao = _conferenceDAL.Get(villeDao, indexFirstResult, numberOfResults);
+            IEnumerable<ConferenceDTO> dto = dao.Select(c => _mapperConference.ToDTO(c));
+
+            return dto;
         }
 
         public int GetLastInsertedId()
@@ -79,13 +114,13 @@ namespace SolarSystem.Earth.Business
 
         public int Add(ConferenceDTO element, string username, string password)
         {
-            ConferenceDAO dao = _mapper.ToDAO(element);
+            ConferenceDAO dao = _mapperConference.ToDAO(element);
             return _conferenceDAL.Add(dao, username, password);
         }
 
         public void Edit(ConferenceDTO element, string username, string password)
         {
-            ConferenceDAO dao = _mapper.ToDAO(element);
+            ConferenceDAO dao = _mapperConference.ToDAO(element);
             _conferenceDAL.Edit(dao, username, password);
         }
 
@@ -101,7 +136,7 @@ namespace SolarSystem.Earth.Business
         public IEnumerable<ConferenceDTO> Search(string keywords)
         {
             IEnumerable<ConferenceDAO> dao = _conferenceDAL.Search(keywords);
-            return dao.Select(c => _mapper.ToDTO(c));
+            return dao.Select(c => _mapperConference.ToDTO(c));
         }
 
         #endregion

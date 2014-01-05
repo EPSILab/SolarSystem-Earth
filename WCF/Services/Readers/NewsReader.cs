@@ -17,20 +17,14 @@ namespace SolarSystem.Earth.WCF
 
         public IEnumerable<News> GetListNews()
         {
-            IReader<News> business = new NewsBusiness();
-            return business.Get();
+            IReader2Filters<News, Membre, bool?> business = new NewsBusiness();
+            return business.Get(true);
         }
 
         public IEnumerable<News> GetListNewsLimited(int indexFirstElement, int numberOfResults)
         {
-            IReaderLimit<News> business = new NewsBusiness();
-            return business.Get(indexFirstElement, numberOfResults);
-        }
-
-        public IEnumerable<News> GetListNewsSorted(int indexFirstElement, int numberOrResults, SortOrder order)
-        {
-            IReaderSort<News> business = new NewsBusiness();
-            return business.Get(indexFirstElement, numberOrResults, order);
+            IReader2Filters<News, Membre, bool?> business = new NewsBusiness();
+            return business.Get(true, indexFirstElement, numberOfResults);
         }
 
         public int GetNewsLastInsertedId()

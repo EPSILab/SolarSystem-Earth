@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.ServiceModel;
 using SolarSystem.Earth.Common;
 
@@ -18,10 +17,10 @@ namespace SolarSystem.Earth.WCF.Interfaces.Readers
         IEnumerable<Conference> GetConferencesLimited(int indexFirstResult, int numberOfResults);
 
         [OperationContract]
-        IEnumerable<Conference> GetConferencesSorted(int indexFirstResult, int numberOfResults, SortOrder order);
+        IEnumerable<Conference> GetConferencesByVille(Ville ville);
 
         [OperationContract]
-        IEnumerable<Conference> GetConferencesByVille(Ville ville, int indexFirstResult, int numberOfResults, SortOrder order);
+        IEnumerable<Conference> GetConferencesByVilleLimited(Ville ville, int indexFirstResult, int numberOfResults);
 
         [OperationContract]
         int GetConferenceLastInsertedId();

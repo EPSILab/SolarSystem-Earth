@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
-using System.Data.SqlClient;
 
 namespace SolarSystem.Earth.Common.Interfaces
 {
-    public interface IReader2Filters<out TValue, in TKey, in TProperty> : IReaderSort<TValue>
+    public interface IReader2Filters<out T, in TClass, in TValue> : IReader1Filter<T, TClass>
     {
-        IEnumerable<TValue> Get(TKey filter1, TProperty filter2, int indexFirstElement, int numberOfResults, SortOrder order);
+        IEnumerable<T> Get(TValue filter2);
+        IEnumerable<T> Get(TValue filter2, int indexFirstResult, int numberOfResults);
+
+        IEnumerable<T> Get(TClass filter1, TValue filter2);
+        IEnumerable<T> Get(TClass filter1, TValue filter2, int indexFirstResult, int numberOfResults);
     }
 }

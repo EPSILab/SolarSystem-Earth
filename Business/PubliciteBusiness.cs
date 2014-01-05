@@ -1,14 +1,14 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
+﻿using System.Collections.Generic;
+using System.Linq;
+using SolarSystem.Earth.Common.Interfaces;
 using SolarSystem.Earth.DataAccess.DataAccess;
 using SolarSystem.Earth.Mappers;
-using System.Collections.Generic;
-using System.Linq;
 using PubliciteDAO = SolarSystem.Earth.DataAccess.Model.Publicite;
 using PubliciteDTO = SolarSystem.Earth.Common.Publicite;
 
 namespace SolarSystem.Earth.Business
 {
-    public class PubliciteBusiness : IManager<PubliciteDTO>
+    public class PubliciteBusiness : IReader1Filter<PubliciteDTO, bool?>, IManager<PubliciteDTO>
     {
         #region Attributes
 
@@ -17,7 +17,7 @@ namespace SolarSystem.Earth.Business
 
         #endregion
 
-        #region IManager methods
+        #region IReader1Filter methods
 
         public PubliciteDTO Get(int code)
         {
@@ -42,10 +42,30 @@ namespace SolarSystem.Earth.Business
             return dto;
         }
 
+        public IEnumerable<PubliciteDTO> Get(bool? published)
+        {
+            IEnumerable<PubliciteDAO> dao = _publiciteDAL.Get(published);
+            IEnumerable<PubliciteDTO> dto = dao.Select(p => _mapper.ToDTO(p));
+
+            return dto;
+        }
+
+        public IEnumerable<PubliciteDTO> Get(bool? published, int indexFirstResult, int numberOfResults)
+        {
+            IEnumerable<PubliciteDAO> dao = _publiciteDAL.Get(published, indexFirstResult, numberOfResults);
+            IEnumerable<PubliciteDTO> dto = dao.Select(p => _mapper.ToDTO(p));
+
+            return dto;
+        }
+
         public int GetLastInsertedId()
         {
             return _publiciteDAL.GetLastInsertedId();
         }
+
+        #endregion
+
+        #region IManager methods
 
         public int Add(PubliciteDTO element, string username, string password)
         {

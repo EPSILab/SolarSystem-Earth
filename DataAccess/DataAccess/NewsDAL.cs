@@ -1,15 +1,14 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
-using SolarSystem.Earth.DataAccess.Resources;
+﻿using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using SolarSystem.Earth.Common.Interfaces;
 using SolarSystem.Earth.DataAccess.Exceptions;
 using SolarSystem.Earth.DataAccess.Model;
 using SolarSystem.Earth.DataAccess.RulesManager;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
 
 namespace SolarSystem.Earth.DataAccess.DataAccess
 {
-    public class NewsDAL : DALBase, IReaderSort<News>, ISearchable<News>, IManager<News>
+    public class NewsDAL : DALBase, IReader2Filters<News, Membre, bool?>, ISearchable<News>, IManager<News>
     {
         #region Attributes
 
@@ -17,7 +16,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
         #endregion
 
-        #region IReaderSort methods
+        #region IReader2Filters methods
 
         public News Get(int code)
         {
@@ -33,22 +32,55 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
         public IEnumerable<News> Get(int indexFirstElement, int numberOfResults)
         {
-            return Get(indexFirstElement, numberOfResults, SortOrder.Descending);
+            return Get(null, null, indexFirstElement, numberOfResults);
         }
 
-        public IEnumerable<News> Get(int indexFirstElement, int numberOfResults, SortOrder order)
+        public IEnumerable<News> Get(Membre author)
+        {
+            return Get(author, 0, 0);
+        }
+
+        public IEnumerable<News> Get(Membre author, int indexFirstResult, int numberOfResults)
+        {
+            return Get(author, null, indexFirstResult, numberOfResults);
+        }
+
+        public IEnumerable<News> Get(bool? published)
+        {
+            return Get(null, published);
+        }
+
+        public IEnumerable<News> Get(Membre author, bool? published)
+        {
+            return Get(author, published, 0, 0);
+        }
+
+        public IEnumerable<News> Get(bool? published, int indexFirstResult, int numberOfResults)
+        {
+            return Get(null, published, indexFirstResult, numberOfResults);
+        }
+
+        public IEnumerable<News> Get(Membre author, bool? published, int indexFirstResult, int numberOfResults)
         {
             IEnumerable<News> results = (from n in Db.News
-                                         where n.Publiee
                                          orderby n.Date_Heure
                                          select n);
 
-            if (order == SortOrder.Descending)
+            if (author != null)
             {
-                results = results.Reverse();
+                results = (from n in results
+                           where n.Code_Membre == author.Code_Membre
+                           select n);
             }
 
-            results = results.Skip(indexFirstElement);
+            if (published.HasValue)
+            {
+                results = (from n in results
+                           where n.Publiee == published
+                           select n);
+            }
+
+            results = results.Skip(indexFirstResult);
 
             if (numberOfResults > 0)
             {

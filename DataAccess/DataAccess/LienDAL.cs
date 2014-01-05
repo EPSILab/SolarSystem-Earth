@@ -1,14 +1,13 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
-using SolarSystem.Earth.DataAccess.Resources;
+﻿using System.Collections.Generic;
+using System.Linq;
+using SolarSystem.Earth.Common.Interfaces;
 using SolarSystem.Earth.DataAccess.Exceptions;
 using SolarSystem.Earth.DataAccess.Model;
 using SolarSystem.Earth.DataAccess.RulesManager;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace SolarSystem.Earth.DataAccess.DataAccess
 {
-    public class LienDAL : DALBase, IManager<Lien>
+    public class LienDAL : DALBase, IReader<Lien>, IManager<Lien>
     {
         #region Attributes
 
@@ -16,7 +15,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
         #endregion
 
-        #region IManager methods
+        #region IReader methods
 
         public Lien Get(int code)
         {
@@ -27,21 +26,9 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
         public IEnumerable<Lien> Get()
         {
-            return Get(0, 0);
-        }
-
-        public IEnumerable<Lien> Get(int indexFirstResult, int numberOfResults)
-        {
             IEnumerable<Lien> results = (from l in Db.Lien
                                          orderby l.Ordre
                                          select l);
-
-            results = results.Skip(indexFirstResult);
-
-            if (numberOfResults > 0)
-            {
-                results = results.Take(numberOfResults);
-            }
 
             return results;
         }
@@ -52,6 +39,10 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
                     orderby l.Code_Lien descending
                     select l).First().Code_Lien;
         }
+
+        #endregion
+
+        #region IManager methods
 
         public int Add(Lien element, string username, string password)
         {
@@ -65,7 +56,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
                 return element.Code_Lien;
             }
-                throw new AccessDeniedException();
+            throw new AccessDeniedException();
         }
 
         public void Edit(Lien element, string username, string password)

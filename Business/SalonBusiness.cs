@@ -1,15 +1,14 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
+﻿using System.Collections.Generic;
+using System.Linq;
+using SolarSystem.Earth.Common.Interfaces;
 using SolarSystem.Earth.DataAccess.DataAccess;
 using SolarSystem.Earth.Mappers;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
 using SalonDAO = SolarSystem.Earth.DataAccess.Model.Salon;
 using SalonDTO = SolarSystem.Earth.Common.Salon;
 
 namespace SolarSystem.Earth.Business
 {
-    public class SalonBusiness : IReaderSort<SalonDTO>, IManager<SalonDTO>, ISearchable<SalonDTO>
+    public class SalonBusiness : IReader1Filter<SalonDTO, bool?>, ISearchable<SalonDTO>, IManager<SalonDTO>
     {
         #region Attributes
 
@@ -18,7 +17,7 @@ namespace SolarSystem.Earth.Business
 
         #endregion
 
-        #region IReaderSort methods
+        #region IReader1Filter methods
 
         public SalonDTO Get(int code)
         {
@@ -44,9 +43,17 @@ namespace SolarSystem.Earth.Business
             return dto;
         }
 
-        public IEnumerable<SalonDTO> Get(int indexFirstElement, int numberOfResults, SortOrder order)
+        public IEnumerable<SalonDTO> Get(bool? published)
         {
-            IEnumerable<SalonDAO> dao = _salonDAL.Get(indexFirstElement, numberOfResults, order);
+            IEnumerable<SalonDAO> dao = _salonDAL.Get(published);
+            IEnumerable<SalonDTO> dto = dao.Select(s => _mapper.ToDTO(s));
+
+            return dto;
+        }
+
+        public IEnumerable<SalonDTO> Get(bool? published, int indexFirstResult, int numberOfResults)
+        {
+            IEnumerable<SalonDAO> dao = _salonDAL.Get(published, indexFirstResult, numberOfResults);
             IEnumerable<SalonDTO> dto = dao.Select(s => _mapper.ToDTO(s));
 
             return dto;
@@ -55,6 +62,18 @@ namespace SolarSystem.Earth.Business
         public int GetLastInsertedId()
         {
             return _salonDAL.GetLastInsertedId();
+        }
+
+        #endregion
+
+        #region ISearchable methods
+
+        public IEnumerable<SalonDTO> Search(string keyword)
+        {
+            IEnumerable<SalonDAO> dao = _salonDAL.Search(keyword);
+            IEnumerable<SalonDTO> dto = dao.Select(s => _mapper.ToDTO(s));
+
+            return dto;
         }
 
         #endregion
@@ -76,18 +95,6 @@ namespace SolarSystem.Earth.Business
         public void Delete(int code, string username, string password)
         {
             _salonDAL.Delete(code, username, password);
-        }
-
-        #endregion
-
-        #region ISearchable methods
-
-        public IEnumerable<SalonDTO> Search(string keyword)
-        {
-            IEnumerable<SalonDAO> dao = _salonDAL.Search(keyword);
-            IEnumerable<SalonDTO> dto = dao.Select(s => _mapper.ToDTO(s));
-
-            return dto;
         }
 
         #endregion

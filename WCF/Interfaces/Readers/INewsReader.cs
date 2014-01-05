@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.ServiceModel;
 using SolarSystem.Earth.Common;
 
@@ -16,9 +15,6 @@ namespace SolarSystem.Earth.WCF.Interfaces.Readers
 
         [OperationContract]
         IEnumerable<News> GetListNewsLimited(int indexFirstElement, int numberOfResults);
-
-        [OperationContract]
-        IEnumerable<News> GetListNewsSorted(int indexFirstElement, int numberOfResults, SortOrder order);
 
         [OperationContract]
         int GetNewsLastInsertedId();

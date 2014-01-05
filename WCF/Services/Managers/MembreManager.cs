@@ -1,9 +1,8 @@
-﻿using SolarSystem.Earth.Business;
+﻿using System.Collections.Generic;
+using SolarSystem.Earth.Business;
 using SolarSystem.Earth.Common;
 using SolarSystem.Earth.Common.Interfaces;
 using SolarSystem.Earth.WCF.Interfaces.Managers;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 
 namespace SolarSystem.Earth.WCF
 {
@@ -15,16 +14,46 @@ namespace SolarSystem.Earth.WCF
             return business.Get(code);
         }
 
-        public IEnumerable<Membre> GetMembres()
+        public IEnumerable<Membre> GetMembresActives()
         {
-            IReader<Membre> business = new MembreBusiness();
-            return business.Get();
+            IMembreReader<Membre, Ville> business = new MembreBusiness();
+            return business.GetBureauAndMembresActives();
         }
 
-        public IEnumerable<Membre> GetMembresByVilleAndRole(Ville ville, Role role, bool actives, bool stillPresents)
+        public IEnumerable<Membre> GetMembreInBureau()
         {
-            IReader4Filters<Membre, Ville, Role, bool, bool> business = new MembreBusiness();
-            return business.Get(ville, role, actives, stillPresents, 0, 0, SortOrder.Ascending);
+            IMembreReader<Membre, Ville> business = new MembreBusiness();
+            return business.GetBureau();
+        }
+
+        public IEnumerable<Membre> GetMembresBureau(Ville ville)
+        {
+            IMembreReader<Membre, Ville> business = new MembreBusiness();
+            return business.GetBureau(ville);
+        }
+
+        public IEnumerable<Membre> GetMembresNotInBureau(Ville ville)
+        {
+            IMembreReader<Membre, Ville> business = new MembreBusiness();
+            return business.GetMembresActives(ville);
+        }
+
+        public IEnumerable<Membre> GetMembresAlumnis()
+        {
+            IMembreReader<Membre, Ville> business = new MembreBusiness();
+            return business.GetAlumnis();
+        }
+
+        public IEnumerable<Membre> GetMembresAlumnis(Ville ville)
+        {
+            IMembreReader<Membre, Ville> business = new MembreBusiness();
+            return business.GetAlumnis(ville);
+        }
+
+        public IEnumerable<Membre> GetMembresWaitingForValidation()
+        {
+            IMembreReader<Membre, Ville> business = new MembreBusiness();
+            return business.GetWaitingForValidation();
         }
 
         public Membre Login(string username, string password)

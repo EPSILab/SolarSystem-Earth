@@ -1,7 +1,7 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
-using SolarSystem.Earth.DataAccess.Model;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using SolarSystem.Earth.Common.Interfaces;
+using SolarSystem.Earth.DataAccess.Model;
 
 namespace SolarSystem.Earth.DataAccess.DataAccess
 {
@@ -18,8 +18,14 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
         public IEnumerable<Role> Get()
         {
+            return Db.Role;
+        }
+
+        public int GetLastInsertedId()
+        {
             return (from r in Db.Role
-                    select r);
+                    orderby r.Code_Role descending
+                    select r).First().Code_Role;
         }
 
         #endregion

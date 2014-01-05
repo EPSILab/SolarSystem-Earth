@@ -1,14 +1,13 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
-using SolarSystem.Earth.DataAccess.Resources;
+﻿using System.Collections.Generic;
+using System.Linq;
+using SolarSystem.Earth.Common.Interfaces;
 using SolarSystem.Earth.DataAccess.Exceptions;
 using SolarSystem.Earth.DataAccess.Model;
 using SolarSystem.Earth.DataAccess.RulesManager;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace SolarSystem.Earth.DataAccess.DataAccess
 {
-    public class VilleDAL : DALBase, IManager<Ville>
+    public class VilleDAL : DALBase, IReader<Ville>, IManager<Ville>
     {
         #region Attributes
 
@@ -16,7 +15,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
         #endregion
 
-        #region IReaderLimit methods
+        #region IReader methods
 
         public Ville Get(int code)
         {
@@ -27,22 +26,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
         public IEnumerable<Ville> Get()
         {
-            return Get(0, 0);
-        }
-
-        public IEnumerable<Ville> Get(int indexFirstElement, int numberOfResults)
-        {
-            IEnumerable<Ville> results = (from r in Db.Ville
-                                          select r);
-
-            results = results.Skip(indexFirstElement);
-
-            if (numberOfResults > 0)
-            {
-                results = results.Take(numberOfResults);
-            }
-
-            return results;
+            return Db.Ville;
         }
 
         public int GetLastInsertedId()

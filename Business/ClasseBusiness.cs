@@ -1,14 +1,14 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
+﻿using System.Collections.Generic;
+using System.Linq;
+using SolarSystem.Earth.Common.Interfaces;
 using SolarSystem.Earth.DataAccess.DataAccess;
 using SolarSystem.Earth.Mappers;
-using System.Collections.Generic;
-using System.Linq;
 using ClasseDAO = SolarSystem.Earth.DataAccess.Model.Classe;
 using ClasseDTO = SolarSystem.Earth.Common.Classe;
 
 namespace SolarSystem.Earth.Business
 {
-    public class ClasseBusiness : IManager<ClasseDTO>, IAvailable<ClasseDTO>
+    public class ClasseBusiness : IReader<ClasseDTO>, IAvailable<ClasseDTO>, IManager<ClasseDTO>
     {
         #region Attributes
 
@@ -17,7 +17,7 @@ namespace SolarSystem.Earth.Business
 
         #endregion
 
-        #region IManager methods
+        #region IReader methods
 
         public ClasseDTO Get(int code)
         {
@@ -35,18 +35,26 @@ namespace SolarSystem.Earth.Business
             return dto;
         }
 
-        public IEnumerable<ClasseDTO> Get(int indexFirstResult, int numberOfResults)
+        public int GetLastInsertedId()
         {
-            IEnumerable<ClasseDAO> dao = _classeDAL.Get(indexFirstResult, numberOfResults);
+            return _classeDAL.GetLastInsertedId();
+        }
+
+        #endregion
+
+        #region IAvailable methods
+
+        public IEnumerable<ClasseDTO> GetAvailables()
+        {
+            IEnumerable<ClasseDAO> dao = _classeDAL.GetAvailables();
             IEnumerable<ClasseDTO> dto = dao.Select(c => _mapper.ToDTO(c));
 
             return dto;
         }
 
-        public int GetLastInsertedId()
-        {
-            return _classeDAL.GetLastInsertedId();
-        }
+        #endregion
+
+        #region IManager methods
 
         public int Add(ClasseDTO element, string username, string password)
         {
@@ -63,18 +71,6 @@ namespace SolarSystem.Earth.Business
         public void Delete(int code, string username, string password)
         {
             _classeDAL.Delete(code, username, password);
-        }
-
-        #endregion
-
-        #region IAvailable methods
-
-        public IEnumerable<ClasseDTO> GetAvailables()
-        {
-            IEnumerable<ClasseDAO> dao = _classeDAL.GetAvailables();
-            IEnumerable<ClasseDTO> dto = dao.Select(c => _mapper.ToDTO(c));
-
-            return dto;
         }
 
         #endregion

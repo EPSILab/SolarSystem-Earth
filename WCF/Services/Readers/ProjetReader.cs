@@ -1,9 +1,8 @@
-﻿using SolarSystem.Earth.Business;
+﻿using System.Collections.Generic;
+using SolarSystem.Earth.Business;
 using SolarSystem.Earth.Common;
 using SolarSystem.Earth.Common.Interfaces;
 using SolarSystem.Earth.WCF.Interfaces.Readers;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 
 namespace SolarSystem.Earth.WCF
 {
@@ -27,16 +26,16 @@ namespace SolarSystem.Earth.WCF
             return business.Get(indexFirstElement, numberOfResults);
         }
 
-        public IEnumerable<Projet> GetProjetsSorted(int indexFirstElement, int numberOfResults, SortOrder order)
-        {
-            IReaderSort<Projet> business = new ProjetBusiness();
-            return business.Get(indexFirstElement, numberOfResults, order);
-        }
-
-        public IEnumerable<Projet> GetProjetsByVille(Ville filter, int indexFirstElement, int numberOfResults, SortOrder order)
+        public IEnumerable<Projet> GetProjetsByVille(Ville ville)
         {
             IReader1Filter<Projet, Ville> business = new ProjetBusiness();
-            return business.Get(filter, indexFirstElement, numberOfResults, order);
+            return business.Get(ville);
+        }
+
+        public IEnumerable<Projet> GetProjetsByVilleLimited(Ville ville, int indexFirstElement, int numberOfResults)
+        {
+            IReader1Filter<Projet, Ville> business = new ProjetBusiness();
+            return business.Get(ville, indexFirstElement, numberOfResults);
         }
 
         public int GetProjetLastInsertedId()

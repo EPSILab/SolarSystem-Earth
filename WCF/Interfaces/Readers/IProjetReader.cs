@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.ServiceModel;
 using SolarSystem.Earth.Common;
 
@@ -18,10 +17,10 @@ namespace SolarSystem.Earth.WCF.Interfaces.Readers
         IEnumerable<Projet> GetProjetsLimited(int indexFirstElement, int numberOfResults);
 
         [OperationContract]
-        IEnumerable<Projet> GetProjetsSorted(int indexFirstElement, int numberOfResults, SortOrder order);
+        IEnumerable<Projet> GetProjetsByVille(Ville ville);
 
         [OperationContract]
-        IEnumerable<Projet> GetProjetsByVille(Ville filter, int indexFirstElement, int numberOfResults, SortOrder order);
+        IEnumerable<Projet> GetProjetsByVilleLimited(Ville ville, int indexFirstElement, int numberOfResults);
 
         [OperationContract]
         int GetProjetLastInsertedId();

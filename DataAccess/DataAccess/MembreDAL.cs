@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using SolarSystem.Earth.Common.Interfaces;
 using SolarSystem.Earth.Common.Utils;
@@ -10,9 +9,15 @@ using SolarSystem.Earth.DataAccess.RulesManager;
 
 namespace SolarSystem.Earth.DataAccess.DataAccess
 {
-    public class MembreDAL : DALBase, IReader4Filters<Membre, Ville, Role, bool, bool>, ISearchable<Membre>, ILogin<Membre, RecupMotDePasse>, IManager<Membre>
+    public class MembreDAL : DALBase, IMembreReader<Membre, Ville>, ISearchable<Membre>, ILogin<Membre, RecupMotDePasse>, IManager<Membre>
     {
-        #region IReader4Filters methods
+        #region Attributes
+
+        private IReader<Role> _roleDAL = new RoleDAL();
+
+        #endregion
+
+        #region IMembreReader methods
 
         public Membre Get(int code)
         {
@@ -25,88 +30,102 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
         public IEnumerable<Membre> Get()
         {
-            return Get(0, 0);
+            return Get(null, null, null, null);
         }
 
-        public IEnumerable<Membre> Get(int indexFirstElement, int numberOfResults)
+        public IEnumerable<Membre> GetBureau()
         {
-            return Get(indexFirstElement, numberOfResults, SortOrder.Ascending);
+            return GetBureau(null);
         }
 
-        public IEnumerable<Membre> Get(int indexFirstElement, int numberOfResults, SortOrder order)
+        public IEnumerable<Membre> GetBureau(Ville ville)
         {
-            return Get(null, null, indexFirstElement, numberOfResults, order);
+            Role role = _roleDAL.Get(2);
+            return Get(ville, role, true, false);
         }
 
-        public IEnumerable<Membre> Get(Ville ville, Role role, int indexFirstResult, int numberOfResults, SortOrder order)
+        public IEnumerable<Membre> GetMembresActives(Ville ville)
         {
-            return Get(ville, role, true, indexFirstResult, numberOfResults, order);
+            Role role = _roleDAL.Get(1);
+            return Get(ville, role, true, false);
         }
 
-        public IEnumerable<Membre> Get(Ville ville, Role role, bool actif, int indexFirstElement, int numberOfResults, SortOrder order)
+        public IEnumerable<Membre> GetBureauAndMembresActives()
         {
-            return Get(ville, role, true, true, indexFirstElement, numberOfResults, order);
+            return Get(null, null, true, false);
         }
 
-        public IEnumerable<Membre> Get(Ville ville, Role role, bool actif, bool encorePresents, int indexFirstElement, int numberOfResults, SortOrder order)
+        public IEnumerable<Membre> GetAlumnis()
+        {
+            return GetAlumnis(null);
+        }
+
+        public IEnumerable<Membre> GetAlumnis(Ville ville)
+        {
+            return Get(ville, null, true, true);
+        }
+
+        public IEnumerable<Membre> GetWaitingForValidation()
+        {
+            Role role = _roleDAL.Get(0);
+            return Get(null, role, false, false);
+        }
+
+        private IEnumerable<Membre> Get(Ville ville, Role role, bool? activesOnly, bool? alumnisOnly)
         {
             IEnumerable<Membre> results = (from m in Db.Membre
+                                           orderby m.Nom
+                                           orderby m.Prenom
                                            select m);
 
             if (ville != null)
             {
                 results = (from m in results
-                           where m.Ville.Code_Ville == ville.Code_Ville
+                           where m.Code_Ville == ville.Code_Ville
                            select m);
             }
 
             if (role != null)
             {
                 results = (from m in results
-                           where m.Role.Code_Role == role.Code_Role
+                           where m.Code_Role == role.Code_Role
                            select m);
             }
 
-            if (actif)
+            if (activesOnly.HasValue)
             {
-                results = (from m in results
-                           where m.Actif
-                           select m);
+                if (activesOnly.Value)
+                {
+                    results = (from m in results
+                               where m.Actif
+                               select m);
+                }
+                else
+                {
+                    results = (from m in results
+                               where !m.Actif
+                               select m);
+                }
             }
 
-            if (encorePresents)
+            if (alumnisOnly.HasValue)
             {
-                results = (from m in results
-                           where m.Classe.Encore_Presente
-                           select m);
-            }
-
-            if (order == SortOrder.Descending)
-            {
-                results = (from m in results
-                           orderby m.Nom, m.Prenom, m.Ville.Libelle, m.Role.Code_Role descending
-                           select m);
-            }
-            else
-            {
-                results = (from m in results
-                           orderby m.Nom descending, m.Prenom, m.Ville.Libelle, m.Role.Code_Role descending
-                           select m);
-            }
-
-            results = results.Skip(indexFirstElement);
-
-            if (numberOfResults > 0)
-            {
-                results = results.Take(numberOfResults);
+                if (alumnisOnly.Value)
+                {
+                    results = (from m in results
+                               where !m.Classe.Encore_Presente
+                               select m);
+                }
+                else
+                {
+                    results = (from m in results
+                               where m.Classe.Encore_Presente
+                               select m);
+                }
             }
 
             return results;
         }
-
-        #endregion
-
-        #region ISearch methods
 
         public int GetLastInsertedId()
         {
@@ -242,7 +261,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
         #endregion
 
-        #region IManager methods
+        #region ISearchable methods
 
         public IEnumerable<Membre> Search(string keywords)
         {
@@ -263,6 +282,10 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
             return membres;
         }
+
+        #endregion
+
+        #region IManager methods
 
         public int Add(Membre element, string username, string password)
         {

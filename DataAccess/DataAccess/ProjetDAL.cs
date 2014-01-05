@@ -30,32 +30,32 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
             return Get(0, 0);
         }
 
-        public IEnumerable<Projet> Get(int indexFirstElement, int numberOfResults)
+        public IEnumerable<Projet> Get(int indexFirstResult, int numberOfResults)
         {
-            return Get(indexFirstElement, numberOfResults, SortOrder.Ascending);
+            return Get(null, indexFirstResult, numberOfResults);
         }
 
-        public IEnumerable<Projet> Get(int indexFirstElement, int numberOfResults, SortOrder order)
+        public IEnumerable<Projet> Get(Ville ville)
         {
-            return Get(null, indexFirstElement, numberOfResults, order);
+            IEnumerable<Projet> results = (from p in Db.Projet
+                                           where p.Code_Ville == ville.Code_Ville
+                                           select p);
+
+            return results;
         }
 
-        public IEnumerable<Projet> Get(Ville filter, int indexFirstElement, int numberOfResults, SortOrder order)
+        public IEnumerable<Projet> Get(Ville ville, int indexFirstResult, int numberOfResults)
         {
-            IEnumerable<Projet> results = (from projet in Db.Projet
-                                           select projet);
+            IEnumerable<Projet> results = Db.Projet;
 
-            if (filter != null)
+            if (ville != null)
             {
-                results = Db.Projet.Where(p => p.Code_Ville == filter.Code_Ville);
+                results = (from p in results
+                           where p.Code_Ville == ville.Code_Ville
+                           select p);
             }
 
-            if (order == SortOrder.Descending)
-            {
-                results = results.Reverse();
-            }
-
-            results = results.Skip(indexFirstElement);
+            results = results.Skip(indexFirstResult);
 
             if (numberOfResults > 0)
             {
@@ -76,7 +76,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
         #region IManager methods
 
-         public int Add(Projet element, string username, string password)
+        public int Add(Projet element, string username, string password)
         {
             if (_membreDAL.Exists(username, password))
             {
@@ -88,7 +88,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
                 return element.Code_Projet;
             }
-                throw new AccessDeniedException();
+            throw new AccessDeniedException();
         }
 
         public void Edit(Projet element, string username, string password)

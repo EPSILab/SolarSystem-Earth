@@ -1,6 +1,6 @@
 ﻿namespace SolarSystem.Earth.Common.Interfaces
 {
-    public interface IManager<T> : IReaderLimit<T> 
+    public interface IManager<T>
     {
         int Add(T element, string username, string password);
 

@@ -1,8 +1,8 @@
-﻿using SolarSystem.Earth.Business;
+﻿using System.Collections.Generic;
+using SolarSystem.Earth.Business;
 using SolarSystem.Earth.Common;
 using SolarSystem.Earth.Common.Interfaces;
 using SolarSystem.Earth.WCF.Interfaces.Managers;
-using System.Collections.Generic;
 
 namespace SolarSystem.Earth.WCF
 {
@@ -10,13 +10,13 @@ namespace SolarSystem.Earth.WCF
     {
         public Classe GetClasse(int code)
         {
-            IManager<Classe> business = new ClasseBusiness();
+            IReader<Classe> business = new ClasseBusiness();
             return business.Get(code);
         }
 
         public IEnumerable<Classe> GetClasses()
         {
-            IManager<Classe> business = new ClasseBusiness();
+            IReader<Classe> business = new ClasseBusiness();
             return business.Get();
         }
 

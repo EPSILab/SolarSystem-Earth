@@ -1,6 +1,6 @@
-﻿using SolarSystem.Earth.Common;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ServiceModel;
+using SolarSystem.Earth.Common;
 
 namespace SolarSystem.Earth.WCF.Interfaces.Managers
 {
@@ -11,10 +11,19 @@ namespace SolarSystem.Earth.WCF.Interfaces.Managers
         Membre GetMembre(int code);
 
         [OperationContract]
-        IEnumerable<Membre> GetMembres();
+        IEnumerable<Membre> GetMembresActives();
 
         [OperationContract]
-        IEnumerable<Membre> GetMembresByVilleAndRole(Ville ville, Role role, bool actives, bool stillPresents);
+        IEnumerable<Membre> GetMembresBureau(Ville ville);
+
+        [OperationContract]
+        IEnumerable<Membre> GetMembresNotInBureau(Ville ville);
+
+        [OperationContract]
+        IEnumerable<Membre> GetMembresAlumnis(Ville ville);
+
+        [OperationContract]
+        IEnumerable<Membre> GetMembresWaitingForValidation();
 
         [OperationContract]
         Membre Login(string username, string password);

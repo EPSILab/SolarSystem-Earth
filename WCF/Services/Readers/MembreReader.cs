@@ -1,9 +1,8 @@
-﻿using SolarSystem.Earth.Business;
+﻿using System.Collections.Generic;
+using SolarSystem.Earth.Business;
 using SolarSystem.Earth.Common;
 using SolarSystem.Earth.Common.Interfaces;
 using SolarSystem.Earth.WCF.Interfaces.Readers;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 
 namespace SolarSystem.Earth.WCF
 {
@@ -15,33 +14,33 @@ namespace SolarSystem.Earth.WCF
             return business.Get(code);
         }
 
-        public IEnumerable<Membre> GetMembres()
+        public IEnumerable<Membre> GetMembresNotInBureauByVille(Ville ville)
         {
-            IReader<Membre> business = new MembreBusiness();
-            return business.Get();
+            IMembreReader<Membre, Ville> business = new MembreBusiness();
+            return business.GetMembresActives(ville);
         }
 
-        public IEnumerable<Membre> GetMembresLimited(int indexFirstElement, int numberOfResults)
+        public IEnumerable<Membre> GetMembresInBureau()
         {
-            IReaderLimit<Membre> business = new MembreBusiness();
-            return business.Get(indexFirstElement, numberOfResults);
+            IMembreReader<Membre, Ville> business = new MembreBusiness();
+            return business.GetBureau();
         }
 
-        public IEnumerable<Membre> GetMembresSorted(int indexFirstElement, int numberOrResults, SortOrder order)
+        public IEnumerable<Membre> GetMembresInBureauByVille(Ville ville)
         {
-            IReaderSort<Membre> business = new MembreBusiness();
-            return business.Get(indexFirstElement, numberOrResults, order);
+            IMembreReader<Membre, Ville> business = new MembreBusiness();
+            return business.GetBureau(ville);
         }
 
-        public IEnumerable<Membre> GetMembresByVilleAndRole(Ville ville, Role role, int indexFirstResult, int numberOfResults, SortOrder order)
+        public IEnumerable<Membre> GetMembresAlumnis(Ville ville)
         {
-            IReader2Filters<Membre, Ville, Role> business = new MembreBusiness();
-            return business.Get(ville, role, indexFirstResult, numberOfResults, order);
+            IMembreReader<Membre, Ville> business = new MembreBusiness();
+            return business.GetAlumnis(ville);
         }
 
         public int GetMembreLastInsertedId()
         {
-            IReaderLimit<Membre> business = new MembreBusiness();
+            IReader<Membre> business = new MembreBusiness();
             return business.GetLastInsertedId();
         }
 

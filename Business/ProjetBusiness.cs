@@ -1,9 +1,8 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
+﻿using System.Collections.Generic;
+using System.Linq;
+using SolarSystem.Earth.Common.Interfaces;
 using SolarSystem.Earth.DataAccess.DataAccess;
 using SolarSystem.Earth.Mappers;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
 using ProjetDAO = SolarSystem.Earth.DataAccess.Model.Projet;
 using ProjetDTO = SolarSystem.Earth.Common.Projet;
 using VilleDAO = SolarSystem.Earth.DataAccess.Model.Ville;
@@ -16,8 +15,9 @@ namespace SolarSystem.Earth.Business
         #region Attributes
 
         private readonly ProjetDAL _projetDAL = new ProjetDAL();
-        private readonly VilleDAL _villeDAL = new VilleDAL();
-        private readonly IMapper<ProjetDAO, ProjetDTO> _mapper = new ProjetMapper();
+
+        private readonly IMapper<ProjetDAO, ProjetDTO> _mapperProjet = new ProjetMapper();
+        private readonly IMapper<VilleDAO, VilleDTO> _mapperVille = new VilleMapper();
 
         #endregion
 
@@ -26,7 +26,7 @@ namespace SolarSystem.Earth.Business
         public ProjetDTO Get(int code)
         {
             ProjetDAO dao = _projetDAL.Get(code);
-            ProjetDTO dto = _mapper.ToDTO(dao);
+            ProjetDTO dto = _mapperProjet.ToDTO(dao);
 
             return dto;
         }
@@ -34,38 +34,35 @@ namespace SolarSystem.Earth.Business
         public IEnumerable<ProjetDTO> Get()
         {
             IEnumerable<ProjetDAO> dao = _projetDAL.Get();
-            IEnumerable<ProjetDTO> dto = dao.Select(p => _mapper.ToDTO(p));
+            IEnumerable<ProjetDTO> dto = dao.Select(p => _mapperProjet.ToDTO(p));
 
             return dto;
         }
 
         public IEnumerable<ProjetDTO> Get(int indexFirstElement, int numberOfResults)
         {
-            IEnumerable<ProjetDAO> dao = _projetDAL.Get(indexFirstElement, numberOfResults, SortOrder.Ascending);
-            IEnumerable<ProjetDTO> dto = dao.Select(p => _mapper.ToDTO(p));
+            IEnumerable<ProjetDAO> dao = _projetDAL.Get(indexFirstElement, numberOfResults);
+            IEnumerable<ProjetDTO> dto = dao.Select(p => _mapperProjet.ToDTO(p));
 
             return dto;
         }
 
-        public IEnumerable<ProjetDTO> Get(int indexFirstElement, int numberOfResults, SortOrder order)
+        public IEnumerable<ProjetDTO> Get(VilleDTO ville)
         {
-            IEnumerable<ProjetDAO> dao = _projetDAL.Get(indexFirstElement, numberOfResults, order);
-            IEnumerable<ProjetDTO> dto = dao.Select(p => _mapper.ToDTO(p));
+            VilleDAO villeDao = _mapperVille.ToDAO(ville);
+
+            IEnumerable<ProjetDAO> dao = _projetDAL.Get(villeDao);
+            IEnumerable<ProjetDTO> dto = dao.Select(p => _mapperProjet.ToDTO(p));
 
             return dto;
         }
 
-        public IEnumerable<ProjetDTO> Get(VilleDTO filter, int indexFirstElement, int numberOfResults, SortOrder order)
+        public IEnumerable<ProjetDTO> Get(VilleDTO ville, int indexFirstResult, int numberOfResults)
         {
-            VilleDAO villeDao = null;
+            VilleDAO villeDao = _mapperVille.ToDAO(ville);
 
-            if (filter != null)
-            {
-                villeDao = _villeDAL.Get(filter.Code_Ville);
-            }
-
-            IEnumerable<ProjetDAO> dao = _projetDAL.Get(villeDao, indexFirstElement, numberOfResults, order);
-            IEnumerable<ProjetDTO> dto = dao.Select(p => _mapper.ToDTO(p));
+            IEnumerable<ProjetDAO> dao = _projetDAL.Get(villeDao, indexFirstResult, numberOfResults);
+            IEnumerable<ProjetDTO> dto = dao.Select(p => _mapperProjet.ToDTO(p));
 
             return dto;
         }
@@ -81,13 +78,13 @@ namespace SolarSystem.Earth.Business
 
         public int Add(ProjetDTO element, string username, string password)
         {
-            ProjetDAO dao = _mapper.ToDAO(element);
+            ProjetDAO dao = _mapperProjet.ToDAO(element);
             return _projetDAL.Add(dao, username, password);
         }
 
         public void Edit(ProjetDTO element, string username, string password)
         {
-            ProjetDAO dao = _mapper.ToDAO(element);
+            ProjetDAO dao = _mapperProjet.ToDAO(element);
             _projetDAL.Edit(dao, username, password);
         }
 

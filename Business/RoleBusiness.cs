@@ -1,8 +1,8 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
+﻿using System.Collections.Generic;
+using System.Linq;
+using SolarSystem.Earth.Common.Interfaces;
 using SolarSystem.Earth.DataAccess.DataAccess;
 using SolarSystem.Earth.Mappers;
-using System.Collections.Generic;
-using System.Linq;
 using RoleDAO = SolarSystem.Earth.DataAccess.Model.Role;
 using RoleDTO = SolarSystem.Earth.Common.Role;
 
@@ -33,6 +33,11 @@ namespace SolarSystem.Earth.Business
             IEnumerable<RoleDTO> dto = dao.Select(r => _mapper.ToDTO(r));
 
             return dto;
+        }
+
+        public int GetLastInsertedId()
+        {
+            return _roleDAL.GetLastInsertedId();
         }
 
         #endregion

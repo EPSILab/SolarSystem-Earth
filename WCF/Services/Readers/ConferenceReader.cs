@@ -1,9 +1,8 @@
-﻿using SolarSystem.Earth.Business;
+﻿using System.Collections.Generic;
+using SolarSystem.Earth.Business;
 using SolarSystem.Earth.Common;
 using SolarSystem.Earth.Common.Interfaces;
 using SolarSystem.Earth.WCF.Interfaces.Readers;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 
 namespace SolarSystem.Earth.WCF
 {
@@ -17,26 +16,26 @@ namespace SolarSystem.Earth.WCF
 
         public IEnumerable<Conference> GetConferences()
         {
-            IReader<Conference> business = new ConferenceBusiness();
-            return business.Get();
+            IReader2Filters<Conference, Ville, bool?> business = new ConferenceBusiness();
+            return business.Get(true);
         }
 
         public IEnumerable<Conference> GetConferencesLimited(int indexFirstResult, int numberOfResults)
         {
-            IReaderLimit<Conference> business = new ConferenceBusiness();
-            return business.Get(indexFirstResult, numberOfResults);
+            IReader2Filters<Conference, Ville, bool?> business = new ConferenceBusiness();
+            return business.Get(true, indexFirstResult, numberOfResults);
         }
 
-        public IEnumerable<Conference> GetConferencesSorted(int indexFirstResult, int numberOfResults, SortOrder order)
+        public IEnumerable<Conference> GetConferencesByVille(Ville ville)
         {
-            IReaderSort<Conference> business = new ConferenceBusiness();
-            return business.Get(indexFirstResult, numberOfResults, order);
+            IReader2Filters<Conference, Ville, bool?> business = new ConferenceBusiness();
+            return business.Get(ville, true);
         }
 
-        public IEnumerable<Conference> GetConferencesByVille(Ville ville, int indexFirstElement, int number, SortOrder order)
+        public IEnumerable<Conference> GetConferencesByVilleLimited(Ville ville, int indexFirstElement, int numberOfResults)
         {
-            IReader1Filter<Conference, Ville> business = new ConferenceBusiness();
-            return business.Get(ville, indexFirstElement, number, order);
+            IReader2Filters<Conference, Ville, bool?> business = new ConferenceBusiness();
+            return business.Get(ville, true, indexFirstElement, numberOfResults);
         }
 
         public int GetConferenceLastInsertedId()

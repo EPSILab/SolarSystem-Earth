@@ -1,15 +1,13 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
-using SolarSystem.Earth.DataAccess.Resources;
+﻿using System.Collections.Generic;
+using System.Linq;
+using SolarSystem.Earth.Common.Interfaces;
 using SolarSystem.Earth.DataAccess.Exceptions;
 using SolarSystem.Earth.DataAccess.Model;
 using SolarSystem.Earth.DataAccess.RulesManager;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
 
 namespace SolarSystem.Earth.DataAccess.DataAccess
 {
-    public class SalonDAL : DALBase, IReaderSort<Salon>, ISearchable<Salon>, IManager<Salon>
+    public class SalonDAL : DALBase, IReader1Filter<Salon, bool?>, ISearchable<Salon>, IManager<Salon>
     {
         #region Attributes
 
@@ -17,7 +15,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
         #endregion
 
-        #region IReaderSort methods
+        #region IReader1Filter methods
 
         public Salon Get(int code)
         {
@@ -33,22 +31,28 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
         public IEnumerable<Salon> Get(int indexFirstElement, int numberOfResults)
         {
-            return Get(indexFirstElement, numberOfResults, SortOrder.Descending);
+            return Get(null, indexFirstElement, numberOfResults);
         }
 
-        public IEnumerable<Salon> Get(int indexFirstElement, int numberOfResults, SortOrder order)
+        public IEnumerable<Salon> Get(bool? published)
         {
-            IEnumerable<Salon> results = (from salon in Db.Salon
-                                          where salon.Publie
-                                          orderby salon.Date_Heure_Debut descending, salon.Date_Heure_Fin descending
-                                          select salon);
+            return Get(published, 0, 0);
+        }
 
-            if (order == SortOrder.Ascending)
+        public IEnumerable<Salon> Get(bool? published, int indexFirstResult, int numberOfResults)
+        {
+            IEnumerable<Salon> results = (from s in Db.Salon
+                                          orderby s.Date_Heure_Debut descending, s.Date_Heure_Fin descending
+                                          select s);
+
+            if (published.HasValue)
             {
-                results = results.Reverse();
+                results = (from s in results
+                           where s.Publie == published
+                           select s);
             }
 
-            results = results.Skip(indexFirstElement);
+            results = results.Skip(indexFirstResult);
 
             if (numberOfResults > 0)
             {
@@ -105,7 +109,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
                 return element.Code_Salon;
             }
 
-                throw new AccessDeniedException();
+            throw new AccessDeniedException();
         }
 
         public void Edit(Salon element, string username, string password)
