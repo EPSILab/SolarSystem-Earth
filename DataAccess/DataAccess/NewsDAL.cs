@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using SolarSystem.Earth.Common.Interfaces;
+﻿using SolarSystem.Earth.Common.Interfaces;
 using SolarSystem.Earth.DataAccess.Exceptions;
 using SolarSystem.Earth.DataAccess.Model;
 using SolarSystem.Earth.DataAccess.RulesManager;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SolarSystem.Earth.DataAccess.DataAccess
 {
@@ -63,7 +62,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
         public IEnumerable<News> Get(Membre author, bool? published, int indexFirstResult, int numberOfResults)
         {
             IEnumerable<News> results = (from n in Db.News
-                                         orderby n.Date_Heure
+                                         orderby n.Date_Heure descending 
                                          select n);
 
             if (author != null)
