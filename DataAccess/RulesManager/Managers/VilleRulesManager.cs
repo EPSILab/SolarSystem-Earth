@@ -15,7 +15,7 @@ namespace SolarSystem.Earth.DataAccess.RulesManager.Managers
         /// <param name="element">City to check</param>
         public void Check(Ville element)
         {
-            RulesChecker.CheckIsNotNull(element.Libelle, ErrorMessages.VILLE_AUCUN_LIBELLE);
+            RulesChecker.CheckIsNotNull(element.Libelle, ErrorMessages.City_NoName);
         }
     }
 }

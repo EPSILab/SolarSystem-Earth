@@ -15,14 +15,14 @@ namespace SolarSystem.Earth.DataAccess.RulesManager.Managers
         /// <param name="element">News to check</param>
         public void Check(News element)
         {
-            RulesChecker.CheckIsNotNull(element.Image, ErrorMessages.NEWS_AUCUNE_IMAGE);
-            RulesChecker.CheckIsNotNull(element.Mots_Cles, ErrorMessages.NEWS_AUCUN_MOT_CLE);
-            RulesChecker.CheckIsNotNull(element.Texte_Court, ErrorMessages.NEWS_AUCUNE_DESCRIPTION);
-            RulesChecker.CheckIsNotNull(element.Texte_Long, ErrorMessages.NEWS_AUCUN_CONTENU);
-            RulesChecker.CheckIsNotNull(element.Titre, ErrorMessages.NEWS_AUCUN_TITRE);
-            RulesChecker.CheckIsNotNull(element.URL, ErrorMessages.NEWS_AUCUNE_URL);
+            RulesChecker.CheckIsNotNull(element.Image, ErrorMessages.News_NoPicture);
+            RulesChecker.CheckIsNotNull(element.Mots_Cles, ErrorMessages.News_NoKeywords);
+            RulesChecker.CheckIsNotNull(element.Texte_Court, ErrorMessages.News_NoDescription);
+            RulesChecker.CheckIsNotNull(element.Texte_Long, ErrorMessages.News_NoContent);
+            RulesChecker.CheckIsNotNull(element.Titre, ErrorMessages.News_NoTitle);
+            RulesChecker.CheckIsNotNull(element.URL, ErrorMessages.News_NoURL);
 
-            RulesChecker.CheckIsNotNull(element.Code_Membre, ErrorMessages.NEWS_AUCUN_MEMBRE);
+            RulesChecker.CheckIsNotNull(element.Code_Membre, ErrorMessages.News_NoAuthor);
         }
     }
 }

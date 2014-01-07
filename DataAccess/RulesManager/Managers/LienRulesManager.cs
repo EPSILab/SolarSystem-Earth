@@ -15,9 +15,9 @@ namespace SolarSystem.Earth.DataAccess.RulesManager.Managers
         /// <param name="element">Link to check</param>
         public void Check(Lien element)
         {
-            RulesChecker.CheckIsNotNull(element.Description, ErrorMessages.LIEN_AUCUNE_DESCRIPTION);
-            RulesChecker.CheckIsNotNull(element.Image, ErrorMessages.LIEN_AUCUNE_IMAGE);
-            RulesChecker.CheckIsNotNull(element.Nom, ErrorMessages.LIEN_AUCUN_NOM);
+            RulesChecker.CheckIsNotNull(element.Description, ErrorMessages.Link_NoDescription);
+            RulesChecker.CheckIsNotNull(element.Image, ErrorMessages.Link_NoPicture);
+            RulesChecker.CheckIsNotNull(element.Nom, ErrorMessages.Link_NoName);
         }
     }
 }

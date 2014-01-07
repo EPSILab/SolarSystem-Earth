@@ -17,8 +17,8 @@ namespace SolarSystem.Earth.DataAccess.RulesManager.Managers
         {
             const int yearEPSIFoundation = 1961;
 
-            RulesChecker.CheckIsShorter(element.Annee_Promo_Sortante, yearEPSIFoundation, ErrorMessages.CLASSE_ANNEE_PROMO_INVALIDE);
-            RulesChecker.CheckIsNotNull(element.Libelle, ErrorMessages.CLASSE_AUCUN_LIBELLE);
+            RulesChecker.CheckIsShorter(element.Annee_Promo_Sortante, yearEPSIFoundation, ErrorMessages.Promo_InvalidYear);
+            RulesChecker.CheckIsNotNull(element.Libelle, ErrorMessages.Promo_NoName);
         }
     }
 }

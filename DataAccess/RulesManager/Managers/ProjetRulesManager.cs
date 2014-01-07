@@ -15,12 +15,12 @@ namespace SolarSystem.Earth.DataAccess.RulesManager.Managers
         /// <param name="element">News to check</param>
         public void Check(Projet element)
         {
-            RulesChecker.CheckIsNotNull(element.Description, ErrorMessages.PROJET_AUCUNE_DESCRIPTION);
-            RulesChecker.CheckIsNotNull(element.Image, ErrorMessages.PROJET_AUCUNE_IMAGE);
-            RulesChecker.CheckIsNotNull(element.Nom, ErrorMessages.PROJET_AUCUN_NOM);
-            RulesChecker.CheckIsPercentage(element.Avancement, ErrorMessages.PROJET_AVANCEMENT_INCORRECT);
+            RulesChecker.CheckIsNotNull(element.Description, ErrorMessages.Project_NoDescription);
+            RulesChecker.CheckIsNotNull(element.Image, ErrorMessages.Project_NoPicture);
+            RulesChecker.CheckIsNotNull(element.Nom, ErrorMessages.Project_NoName);
+            RulesChecker.CheckIsPercentage(element.Avancement, ErrorMessages.Project_IncorrectProgression);
 
-            RulesChecker.CheckIsNotNull(element.Code_Ville, ErrorMessages.PROJET_AUCUNE_VILLE_SELECTIONNEE);
+            RulesChecker.CheckIsNotNull(element.Code_Ville, ErrorMessages.Project_NoCitySelected);
         }
     }
 }

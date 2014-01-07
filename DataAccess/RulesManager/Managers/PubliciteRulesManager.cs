@@ -15,9 +15,9 @@ namespace SolarSystem.Earth.DataAccess.RulesManager.Managers
         /// <param name="element">Advertising to check</param>
         public void Check(Publicite element)
         {
-            RulesChecker.CheckIsNotNull(element.Image, ErrorMessages.PUBLICITE_AUCUNE_IMAGE);
-            RulesChecker.CheckIsNotNull(element.Nom, ErrorMessages.PUBLICITE_AUCUN_NOM);
-            RulesChecker.CheckIsNotNull(element.Presentation, ErrorMessages.PUBLICITE_AUCUNE_PRESENTATION);
+            RulesChecker.CheckIsNotNull(element.Image, ErrorMessages.Advertising_NoPicture);
+            RulesChecker.CheckIsNotNull(element.Nom, ErrorMessages.Advertising_NoName);
+            RulesChecker.CheckIsNotNull(element.Presentation, ErrorMessages.Advertising_NoPresentation);
         }
     }
 }

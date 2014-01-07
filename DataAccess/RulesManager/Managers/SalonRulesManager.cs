@@ -15,11 +15,11 @@ namespace SolarSystem.Earth.DataAccess.RulesManager.Managers
         /// <param name="element">Show to check</param>
         public void Check(Salon element)
         {
-            RulesChecker.CheckIsNotNull(element.Description, ErrorMessages.SALON_AUCUNE_DESCRIPTION);
-            RulesChecker.CheckIsNotNull(element.Image, ErrorMessages.SALON_AUCUNE_IMAGE);
-            RulesChecker.CheckIsNotNull(element.Lieu, ErrorMessages.SALON_AUCUN_LIEU);
-            RulesChecker.CheckIsNotNull(element.Nom, ErrorMessages.SALON_AUCUN_NOM);
-            RulesChecker.CheckIsNotNull(element.URL, ErrorMessages.SALON_AUCUNE_URL);
+            RulesChecker.CheckIsNotNull(element.Description, ErrorMessages.Show_NoDescription);
+            RulesChecker.CheckIsNotNull(element.Image, ErrorMessages.Show_NoPicture);
+            RulesChecker.CheckIsNotNull(element.Lieu, ErrorMessages.Show_NoPlace);
+            RulesChecker.CheckIsNotNull(element.Nom, ErrorMessages.Show_NoName);
+            RulesChecker.CheckIsNotNull(element.URL, ErrorMessages.Show_NoURL);
         }
     }
 }
