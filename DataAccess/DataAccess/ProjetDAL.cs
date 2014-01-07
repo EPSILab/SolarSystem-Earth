@@ -37,16 +37,14 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
 
         public IEnumerable<Projet> Get(Ville ville)
         {
-            IEnumerable<Projet> results = (from p in Db.Projet
-                                           where p.Code_Ville == ville.Code_Ville
-                                           select p);
-
-            return results;
+            return Get(ville, 0, 0);
         }
 
         public IEnumerable<Projet> Get(Ville ville, int indexFirstResult, int numberOfResults)
         {
-            IEnumerable<Projet> results = Db.Projet;
+            IEnumerable<Projet> results = (from p in Db.Projet
+                                           orderby p.Code_Projet descending
+                                           select p);
 
             if (ville != null)
             {

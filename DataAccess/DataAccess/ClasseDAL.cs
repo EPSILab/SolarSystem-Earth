@@ -43,7 +43,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
         public IEnumerable<Classe> GetAvailables()
         {
             IEnumerable<Classe> results = (from c in Db.Classe
-                                           where c.Encore_Presente == true
+                                           where c.Encore_Presente
                                            orderby c.Annee_Promo_Sortante descending
                                            select c);
 
