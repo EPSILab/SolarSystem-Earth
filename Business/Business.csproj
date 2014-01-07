@@ -48,7 +48,6 @@
     <Compile Include="PubliciteBusiness.cs" />
     <Compile Include="ProjetBusiness.cs" />
     <Compile Include="NewsBusiness.cs" />
-    <Compile Include="RoleBusiness.cs" />
     <Compile Include="VilleBusiness.cs" />
     <Compile Include="MembreBusiness.cs" />
     <Compile Include="LienBusiness.cs" />
