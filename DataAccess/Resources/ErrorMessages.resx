@@ -117,145 +117,145 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ACCES_REFUSE" xml:space="preserve">
-    <value>Vous n'avez pas l'autorisation pour effectuer cette action.</value>
+  <data name="AccessDenied" xml:space="preserve">
+    <value>Vous n'avez pas l'autorisation pour effectuer cette action. (Login: {0})</value>
   </data>
-  <data name="CLASSE_ANNEE_PROMO_INVALIDE" xml:space="preserve">
+  <data name="Promo_InvalidYear" xml:space="preserve">
     <value>L'année de la promo est incorrecte.</value>
   </data>
-  <data name="CLASSE_AUCUN_LIBELLE" xml:space="preserve">
+  <data name="Promo_NoName" xml:space="preserve">
     <value>La classe ne possède pas de libellé.</value>
   </data>
-  <data name="CONFERENCE_AUCUNE_DESCRIPTION" xml:space="preserve">
+  <data name="Conference_NoDescription" xml:space="preserve">
     <value>La conférence ne possède pas de description.</value>
   </data>
-  <data name="CONFERENCE_AUCUNE_IMAGE" xml:space="preserve">
+  <data name="Conference_NoPicture" xml:space="preserve">
     <value>La conférence ne possède pas d'image.</value>
   </data>
-  <data name="CONFERENCE_AUCUNE_URL" xml:space="preserve">
+  <data name="Conference_NoURL" xml:space="preserve">
     <value>Le permalien de la conférence n'est pas précisé.</value>
   </data>
-  <data name="CONFERENCE_AUCUNE_VILLE_SELECTIONNEE" xml:space="preserve">
+  <data name="Conference_NoCity" xml:space="preserve">
     <value>La conférence n'est pas associée à un campus.</value>
   </data>
-  <data name="CONFERENCE_AUCUN_LIEU" xml:space="preserve">
+  <data name="Conference_NoPlace" xml:space="preserve">
     <value>Le lieu de la conférence n'est pas précisé</value>
   </data>
-  <data name="CONFERENCE_AUCUN_NOM" xml:space="preserve">
+  <data name="Conference_NoName" xml:space="preserve">
     <value>La conférence ne possède pas de nom.</value>
   </data>
-  <data name="DEMANDE_RECUP_MOT_DE_PASSE_INTROUVABLE" xml:space="preserve">
+  <data name="LostPassword_RequestNotFound" xml:space="preserve">
     <value>La demande de restauration du mot de passe pour cet utilisateur et cette clé est introuvable.</value>
   </data>
-  <data name="LIEN_AUCUNE_DESCRIPTION" xml:space="preserve">
+  <data name="Link_NoDescription" xml:space="preserve">
     <value>Le lien ne possède pas de description.</value>
   </data>
-  <data name="LIEN_AUCUNE_IMAGE" xml:space="preserve">
+  <data name="Link_NoPicture" xml:space="preserve">
     <value>Le lien ne possède pas d'image.</value>
   </data>
-  <data name="LIEN_AUCUN_NOM" xml:space="preserve">
+  <data name="Link_NoName" xml:space="preserve">
     <value>Le lien ne possède de titre.</value>
   </data>
-  <data name="MEMBRE_AUCUNE_IMAGE" xml:space="preserve">
+  <data name="Member_NoPicture" xml:space="preserve">
     <value>Le membre ne possède pas d'image.</value>
   </data>
-  <data name="MEMBRE_AUCUNE_PROMO_SELECTIONNEE" xml:space="preserve">
+  <data name="Member_NoPromoSelected" xml:space="preserve">
     <value>Ce membre n'est pas associé à une promo.</value>
   </data>
-  <data name="MEMBRE_AUCUNE_VILLE_SELECTIONNEE" xml:space="preserve">
+  <data name="Member_NoCitySelected" xml:space="preserve">
     <value>Ce membre n'est pas associé à une ville.</value>
   </data>
-  <data name="MEMBRE_AUCUN_MOT_DE_PASSE" xml:space="preserve">
+  <data name="Member_NoPassword" xml:space="preserve">
     <value>Le mot de passe du membre n'est pas précisé.</value>
   </data>
-  <data name="MEMBRE_AUCUN_NOM" xml:space="preserve">
+  <data name="Member_NoLastName" xml:space="preserve">
     <value>Le nom du membre n'est pas précisé.</value>
   </data>
-  <data name="MEMBRE_AUCUN_PRENOM" xml:space="preserve">
+  <data name="Member_NoFirstName" xml:space="preserve">
     <value>Le prénom du membre n'est pas précisé.</value>
   </data>
-  <data name="MEMBRE_AUCUN_PSEUDO" xml:space="preserve">
+  <data name="Member_NoUsername" xml:space="preserve">
     <value>Le pseudo du membre n'est pas précisé.</value>
   </data>
-  <data name="MEMBRE_AUCUN_ROLE_SELECTIONNEE" xml:space="preserve">
+  <data name="Member_NoRoleSelected" xml:space="preserve">
     <value>Ce membre ne possède pas de rôle.</value>
   </data>
-  <data name="MEMBRE_AUCUN_STATUT" xml:space="preserve">
+  <data name="Member_NoStatus" xml:space="preserve">
     <value>Le statut du membre n'est pas précisé.</value>
   </data>
-  <data name="MEMBRE_AUCUN_URL" xml:space="preserve">
+  <data name="Member_NoURL" xml:space="preserve">
     <value>Le permalien du membre n'est pas précisé.</value>
   </data>
-  <data name="MEMBRE_PAS_DE_MAIL_EPSI" xml:space="preserve">
+  <data name="Member_NoMailEPSI" xml:space="preserve">
     <value>Le mail EPSI n'est pas renseigné.</value>
   </data>
-  <data name="NEWS_AUCUNE_DESCRIPTION" xml:space="preserve">
+  <data name="News_NoDescription" xml:space="preserve">
     <value>La description de la news n'est pas précisée.</value>
   </data>
-  <data name="NEWS_AUCUNE_IMAGE" xml:space="preserve">
+  <data name="News_NoPicture" xml:space="preserve">
     <value>L'image de la news n'est pas précisé.</value>
   </data>
-  <data name="NEWS_AUCUNE_URL" xml:space="preserve">
+  <data name="News_NoURL" xml:space="preserve">
     <value>Le permalien de la news n'est pas précisé.</value>
   </data>
-  <data name="NEWS_AUCUN_CONTENU" xml:space="preserve">
+  <data name="News_NoContent" xml:space="preserve">
     <value>La news ne possède pas de texte.</value>
   </data>
-  <data name="NEWS_AUCUN_MEMBRE" xml:space="preserve">
+  <data name="News_NoAuthor" xml:space="preserve">
     <value>La news ne possède pas d'auteur.</value>
   </data>
-  <data name="NEWS_AUCUN_MOT_CLE" xml:space="preserve">
+  <data name="News_NoKeywords" xml:space="preserve">
     <value>La news ne possède pas de mot clé pour la recherche.</value>
   </data>
-  <data name="NEWS_AUCUN_TITRE" xml:space="preserve">
+  <data name="News_NoTitle" xml:space="preserve">
     <value>La news ne possède pas de titre.</value>
   </data>
-  <data name="PROJET_AUCUNE_DESCRIPTION" xml:space="preserve">
+  <data name="Project_NoDescription" xml:space="preserve">
     <value>Le projet ne possède pas de description.</value>
   </data>
-  <data name="PROJET_AUCUNE_IMAGE" xml:space="preserve">
+  <data name="Project_NoPicture" xml:space="preserve">
     <value>Le projet ne possède pas d'image.</value>
   </data>
-  <data name="PROJET_AUCUNE_VILLE_SELECTIONNEE" xml:space="preserve">
+  <data name="Project_NoCitySelected" xml:space="preserve">
     <value>Le projet n'est associé à aucun campus.</value>
   </data>
-  <data name="PROJET_AUCUN_NOM" xml:space="preserve">
+  <data name="Project_NoName" xml:space="preserve">
     <value>Le projet ne possède pas de nom.</value>
   </data>
-  <data name="PROJET_AVANCEMENT_INCORRECT" xml:space="preserve">
+  <data name="Project_IncorrectProgression" xml:space="preserve">
     <value>L'avancement du projet doit être une valeur comprise entre 0 et 100.</value>
   </data>
-  <data name="PUBLICITE_AUCUNE_IMAGE" xml:space="preserve">
+  <data name="Advertising_NoPicture" xml:space="preserve">
     <value>La publicité ne possède pas d'image.</value>
   </data>
-  <data name="PUBLICITE_AUCUNE_PRESENTATION" xml:space="preserve">
+  <data name="Advertising_NoPresentation" xml:space="preserve">
     <value>La publicité ne contient pas de texte de présentation.</value>
   </data>
-  <data name="PUBLICITE_AUCUN_NOM" xml:space="preserve">
+  <data name="Advertising_NoName" xml:space="preserve">
     <value>La publicité ne possède pas de titre.</value>
   </data>
-  <data name="SALON_AUCUNE_DESCRIPTION" xml:space="preserve">
+  <data name="Show_NoDescription" xml:space="preserve">
     <value>La description du salon n'est pas précisée.</value>
   </data>
-  <data name="SALON_AUCUNE_IMAGE" xml:space="preserve">
+  <data name="Show_NoPicture" xml:space="preserve">
     <value>Le salon ne possède d'image.</value>
   </data>
-  <data name="SALON_AUCUNE_URL" xml:space="preserve">
+  <data name="Show_NoURL" xml:space="preserve">
     <value>Le permalien du salon n'est pas précisé.</value>
   </data>
-  <data name="SALON_AUCUN_LIEU" xml:space="preserve">
+  <data name="Show_NoPlace" xml:space="preserve">
     <value>Le lieu du salon n'est pas précisé.</value>
   </data>
-  <data name="SALON_AUCUN_NOM" xml:space="preserve">
+  <data name="Show_NoName" xml:space="preserve">
     <value>Le salon ne possède de nom.</value>
   </data>
-  <data name="TEMPS_EXPIRE_RECUP_MOT_DE_PASSE" xml:space="preserve">
+  <data name="LostPassword_TimeExpired" xml:space="preserve">
     <value>Vous avez dépassé les 2 jours pour pouvoir redéfinir votre mot de passe. Veuillez formuler une nouvelle demande.</value>
   </data>
-  <data name="UTILISATEUR_INTROUVABLE" xml:space="preserve">
+  <data name="Member_NotFound" xml:space="preserve">
     <value>Le nom utilisateur et/ou le mot de passe sont incorrects.</value>
   </data>
-  <data name="VILLE_AUCUN_LIBELLE" xml:space="preserve">
+  <data name="City_NoName" xml:space="preserve">
     <value>La ville ne possède aucun libellé.</value>
   </data>
 </root>
