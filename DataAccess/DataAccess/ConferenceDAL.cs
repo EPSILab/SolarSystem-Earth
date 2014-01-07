@@ -61,8 +61,8 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
         public IEnumerable<Conference> Get(Ville ville, bool? published, int indexFirstResult, int numberOfResults)
         {
             IEnumerable<Conference> results = (from c in Db.Conference
-                                               orderby c.Date_Heure_Debut
-                                               orderby c.Date_Heure_Fin
+                                               orderby c.Date_Heure_Debut descending
+                                               orderby c.Date_Heure_Fin descending 
                                                select c);
 
             if (ville != null)

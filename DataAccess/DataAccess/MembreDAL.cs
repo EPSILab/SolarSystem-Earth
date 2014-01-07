@@ -79,8 +79,7 @@ namespace SolarSystem.Earth.DataAccess.DataAccess
         private IEnumerable<Membre> Get(Ville ville, Role role, bool? activesOnly, bool? alumnisOnly)
         {
             IEnumerable<Membre> results = (from m in Db.Membre
-                                           orderby m.Nom
-                                           orderby m.Prenom
+                                           orderby m.Nom, m.Prenom
                                            select m);
 
             if (ville != null)
