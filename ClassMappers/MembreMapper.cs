@@ -4,8 +4,16 @@ using MembreDTO = SolarSystem.Earth.Common.Membre;
 
 namespace SolarSystem.Earth.Mappers
 {
+    /// <summary>
+    /// Member mapper
+    /// </summary>
     public class MembreMapper : IMapper<MembreDAO, MembreDTO>
     {
+        /// <summary>
+        /// DAO to DTO
+        /// </summary>
+        /// <param name="element">Element to transform to DTO</param>
+        /// <returns>DTO equivalent</returns>
         public MembreDTO ToDTO(MembreDAO element)
         {
             return new MembreDTO
@@ -33,6 +41,11 @@ namespace SolarSystem.Earth.Mappers
             };
         }
 
+        /// <summary>
+        /// DTO to DAO
+        /// </summary>
+        /// <param name="element">Element to transform to DAO</param>
+        /// <returns>DAO equivalent</returns>
         public MembreDAO ToDAO(MembreDTO element)
         {
             return new MembreDAO

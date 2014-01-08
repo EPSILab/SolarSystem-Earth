@@ -4,8 +4,16 @@ using ProjetDTO = SolarSystem.Earth.Common.Projet;
 
 namespace SolarSystem.Earth.Mappers
 {
+    /// <summary>
+    /// Project mapper
+    /// </summary>
     public class ProjetMapper : IMapper<ProjetDAO, ProjetDTO>
     {
+        /// <summary>
+        /// DAO to DTO
+        /// </summary>
+        /// <param name="element">Element to transform to DTO</param>
+        /// <returns>DTO equivalent</returns>
         public ProjetDTO ToDTO(ProjetDAO element)
         {
             return new ProjetDTO
@@ -19,16 +27,21 @@ namespace SolarSystem.Earth.Mappers
             };
         }
 
-        public ProjetDAO ToDAO(ProjetDTO projet)
+        /// <summary>
+        /// DTO to DAO
+        /// </summary>
+        /// <param name="element">Element to transform to DAO</param>
+        /// <returns>DAO equivalent</returns>
+        public ProjetDAO ToDAO(ProjetDTO element)
         {
             return new ProjetDAO
             {
-                Avancement = projet.Avancement,
-                Code_Projet = projet.Code_Projet,
-                Code_Ville = projet.Ville.Code_Ville,
-                Description = projet.Description,
-                Nom = projet.Nom,
-                Image = projet.Image
+                Avancement = element.Avancement,
+                Code_Projet = element.Code_Projet,
+                Code_Ville = element.Ville.Code_Ville,
+                Description = element.Description,
+                Nom = element.Nom,
+                Image = element.Image
             };
         }
     }

@@ -4,8 +4,16 @@ using ConferenceDTO = SolarSystem.Earth.Common.Conference;
 
 namespace SolarSystem.Earth.Mappers
 {
+    /// <summary>
+    /// Conference mapper
+    /// </summary>
     public class ConferenceMapper : IMapper<ConferenceDAO, ConferenceDTO>
     {
+        /// <summary>
+        /// DAO to DTO
+        /// </summary>
+        /// <param name="element">Element to transform to DTO</param>
+        /// <returns>DTO equivalent</returns>
         public ConferenceDTO ToDTO(ConferenceDAO element)
         {
             return new ConferenceDTO
@@ -23,6 +31,11 @@ namespace SolarSystem.Earth.Mappers
             };
         }
 
+        /// <summary>
+        /// DTO to DAO
+        /// </summary>
+        /// <param name="element">Element to transform to DAO</param>
+        /// <returns>DAO equivalent</returns>
         public ConferenceDAO ToDAO(ConferenceDTO element)
         {
             return new ConferenceDAO

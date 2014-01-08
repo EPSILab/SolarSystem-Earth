@@ -4,8 +4,16 @@ using VilleDTO = SolarSystem.Earth.Common.Ville;
 
 namespace SolarSystem.Earth.Mappers
 {
+    /// <summary>
+    /// City mapper
+    /// </summary>
     public class VilleMapper : IMapper<VilleDAO, VilleDTO>
     {
+        /// <summary>
+        /// DAO to DTO
+        /// </summary>
+        /// <param name="element">Element to transform to DTO</param>
+        /// <returns>DTO equivalent</returns>
         public VilleDTO ToDTO(VilleDAO element)
         {
             return new VilleDTO
@@ -16,6 +24,11 @@ namespace SolarSystem.Earth.Mappers
             };
         }
 
+        /// <summary>
+        /// DTO to DAO
+        /// </summary>
+        /// <param name="element">Element to transform to DAO</param>
+        /// <returns>DAO equivalent</returns>
         public VilleDAO ToDAO(VilleDTO element)
         {
             return new VilleDAO
