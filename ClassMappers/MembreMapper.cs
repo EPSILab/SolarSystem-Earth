@@ -4,8 +4,16 @@ using MembreDTO = SolarSystem.Earth.Common.Membre;
 
 namespace SolarSystem.Earth.Mappers
 {
+    /// <summary>
+    /// Member mapper
+    /// </summary>
     public class MembreMapper : IMapper<MembreDAO, MembreDTO>
     {
+        /// <summary>
+        /// DAO to DTO
+        /// </summary>
+        /// <param name="element">Element to transform to DTO</param>
+        /// <returns>DTO equivalent</returns>
         public MembreDTO ToDTO(MembreDAO element)
         {
             return new MembreDTO
@@ -30,9 +38,15 @@ namespace SolarSystem.Earth.Mappers
                 Ville = new VilleMapper().ToDTO(element.Ville),
                 Classe = new ClasseMapper().ToDTO(element.Classe),
                 Role = new RoleMapper().ToDTO(element.Role),
+                Actif = element.Actif
             };
         }
 
+        /// <summary>
+        /// DTO to DAO
+        /// </summary>
+        /// <param name="element">Element to transform to DAO</param>
+        /// <returns>DAO equivalent</returns>
         public MembreDAO ToDAO(MembreDTO element)
         {
             return new MembreDAO
@@ -56,7 +70,8 @@ namespace SolarSystem.Earth.Mappers
                 URL_LinkedIn = element.URL_LinkedIn,
                 URL_Viadeo = element.URL_Viadeo,
                 Ville_origine = element.Ville_origine,
-                URL = element.URL
+                URL = element.URL,
+                Actif = element.Actif
             };
         }
     }

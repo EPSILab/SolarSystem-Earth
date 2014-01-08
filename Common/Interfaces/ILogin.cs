@@ -1,6 +1,11 @@
 ﻿namespace SolarSystem.Earth.Common.Interfaces
 {
-    public interface ILogin<T, out TService>
+    /// <summary>
+    /// An interface for login, registration and lost password management
+    /// </summary>
+    /// <typeparam name="T">Common/SunModel Member entity</typeparam>
+    /// <typeparam name="TClass">Common/SunModel RequestLostPassword entity</typeparam>
+    public interface ILogin<T, out TClass>
     {
         T Login(string username, string password);
 
@@ -12,7 +17,7 @@
 
         int Register(T membre);
 
-        TService RequestLostPassword(string username, string email);
+        TClass RequestLostPassword(string username, string email);
 
         void SetNewPasswordAfterLost(string username, string newPassword, string key);
     }

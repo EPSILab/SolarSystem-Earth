@@ -54,17 +54,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataAccess\DALBase.cs" />
-    <Compile Include="DataAccess\ClasseDAL.cs" />
-    <Compile Include="DataAccess\ConferenceDAL.cs" />
-    <Compile Include="DataAccess\LienDAL.cs" />
-    <Compile Include="DataAccess\MembreDAL.cs" />
-    <Compile Include="DataAccess\NewsDAL.cs" />
-    <Compile Include="DataAccess\ProjetDAL.cs" />
-    <Compile Include="DataAccess\PubliciteDAL.cs" />
-    <Compile Include="DataAccess\RoleDAL.cs" />
-    <Compile Include="DataAccess\SalonDAL.cs" />
-    <Compile Include="DataAccess\VilleDAL.cs" />
+    <Compile Include="DAL\RoleDAL.cs" />
+    <Compile Include="DAL\SunAccess.cs" />
+    <Compile Include="DAL\ClasseDAL.cs" />
+    <Compile Include="DAL\ConferenceDAL.cs" />
+    <Compile Include="DAL\LienDAL.cs" />
+    <Compile Include="DAL\MembreDAL.cs" />
+    <Compile Include="DAL\NewsDAL.cs" />
+    <Compile Include="DAL\ProjetDAL.cs" />
+    <Compile Include="DAL\PubliciteDAL.cs" />
+    <Compile Include="DAL\SalonDAL.cs" />
+    <Compile Include="DAL\VilleDAL.cs" />
     <Compile Include="Exceptions\LostPasswordRequestNotFoundException.cs" />
     <Compile Include="Exceptions\LostPasswordTimeElapsedException.cs" />
     <Compile Include="Exceptions\AccessDeniedException.cs" />
@@ -89,16 +89,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMessages.resx</DependentUpon>
     </Compile>
-    <Compile Include="RulesManager\VilleRulesManager.cs" />
-    <Compile Include="RulesManager\ClasseRulesManager.cs" />
-    <Compile Include="RulesManager\ConferenceRulesManager.cs" />
-    <Compile Include="RulesManager\IRulesManager.cs" />
-    <Compile Include="RulesManager\LienRulesManager.cs" />
-    <Compile Include="RulesManager\MembreRulesManager.cs" />
-    <Compile Include="RulesManager\NewsRulesManager.cs" />
-    <Compile Include="RulesManager\ProjetRulesManager.cs" />
-    <Compile Include="RulesManager\PubliciteRulesManager.cs" />
-    <Compile Include="RulesManager\SalonRulesManager.cs" />
+    <Compile Include="RulesManager\Managers\VilleRulesManager.cs" />
+    <Compile Include="RulesManager\Managers\ClasseRulesManager.cs" />
+    <Compile Include="RulesManager\Managers\ConferenceRulesManager.cs" />
+    <Compile Include="RulesManager\Managers\Interfaces\IRulesManager.cs" />
+    <Compile Include="RulesManager\Managers\LienRulesManager.cs" />
+    <Compile Include="RulesManager\Managers\MembreRulesManager.cs" />
+    <Compile Include="RulesManager\Managers\NewsRulesManager.cs" />
+    <Compile Include="RulesManager\Managers\ProjetRulesManager.cs" />
+    <Compile Include="RulesManager\Managers\PubliciteRulesManager.cs" />
+    <Compile Include="RulesManager\Managers\SalonRulesManager.cs" />
     <Compile Include="RulesManager\RulesChecker.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +109,7 @@
     <EmbeddedResource Include="Resources\ErrorMessages.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

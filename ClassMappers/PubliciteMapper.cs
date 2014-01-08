@@ -4,8 +4,16 @@ using PubliciteDTO = SolarSystem.Earth.Common.Publicite;
 
 namespace SolarSystem.Earth.Mappers
 {
+    /// <summary>
+    /// Advertising mapper
+    /// </summary>
     public class PubliciteMapper : IMapper<PubliciteDAO, PubliciteDTO>
     {
+        /// <summary>
+        /// DAO to DTO
+        /// </summary>
+        /// <param name="element">Element to transform to DTO</param>
+        /// <returns>DTO equivalent</returns>
         public PubliciteDTO ToDTO(PubliciteDAO element)
         {
             return new PubliciteDTO
@@ -19,6 +27,11 @@ namespace SolarSystem.Earth.Mappers
             };
         }
 
+        /// <summary>
+        /// DTO to DAO
+        /// </summary>
+        /// <param name="element">Element to transform to DAO</param>
+        /// <returns>DAO equivalent</returns>
         public PubliciteDAO ToDAO(PubliciteDTO element)
         {
             return new PubliciteDAO

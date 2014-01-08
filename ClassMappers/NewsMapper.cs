@@ -4,8 +4,16 @@ using NewsDTO = SolarSystem.Earth.Common.News;
 
 namespace SolarSystem.Earth.Mappers
 {
+    /// <summary>
+    /// News mapper
+    /// </summary>
     public class NewsMapper : IMapper<NewsDAO, NewsDTO>
     {
+        /// <summary>
+        /// DAO to DTO
+        /// </summary>
+        /// <param name="element">Element to transform to DTO</param>
+        /// <returns>DTO equivalent</returns>
         public NewsDTO ToDTO(NewsDAO element)
         {
             return new NewsDTO
@@ -23,6 +31,11 @@ namespace SolarSystem.Earth.Mappers
             };
         }
 
+        /// <summary>
+        /// DTO to DAO
+        /// </summary>
+        /// <param name="element">Element to transform to DAO</param>
+        /// <returns>DAO equivalent</returns>
         public NewsDAO ToDAO(NewsDTO element)
         {
             return new NewsDAO

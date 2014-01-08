@@ -4,8 +4,16 @@ using RecupMotDePasseDTO = SolarSystem.Earth.Common.RecupMotDePasse;
 
 namespace SolarSystem.Earth.Mappers
 {
+    /// <summary>
+    /// Lost password request mapper
+    /// </summary>
     public class RecupMotDePasseMapper : IMapper<RecupMotDePasseDAO, RecupMotDePasseDTO>
     {
+        /// <summary>
+        /// DAO to DTO
+        /// </summary>
+        /// <param name="element">Element to transform to DTO</param>
+        /// <returns>DTO equivalent</returns>
         public RecupMotDePasseDTO ToDTO(RecupMotDePasseDAO element)
         {
             return new RecupMotDePasseDTO
@@ -17,6 +25,11 @@ namespace SolarSystem.Earth.Mappers
             };
         }
 
+        /// <summary>
+        /// DTO to DAO
+        /// </summary>
+        /// <param name="element">Element to transform to DAO</param>
+        /// <returns>DAO equivalent</returns>
         public RecupMotDePasseDAO ToDAO(RecupMotDePasseDTO element)
         {
             return new RecupMotDePasseDAO

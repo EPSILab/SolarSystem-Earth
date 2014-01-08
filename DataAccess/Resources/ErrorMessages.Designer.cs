@@ -61,425 +61,425 @@ namespace SolarSystem.Earth.DataAccess.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vous n&apos;avez pas l&apos;autorisation pour effectuer cette action..
+        ///   Looks up a localized string similar to Vous n&apos;avez pas l&apos;autorisation pour effectuer cette action. (Login: {0}).
         /// </summary>
-        internal static string ACCES_REFUSE {
+        internal static string AccessDenied {
             get {
-                return ResourceManager.GetString("ACCES_REFUSE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to L&apos;année de la promo est incorrecte..
-        /// </summary>
-        internal static string CLASSE_ANNEE_PROMO_INVALIDE {
-            get {
-                return ResourceManager.GetString("CLASSE_ANNEE_PROMO_INVALIDE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to La classe ne possède pas de libellé..
-        /// </summary>
-        internal static string CLASSE_AUCUN_LIBELLE {
-            get {
-                return ResourceManager.GetString("CLASSE_AUCUN_LIBELLE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Le lieu de la conférence n&apos;est pas précisé.
-        /// </summary>
-        internal static string CONFERENCE_AUCUN_LIEU {
-            get {
-                return ResourceManager.GetString("CONFERENCE_AUCUN_LIEU", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to La conférence ne possède pas de nom..
-        /// </summary>
-        internal static string CONFERENCE_AUCUN_NOM {
-            get {
-                return ResourceManager.GetString("CONFERENCE_AUCUN_NOM", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to La conférence ne possède pas de description..
-        /// </summary>
-        internal static string CONFERENCE_AUCUNE_DESCRIPTION {
-            get {
-                return ResourceManager.GetString("CONFERENCE_AUCUNE_DESCRIPTION", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to La conférence ne possède pas d&apos;image..
-        /// </summary>
-        internal static string CONFERENCE_AUCUNE_IMAGE {
-            get {
-                return ResourceManager.GetString("CONFERENCE_AUCUNE_IMAGE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Le permalien de la conférence n&apos;est pas précisé..
-        /// </summary>
-        internal static string CONFERENCE_AUCUNE_URL {
-            get {
-                return ResourceManager.GetString("CONFERENCE_AUCUNE_URL", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to La conférence n&apos;est pas associée à un campus..
-        /// </summary>
-        internal static string CONFERENCE_AUCUNE_VILLE_SELECTIONNEE {
-            get {
-                return ResourceManager.GetString("CONFERENCE_AUCUNE_VILLE_SELECTIONNEE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to La demande de restauration du mot de passe pour cet utilisateur et cette clé est introuvable..
-        /// </summary>
-        internal static string DEMANDE_RECUP_MOT_DE_PASSE_INTROUVABLE {
-            get {
-                return ResourceManager.GetString("DEMANDE_RECUP_MOT_DE_PASSE_INTROUVABLE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Le lien ne possède de titre..
-        /// </summary>
-        internal static string LIEN_AUCUN_NOM {
-            get {
-                return ResourceManager.GetString("LIEN_AUCUN_NOM", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Le lien ne possède pas de description..
-        /// </summary>
-        internal static string LIEN_AUCUNE_DESCRIPTION {
-            get {
-                return ResourceManager.GetString("LIEN_AUCUNE_DESCRIPTION", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Le lien ne possède pas d&apos;image..
-        /// </summary>
-        internal static string LIEN_AUCUNE_IMAGE {
-            get {
-                return ResourceManager.GetString("LIEN_AUCUNE_IMAGE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Le mot de passe du membre n&apos;est pas précisé..
-        /// </summary>
-        internal static string MEMBRE_AUCUN_MOT_DE_PASSE {
-            get {
-                return ResourceManager.GetString("MEMBRE_AUCUN_MOT_DE_PASSE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Le nom du membre n&apos;est pas précisé..
-        /// </summary>
-        internal static string MEMBRE_AUCUN_NOM {
-            get {
-                return ResourceManager.GetString("MEMBRE_AUCUN_NOM", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Le prénom du membre n&apos;est pas précisé..
-        /// </summary>
-        internal static string MEMBRE_AUCUN_PRENOM {
-            get {
-                return ResourceManager.GetString("MEMBRE_AUCUN_PRENOM", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Le pseudo du membre n&apos;est pas précisé..
-        /// </summary>
-        internal static string MEMBRE_AUCUN_PSEUDO {
-            get {
-                return ResourceManager.GetString("MEMBRE_AUCUN_PSEUDO", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ce membre ne possède pas de rôle..
-        /// </summary>
-        internal static string MEMBRE_AUCUN_ROLE_SELECTIONNEE {
-            get {
-                return ResourceManager.GetString("MEMBRE_AUCUN_ROLE_SELECTIONNEE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Le statut du membre n&apos;est pas précisé..
-        /// </summary>
-        internal static string MEMBRE_AUCUN_STATUT {
-            get {
-                return ResourceManager.GetString("MEMBRE_AUCUN_STATUT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Le permalien du membre n&apos;est pas précisé..
-        /// </summary>
-        internal static string MEMBRE_AUCUN_URL {
-            get {
-                return ResourceManager.GetString("MEMBRE_AUCUN_URL", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Le membre ne possède pas d&apos;image..
-        /// </summary>
-        internal static string MEMBRE_AUCUNE_IMAGE {
-            get {
-                return ResourceManager.GetString("MEMBRE_AUCUNE_IMAGE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ce membre n&apos;est pas associé à une promo..
-        /// </summary>
-        internal static string MEMBRE_AUCUNE_PROMO_SELECTIONNEE {
-            get {
-                return ResourceManager.GetString("MEMBRE_AUCUNE_PROMO_SELECTIONNEE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ce membre n&apos;est pas associé à une ville..
-        /// </summary>
-        internal static string MEMBRE_AUCUNE_VILLE_SELECTIONNEE {
-            get {
-                return ResourceManager.GetString("MEMBRE_AUCUNE_VILLE_SELECTIONNEE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Le mail EPSI n&apos;est pas renseigné..
-        /// </summary>
-        internal static string MEMBRE_PAS_DE_MAIL_EPSI {
-            get {
-                return ResourceManager.GetString("MEMBRE_PAS_DE_MAIL_EPSI", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to La news ne possède pas de texte..
-        /// </summary>
-        internal static string NEWS_AUCUN_CONTENU {
-            get {
-                return ResourceManager.GetString("NEWS_AUCUN_CONTENU", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to La news ne possède pas d&apos;auteur..
-        /// </summary>
-        internal static string NEWS_AUCUN_MEMBRE {
-            get {
-                return ResourceManager.GetString("NEWS_AUCUN_MEMBRE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to La news ne possède pas de mot clé pour la recherche..
-        /// </summary>
-        internal static string NEWS_AUCUN_MOT_CLE {
-            get {
-                return ResourceManager.GetString("NEWS_AUCUN_MOT_CLE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to La news ne possède pas de titre..
-        /// </summary>
-        internal static string NEWS_AUCUN_TITRE {
-            get {
-                return ResourceManager.GetString("NEWS_AUCUN_TITRE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to La description de la news n&apos;est pas précisée..
-        /// </summary>
-        internal static string NEWS_AUCUNE_DESCRIPTION {
-            get {
-                return ResourceManager.GetString("NEWS_AUCUNE_DESCRIPTION", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to L&apos;image de la news n&apos;est pas précisé..
-        /// </summary>
-        internal static string NEWS_AUCUNE_IMAGE {
-            get {
-                return ResourceManager.GetString("NEWS_AUCUNE_IMAGE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Le permalien de la news n&apos;est pas précisé..
-        /// </summary>
-        internal static string NEWS_AUCUNE_URL {
-            get {
-                return ResourceManager.GetString("NEWS_AUCUNE_URL", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Le projet ne possède pas de nom..
-        /// </summary>
-        internal static string PROJET_AUCUN_NOM {
-            get {
-                return ResourceManager.GetString("PROJET_AUCUN_NOM", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Le projet ne possède pas de description..
-        /// </summary>
-        internal static string PROJET_AUCUNE_DESCRIPTION {
-            get {
-                return ResourceManager.GetString("PROJET_AUCUNE_DESCRIPTION", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Le projet ne possède pas d&apos;image..
-        /// </summary>
-        internal static string PROJET_AUCUNE_IMAGE {
-            get {
-                return ResourceManager.GetString("PROJET_AUCUNE_IMAGE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Le projet n&apos;est associé à aucun campus..
-        /// </summary>
-        internal static string PROJET_AUCUNE_VILLE_SELECTIONNEE {
-            get {
-                return ResourceManager.GetString("PROJET_AUCUNE_VILLE_SELECTIONNEE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to L&apos;avancement du projet doit être une valeur comprise entre 0 et 100..
-        /// </summary>
-        internal static string PROJET_AVANCEMENT_INCORRECT {
-            get {
-                return ResourceManager.GetString("PROJET_AVANCEMENT_INCORRECT", resourceCulture);
+                return ResourceManager.GetString("AccessDenied", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to La publicité ne possède pas de titre..
         /// </summary>
-        internal static string PUBLICITE_AUCUN_NOM {
+        internal static string Advertising_NoName {
             get {
-                return ResourceManager.GetString("PUBLICITE_AUCUN_NOM", resourceCulture);
+                return ResourceManager.GetString("Advertising_NoName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to La publicité ne possède pas d&apos;image..
         /// </summary>
-        internal static string PUBLICITE_AUCUNE_IMAGE {
+        internal static string Advertising_NoPicture {
             get {
-                return ResourceManager.GetString("PUBLICITE_AUCUNE_IMAGE", resourceCulture);
+                return ResourceManager.GetString("Advertising_NoPicture", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to La publicité ne contient pas de texte de présentation..
         /// </summary>
-        internal static string PUBLICITE_AUCUNE_PRESENTATION {
+        internal static string Advertising_NoPresentation {
             get {
-                return ResourceManager.GetString("PUBLICITE_AUCUNE_PRESENTATION", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Le lieu du salon n&apos;est pas précisé..
-        /// </summary>
-        internal static string SALON_AUCUN_LIEU {
-            get {
-                return ResourceManager.GetString("SALON_AUCUN_LIEU", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Le salon ne possède de nom..
-        /// </summary>
-        internal static string SALON_AUCUN_NOM {
-            get {
-                return ResourceManager.GetString("SALON_AUCUN_NOM", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to La description du salon n&apos;est pas précisée..
-        /// </summary>
-        internal static string SALON_AUCUNE_DESCRIPTION {
-            get {
-                return ResourceManager.GetString("SALON_AUCUNE_DESCRIPTION", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Le salon ne possède d&apos;image..
-        /// </summary>
-        internal static string SALON_AUCUNE_IMAGE {
-            get {
-                return ResourceManager.GetString("SALON_AUCUNE_IMAGE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Le permalien du salon n&apos;est pas précisé..
-        /// </summary>
-        internal static string SALON_AUCUNE_URL {
-            get {
-                return ResourceManager.GetString("SALON_AUCUNE_URL", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Vous avez dépassé les 2 jours pour pouvoir redéfinir votre mot de passe. Veuillez formuler une nouvelle demande..
-        /// </summary>
-        internal static string TEMPS_EXPIRE_RECUP_MOT_DE_PASSE {
-            get {
-                return ResourceManager.GetString("TEMPS_EXPIRE_RECUP_MOT_DE_PASSE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Le nom utilisateur et/ou le mot de passe sont incorrects..
-        /// </summary>
-        internal static string UTILISATEUR_INTROUVABLE {
-            get {
-                return ResourceManager.GetString("UTILISATEUR_INTROUVABLE", resourceCulture);
+                return ResourceManager.GetString("Advertising_NoPresentation", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to La ville ne possède aucun libellé..
         /// </summary>
-        internal static string VILLE_AUCUN_LIBELLE {
+        internal static string City_NoName {
             get {
-                return ResourceManager.GetString("VILLE_AUCUN_LIBELLE", resourceCulture);
+                return ResourceManager.GetString("City_NoName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La conférence n&apos;est pas associée à un campus..
+        /// </summary>
+        internal static string Conference_NoCity {
+            get {
+                return ResourceManager.GetString("Conference_NoCity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La conférence ne possède pas de description..
+        /// </summary>
+        internal static string Conference_NoDescription {
+            get {
+                return ResourceManager.GetString("Conference_NoDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La conférence ne possède pas de nom..
+        /// </summary>
+        internal static string Conference_NoName {
+            get {
+                return ResourceManager.GetString("Conference_NoName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La conférence ne possède pas d&apos;image..
+        /// </summary>
+        internal static string Conference_NoPicture {
+            get {
+                return ResourceManager.GetString("Conference_NoPicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Le lieu de la conférence n&apos;est pas précisé.
+        /// </summary>
+        internal static string Conference_NoPlace {
+            get {
+                return ResourceManager.GetString("Conference_NoPlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Le permalien de la conférence n&apos;est pas précisé..
+        /// </summary>
+        internal static string Conference_NoURL {
+            get {
+                return ResourceManager.GetString("Conference_NoURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Le lien ne possède pas de description..
+        /// </summary>
+        internal static string Link_NoDescription {
+            get {
+                return ResourceManager.GetString("Link_NoDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Le lien ne possède de titre..
+        /// </summary>
+        internal static string Link_NoName {
+            get {
+                return ResourceManager.GetString("Link_NoName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Le lien ne possède pas d&apos;image..
+        /// </summary>
+        internal static string Link_NoPicture {
+            get {
+                return ResourceManager.GetString("Link_NoPicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La demande de restauration du mot de passe pour cet utilisateur et cette clé est introuvable..
+        /// </summary>
+        internal static string LostPassword_RequestNotFound {
+            get {
+                return ResourceManager.GetString("LostPassword_RequestNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vous avez dépassé les 2 jours pour pouvoir redéfinir votre mot de passe. Veuillez formuler une nouvelle demande..
+        /// </summary>
+        internal static string LostPassword_TimeExpired {
+            get {
+                return ResourceManager.GetString("LostPassword_TimeExpired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ce membre n&apos;est pas associé à une ville..
+        /// </summary>
+        internal static string Member_NoCitySelected {
+            get {
+                return ResourceManager.GetString("Member_NoCitySelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Le prénom du membre n&apos;est pas précisé..
+        /// </summary>
+        internal static string Member_NoFirstName {
+            get {
+                return ResourceManager.GetString("Member_NoFirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Le nom du membre n&apos;est pas précisé..
+        /// </summary>
+        internal static string Member_NoLastName {
+            get {
+                return ResourceManager.GetString("Member_NoLastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Le mail EPSI n&apos;est pas renseigné..
+        /// </summary>
+        internal static string Member_NoMailEPSI {
+            get {
+                return ResourceManager.GetString("Member_NoMailEPSI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Le mot de passe du membre n&apos;est pas précisé..
+        /// </summary>
+        internal static string Member_NoPassword {
+            get {
+                return ResourceManager.GetString("Member_NoPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Le membre ne possède pas d&apos;image..
+        /// </summary>
+        internal static string Member_NoPicture {
+            get {
+                return ResourceManager.GetString("Member_NoPicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ce membre n&apos;est pas associé à une promo..
+        /// </summary>
+        internal static string Member_NoPromoSelected {
+            get {
+                return ResourceManager.GetString("Member_NoPromoSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ce membre ne possède pas de rôle..
+        /// </summary>
+        internal static string Member_NoRoleSelected {
+            get {
+                return ResourceManager.GetString("Member_NoRoleSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Le statut du membre n&apos;est pas précisé..
+        /// </summary>
+        internal static string Member_NoStatus {
+            get {
+                return ResourceManager.GetString("Member_NoStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Le nom utilisateur et/ou le mot de passe sont incorrects..
+        /// </summary>
+        internal static string Member_NotFound {
+            get {
+                return ResourceManager.GetString("Member_NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Le permalien du membre n&apos;est pas précisé..
+        /// </summary>
+        internal static string Member_NoURL {
+            get {
+                return ResourceManager.GetString("Member_NoURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Le pseudo du membre n&apos;est pas précisé..
+        /// </summary>
+        internal static string Member_NoUsername {
+            get {
+                return ResourceManager.GetString("Member_NoUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La news ne possède pas d&apos;auteur..
+        /// </summary>
+        internal static string News_NoAuthor {
+            get {
+                return ResourceManager.GetString("News_NoAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La news ne possède pas de texte..
+        /// </summary>
+        internal static string News_NoContent {
+            get {
+                return ResourceManager.GetString("News_NoContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La description de la news n&apos;est pas précisée..
+        /// </summary>
+        internal static string News_NoDescription {
+            get {
+                return ResourceManager.GetString("News_NoDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La news ne possède pas de mot clé pour la recherche..
+        /// </summary>
+        internal static string News_NoKeywords {
+            get {
+                return ResourceManager.GetString("News_NoKeywords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to L&apos;image de la news n&apos;est pas précisé..
+        /// </summary>
+        internal static string News_NoPicture {
+            get {
+                return ResourceManager.GetString("News_NoPicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La news ne possède pas de titre..
+        /// </summary>
+        internal static string News_NoTitle {
+            get {
+                return ResourceManager.GetString("News_NoTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Le permalien de la news n&apos;est pas précisé..
+        /// </summary>
+        internal static string News_NoURL {
+            get {
+                return ResourceManager.GetString("News_NoURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to L&apos;avancement du projet doit être une valeur comprise entre 0 et 100..
+        /// </summary>
+        internal static string Project_IncorrectProgression {
+            get {
+                return ResourceManager.GetString("Project_IncorrectProgression", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Le projet n&apos;est associé à aucun campus..
+        /// </summary>
+        internal static string Project_NoCitySelected {
+            get {
+                return ResourceManager.GetString("Project_NoCitySelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Le projet ne possède pas de description..
+        /// </summary>
+        internal static string Project_NoDescription {
+            get {
+                return ResourceManager.GetString("Project_NoDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Le projet ne possède pas de nom..
+        /// </summary>
+        internal static string Project_NoName {
+            get {
+                return ResourceManager.GetString("Project_NoName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Le projet ne possède pas d&apos;image..
+        /// </summary>
+        internal static string Project_NoPicture {
+            get {
+                return ResourceManager.GetString("Project_NoPicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to L&apos;année de la promo est incorrecte..
+        /// </summary>
+        internal static string Promo_InvalidYear {
+            get {
+                return ResourceManager.GetString("Promo_InvalidYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La classe ne possède pas de libellé..
+        /// </summary>
+        internal static string Promo_NoName {
+            get {
+                return ResourceManager.GetString("Promo_NoName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La description du salon n&apos;est pas précisée..
+        /// </summary>
+        internal static string Show_NoDescription {
+            get {
+                return ResourceManager.GetString("Show_NoDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Le salon ne possède de nom..
+        /// </summary>
+        internal static string Show_NoName {
+            get {
+                return ResourceManager.GetString("Show_NoName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Le salon ne possède d&apos;image..
+        /// </summary>
+        internal static string Show_NoPicture {
+            get {
+                return ResourceManager.GetString("Show_NoPicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Le lieu du salon n&apos;est pas précisé..
+        /// </summary>
+        internal static string Show_NoPlace {
+            get {
+                return ResourceManager.GetString("Show_NoPlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Le permalien du salon n&apos;est pas précisé..
+        /// </summary>
+        internal static string Show_NoURL {
+            get {
+                return ResourceManager.GetString("Show_NoURL", resourceCulture);
             }
         }
     }
