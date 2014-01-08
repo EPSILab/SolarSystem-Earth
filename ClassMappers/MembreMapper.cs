@@ -38,6 +38,7 @@ namespace SolarSystem.Earth.Mappers
                 Ville = new VilleMapper().ToDTO(element.Ville),
                 Classe = new ClasseMapper().ToDTO(element.Classe),
                 Role = new RoleMapper().ToDTO(element.Role),
+                Actif = element.Actif
             };
         }
 
@@ -69,7 +70,8 @@ namespace SolarSystem.Earth.Mappers
                 URL_LinkedIn = element.URL_LinkedIn,
                 URL_Viadeo = element.URL_Viadeo,
                 Ville_origine = element.Ville_origine,
-                URL = element.URL
+                URL = element.URL,
+                Actif = element.Actif
             };
         }
     }
