@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AAC21B50-6A74-47FB-9E7B-AAAD054A5A80}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SolarSystem.Earth.DataAccess</RootNamespace>
+    <AssemblyName>SolarSystem.Earth.DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DAL\RoleDAL.cs" />
+    <Compile Include="DAL\SunAccess.cs" />
+    <Compile Include="DAL\ClasseDAL.cs" />
+    <Compile Include="DAL\ConferenceDAL.cs" />
+    <Compile Include="DAL\LienDAL.cs" />
+    <Compile Include="DAL\MembreDAL.cs" />
+    <Compile Include="DAL\NewsDAL.cs" />
+    <Compile Include="DAL\ProjetDAL.cs" />
+    <Compile Include="DAL\PubliciteDAL.cs" />
+    <Compile Include="DAL\SalonDAL.cs" />
+    <Compile Include="DAL\VilleDAL.cs" />
+    <Compile Include="Exceptions\LostPasswordRequestNotFoundException.cs" />
+    <Compile Include="Exceptions\LostPasswordTimeElapsedException.cs" />
+    <Compile Include="Exceptions\AccessDeniedException.cs" />
+    <Compile Include="Exceptions\YearInvalidException.cs" />
+    <Compile Include="Exceptions\NoAssociationException.cs" />
+    <Compile Include="Exceptions\UserNotExistsException.cs" />
+    <Compile Include="Exceptions\IncorrectValueException.cs" />
+    <Compile Include="Exceptions\NullValueException.cs" />
+    <Compile Include="Model\SunModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SunModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\PasswordBackupRessources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PasswordBackupRessources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ErrorMessages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorMessages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RulesManager\Managers\VilleRulesManager.cs" />
+    <Compile Include="RulesManager\Managers\ClasseRulesManager.cs" />
+    <Compile Include="RulesManager\Managers\ConferenceRulesManager.cs" />
+    <Compile Include="RulesManager\Managers\Interfaces\IRulesManager.cs" />
+    <Compile Include="RulesManager\Managers\LienRulesManager.cs" />
+    <Compile Include="RulesManager\Managers\MembreRulesManager.cs" />
+    <Compile Include="RulesManager\Managers\NewsRulesManager.cs" />
+    <Compile Include="RulesManager\Managers\ProjetRulesManager.cs" />
+    <Compile Include="RulesManager\Managers\PubliciteRulesManager.cs" />
+    <Compile Include="RulesManager\Managers\SalonRulesManager.cs" />
+    <Compile Include="RulesManager\RulesChecker.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\PasswordBackupRessources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PasswordBackupRessources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ErrorMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Model\SunModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SunModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Earth.Common\Earth.Common.csproj">
+      <Project>{af092699-0355-4dba-978e-25a48b82813e}</Project>
+      <Name>Earth.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
