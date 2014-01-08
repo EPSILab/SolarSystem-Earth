@@ -4,14 +4,14 @@ SolarSystem-Earth
 Contains all sources for the database access and the webservice.
 
 Webservices are available on:
-- Readers (Public): http://www.epsilab.net/Webservices/ReadersServices.svc
-- Managers (Private, locked by database login): http://www.epsilab.net/Webservices/ManagersServices.svc
+- Readers (public): http://www.epsilab.net/Webservices/ReadersServices.svc
+- Managers (private, locked by database login): http://www.epsilab.net/Webservices/ManagersServices.svc
 
 #Important
 This project **MUST** be private because it contains some critical informations such as database identification informations.
 
 #HowTo
-Clone this repository and open the solution file named "**Earth.sln**".
+Clone this repository and open the solution file named "**SolarSystem.Earth.sln**".
 
 #License
 This project has a **LGPL** license.
