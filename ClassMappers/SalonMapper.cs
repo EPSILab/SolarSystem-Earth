@@ -4,8 +4,16 @@ using SalonDTO = SolarSystem.Earth.Common.Salon;
 
 namespace SolarSystem.Earth.Mappers
 {
+    /// <summary>
+    /// Show mapper
+    /// </summary>
     public class SalonMapper : IMapper<SalonDAO, SalonDTO>
     {
+        /// <summary>
+        /// DAO to DTO
+        /// </summary>
+        /// <param name="element">Element to transform to DTO</param>
+        /// <returns>DTO equivalent</returns>
         public SalonDTO ToDTO(SalonDAO element)
         {
             return new SalonDTO
@@ -22,6 +30,11 @@ namespace SolarSystem.Earth.Mappers
             };
         }
 
+        /// <summary>
+        /// DTO to DAO
+        /// </summary>
+        /// <param name="element">Element to transform to DAO</param>
+        /// <returns>DAO equivalent</returns>
         public SalonDAO ToDAO(SalonDTO element)
         {
             return new SalonDAO
