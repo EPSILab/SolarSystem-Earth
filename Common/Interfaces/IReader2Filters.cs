@@ -2,6 +2,12 @@
 
 namespace SolarSystem.Earth.Common.Interfaces
 {
+    /// <summary>
+    /// An interface to get elements with 2 filters
+    /// </summary>
+    /// <typeparam name="T">A Common/SunModel entity</typeparam>
+    /// <typeparam name="TClass">A Common/SunModel entity</typeparam>
+    /// <typeparam name="TValue">A Common/SunModel entity</typeparam>
     public interface IReader2Filters<out T, in TClass, in TValue> : IReader1Filter<T, TClass>
     {
         IEnumerable<T> Get(TValue filter2);

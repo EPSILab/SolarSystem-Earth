@@ -2,6 +2,10 @@
 
 namespace SolarSystem.Earth.Common.Interfaces
 {
+    /// <summary>
+    /// An interface to get elements
+    /// </summary>
+    /// <typeparam name="T">A Common/SunModel entity</typeparam>
     public interface IReader<out T>
     {
         T Get(int code);

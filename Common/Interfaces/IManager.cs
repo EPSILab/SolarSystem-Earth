@@ -1,6 +1,10 @@
 ﻿namespace SolarSystem.Earth.Common.Interfaces
 {
-    public interface IManager<T>
+    /// <summary>
+    /// An interface to create, edit or delete elements
+    /// </summary>
+    /// <typeparam name="T">A Common/SunModel entity</typeparam>
+    public interface IManager<in T>
     {
         int Add(T element, string username, string password);
 
