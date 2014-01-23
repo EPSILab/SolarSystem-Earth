@@ -11,7 +11,7 @@ Webservices are available on:
 This project **MUST** be private because it contains some critical informations such as database identification informations.
 
 #HowTo
-Clone this repository and open the solution file named "**SolarSystem.Earth.sln**".
+Clone this repository and open the solution file named "**Earth.sln**".
 
 #License
 This project has a **LGPL** license.
