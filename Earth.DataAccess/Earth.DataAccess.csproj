@@ -51,6 +51,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +117,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Earth.Common\Earth.Common.csproj">
+      <Project>{af092699-0355-4dba-978e-25a48b82813e}</Project>
+      <Name>Earth.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <EntityDeploy Include="Model\SunModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SunModel.Designer.cs</LastGenOutput>
@@ -123,12 +130,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Earth.Common\Earth.Common.csproj">
-      <Project>{af092699-0355-4dba-978e-25a48b82813e}</Project>
-      <Name>Earth.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

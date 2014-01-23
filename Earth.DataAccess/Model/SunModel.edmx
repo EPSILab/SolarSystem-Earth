@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SunModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+      <Schema Namespace="SunModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="SunModelStoreContainer">
           <EntitySet Name="Classe" EntityType="SunModel.Store.Classe" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Conference" EntityType="SunModel.Store.Conference" store:Type="Tables" Schema="dbo" />
@@ -267,7 +267,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SunModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -316,65 +317,65 @@
           <Key>
             <PropertyRef Name="Code_Classe" />
           </Key>
-          <Property Type="Int32" Name="Code_Classe" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Libelle" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Annee_Promo_Sortante" Nullable="false" />
-          <Property Type="Boolean" Name="Encore_Presente" Nullable="false" />
+          <Property Name="Code_Classe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Libelle" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="Annee_Promo_Sortante" Type="Int32" Nullable="false" />
+          <Property Name="Encore_Presente" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Membre" Relationship="SunModel.FK_Membre_Classe" FromRole="Classe" ToRole="Membre" />
         </EntityType>
         <EntityType Name="Conference">
           <Key>
             <PropertyRef Name="Code_Conference" />
           </Key>
-          <Property Type="Int32" Name="Code_Conference" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="Code_Ville" Nullable="false" />
-          <Property Type="String" Name="Nom" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="Date_Heure_Debut" Nullable="false" />
-          <Property Type="DateTime" Name="Date_Heure_Fin" Nullable="false" />
-          <Property Type="String" Name="Lieu" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Description" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Image" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="Publiee" Nullable="false" />
-          <Property Type="String" Name="URL" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="Code_Conference" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code_Ville" Type="Int32" Nullable="false" />
+          <Property Name="Nom" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="Date_Heure_Debut" Type="DateTime" Nullable="false" />
+          <Property Name="Date_Heure_Fin" Type="DateTime" Nullable="false" />
+          <Property Name="Lieu" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Image" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="Publiee" Type="Boolean" Nullable="false" />
+          <Property Name="URL" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Ville" Relationship="SunModel.FK_Conference_Ville" FromRole="Conference" ToRole="Ville" />
         </EntityType>
         <EntityType Name="Lien">
           <Key>
             <PropertyRef Name="Code_Lien" />
           </Key>
-          <Property Type="Int32" Name="Code_Lien" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Nom" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="URL" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Image" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Description" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Ordre" />
+          <Property Name="Code_Lien" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="URL" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="Image" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Ordre" Type="Int32" />
         </EntityType>
         <EntityType Name="Membre">
           <Key>
             <PropertyRef Name="Code_Membre" />
           </Key>
-          <Property Type="Int32" Name="Code_Membre" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="Code_Ville" Nullable="false" />
-          <Property Type="Int32" Name="Code_Classe" Nullable="false" />
-          <Property Type="Int32" Name="Code_Role" Nullable="false" />
-          <Property Type="String" Name="Nom" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Prenom" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Pseudo" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Mot_de_passe" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Email_perso" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Email_EPSI" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Telephone_mobile" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Ville_origine" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Site_web" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="URL_Facebook" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="URL_Twitter" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="URL_LinkedIn" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="URL_Viadeo" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Statut" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Presentation" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Image" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="URL" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="Actif" Nullable="false" />
+          <Property Name="Code_Membre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code_Ville" Type="Int32" Nullable="false" />
+          <Property Name="Code_Classe" Type="Int32" Nullable="false" />
+          <Property Name="Code_Role" Type="Int32" Nullable="false" />
+          <Property Name="Nom" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="Prenom" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="Pseudo" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="Mot_de_passe" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="Email_perso" Type="String" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="Email_EPSI" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="Telephone_mobile" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="Ville_origine" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="Site_web" Type="String" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="URL_Facebook" Type="String" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="URL_Twitter" Type="String" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="URL_LinkedIn" Type="String" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="URL_Viadeo" Type="String" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="Statut" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="Presentation" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Image" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="URL" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Actif" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Classe" Relationship="SunModel.FK_Membre_Classe" FromRole="Membre" ToRole="Classe" />
           <NavigationProperty Name="Role" Relationship="SunModel.FK_Membre_Role" FromRole="Membre" ToRole="Role" />
           <NavigationProperty Name="Ville" Relationship="SunModel.FK_Membre_Ville" FromRole="Membre" ToRole="Ville" />
@@ -385,87 +386,87 @@
           <Key>
             <PropertyRef Name="Code_News" />
           </Key>
-          <Property Type="Int32" Name="Code_News" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="Code_Membre" Nullable="false" />
-          <Property Type="String" Name="Titre" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Texte_Court" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Texte_Long" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="Date_Heure" Nullable="false" />
-          <Property Type="String" Name="Image" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Mots_Cles" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="Publiee" Nullable="false" />
-          <Property Type="String" Name="URL" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="Code_News" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code_Membre" Type="Int32" Nullable="false" />
+          <Property Name="Titre" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="Texte_Court" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Texte_Long" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Date_Heure" Type="DateTime" Nullable="false" />
+          <Property Name="Image" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Mots_Cles" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Publiee" Type="Boolean" Nullable="false" />
+          <Property Name="URL" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Membre" Relationship="SunModel.FK_News_Membre" FromRole="News" ToRole="Membre" />
         </EntityType>
         <EntityType Name="Projet">
           <Key>
             <PropertyRef Name="Code_Projet" />
           </Key>
-          <Property Type="Int32" Name="Code_Projet" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="Code_Ville" Nullable="false" />
-          <Property Type="String" Name="Nom" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Description" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Avancement" Nullable="false" />
-          <Property Type="String" Name="Image" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Code_Projet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code_Ville" Type="Int32" Nullable="false" />
+          <Property Name="Nom" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Avancement" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Ville" Relationship="SunModel.FK_Projet_Ville" FromRole="Projet" ToRole="Ville" />
         </EntityType>
         <EntityType Name="Publicite">
           <Key>
             <PropertyRef Name="Code_Publicite" />
           </Key>
-          <Property Type="Int32" Name="Code_Publicite" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Nom" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Presentation" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="URL" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Image" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="Publiee" Nullable="false" />
+          <Property Name="Code_Publicite" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="Presentation" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="URL" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Image" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Publiee" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="RecupMotDePasse">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Code_Membre" Nullable="false" />
-          <Property Type="DateTime" Name="Date" Nullable="false" />
-          <Property Type="String" Name="Cle" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code_Membre" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Cle" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Membre" Relationship="SunModel.FK_RecupMotDePasse_Membre" FromRole="RecupMotDePasse" ToRole="Membre" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="Code_Role" />
           </Key>
-          <Property Type="Int32" Name="Code_Role" Nullable="false" />
-          <Property Type="String" Name="Libelle" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Code_Role" Type="Int32" Nullable="false" />
+          <Property Name="Libelle" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Membre" Relationship="SunModel.FK_Membre_Role" FromRole="Role" ToRole="Membre" />
         </EntityType>
         <EntityType Name="Salon">
           <Key>
             <PropertyRef Name="Code_Salon" />
           </Key>
-          <Property Type="Int32" Name="Code_Salon" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Nom" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="Date_Heure_Debut" Nullable="false" />
-          <Property Type="DateTime" Name="Date_Heure_Fin" Nullable="false" />
-          <Property Type="String" Name="Lieu" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Image" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Description" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="Publie" Nullable="false" />
-          <Property Type="String" Name="URL" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="Code_Salon" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="Date_Heure_Debut" Type="DateTime" Nullable="false" />
+          <Property Name="Date_Heure_Fin" Type="DateTime" Nullable="false" />
+          <Property Name="Lieu" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="Image" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Publie" Type="Boolean" Nullable="false" />
+          <Property Name="URL" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
         </EntityType>
         <EntityType Name="Ville">
           <Key>
             <PropertyRef Name="Code_Ville" />
           </Key>
-          <Property Type="Int32" Name="Code_Ville" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Libelle" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Email" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Code_Ville" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Libelle" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Conference" Relationship="SunModel.FK_Conference_Ville" FromRole="Ville" ToRole="Conference" />
           <NavigationProperty Name="Membre" Relationship="SunModel.FK_Membre_Ville" FromRole="Ville" ToRole="Membre" />
           <NavigationProperty Name="Projet" Relationship="SunModel.FK_Projet_Ville" FromRole="Ville" ToRole="Projet" />
         </EntityType>
         <Association Name="FK_Membre_Classe">
-          <End Type="SunModel.Classe" Role="Classe" Multiplicity="1" />
-          <End Type="SunModel.Membre" Role="Membre" Multiplicity="*" />
+          <End Role="Classe" Type="SunModel.Classe" Multiplicity="1" />
+          <End Role="Membre" Type="SunModel.Membre" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Classe">
               <PropertyRef Name="Code_Classe" />
@@ -476,8 +477,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Conference_Ville">
-          <End Type="SunModel.Ville" Role="Ville" Multiplicity="1" />
-          <End Type="SunModel.Conference" Role="Conference" Multiplicity="*" />
+          <End Role="Ville" Type="SunModel.Ville" Multiplicity="1" />
+          <End Role="Conference" Type="SunModel.Conference" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ville">
               <PropertyRef Name="Code_Ville" />
@@ -488,8 +489,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Membre_Role">
-          <End Type="SunModel.Role" Role="Role" Multiplicity="1" />
-          <End Type="SunModel.Membre" Role="Membre" Multiplicity="*" />
+          <End Role="Role" Type="SunModel.Role" Multiplicity="1" />
+          <End Role="Membre" Type="SunModel.Membre" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Role">
               <PropertyRef Name="Code_Role" />
@@ -500,8 +501,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Membre_Ville">
-          <End Type="SunModel.Ville" Role="Ville" Multiplicity="1" />
-          <End Type="SunModel.Membre" Role="Membre" Multiplicity="*" />
+          <End Role="Ville" Type="SunModel.Ville" Multiplicity="1" />
+          <End Role="Membre" Type="SunModel.Membre" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ville">
               <PropertyRef Name="Code_Ville" />
@@ -512,8 +513,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_News_Membre">
-          <End Type="SunModel.Membre" Role="Membre" Multiplicity="1" />
-          <End Type="SunModel.News" Role="News" Multiplicity="*" />
+          <End Role="Membre" Type="SunModel.Membre" Multiplicity="1" />
+          <End Role="News" Type="SunModel.News" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Membre">
               <PropertyRef Name="Code_Membre" />
@@ -524,8 +525,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RecupMotDePasse_Membre">
-          <End Type="SunModel.Membre" Role="Membre" Multiplicity="1" />
-          <End Type="SunModel.RecupMotDePasse" Role="RecupMotDePasse" Multiplicity="*" />
+          <End Role="Membre" Type="SunModel.Membre" Multiplicity="1" />
+          <End Role="RecupMotDePasse" Type="SunModel.RecupMotDePasse" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Membre">
               <PropertyRef Name="Code_Membre" />
@@ -536,8 +537,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Projet_Ville">
-          <End Type="SunModel.Ville" Role="Ville" Multiplicity="1" />
-          <End Type="SunModel.Projet" Role="Projet" Multiplicity="*" />
+          <End Role="Ville" Type="SunModel.Ville" Multiplicity="1" />
+          <End Role="Projet" Type="SunModel.Projet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ville">
               <PropertyRef Name="Code_Ville" />
@@ -547,160 +548,116 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        </Schema>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SunModelStoreContainer" CdmEntityContainer="SunModelEntities">
-          <EntitySetMapping Name="Classe">
-            <EntityTypeMapping TypeName="SunModel.Classe">
-              <MappingFragment StoreEntitySet="Classe">
-                <ScalarProperty Name="Encore_Presente" ColumnName="Encore_Presente" />
-                <ScalarProperty Name="Annee_Promo_Sortante" ColumnName="Annee_Promo_Sortante" />
-                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
-                <ScalarProperty Name="Code_Classe" ColumnName="Code_Classe" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Conference">
-            <EntityTypeMapping TypeName="SunModel.Conference">
-              <MappingFragment StoreEntitySet="Conference">
-                <ScalarProperty Name="URL" ColumnName="URL" />
-                <ScalarProperty Name="Publiee" ColumnName="Publiee" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Lieu" ColumnName="Lieu" />
-                <ScalarProperty Name="Date_Heure_Fin" ColumnName="Date_Heure_Fin" />
-                <ScalarProperty Name="Date_Heure_Debut" ColumnName="Date_Heure_Debut" />
-                <ScalarProperty Name="Nom" ColumnName="Nom" />
-                <ScalarProperty Name="Code_Ville" ColumnName="Code_Ville" />
-                <ScalarProperty Name="Code_Conference" ColumnName="Code_Conference" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Lien">
-            <EntityTypeMapping TypeName="SunModel.Lien">
-              <MappingFragment StoreEntitySet="Lien">
-                <ScalarProperty Name="Ordre" ColumnName="Ordre" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="URL" ColumnName="URL" />
-                <ScalarProperty Name="Nom" ColumnName="Nom" />
-                <ScalarProperty Name="Code_Lien" ColumnName="Code_Lien" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Membre">
-            <EntityTypeMapping TypeName="SunModel.Membre">
-              <MappingFragment StoreEntitySet="Membre">
-                <ScalarProperty Name="Actif" ColumnName="Actif" />
-                <ScalarProperty Name="URL" ColumnName="URL" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Presentation" ColumnName="Presentation" />
-                <ScalarProperty Name="Statut" ColumnName="Statut" />
-                <ScalarProperty Name="URL_Viadeo" ColumnName="URL_Viadeo" />
-                <ScalarProperty Name="URL_LinkedIn" ColumnName="URL_LinkedIn" />
-                <ScalarProperty Name="URL_Twitter" ColumnName="URL_Twitter" />
-                <ScalarProperty Name="URL_Facebook" ColumnName="URL_Facebook" />
-                <ScalarProperty Name="Site_web" ColumnName="Site_web" />
-                <ScalarProperty Name="Ville_origine" ColumnName="Ville_origine" />
-                <ScalarProperty Name="Telephone_mobile" ColumnName="Telephone_mobile" />
-                <ScalarProperty Name="Email_EPSI" ColumnName="Email_EPSI" />
-                <ScalarProperty Name="Email_perso" ColumnName="Email_perso" />
-                <ScalarProperty Name="Mot_de_passe" ColumnName="Mot_de_passe" />
-                <ScalarProperty Name="Pseudo" ColumnName="Pseudo" />
-                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
-                <ScalarProperty Name="Nom" ColumnName="Nom" />
-                <ScalarProperty Name="Code_Role" ColumnName="Code_Role" />
-                <ScalarProperty Name="Code_Classe" ColumnName="Code_Classe" />
-                <ScalarProperty Name="Code_Ville" ColumnName="Code_Ville" />
-                <ScalarProperty Name="Code_Membre" ColumnName="Code_Membre" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="News">
-            <EntityTypeMapping TypeName="SunModel.News">
-              <MappingFragment StoreEntitySet="News">
-                <ScalarProperty Name="URL" ColumnName="URL" />
-                <ScalarProperty Name="Publiee" ColumnName="Publiee" />
-                <ScalarProperty Name="Mots_Cles" ColumnName="Mots_Cles" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Date_Heure" ColumnName="Date_Heure" />
-                <ScalarProperty Name="Texte_Long" ColumnName="Texte_Long" />
-                <ScalarProperty Name="Texte_Court" ColumnName="Texte_Court" />
-                <ScalarProperty Name="Titre" ColumnName="Titre" />
-                <ScalarProperty Name="Code_Membre" ColumnName="Code_Membre" />
-                <ScalarProperty Name="Code_News" ColumnName="Code_News" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Projet">
-            <EntityTypeMapping TypeName="SunModel.Projet">
-              <MappingFragment StoreEntitySet="Projet">
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Avancement" ColumnName="Avancement" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Nom" ColumnName="Nom" />
-                <ScalarProperty Name="Code_Ville" ColumnName="Code_Ville" />
-                <ScalarProperty Name="Code_Projet" ColumnName="Code_Projet" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Publicite">
-            <EntityTypeMapping TypeName="SunModel.Publicite">
-              <MappingFragment StoreEntitySet="Publicite">
-                <ScalarProperty Name="Publiee" ColumnName="Publiee" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="URL" ColumnName="URL" />
-                <ScalarProperty Name="Presentation" ColumnName="Presentation" />
-                <ScalarProperty Name="Nom" ColumnName="Nom" />
-                <ScalarProperty Name="Code_Publicite" ColumnName="Code_Publicite" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RecupMotDePasse">
-            <EntityTypeMapping TypeName="SunModel.RecupMotDePasse">
-              <MappingFragment StoreEntitySet="RecupMotDePasse">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Cle" ColumnName="Cle" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Code_Membre" ColumnName="Code_Membre" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Role">
-            <EntityTypeMapping TypeName="SunModel.Role">
-              <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
-                <ScalarProperty Name="Code_Role" ColumnName="Code_Role" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Salon">
-            <EntityTypeMapping TypeName="SunModel.Salon">
-              <MappingFragment StoreEntitySet="Salon">
-                <ScalarProperty Name="URL" ColumnName="URL" />
-                <ScalarProperty Name="Publie" ColumnName="Publie" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Lieu" ColumnName="Lieu" />
-                <ScalarProperty Name="Date_Heure_Fin" ColumnName="Date_Heure_Fin" />
-                <ScalarProperty Name="Date_Heure_Debut" ColumnName="Date_Heure_Debut" />
-                <ScalarProperty Name="Nom" ColumnName="Nom" />
-                <ScalarProperty Name="Code_Salon" ColumnName="Code_Salon" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Ville">
-            <EntityTypeMapping TypeName="SunModel.Ville">
-              <MappingFragment StoreEntitySet="Ville">
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
-                <ScalarProperty Name="Code_Ville" ColumnName="Code_Ville" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+          <EntitySetMapping Name="Classe"><EntityTypeMapping TypeName="SunModel.Classe"><MappingFragment StoreEntitySet="Classe">
+            <ScalarProperty Name="Code_Classe" ColumnName="Code_Classe" />
+            <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+            <ScalarProperty Name="Annee_Promo_Sortante" ColumnName="Annee_Promo_Sortante" />
+            <ScalarProperty Name="Encore_Presente" ColumnName="Encore_Presente" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Conference"><EntityTypeMapping TypeName="SunModel.Conference"><MappingFragment StoreEntitySet="Conference">
+            <ScalarProperty Name="Code_Conference" ColumnName="Code_Conference" />
+            <ScalarProperty Name="Code_Ville" ColumnName="Code_Ville" />
+            <ScalarProperty Name="Nom" ColumnName="Nom" />
+            <ScalarProperty Name="Date_Heure_Debut" ColumnName="Date_Heure_Debut" />
+            <ScalarProperty Name="Date_Heure_Fin" ColumnName="Date_Heure_Fin" />
+            <ScalarProperty Name="Lieu" ColumnName="Lieu" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Image" ColumnName="Image" />
+            <ScalarProperty Name="Publiee" ColumnName="Publiee" />
+            <ScalarProperty Name="URL" ColumnName="URL" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Lien"><EntityTypeMapping TypeName="SunModel.Lien"><MappingFragment StoreEntitySet="Lien">
+            <ScalarProperty Name="Code_Lien" ColumnName="Code_Lien" />
+            <ScalarProperty Name="Nom" ColumnName="Nom" />
+            <ScalarProperty Name="URL" ColumnName="URL" />
+            <ScalarProperty Name="Image" ColumnName="Image" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Ordre" ColumnName="Ordre" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Membre"><EntityTypeMapping TypeName="SunModel.Membre"><MappingFragment StoreEntitySet="Membre">
+            <ScalarProperty Name="Code_Membre" ColumnName="Code_Membre" />
+            <ScalarProperty Name="Code_Ville" ColumnName="Code_Ville" />
+            <ScalarProperty Name="Code_Classe" ColumnName="Code_Classe" />
+            <ScalarProperty Name="Code_Role" ColumnName="Code_Role" />
+            <ScalarProperty Name="Nom" ColumnName="Nom" />
+            <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+            <ScalarProperty Name="Pseudo" ColumnName="Pseudo" />
+            <ScalarProperty Name="Mot_de_passe" ColumnName="Mot_de_passe" />
+            <ScalarProperty Name="Email_perso" ColumnName="Email_perso" />
+            <ScalarProperty Name="Email_EPSI" ColumnName="Email_EPSI" />
+            <ScalarProperty Name="Telephone_mobile" ColumnName="Telephone_mobile" />
+            <ScalarProperty Name="Ville_origine" ColumnName="Ville_origine" />
+            <ScalarProperty Name="Site_web" ColumnName="Site_web" />
+            <ScalarProperty Name="URL_Facebook" ColumnName="URL_Facebook" />
+            <ScalarProperty Name="URL_Twitter" ColumnName="URL_Twitter" />
+            <ScalarProperty Name="URL_LinkedIn" ColumnName="URL_LinkedIn" />
+            <ScalarProperty Name="URL_Viadeo" ColumnName="URL_Viadeo" />
+            <ScalarProperty Name="Statut" ColumnName="Statut" />
+            <ScalarProperty Name="Presentation" ColumnName="Presentation" />
+            <ScalarProperty Name="Image" ColumnName="Image" />
+            <ScalarProperty Name="URL" ColumnName="URL" />
+            <ScalarProperty Name="Actif" ColumnName="Actif" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="News"><EntityTypeMapping TypeName="SunModel.News"><MappingFragment StoreEntitySet="News">
+            <ScalarProperty Name="Code_News" ColumnName="Code_News" />
+            <ScalarProperty Name="Code_Membre" ColumnName="Code_Membre" />
+            <ScalarProperty Name="Titre" ColumnName="Titre" />
+            <ScalarProperty Name="Texte_Court" ColumnName="Texte_Court" />
+            <ScalarProperty Name="Texte_Long" ColumnName="Texte_Long" />
+            <ScalarProperty Name="Date_Heure" ColumnName="Date_Heure" />
+            <ScalarProperty Name="Image" ColumnName="Image" />
+            <ScalarProperty Name="Mots_Cles" ColumnName="Mots_Cles" />
+            <ScalarProperty Name="Publiee" ColumnName="Publiee" />
+            <ScalarProperty Name="URL" ColumnName="URL" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Projet"><EntityTypeMapping TypeName="SunModel.Projet"><MappingFragment StoreEntitySet="Projet">
+            <ScalarProperty Name="Code_Projet" ColumnName="Code_Projet" />
+            <ScalarProperty Name="Code_Ville" ColumnName="Code_Ville" />
+            <ScalarProperty Name="Nom" ColumnName="Nom" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Avancement" ColumnName="Avancement" />
+            <ScalarProperty Name="Image" ColumnName="Image" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Publicite"><EntityTypeMapping TypeName="SunModel.Publicite"><MappingFragment StoreEntitySet="Publicite">
+            <ScalarProperty Name="Code_Publicite" ColumnName="Code_Publicite" />
+            <ScalarProperty Name="Nom" ColumnName="Nom" />
+            <ScalarProperty Name="Presentation" ColumnName="Presentation" />
+            <ScalarProperty Name="URL" ColumnName="URL" />
+            <ScalarProperty Name="Image" ColumnName="Image" />
+            <ScalarProperty Name="Publiee" ColumnName="Publiee" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="RecupMotDePasse"><EntityTypeMapping TypeName="SunModel.RecupMotDePasse"><MappingFragment StoreEntitySet="RecupMotDePasse">
+            <ScalarProperty Name="Code_Membre" ColumnName="Code_Membre" />
+            <ScalarProperty Name="Date" ColumnName="Date" />
+            <ScalarProperty Name="Cle" ColumnName="Cle" />
+            <ScalarProperty Name="Id" ColumnName="Id" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Role"><EntityTypeMapping TypeName="SunModel.Role"><MappingFragment StoreEntitySet="Role">
+            <ScalarProperty Name="Code_Role" ColumnName="Code_Role" />
+            <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Salon"><EntityTypeMapping TypeName="SunModel.Salon"><MappingFragment StoreEntitySet="Salon">
+            <ScalarProperty Name="Code_Salon" ColumnName="Code_Salon" />
+            <ScalarProperty Name="Nom" ColumnName="Nom" />
+            <ScalarProperty Name="Date_Heure_Debut" ColumnName="Date_Heure_Debut" />
+            <ScalarProperty Name="Date_Heure_Fin" ColumnName="Date_Heure_Fin" />
+            <ScalarProperty Name="Lieu" ColumnName="Lieu" />
+            <ScalarProperty Name="Image" ColumnName="Image" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Publie" ColumnName="Publie" />
+            <ScalarProperty Name="URL" ColumnName="URL" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Ville"><EntityTypeMapping TypeName="SunModel.Ville"><MappingFragment StoreEntitySet="Ville">
+            <ScalarProperty Name="Code_Ville" ColumnName="Code_Ville" />
+            <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -721,45 +678,45 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="SunModel" ZoomLevel="67">
-        <EntityTypeShape EntityType="SunModel.Classe" Width="1.5" PointX="3.75" PointY="8.875" Height="1.9802864583333317" />
-        <EntityTypeShape EntityType="SunModel.Conference" Width="1.5" PointX="3" PointY="5" Height="3.1340950520833388" />
-        <EntityTypeShape EntityType="SunModel.Lien" Width="1.5" PointX="0.75" PointY="0.75" Height="2.1725878906250031" />
-        <EntityTypeShape EntityType="SunModel.Membre" Width="1.5" PointX="6" PointY="5" Height="6.210917968749996" />
-        <EntityTypeShape EntityType="SunModel.News" Width="1.5" PointX="8.25" PointY="5.125" Height="3.1340950520833388" />
-        <EntityTypeShape EntityType="SunModel.Projet" Width="1.5" PointX="3" PointY="15.75" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="SunModel.Publicite" Width="1.5" PointX="2.75" PointY="0.75" Height="2.1725878906250031" />
-        <EntityTypeShape EntityType="SunModel.RecupMotDePasse" Width="1.5" PointX="8.25" PointY="9" Height="1.9802864583333388" />
-        <EntityTypeShape EntityType="SunModel.Role" Width="1.5" PointX="3.75" PointY="11.625" Height="1.5956835937500031" />
-        <EntityTypeShape EntityType="SunModel.Salon" Width="1.5" PointX="4.75" PointY="0.75" Height="2.7494921875000031" />
-        <EntityTypeShape EntityType="SunModel.Ville" Width="1.5" PointX="0.75" PointY="7" Height="2.1725878906250067" />
-        <AssociationConnector Association="SunModel.FK_Membre_Classe" >
-          <ConnectorPoint PointX="5.25" PointY="9.8651432291666659" />
-          <ConnectorPoint PointX="6" PointY="9.8651432291666659" />
+      <Diagram Name="SunModel">
+        <EntityTypeShape EntityType="SunModel.Classe" Width="1.5" PointX="3.75" PointY="8.875" Height="1.9802864583333353" IsExpanded="true" />
+        <EntityTypeShape EntityType="SunModel.Conference" Width="1.5" PointX="3" PointY="5" Height="3.1340950520833317" IsExpanded="true" />
+        <EntityTypeShape EntityType="SunModel.Lien" Width="1.5" PointX="0.75" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="SunModel.Membre" Width="1.5" PointX="6" PointY="5" Height="6.2109179687499969" IsExpanded="true" />
+        <EntityTypeShape EntityType="SunModel.News" Width="1.5" PointX="8.25" PointY="5.125" Height="3.1340950520833317" IsExpanded="true" />
+        <EntityTypeShape EntityType="SunModel.Projet" Width="1.5" PointX="3" PointY="15.75" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="SunModel.Publicite" Width="1.5" PointX="2.75" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="SunModel.RecupMotDePasse" Width="1.5" PointX="8.25" PointY="9" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="SunModel.Role" Width="1.5" PointX="3.75" PointY="11.625" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="SunModel.Salon" Width="1.5" PointX="4.75" PointY="0.75" Height="2.7494921875000031" IsExpanded="true" />
+        <EntityTypeShape EntityType="SunModel.Ville" Width="1.5" PointX="0.75" PointY="7" Height="2.1725878906250031" IsExpanded="true" />
+        <AssociationConnector Association="SunModel.FK_Membre_Classe" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.25" PointY="9.8651432291666676" />
+          <ConnectorPoint PointX="6" PointY="9.8651432291666676" />
         </AssociationConnector>
-        <AssociationConnector Association="SunModel.FK_Conference_Ville" >
-          <ConnectorPoint PointX="2.25" PointY="7.5670475260416694" />
-          <ConnectorPoint PointX="3" PointY="7.5670475260416694" />
+        <AssociationConnector Association="SunModel.FK_Conference_Ville" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="7.5670475260416659" />
+          <ConnectorPoint PointX="3" PointY="7.5670475260416659" />
         </AssociationConnector>
-        <AssociationConnector Association="SunModel.FK_Membre_Role" >
-          <ConnectorPoint PointX="5.25" PointY="12.422841796875002" />
-          <ConnectorPoint PointX="6.75" PointY="12.422841796875002" />
+        <AssociationConnector Association="SunModel.FK_Membre_Role" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.25" PointY="12.422841796875" />
+          <ConnectorPoint PointX="6.75" PointY="12.422841796875" />
           <ConnectorPoint PointX="6.75" PointY="11.210917968749996" />
         </AssociationConnector>
-        <AssociationConnector Association="SunModel.FK_Membre_Ville" >
-          <ConnectorPoint PointX="2.25" PointY="8.50454752604167" />
-          <ConnectorPoint PointX="6" PointY="8.50454752604167" />
+        <AssociationConnector Association="SunModel.FK_Membre_Ville" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="8.5045475260416659" />
+          <ConnectorPoint PointX="6" PointY="8.5045475260416659" />
         </AssociationConnector>
-        <AssociationConnector Association="SunModel.FK_News_Membre" >
-          <ConnectorPoint PointX="7.5" PointY="6.6920475260416694" />
-          <ConnectorPoint PointX="8.25" PointY="6.6920475260416694" />
+        <AssociationConnector Association="SunModel.FK_News_Membre" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.5" PointY="6.6920475260416659" />
+          <ConnectorPoint PointX="8.25" PointY="6.6920475260416659" />
         </AssociationConnector>
-        <AssociationConnector Association="SunModel.FK_RecupMotDePasse_Membre" >
-          <ConnectorPoint PointX="7.5" PointY="9.99014322916667" />
-          <ConnectorPoint PointX="8.25" PointY="9.99014322916667" />
+        <AssociationConnector Association="SunModel.FK_RecupMotDePasse_Membre" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.5" PointY="9.9901432291666659" />
+          <ConnectorPoint PointX="8.25" PointY="9.9901432291666659" />
         </AssociationConnector>
-        <AssociationConnector Association="SunModel.FK_Projet_Ville" >
-          <ConnectorPoint PointX="1.5" PointY="9.1725878906250067" />
+        <AssociationConnector Association="SunModel.FK_Projet_Ville" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="9.1725878906250031" />
           <ConnectorPoint PointX="1.5" PointY="16.932444661458334" />
           <ConnectorPoint PointX="3" PointY="16.932444661458334" />
         </AssociationConnector>
