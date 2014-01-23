@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using SolarSystem.Earth.Common;
-using SolarSystem.Earth.WCF.Interfaces.Readers;
+using EPSILab.SolarSystem.Earth.Common;
+using EPSILab.SolarSystem.Earth.WCF.Interfaces.Readers;
 using System.ServiceModel;
 
-namespace SolarSystem.Earth.WCF.Interfaces.Managers
+namespace EPSILab.SolarSystem.Earth.WCF.Interfaces.Managers
 {
     [ServiceContract]
     interface INewsManager

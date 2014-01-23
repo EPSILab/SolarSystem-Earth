@@ -8,27 +8,28 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("SunModel", "FK_Membre_Classe", "Classe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SolarSystem.Earth.DataAccess.Model.Classe), "Membre", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SolarSystem.Earth.DataAccess.Model.Membre), true)]
-[assembly: EdmRelationshipAttribute("SunModel", "FK_Conference_Ville", "Ville", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SolarSystem.Earth.DataAccess.Model.Ville), "Conference", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SolarSystem.Earth.DataAccess.Model.Conference), true)]
-[assembly: EdmRelationshipAttribute("SunModel", "FK_Membre_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SolarSystem.Earth.DataAccess.Model.Role), "Membre", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SolarSystem.Earth.DataAccess.Model.Membre), true)]
-[assembly: EdmRelationshipAttribute("SunModel", "FK_Membre_Ville", "Ville", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SolarSystem.Earth.DataAccess.Model.Ville), "Membre", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SolarSystem.Earth.DataAccess.Model.Membre), true)]
-[assembly: EdmRelationshipAttribute("SunModel", "FK_News_Membre", "Membre", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SolarSystem.Earth.DataAccess.Model.Membre), "News", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SolarSystem.Earth.DataAccess.Model.News), true)]
-[assembly: EdmRelationshipAttribute("SunModel", "FK_RecupMotDePasse_Membre", "Membre", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SolarSystem.Earth.DataAccess.Model.Membre), "RecupMotDePasse", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SolarSystem.Earth.DataAccess.Model.RecupMotDePasse), true)]
-[assembly: EdmRelationshipAttribute("SunModel", "FK_Projet_Ville", "Ville", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SolarSystem.Earth.DataAccess.Model.Ville), "Projet", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SolarSystem.Earth.DataAccess.Model.Projet), true)]
+[assembly: EdmRelationshipAttribute("SunModel", "FK_Membre_Classe", "Classe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(EPSILab.SolarSystem.Earth.DataAccess.Model.Classe), "Membre", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(EPSILab.SolarSystem.Earth.DataAccess.Model.Membre), true)]
+[assembly: EdmRelationshipAttribute("SunModel", "FK_Conference_Ville", "Ville", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(EPSILab.SolarSystem.Earth.DataAccess.Model.Ville), "Conference", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(EPSILab.SolarSystem.Earth.DataAccess.Model.Conference), true)]
+[assembly: EdmRelationshipAttribute("SunModel", "FK_Membre_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(EPSILab.SolarSystem.Earth.DataAccess.Model.Role), "Membre", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(EPSILab.SolarSystem.Earth.DataAccess.Model.Membre), true)]
+[assembly: EdmRelationshipAttribute("SunModel", "FK_Membre_Ville", "Ville", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(EPSILab.SolarSystem.Earth.DataAccess.Model.Ville), "Membre", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(EPSILab.SolarSystem.Earth.DataAccess.Model.Membre), true)]
+[assembly: EdmRelationshipAttribute("SunModel", "FK_News_Membre", "Membre", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(EPSILab.SolarSystem.Earth.DataAccess.Model.Membre), "News", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(EPSILab.SolarSystem.Earth.DataAccess.Model.News), true)]
+[assembly: EdmRelationshipAttribute("SunModel", "FK_RecupMotDePasse_Membre", "Membre", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(EPSILab.SolarSystem.Earth.DataAccess.Model.Membre), "RecupMotDePasse", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(EPSILab.SolarSystem.Earth.DataAccess.Model.RecupMotDePasse), true)]
+[assembly: EdmRelationshipAttribute("SunModel", "FK_Projet_Ville", "Ville", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(EPSILab.SolarSystem.Earth.DataAccess.Model.Ville), "Projet", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(EPSILab.SolarSystem.Earth.DataAccess.Model.Projet), true)]
 
 #endregion
 
-namespace SolarSystem.Earth.DataAccess.Model
+namespace EPSILab.SolarSystem.Earth.DataAccess.Model
 {
     #region Contexts
     
@@ -253,6 +254,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         private ObjectSet<Ville> _Ville;
 
         #endregion
+
         #region AddTo Methods
     
         /// <summary>
@@ -344,11 +346,11 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entities
     
     /// <summary>
@@ -379,6 +381,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -481,6 +484,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         partial void OnEncore_PresenteChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -507,6 +511,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -549,6 +554,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -795,6 +801,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         partial void OnURLChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -837,6 +844,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -869,6 +877,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1019,6 +1028,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         partial void OnOrdreChanged();
 
         #endregion
+
     
     }
     
@@ -1066,6 +1076,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1600,6 +1611,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         partial void OnActifChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1762,6 +1774,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1804,6 +1817,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2050,6 +2064,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         partial void OnURLChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2092,6 +2107,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2126,6 +2142,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2276,6 +2293,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         partial void OnImageChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2318,6 +2336,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2350,6 +2369,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2500,6 +2520,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         partial void OnPublieeChanged();
 
         #endregion
+
     
     }
     
@@ -2531,6 +2552,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2633,6 +2655,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         partial void OnIdChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2675,6 +2698,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2701,6 +2725,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2755,6 +2780,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         partial void OnLibelleChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2781,6 +2807,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2821,6 +2848,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -3043,6 +3071,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         partial void OnURLChanged();
 
         #endregion
+
     
     }
     
@@ -3072,6 +3101,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -3150,6 +3180,7 @@ namespace SolarSystem.Earth.DataAccess.Model
         partial void OnEmailChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -3220,8 +3251,10 @@ namespace SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
+
     }
 
     #endregion
+
     
 }

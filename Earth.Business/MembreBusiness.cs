@@ -1,20 +1,20 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
-using SolarSystem.Earth.DataAccess.DAL;
-using SolarSystem.Earth.DataAccess.Resources;
-using SolarSystem.Earth.Mappers;
+﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using EPSILab.SolarSystem.Earth.DataAccess.DAL;
+using EPSILab.SolarSystem.Earth.DataAccess.Resources;
+using EPSILab.SolarSystem.Earth.Mappers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using MembreDAO = SolarSystem.Earth.DataAccess.Model.Membre;
-using MembreDTO = SolarSystem.Earth.Common.Membre;
-using RecupMotDePasseDAO = SolarSystem.Earth.DataAccess.Model.RecupMotDePasse;
-using RecupMotDePasseDTO = SolarSystem.Earth.Common.RecupMotDePasse;
-using VilleDAO = SolarSystem.Earth.DataAccess.Model.Ville;
-using VilleDTO = SolarSystem.Earth.Common.Ville;
+using MembreDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Membre;
+using MembreDTO = EPSILab.SolarSystem.Earth.Common.Membre;
+using RecupMotDePasseDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.RecupMotDePasse;
+using RecupMotDePasseDTO = EPSILab.SolarSystem.Earth.Common.RecupMotDePasse;
+using VilleDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Ville;
+using VilleDTO = EPSILab.SolarSystem.Earth.Common.Ville;
 
-namespace SolarSystem.Earth.Business
+namespace EPSILab.SolarSystem.Earth.Business
 {
     /// <summary>
     /// Business class for members

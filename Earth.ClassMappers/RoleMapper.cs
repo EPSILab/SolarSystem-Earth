@@ -1,8 +1,8 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
-using RoleDAO = SolarSystem.Earth.DataAccess.Model.Role;
-using RoleDTO = SolarSystem.Earth.Common.Role;
+﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using RoleDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Role;
+using RoleDTO = EPSILab.SolarSystem.Earth.Common.Role;
 
-namespace SolarSystem.Earth.Mappers
+namespace EPSILab.SolarSystem.Earth.Mappers
 {
     /// <summary>
     /// Role mapper

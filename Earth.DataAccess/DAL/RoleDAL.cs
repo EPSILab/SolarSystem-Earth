@@ -1,9 +1,9 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
-using SolarSystem.Earth.DataAccess.Model;
+﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using EPSILab.SolarSystem.Earth.DataAccess.Model;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SolarSystem.Earth.DataAccess.DAL
+namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
 {
     public class RoleDAL : IReader<Role>
     {

@@ -1,8 +1,8 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
-using SalonDAO = SolarSystem.Earth.DataAccess.Model.Salon;
-using SalonDTO = SolarSystem.Earth.Common.Salon;
+﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using SalonDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Salon;
+using SalonDTO = EPSILab.SolarSystem.Earth.Common.Salon;
 
-namespace SolarSystem.Earth.Mappers
+namespace EPSILab.SolarSystem.Earth.Mappers
 {
     /// <summary>
     /// Show mapper

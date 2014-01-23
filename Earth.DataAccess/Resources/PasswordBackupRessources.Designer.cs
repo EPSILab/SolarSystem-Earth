@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SolarSystem.Earth.DataAccess.Resources {
+namespace EPSILab.SolarSystem.Earth.DataAccess.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace SolarSystem.Earth.DataAccess.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SolarSystem.Earth.DataAccess.Resources.PasswordBackupRessources", typeof(PasswordBackupRessources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EPSILab.SolarSystem.Earth.DataAccess.Resources.PasswordBackupRessources", typeof(PasswordBackupRessources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

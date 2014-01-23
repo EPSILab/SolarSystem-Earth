@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace SolarSystem.Earth.Common.Utils
+namespace EPSILab.SolarSystem.Earth.Common.Utils
 {
     /// <summary>
     /// A helper to hash a string in MD5

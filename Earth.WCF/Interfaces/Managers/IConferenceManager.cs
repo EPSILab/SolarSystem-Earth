@@ -1,8 +1,8 @@
-﻿using SolarSystem.Earth.Common;
+﻿using EPSILab.SolarSystem.Earth.Common;
 using System.Collections.Generic;
 using System.ServiceModel;
 
-namespace SolarSystem.Earth.WCF.Interfaces.Managers
+namespace EPSILab.SolarSystem.Earth.WCF.Interfaces.Managers
 {
     [ServiceContract]
     interface IConferenceManager

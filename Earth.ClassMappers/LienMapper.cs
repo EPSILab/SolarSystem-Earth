@@ -1,8 +1,8 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
-using LienDAO = SolarSystem.Earth.DataAccess.Model.Lien;
-using LienDTO = SolarSystem.Earth.Common.Lien;
+﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using LienDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Lien;
+using LienDTO = EPSILab.SolarSystem.Earth.Common.Lien;
 
-namespace SolarSystem.Earth.Mappers
+namespace EPSILab.SolarSystem.Earth.Mappers
 {
     /// <summary>
     /// Link mapper

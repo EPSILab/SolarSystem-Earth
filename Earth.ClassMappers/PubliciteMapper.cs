@@ -1,8 +1,8 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
-using PubliciteDAO = SolarSystem.Earth.DataAccess.Model.Publicite;
-using PubliciteDTO = SolarSystem.Earth.Common.Publicite;
+﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using PubliciteDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Publicite;
+using PubliciteDTO = EPSILab.SolarSystem.Earth.Common.Publicite;
 
-namespace SolarSystem.Earth.Mappers
+namespace EPSILab.SolarSystem.Earth.Mappers
 {
     /// <summary>
     /// Advertising mapper

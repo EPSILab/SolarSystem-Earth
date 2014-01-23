@@ -1,7 +1,7 @@
-﻿using SolarSystem.Earth.DataAccess.Resources;
+﻿using EPSILab.SolarSystem.Earth.DataAccess.Resources;
 using System;
 
-namespace SolarSystem.Earth.DataAccess.Exceptions
+namespace EPSILab.SolarSystem.Earth.DataAccess.Exceptions
 {
     /// <summary>
     /// Thrown when the user cannot call a method

@@ -1,4 +1,4 @@
-﻿namespace SolarSystem.Earth.Common.Interfaces
+﻿namespace EPSILab.SolarSystem.Earth.Common.Interfaces
 {
     /// <summary>
     /// An interface to create, edit or delete elements

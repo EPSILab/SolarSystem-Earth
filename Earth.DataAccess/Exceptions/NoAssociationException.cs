@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SolarSystem.Earth.DataAccess.Exceptions
+namespace EPSILab.SolarSystem.Earth.DataAccess.Exceptions
 {
     /// <summary>
     /// Thrown when a association between 2 entities is incorrect (Id = 0)

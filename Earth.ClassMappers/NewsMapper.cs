@@ -1,8 +1,8 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
-using NewsDAO = SolarSystem.Earth.DataAccess.Model.News;
-using NewsDTO = SolarSystem.Earth.Common.News;
+﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using NewsDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.News;
+using NewsDTO = EPSILab.SolarSystem.Earth.Common.News;
 
-namespace SolarSystem.Earth.Mappers
+namespace EPSILab.SolarSystem.Earth.Mappers
 {
     /// <summary>
     /// News mapper

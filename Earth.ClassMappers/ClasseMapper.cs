@@ -1,8 +1,8 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
-using ClasseDAO = SolarSystem.Earth.DataAccess.Model.Classe;
-using ClasseDTO = SolarSystem.Earth.Common.Classe;
+﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using ClasseDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Classe;
+using ClasseDTO = EPSILab.SolarSystem.Earth.Common.Classe;
 
-namespace SolarSystem.Earth.Mappers
+namespace EPSILab.SolarSystem.Earth.Mappers
 {
     /// <summary>
     /// Promo mapper

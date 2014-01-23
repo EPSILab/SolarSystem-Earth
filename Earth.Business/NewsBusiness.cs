@@ -1,14 +1,14 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
-using SolarSystem.Earth.DataAccess.DAL;
-using SolarSystem.Earth.Mappers;
+﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using EPSILab.SolarSystem.Earth.DataAccess.DAL;
+using EPSILab.SolarSystem.Earth.Mappers;
 using System.Collections.Generic;
 using System.Linq;
-using MembreDAO = SolarSystem.Earth.DataAccess.Model.Membre;
-using MembreDTO = SolarSystem.Earth.Common.Membre;
-using NewsDAO = SolarSystem.Earth.DataAccess.Model.News;
-using NewsDTO = SolarSystem.Earth.Common.News;
+using MembreDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Membre;
+using MembreDTO = EPSILab.SolarSystem.Earth.Common.Membre;
+using NewsDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.News;
+using NewsDTO = EPSILab.SolarSystem.Earth.Common.News;
 
-namespace SolarSystem.Earth.Business
+namespace EPSILab.SolarSystem.Earth.Business
 {
     /// <summary>
     /// Business class for news

@@ -1,12 +1,12 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
-using SolarSystem.Earth.DataAccess.DAL;
-using SolarSystem.Earth.Mappers;
+﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using EPSILab.SolarSystem.Earth.DataAccess.DAL;
+using EPSILab.SolarSystem.Earth.Mappers;
 using System.Collections.Generic;
 using System.Linq;
-using ClasseDAO = SolarSystem.Earth.DataAccess.Model.Classe;
-using ClasseDTO = SolarSystem.Earth.Common.Classe;
+using ClasseDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Classe;
+using ClasseDTO = EPSILab.SolarSystem.Earth.Common.Classe;
 
-namespace SolarSystem.Earth.Business
+namespace EPSILab.SolarSystem.Earth.Business
 {
     /// <summary>
     /// Business class for promos

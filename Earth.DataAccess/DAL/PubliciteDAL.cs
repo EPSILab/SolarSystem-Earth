@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using SolarSystem.Earth.Common.Interfaces;
-using SolarSystem.Earth.DataAccess.Exceptions;
-using SolarSystem.Earth.DataAccess.Model;
-using SolarSystem.Earth.DataAccess.RulesManager.Managers;
-using SolarSystem.Earth.DataAccess.RulesManager.Managers.Interfaces;
+using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using EPSILab.SolarSystem.Earth.DataAccess.Exceptions;
+using EPSILab.SolarSystem.Earth.DataAccess.Model;
+using EPSILab.SolarSystem.Earth.DataAccess.RulesManager.Managers;
+using EPSILab.SolarSystem.Earth.DataAccess.RulesManager.Managers.Interfaces;
 
-namespace SolarSystem.Earth.DataAccess.DAL
+namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
 {
     /// <summary>
     /// Access to advertising table

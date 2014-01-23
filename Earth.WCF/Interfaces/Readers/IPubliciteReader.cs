@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel;
-using SolarSystem.Earth.Common;
+using EPSILab.SolarSystem.Earth.Common;
 
-namespace SolarSystem.Earth.WCF.Interfaces.Readers
+namespace EPSILab.SolarSystem.Earth.WCF.Interfaces.Readers
 {
     [ServiceContract]
     interface IPubliciteReader

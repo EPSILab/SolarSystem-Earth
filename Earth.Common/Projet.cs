@@ -1,4 +1,4 @@
-﻿namespace SolarSystem.Earth.Common
+﻿namespace EPSILab.SolarSystem.Earth.Common
 {
     public class Projet
     {

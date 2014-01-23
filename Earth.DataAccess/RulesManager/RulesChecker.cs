@@ -1,6 +1,6 @@
-﻿using SolarSystem.Earth.DataAccess.Exceptions;
+﻿using EPSILab.SolarSystem.Earth.DataAccess.Exceptions;
 
-namespace SolarSystem.Earth.DataAccess.RulesManager
+namespace EPSILab.SolarSystem.Earth.DataAccess.RulesManager
 {
     /// <summary>
     /// Class containing all checking rules

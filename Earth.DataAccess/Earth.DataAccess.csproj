@@ -8,8 +8,8 @@
     <ProjectGuid>{AAC21B50-6A74-47FB-9E7B-AAAD054A5A80}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SolarSystem.Earth.DataAccess</RootNamespace>
-    <AssemblyName>SolarSystem.Earth.DataAccess</AssemblyName>
+    <RootNamespace>EPSILab.SolarSystem.Earth.DataAccess</RootNamespace>
+    <AssemblyName>EPSILab.SolarSystem.Earth.DataAccess</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>

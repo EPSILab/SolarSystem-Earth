@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SolarSystem.Earth.DataAccess.Exceptions
+namespace EPSILab.SolarSystem.Earth.DataAccess.Exceptions
 {
     /// <summary>
     /// Thrown if the year passed is incorrect (under EPSI year's creation for exemple)

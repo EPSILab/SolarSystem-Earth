@@ -1,8 +1,8 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
-using VilleDAO = SolarSystem.Earth.DataAccess.Model.Ville;
-using VilleDTO = SolarSystem.Earth.Common.Ville;
+﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using VilleDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Ville;
+using VilleDTO = EPSILab.SolarSystem.Earth.Common.Ville;
 
-namespace SolarSystem.Earth.Mappers
+namespace EPSILab.SolarSystem.Earth.Mappers
 {
     /// <summary>
     /// City mapper

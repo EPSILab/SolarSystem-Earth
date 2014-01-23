@@ -1,8 +1,8 @@
-﻿using SolarSystem.Earth.DataAccess.Model;
-using SolarSystem.Earth.DataAccess.Resources;
-using SolarSystem.Earth.DataAccess.RulesManager.Managers.Interfaces;
+﻿using EPSILab.SolarSystem.Earth.DataAccess.Model;
+using EPSILab.SolarSystem.Earth.DataAccess.Resources;
+using EPSILab.SolarSystem.Earth.DataAccess.RulesManager.Managers.Interfaces;
 
-namespace SolarSystem.Earth.DataAccess.RulesManager.Managers
+namespace EPSILab.SolarSystem.Earth.DataAccess.RulesManager.Managers
 {
     /// <summary>
     /// Project rules checker

@@ -1,8 +1,8 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
-using ConferenceDAO = SolarSystem.Earth.DataAccess.Model.Conference;
-using ConferenceDTO = SolarSystem.Earth.Common.Conference;
+﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using ConferenceDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Conference;
+using ConferenceDTO = EPSILab.SolarSystem.Earth.Common.Conference;
 
-namespace SolarSystem.Earth.Mappers
+namespace EPSILab.SolarSystem.Earth.Mappers
 {
     /// <summary>
     /// Conference mapper

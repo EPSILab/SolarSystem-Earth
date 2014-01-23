@@ -1,7 +1,7 @@
 ﻿using System;
-using SolarSystem.Earth.DataAccess.Model;
+using EPSILab.SolarSystem.Earth.DataAccess.Model;
 
-namespace SolarSystem.Earth.DataAccess.DAL
+namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
 {
     /// <summary>
     /// Singleton class for database access

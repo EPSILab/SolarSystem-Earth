@@ -1,8 +1,8 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
-using MembreDAO = SolarSystem.Earth.DataAccess.Model.Membre;
-using MembreDTO = SolarSystem.Earth.Common.Membre;
+﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using MembreDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Membre;
+using MembreDTO = EPSILab.SolarSystem.Earth.Common.Membre;
 
-namespace SolarSystem.Earth.Mappers
+namespace EPSILab.SolarSystem.Earth.Mappers
 {
     /// <summary>
     /// Member mapper

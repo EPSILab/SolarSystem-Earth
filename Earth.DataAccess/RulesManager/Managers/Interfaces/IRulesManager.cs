@@ -1,4 +1,4 @@
-﻿namespace SolarSystem.Earth.DataAccess.RulesManager.Managers.Interfaces
+﻿namespace EPSILab.SolarSystem.Earth.DataAccess.RulesManager.Managers.Interfaces
 {
     /// <summary>
     /// Generic interface for rules checkers

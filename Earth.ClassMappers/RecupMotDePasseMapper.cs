@@ -1,8 +1,8 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
-using RecupMotDePasseDAO = SolarSystem.Earth.DataAccess.Model.RecupMotDePasse;
-using RecupMotDePasseDTO = SolarSystem.Earth.Common.RecupMotDePasse;
+﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using RecupMotDePasseDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.RecupMotDePasse;
+using RecupMotDePasseDTO = EPSILab.SolarSystem.Earth.Common.RecupMotDePasse;
 
-namespace SolarSystem.Earth.Mappers
+namespace EPSILab.SolarSystem.Earth.Mappers
 {
     /// <summary>
     /// Lost password request mapper

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SolarSystem.Earth.DataAccess.Exceptions
+namespace EPSILab.SolarSystem.Earth.DataAccess.Exceptions
 {
     /// <summary>
     /// Thrown when a null value is passed

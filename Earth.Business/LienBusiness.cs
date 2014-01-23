@@ -1,12 +1,12 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
-using SolarSystem.Earth.DataAccess.DAL;
-using SolarSystem.Earth.Mappers;
+﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using EPSILab.SolarSystem.Earth.DataAccess.DAL;
+using EPSILab.SolarSystem.Earth.Mappers;
 using System.Collections.Generic;
 using System.Linq;
-using LienDAO = SolarSystem.Earth.DataAccess.Model.Lien;
-using LienDTO = SolarSystem.Earth.Common.Lien;
+using LienDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Lien;
+using LienDTO = EPSILab.SolarSystem.Earth.Common.Lien;
 
-namespace SolarSystem.Earth.Business
+namespace EPSILab.SolarSystem.Earth.Business
 {
     /// <summary>
     /// Business class for links

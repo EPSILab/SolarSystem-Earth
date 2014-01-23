@@ -7,8 +7,8 @@
     <ProjectGuid>{B07ACE76-56FA-4771-A8D4-0332AB940B1B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SolarSystem.Earth.Mappers</RootNamespace>
-    <AssemblyName>SolarSystem.Earth.Mappers</AssemblyName>
+    <RootNamespace>EPSILab.SolarSystem.Earth.Mappers</RootNamespace>
+    <AssemblyName>EPSILab.SolarSystem.Earth.Mappers</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>

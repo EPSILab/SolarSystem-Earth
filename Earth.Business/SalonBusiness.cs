@@ -1,12 +1,12 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
-using SolarSystem.Earth.DataAccess.DAL;
-using SolarSystem.Earth.Mappers;
+﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using EPSILab.SolarSystem.Earth.DataAccess.DAL;
+using EPSILab.SolarSystem.Earth.Mappers;
 using System.Collections.Generic;
 using System.Linq;
-using SalonDAO = SolarSystem.Earth.DataAccess.Model.Salon;
-using SalonDTO = SolarSystem.Earth.Common.Salon;
+using SalonDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Salon;
+using SalonDTO = EPSILab.SolarSystem.Earth.Common.Salon;
 
-namespace SolarSystem.Earth.Business
+namespace EPSILab.SolarSystem.Earth.Business
 {
     /// <summary>
     /// Business class for shows

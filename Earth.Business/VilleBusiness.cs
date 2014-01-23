@@ -1,12 +1,12 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
-using SolarSystem.Earth.DataAccess.DAL;
-using SolarSystem.Earth.Mappers;
+﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using EPSILab.SolarSystem.Earth.DataAccess.DAL;
+using EPSILab.SolarSystem.Earth.Mappers;
 using System.Collections.Generic;
 using System.Linq;
-using VilleDAO = SolarSystem.Earth.DataAccess.Model.Ville;
-using VilleDTO = SolarSystem.Earth.Common.Ville;
+using VilleDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Ville;
+using VilleDTO = EPSILab.SolarSystem.Earth.Common.Ville;
 
-namespace SolarSystem.Earth.Business
+namespace EPSILab.SolarSystem.Earth.Business
 {
     /// <summary>
     /// Business class for cities

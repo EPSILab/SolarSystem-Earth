@@ -1,5 +1,5 @@
 ﻿using System;
-namespace SolarSystem.Earth.DataAccess.Exceptions
+namespace EPSILab.SolarSystem.Earth.DataAccess.Exceptions
 {
     /// <summary>
     /// Thrown if a value is incorrect

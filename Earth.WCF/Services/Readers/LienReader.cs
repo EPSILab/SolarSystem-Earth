@@ -1,10 +1,10 @@
-﻿using SolarSystem.Earth.Business;
-using SolarSystem.Earth.Common;
-using SolarSystem.Earth.Common.Interfaces;
-using SolarSystem.Earth.WCF.Interfaces.Readers;
+﻿using EPSILab.SolarSystem.Earth.Business;
+using EPSILab.SolarSystem.Earth.Common;
+using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using EPSILab.SolarSystem.Earth.WCF.Interfaces.Readers;
 using System.Collections.Generic;
 
-namespace SolarSystem.Earth.WCF
+namespace EPSILab.SolarSystem.Earth.WCF
 {
     public partial class ReadersService : ILienReader
     {

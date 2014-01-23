@@ -1,8 +1,8 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
-using ProjetDAO = SolarSystem.Earth.DataAccess.Model.Projet;
-using ProjetDTO = SolarSystem.Earth.Common.Projet;
+﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using ProjetDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Projet;
+using ProjetDTO = EPSILab.SolarSystem.Earth.Common.Projet;
 
-namespace SolarSystem.Earth.Mappers
+namespace EPSILab.SolarSystem.Earth.Mappers
 {
     /// <summary>
     /// Project mapper

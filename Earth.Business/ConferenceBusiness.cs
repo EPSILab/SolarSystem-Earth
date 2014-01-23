@@ -1,14 +1,14 @@
-﻿using SolarSystem.Earth.Common.Interfaces;
-using SolarSystem.Earth.DataAccess.DAL;
-using SolarSystem.Earth.Mappers;
+﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using EPSILab.SolarSystem.Earth.DataAccess.DAL;
+using EPSILab.SolarSystem.Earth.Mappers;
 using System.Collections.Generic;
 using System.Linq;
-using ConferenceDAO = SolarSystem.Earth.DataAccess.Model.Conference;
-using ConferenceDTO = SolarSystem.Earth.Common.Conference;
-using VilleDAO = SolarSystem.Earth.DataAccess.Model.Ville;
-using VilleDTO = SolarSystem.Earth.Common.Ville;
+using ConferenceDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Conference;
+using ConferenceDTO = EPSILab.SolarSystem.Earth.Common.Conference;
+using VilleDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Ville;
+using VilleDTO = EPSILab.SolarSystem.Earth.Common.Ville;
 
-namespace SolarSystem.Earth.Business
+namespace EPSILab.SolarSystem.Earth.Business
 {
     /// <summary>
     /// Business class for conference
