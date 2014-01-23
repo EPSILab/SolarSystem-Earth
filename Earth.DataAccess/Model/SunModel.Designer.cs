@@ -8,13 +8,12 @@
 //------------------------------------------------------------------------------
 
 using System;
-using System.ComponentModel;
-using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Linq;
-using System.Runtime.Serialization;
+using System.Data.EntityClient;
+using System.ComponentModel;
 using System.Xml.Serialization;
+using System.Runtime.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
@@ -254,7 +253,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         private ObjectSet<Ville> _Ville;
 
         #endregion
-
         #region AddTo Methods
     
         /// <summary>
@@ -346,11 +344,11 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
-
     }
+    
 
     #endregion
-
+    
     #region Entities
     
     /// <summary>
@@ -381,7 +379,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -484,7 +481,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         partial void OnEncore_PresenteChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -511,7 +507,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -554,7 +549,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -801,7 +795,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         partial void OnURLChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -844,7 +837,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -877,7 +869,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -1028,7 +1019,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         partial void OnOrdreChanged();
 
         #endregion
-
     
     }
     
@@ -1076,7 +1066,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -1611,7 +1600,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         partial void OnActifChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -1774,7 +1762,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -1817,7 +1804,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -2064,7 +2050,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         partial void OnURLChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -2107,7 +2092,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -2142,7 +2126,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -2293,7 +2276,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         partial void OnImageChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -2336,7 +2318,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -2369,7 +2350,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -2520,7 +2500,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         partial void OnPublieeChanged();
 
         #endregion
-
     
     }
     
@@ -2552,7 +2531,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -2655,7 +2633,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         partial void OnIdChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -2698,7 +2675,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -2725,7 +2701,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -2780,7 +2755,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         partial void OnLibelleChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -2807,7 +2781,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -2848,7 +2821,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -3071,7 +3043,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         partial void OnURLChanged();
 
         #endregion
-
     
     }
     
@@ -3101,7 +3072,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -3180,7 +3150,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         partial void OnEmailChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -3251,10 +3220,8 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Model
         }
 
         #endregion
-
     }
 
     #endregion
-
     
 }
