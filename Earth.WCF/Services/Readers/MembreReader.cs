@@ -23,7 +23,7 @@ namespace EPSILab.SolarSystem.Earth.WCF
         public IEnumerable<Member> GetMembersByCampus(Campus campus)
         {
             IMemberReader<Member, Campus> business = new MemberBusiness();
-            return business.GetBureauAndMembersActives(Campus);
+            return business.GetBureauAndMembersActives(campus);
         }
 
         public IEnumerable<Member> GetMembersBureau()
@@ -35,13 +35,13 @@ namespace EPSILab.SolarSystem.Earth.WCF
         public IEnumerable<Member> GetMembersBureauByCampus(Campus campus)
         {
             IMemberReader<Member, Campus> business = new MemberBusiness();
-            return business.GetBureau(Campus);
+            return business.GetBureau(campus);
         }
 
         public IEnumerable<Member> GetMembersAlumnis(Campus campus)
         {
             IMemberReader<Member, Campus> business = new MemberBusiness();
-            return business.GetAlumnis(Campus);
+            return business.GetAlumnis(campus);
         }
 
         public int GetMemberLastInsertedId()

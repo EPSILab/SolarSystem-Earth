@@ -29,13 +29,13 @@ namespace EPSILab.SolarSystem.Earth.WCF
         public IEnumerable<Conference> GetConferencesByCampus(Campus campus)
         {
             IReader2Filters<Conference, Campus, bool?> business = new ConferenceBusiness();
-            return business.Get(Campus, true);
+            return business.Get(campus, true);
         }
 
         public IEnumerable<Conference> GetConferencesByCampusLimited(Campus campus, int indexFirstElement, int numberOfResults)
         {
             IReader2Filters<Conference, Campus, bool?> business = new ConferenceBusiness();
-            return business.Get(Campus, true, indexFirstElement, numberOfResults);
+            return business.Get(campus, true, indexFirstElement, numberOfResults);
         }
 
         public int GetConferenceLastInsertedId()

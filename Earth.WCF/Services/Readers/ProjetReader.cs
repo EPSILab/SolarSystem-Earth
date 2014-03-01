@@ -29,13 +29,13 @@ namespace EPSILab.SolarSystem.Earth.WCF
         public IEnumerable<Project> GetProjectsByCampus(Campus campus)
         {
             IReader1Filter<Project, Campus> business = new ProjectBusiness();
-            return business.Get(Campus);
+            return business.Get(campus);
         }
 
         public IEnumerable<Project> GetProjectsByCampusLimited(Campus campus, int indexFirstElement, int numberOfResults)
         {
             IReader1Filter<Project, Campus> business = new ProjectBusiness();
-            return business.Get(Campus, indexFirstElement, numberOfResults);
+            return business.Get(campus, indexFirstElement, numberOfResults);
         }
 
         public int GetProjectLastInsertedId()

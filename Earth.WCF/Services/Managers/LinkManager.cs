@@ -23,6 +23,7 @@ namespace EPSILab.SolarSystem.Earth.WCF
         }
 
         #endregion
+        
 
         #region ILinkManager methods
 
