@@ -6,53 +6,53 @@ using EPSILab.SolarSystem.Earth.WCF.Interfaces.Readers;
 
 namespace EPSILab.SolarSystem.Earth.WCF
 {
-    public partial class ReadersService : IMembreReader
+    public partial class ReadersService : IMemberReader
     {
-        public Membre GetMembre(int code)
+        public Member GetMember(int code)
         {
-            IReader<Membre> business = new MembreBusiness();
+            IReader<Member> business = new MemberBusiness();
             return business.Get(code);
         }
 
-        public IEnumerable<Membre> GetMembres()
+        public IEnumerable<Member> GetMembers()
         {
-            IMembreReader<Membre, Ville> business = new MembreBusiness();
-            return business.GetBureauAndMembresActives();
+            IMemberReader<Member, Campus> business = new MemberBusiness();
+            return business.GetBureauAndMembersActives();
         }
 
-        public IEnumerable<Membre> GetMembresByVille(Ville ville)
+        public IEnumerable<Member> GetMembersByCampus(Campus campus)
         {
-            IMembreReader<Membre, Ville> business = new MembreBusiness();
-            return business.GetBureauAndMembresActives(ville);
+            IMemberReader<Member, Campus> business = new MemberBusiness();
+            return business.GetBureauAndMembersActives(Campus);
         }
 
-        public IEnumerable<Membre> GetMembresBureau()
+        public IEnumerable<Member> GetMembersBureau()
         {
-            IMembreReader<Membre, Ville> business = new MembreBusiness();
+            IMemberReader<Member, Campus> business = new MemberBusiness();
             return business.GetBureau();
         }
 
-        public IEnumerable<Membre> GetMembresBureauByVille(Ville ville)
+        public IEnumerable<Member> GetMembersBureauByCampus(Campus campus)
         {
-            IMembreReader<Membre, Ville> business = new MembreBusiness();
-            return business.GetBureau(ville);
+            IMemberReader<Member, Campus> business = new MemberBusiness();
+            return business.GetBureau(Campus);
         }
 
-        public IEnumerable<Membre> GetMembresAlumnis(Ville ville)
+        public IEnumerable<Member> GetMembersAlumnis(Campus campus)
         {
-            IMembreReader<Membre, Ville> business = new MembreBusiness();
-            return business.GetAlumnis(ville);
+            IMemberReader<Member, Campus> business = new MemberBusiness();
+            return business.GetAlumnis(Campus);
         }
 
-        public int GetMembreLastInsertedId()
+        public int GetMemberLastInsertedId()
         {
-            IReader<Membre> business = new MembreBusiness();
+            IReader<Member> business = new MemberBusiness();
             return business.GetLastInsertedId();
         }
 
-        public IEnumerable<Membre> SearchMembres(string keywords)
+        public IEnumerable<Member> SearchMembers(string keywords)
         {
-            ISearchable<Membre> business = new MembreBusiness();
+            ISearchable<Member> business = new MemberBusiness();
             return business.Search(keywords);
         }
     }

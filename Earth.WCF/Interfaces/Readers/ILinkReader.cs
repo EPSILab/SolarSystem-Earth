@@ -5,12 +5,12 @@ using EPSILab.SolarSystem.Earth.Common;
 namespace EPSILab.SolarSystem.Earth.WCF.Interfaces.Readers
 {
     [ServiceContract]
-    interface IPubliciteReader
+    interface ILinkReader
     {
         [OperationContract]
-        Publicite GetPublicite(int code);
+        Link GetLink(int code);
 
         [OperationContract]
-        IEnumerable<Publicite> GetPublicites();
+        IEnumerable<Link> GetLinks();
     }
 }

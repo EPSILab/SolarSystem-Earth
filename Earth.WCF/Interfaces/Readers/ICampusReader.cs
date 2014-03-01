@@ -5,12 +5,12 @@ using EPSILab.SolarSystem.Earth.Common;
 namespace EPSILab.SolarSystem.Earth.WCF.Interfaces.Readers
 {
     [ServiceContract]
-    interface IVilleReader
+    interface ICampusReader
     {
         [OperationContract]
-        Ville GetVille(int code);
+        Campus GetCampus(int code);
 
         [OperationContract]
-        IEnumerable<Ville> GetVilles();
+        IEnumerable<Campus> GetCampuss();
     }
 }

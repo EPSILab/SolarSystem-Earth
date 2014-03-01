@@ -5,12 +5,12 @@ using EPSILab.SolarSystem.Earth.Common;
 namespace EPSILab.SolarSystem.Earth.WCF.Interfaces.Readers
 {
     [ServiceContract]
-    interface ILienReader
+    interface ISlideReader
     {
         [OperationContract]
-        Lien GetLien(int code);
+        Slide GetSlide(int code);
 
         [OperationContract]
-        IEnumerable<Lien> GetLiens();
+        IEnumerable<Slide> GetSlides();
     }
 }

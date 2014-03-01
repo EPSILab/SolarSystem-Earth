@@ -6,17 +6,17 @@ using EPSILab.SolarSystem.Earth.WCF.Interfaces.Readers;
 
 namespace EPSILab.SolarSystem.Earth.WCF
 {
-    public partial class ReadersService : IVilleReader
+    public partial class ReadersService : ICampusReader
     {
-        public Ville GetVille(int code)
+        public Campus GetCampus(int code)
         {
-            IReader<Ville> business = new VilleBusiness();
+            IReader<Campus> business = new CampusBusiness();
             return business.Get(code);
         }
 
-        public IEnumerable<Ville> GetVilles()
+        public IEnumerable<Campus> GetCampuss()
         {
-            IReader<Ville> business = new VilleBusiness();
+            IReader<Campus> business = new CampusBusiness();
             return business.Get();
         }
     }

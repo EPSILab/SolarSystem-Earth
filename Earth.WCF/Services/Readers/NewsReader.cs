@@ -17,13 +17,13 @@ namespace EPSILab.SolarSystem.Earth.WCF
 
         public IEnumerable<News> GetListNews()
         {
-            IReader2Filters<News, Membre, bool?> business = new NewsBusiness();
+            IReader2Filters<News, Member, bool?> business = new NewsBusiness();
             return business.Get(true);
         }
 
         public IEnumerable<News> GetListNewsLimited(int indexFirstElement, int numberOfResults)
         {
-            IReader2Filters<News, Membre, bool?> business = new NewsBusiness();
+            IReader2Filters<News, Member, bool?> business = new NewsBusiness();
             return business.Get(true, indexFirstElement, numberOfResults);
         }
 

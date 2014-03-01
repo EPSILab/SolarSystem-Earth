@@ -5,21 +5,21 @@ using EPSILab.SolarSystem.Earth.Common;
 namespace EPSILab.SolarSystem.Earth.WCF.Interfaces.Readers
 {
     [ServiceContract]
-    interface ISalonReader
+    interface IShowReader
     {
         [OperationContract]
-        Salon GetSalon(int code);
+        Show GetShow(int code);
 
         [OperationContract]
-        IEnumerable<Salon> GetSalons();
+        IEnumerable<Show> GetShows();
 
         [OperationContract]
-        IEnumerable<Salon> GetSalonsLimited(int indexFirstElement, int numberOfResults);
+        IEnumerable<Show> GetShowsLimited(int indexFirstElement, int numberOfResults);
 
         [OperationContract]
-        int GetSalonLastInsertedId();
+        int GetShowLastInsertedId();
 
         [OperationContract]
-        IEnumerable<Salon> SearchSalons(string keywords);
+        IEnumerable<Show> SearchShows(string keywords);
     }
 }

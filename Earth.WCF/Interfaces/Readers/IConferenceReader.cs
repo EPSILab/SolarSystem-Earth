@@ -17,10 +17,10 @@ namespace EPSILab.SolarSystem.Earth.WCF.Interfaces.Readers
         IEnumerable<Conference> GetConferencesLimited(int indexFirstResult, int numberOfResults);
 
         [OperationContract]
-        IEnumerable<Conference> GetConferencesByVille(Ville ville);
+        IEnumerable<Conference> GetConferencesByCampus(Campus campus);
 
         [OperationContract]
-        IEnumerable<Conference> GetConferencesByVilleLimited(Ville ville, int indexFirstResult, int numberOfResults);
+        IEnumerable<Conference> GetConferencesByCampusLimited(Campus campus, int indexFirstResult, int numberOfResults);
 
         [OperationContract]
         int GetConferenceLastInsertedId();

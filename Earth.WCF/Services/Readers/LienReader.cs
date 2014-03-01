@@ -6,17 +6,17 @@ using System.Collections.Generic;
 
 namespace EPSILab.SolarSystem.Earth.WCF
 {
-    public partial class ReadersService : ILienReader
+    public partial class ReadersService : ILinkReader
     {
-        public Lien GetLien(int code)
+        public Link GetLink(int code)
         {
-            IReader<Lien> business = new LienBusiness();
+            IReader<Link> business = new LinkBusiness();
             return business.Get(code);
         }
 
-        public IEnumerable<Lien> GetLiens()
+        public IEnumerable<Link> GetLinks()
         {
-            IReader<Lien> business = new LienBusiness();
+            IReader<Link> business = new LinkBusiness();
             return business.Get();
         }
     }

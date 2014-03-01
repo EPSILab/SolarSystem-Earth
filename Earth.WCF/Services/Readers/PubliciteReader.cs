@@ -6,17 +6,17 @@ using System.Collections.Generic;
 
 namespace EPSILab.SolarSystem.Earth.WCF
 {
-    public partial class ReadersService : IPubliciteReader
+    public partial class ReadersService : ISlideReader
     {
-        public Publicite GetPublicite(int code)
+        public Slide GetSlide(int code)
         {
-            IReader<Publicite> business = new PubliciteBusiness();
+            IReader<Slide> business = new SlideBusiness();
             return business.Get(code);
         }
 
-        public IEnumerable<Publicite> GetPublicites()
+        public IEnumerable<Slide> GetSlides()
         {
-            IReader<Publicite> business = new PubliciteBusiness();
+            IReader<Slide> business = new SlideBusiness();
             return business.Get();
         }
     }

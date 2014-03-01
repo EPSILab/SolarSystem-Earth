@@ -6,41 +6,41 @@ using EPSILab.SolarSystem.Earth.WCF.Interfaces.Readers;
 
 namespace EPSILab.SolarSystem.Earth.WCF
 {
-    public partial class ReadersService : IProjetReader
+    public partial class ReadersService : IProjectReader
     {
-        public Projet GetProjet(int code)
+        public Project GetProject(int code)
         {
-            IReader<Projet> business = new ProjetBusiness();
+            IReader<Project> business = new ProjectBusiness();
             return business.Get(code);
         }
 
-        public IEnumerable<Projet> GetProjets()
+        public IEnumerable<Project> GetProjects()
         {
-            IReader<Projet> business = new ProjetBusiness();
+            IReader<Project> business = new ProjectBusiness();
             return business.Get();
         }
 
-        public IEnumerable<Projet> GetProjetsLimited(int indexFirstElement, int numberOfResults)
+        public IEnumerable<Project> GetProjectsLimited(int indexFirstElement, int numberOfResults)
         {
-            IReaderLimit<Projet> business = new ProjetBusiness();
+            IReaderLimit<Project> business = new ProjectBusiness();
             return business.Get(indexFirstElement, numberOfResults);
         }
 
-        public IEnumerable<Projet> GetProjetsByVille(Ville ville)
+        public IEnumerable<Project> GetProjectsByCampus(Campus campus)
         {
-            IReader1Filter<Projet, Ville> business = new ProjetBusiness();
-            return business.Get(ville);
+            IReader1Filter<Project, Campus> business = new ProjectBusiness();
+            return business.Get(Campus);
         }
 
-        public IEnumerable<Projet> GetProjetsByVilleLimited(Ville ville, int indexFirstElement, int numberOfResults)
+        public IEnumerable<Project> GetProjectsByCampusLimited(Campus campus, int indexFirstElement, int numberOfResults)
         {
-            IReader1Filter<Projet, Ville> business = new ProjetBusiness();
-            return business.Get(ville, indexFirstElement, numberOfResults);
+            IReader1Filter<Project, Campus> business = new ProjectBusiness();
+            return business.Get(Campus, indexFirstElement, numberOfResults);
         }
 
-        public int GetProjetLastInsertedId()
+        public int GetProjectLastInsertedId()
         {
-            IReaderLimit<Projet> business = new ProjetBusiness();
+            IReaderLimit<Project> business = new ProjectBusiness();
             return business.GetLastInsertedId();
         }
     }
