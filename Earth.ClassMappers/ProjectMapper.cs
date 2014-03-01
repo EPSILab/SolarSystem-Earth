@@ -1,22 +1,22 @@
 ﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
 using CampusDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Campus;
 using CampusDTO = EPSILab.SolarSystem.Earth.Common.Campus;
-using ConferenceDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Conference;
-using ConferenceDTO = EPSILab.SolarSystem.Earth.Common.Conference;
+using ProjectDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Project;
+using ProjectDTO = EPSILab.SolarSystem.Earth.Common.Project;
 
 namespace EPSILab.SolarSystem.Earth.Mappers
 {
     /// <summary>
-    /// Conference mapper
+    /// Project mapper
     /// </summary>
-    public class ConferenceMapper : IMapper<ConferenceDAO, ConferenceDTO>
+    public class ProjectMapper : IMapper<ProjectDAO, ProjectDTO>
     {
         #region Attributes
 
         /// <summary>
         /// Mapper for campuses
         /// </summary>
-        private readonly IMapper<CampusDAO, CampusDTO> _mapperCampus = new CampusMapper();
+        private readonly IMapper<CampusDAO, CampusDTO> _mapperCampus = new CampusMapper(); 
 
         #endregion
 
@@ -27,19 +27,15 @@ namespace EPSILab.SolarSystem.Earth.Mappers
         /// </summary>
         /// <param name="element">Element to transform to DTO</param>
         /// <returns>DTO equivalent</returns>
-        public ConferenceDTO ToDTO(ConferenceDAO element)
+        public ProjectDTO ToDTO(ProjectDAO element)
         {
-            return new ConferenceDTO
+            return new ProjectDTO
             {
                 Id = element.Id,
                 Name = element.Name,
-                Start_DateTime = element.Start_DateTime,
-                End_DateTime = element.End_DateTime,
+                Progression = element.Progression,
                 Description = element.Description,
-                Place = element.Place,
                 ImageUrl = element.ImageUrl,
-                IsPublished = element.IsPublished,
-                Url = element.Url,
                 Campus = _mapperCampus.ToDTO(element.Campus)
             };
         }
@@ -49,20 +45,16 @@ namespace EPSILab.SolarSystem.Earth.Mappers
         /// </summary>
         /// <param name="element">Element to transform to DAO</param>
         /// <returns>DAO equivalent</returns>
-        public ConferenceDAO ToDAO(ConferenceDTO element)
+        public ProjectDAO ToDAO(ProjectDTO element)
         {
-            return new ConferenceDAO
+            return new ProjectDAO
             {
+                Progression = element.Progression,
                 Id = element.Id,
                 IdCampus = element.Campus.Id,
-                Start_DateTime = element.Start_DateTime,
-                End_DateTime = element.End_DateTime,
                 Description = element.Description,
-                Place = element.Place,
                 Name = element.Name,
-                ImageUrl = element.ImageUrl,
-                IsPublished = element.IsPublished,
-                Url = element.Url
+                ImageUrl = element.ImageUrl
             };
         }
 

@@ -1,46 +1,32 @@
 ﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
-using CampusDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Campus;
-using CampusDTO = EPSILab.SolarSystem.Earth.Common.Campus;
-using ConferenceDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Conference;
-using ConferenceDTO = EPSILab.SolarSystem.Earth.Common.Conference;
+using ShowDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Show;
+using ShowDTO = EPSILab.SolarSystem.Earth.Common.Show;
 
 namespace EPSILab.SolarSystem.Earth.Mappers
 {
     /// <summary>
-    /// Conference mapper
+    /// Show mapper
     /// </summary>
-    public class ConferenceMapper : IMapper<ConferenceDAO, ConferenceDTO>
+    public class ShowMapper : IMapper<ShowDAO, ShowDTO>
     {
-        #region Attributes
-
-        /// <summary>
-        /// Mapper for campuses
-        /// </summary>
-        private readonly IMapper<CampusDAO, CampusDTO> _mapperCampus = new CampusMapper();
-
-        #endregion
-
-        #region Methods
-
         /// <summary>
         /// DAO to DTO
         /// </summary>
         /// <param name="element">Element to transform to DTO</param>
         /// <returns>DTO equivalent</returns>
-        public ConferenceDTO ToDTO(ConferenceDAO element)
+        public ShowDTO ToDTO(ShowDAO element)
         {
-            return new ConferenceDTO
+            return new ShowDTO
             {
                 Id = element.Id,
                 Name = element.Name,
+                Place = element.Place,
                 Start_DateTime = element.Start_DateTime,
                 End_DateTime = element.End_DateTime,
                 Description = element.Description,
-                Place = element.Place,
                 ImageUrl = element.ImageUrl,
                 IsPublished = element.IsPublished,
-                Url = element.Url,
-                Campus = _mapperCampus.ToDTO(element.Campus)
+                Url = element.Url
             };
         }
 
@@ -49,23 +35,20 @@ namespace EPSILab.SolarSystem.Earth.Mappers
         /// </summary>
         /// <param name="element">Element to transform to DAO</param>
         /// <returns>DAO equivalent</returns>
-        public ConferenceDAO ToDAO(ConferenceDTO element)
+        public ShowDAO ToDAO(ShowDTO element)
         {
-            return new ConferenceDAO
+            return new ShowDAO
             {
                 Id = element.Id,
-                IdCampus = element.Campus.Id,
                 Start_DateTime = element.Start_DateTime,
                 End_DateTime = element.End_DateTime,
                 Description = element.Description,
+                ImageUrl = element.ImageUrl,
                 Place = element.Place,
                 Name = element.Name,
-                ImageUrl = element.ImageUrl,
                 IsPublished = element.IsPublished,
                 Url = element.Url
             };
         }
-
-        #endregion
     }
 }
