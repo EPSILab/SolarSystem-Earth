@@ -7,18 +7,18 @@ namespace EPSILab.SolarSystem.Earth.Common.Interfaces
     /// </summary>
     /// <typeparam name="T">Common/SunModel Member entity</typeparam>
     /// <typeparam name="TClass">Common/SunModel City entity</typeparam>
-    public interface IMembreReader<out T, in TClass> : IReader<T>
+    public interface IMemberReader<out T, in TClass> : IReader<T>
     {
-        IEnumerable<T> GetBureauAndMembresActives();
-        IEnumerable<T> GetBureauAndMembresActives(TClass ville);
+        IEnumerable<T> GetBureauAndMembersActives();
+        IEnumerable<T> GetBureauAndMembersActives(TClass campus);
 
         IEnumerable<T> GetBureau();
-        IEnumerable<T> GetBureau(TClass ville);
+        IEnumerable<T> GetBureau(TClass campus);
 
-        IEnumerable<T> GetMembresActives(TClass ville);
+        IEnumerable<T> GetMembersActives(TClass campus);
 
         IEnumerable<T> GetAlumnis();
-        IEnumerable<T> GetAlumnis(TClass ville);
+        IEnumerable<T> GetAlumnis(TClass campus);
 
         IEnumerable<T> GetWaitingForValidation();
     }

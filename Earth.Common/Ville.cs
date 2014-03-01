@@ -1,9 +1,9 @@
 ﻿namespace EPSILab.SolarSystem.Earth.Common
 {
-    public class Ville
+    public class Campus
     {
-        public int Code_Ville { get; set; }
-        public string Libelle { get; set; }
-        public string Email { get; set; }
+        public int Id { get; set; }
+        public string Place { get; set; }
+        public string ContactEmail { get; set; }
     }
 }
