@@ -97,7 +97,7 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to La ville ne possède aucun libellé..
+        ///   Looks up a localized string similar to La Campus ne possède aucun libellé..
         /// </summary>
         internal static string City_NoName {
             get {
@@ -153,9 +153,9 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Le permalien de la conférence n&apos;est pas précisé..
         /// </summary>
-        internal static string Conference_NoURL {
+        internal static string Conference_NoUrl {
             get {
-                return ResourceManager.GetString("Conference_NoURL", resourceCulture);
+                return ResourceManager.GetString("Conference_NoUrl", resourceCulture);
             }
         }
         
@@ -205,7 +205,7 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ce membre n&apos;est pas associé à une ville..
+        ///   Looks up a localized string similar to Ce membre n&apos;est pas associé à une Campus..
         /// </summary>
         internal static string Member_NoCitySelected {
             get {
@@ -297,9 +297,9 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Le permalien du membre n&apos;est pas précisé..
         /// </summary>
-        internal static string Member_NoURL {
+        internal static string Member_NoUrl {
             get {
-                return ResourceManager.GetString("Member_NoURL", resourceCulture);
+                return ResourceManager.GetString("Member_NoUrl", resourceCulture);
             }
         }
         
@@ -369,9 +369,9 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Le permalien de la news n&apos;est pas précisé..
         /// </summary>
-        internal static string News_NoURL {
+        internal static string News_NoUrl {
             get {
-                return ResourceManager.GetString("News_NoURL", resourceCulture);
+                return ResourceManager.GetString("News_NoUrl", resourceCulture);
             }
         }
         
@@ -430,7 +430,7 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to La classe ne possède pas de libellé..
+        ///   Looks up a localized string similar to La Promotion ne possède pas de libellé..
         /// </summary>
         internal static string Promo_NoName {
             get {
@@ -477,9 +477,9 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Le permalien du salon n&apos;est pas précisé..
         /// </summary>
-        internal static string Show_NoURL {
+        internal static string Show_NoUrl {
             get {
-                return ResourceManager.GetString("Show_NoURL", resourceCulture);
+                return ResourceManager.GetString("Show_NoUrl", resourceCulture);
             }
         }
     }
