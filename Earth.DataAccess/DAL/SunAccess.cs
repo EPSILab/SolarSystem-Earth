@@ -1,12 +1,12 @@
-﻿using System;
-using EPSILab.SolarSystem.Earth.DataAccess.Model;
+﻿using EPSILab.SolarSystem.Earth.DataAccess.Model;
+using System;
 
 namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
 {
     /// <summary>
     /// Singleton class for database access
     /// </summary>
-    public class SunAccess
+    static class SunAccess
     {
         #region Constructors
 
@@ -15,14 +15,7 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// </summary>
         static SunAccess()
         {
-            Lazy = new Lazy<SunModelEntities>(() => new SunModelEntities());
-        }
-
-        /// <summary>
-        /// Private constructor to prevent creating instances
-        /// </summary>
-        private SunAccess()
-        {
+            Lazy = new Lazy<SunEntities>(() => new SunEntities());
         }
 
         #endregion
@@ -32,7 +25,7 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <summary>
         /// Lazy instance
         /// </summary>
-        private static readonly Lazy<SunModelEntities> Lazy;
+        private static readonly Lazy<SunEntities> Lazy;
 
         #endregion
 
@@ -41,7 +34,7 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <summary>
         /// Returns the database access instance
         /// </summary>
-        public static SunModelEntities Instance
+        public static SunEntities Instance
         {
             get { return Lazy.Value; }
         }
