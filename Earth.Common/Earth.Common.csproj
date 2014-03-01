@@ -64,9 +64,9 @@
     <Compile Include="Slide.cs" />
     <Compile Include="LostPasswordRequest.cs" />
     <Compile Include="Role.cs" />
-    <Compile Include="Salon.cs" />
+    <Compile Include="Show.cs" />
     <Compile Include="Utils\MD5HasherUtil.cs" />
-    <Compile Include="Ville.cs" />
+    <Compile Include="Campus.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
