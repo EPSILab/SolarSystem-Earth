@@ -1,32 +1,32 @@
-﻿using System.Collections.Generic;
+﻿using EPSILab.SolarSystem.Earth.Common;
+using System.Collections.Generic;
 using System.ServiceModel;
-using EPSILab.SolarSystem.Earth.Common;
 
 namespace EPSILab.SolarSystem.Earth.WCF.Interfaces.Managers
 {
     [ServiceContract]
-    interface IMembreManager
+    interface IMemberManager
     {
         [OperationContract]
-        Membre GetMembre(int code);
+        Member GetMember(int code);
 
         [OperationContract]
-        IEnumerable<Membre> GetMembresActives();
+        IEnumerable<Member> GetMembersActives();
 
         [OperationContract]
-        IEnumerable<Membre> GetMembresBureau(Ville ville);
+        IEnumerable<Member> GetMembersBureau(Campus campus);
 
         [OperationContract]
-        IEnumerable<Membre> GetMembresNotInBureau(Ville ville);
+        IEnumerable<Member> GetMembersNotInBureau(Campus campus);
 
         [OperationContract]
-        IEnumerable<Membre> GetMembresAlumnis(Ville ville);
+        IEnumerable<Member> GetMembersAlumnis(Campus campus);
 
         [OperationContract]
-        IEnumerable<Membre> GetMembresWaitingForValidation();
+        IEnumerable<Member> GetMembersWaitingForValidation();
 
         [OperationContract]
-        Membre Login(string username, string password);
+        Member Login(string username, string password);
 
         [OperationContract]
         void ChangePassword(string username, string oldPassword, string newPassword);
@@ -35,10 +35,10 @@ namespace EPSILab.SolarSystem.Earth.WCF.Interfaces.Managers
         bool ExistsUsername(string username);
 
         [OperationContract]
-        bool ExistsMembre(string username, string password);
+        bool ExistsMember(string username, string password);
 
         [OperationContract]
-        int Register(Membre membre);
+        int Register(Member membre);
 
         [OperationContract]
         void RequestLostPassword(string username, string email);
@@ -47,12 +47,12 @@ namespace EPSILab.SolarSystem.Earth.WCF.Interfaces.Managers
         void SetNewPasswordAfterLost(string username, string newPassword, string key);
 
         [OperationContract]
-        int AddMembre(Membre element, string username, string password);
+        int AddMember(Member element, string username, string password);
 
         [OperationContract]
-        void EditMembre(Membre element, string username, string password);
+        void EditMember(Member element, string username, string password);
 
         [OperationContract]
-        void DeleteMembre(int code, string username, string password);
+        void DeleteMember(int code, string username, string password);
     }
 }

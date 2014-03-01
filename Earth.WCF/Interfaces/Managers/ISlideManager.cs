@@ -5,21 +5,21 @@ using System.ServiceModel;
 namespace EPSILab.SolarSystem.Earth.WCF.Interfaces.Managers
 {
     [ServiceContract]
-    interface ILienManager
+    interface ISlideManager
     {
         [OperationContract]
-        Lien GetLien(int code);
+        Slide GetSlide(int code);
 
         [OperationContract]
-        IEnumerable<Lien> GetLiens();
+        IEnumerable<Slide> GetSlides();
 
         [OperationContract]
-        int AddLien(Lien element, string username, string password);
+        int AddSlide(Slide element, string username, string password);
 
         [OperationContract]
-        void EditLien(Lien element, string username, string password);
+        void EditSlide(Slide element, string username, string password);
 
         [OperationContract]
-        void DeleteLien(int code, string username, string password);
+        void DeleteSlide(int code, string username, string password);
     }
 }

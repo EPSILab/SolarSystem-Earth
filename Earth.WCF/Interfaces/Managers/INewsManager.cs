@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using EPSILab.SolarSystem.Earth.Common;
-using EPSILab.SolarSystem.Earth.WCF.Interfaces.Readers;
+﻿using EPSILab.SolarSystem.Earth.Common;
+using System.Collections.Generic;
 using System.ServiceModel;
 
 namespace EPSILab.SolarSystem.Earth.WCF.Interfaces.Managers
