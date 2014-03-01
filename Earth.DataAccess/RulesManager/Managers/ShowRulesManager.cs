@@ -7,19 +7,19 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.RulesManager.Managers
     /// <summary>
     /// Shows rules checker
     /// </summary>
-    class SalonRulesManager : IRulesManager<Salon>
+    class ShowRulesManager : IRulesManager<Show>
     {
         /// /// <summary>
         /// Check if a show is valid
         /// </summary>
         /// <param name="element">Show to check</param>
-        public void Check(Salon element)
+        public void Check(Show element)
         {
             RulesChecker.CheckIsNotNull(element.Description, ErrorMessages.Show_NoDescription);
-            RulesChecker.CheckIsNotNull(element.Image, ErrorMessages.Show_NoPicture);
-            RulesChecker.CheckIsNotNull(element.Lieu, ErrorMessages.Show_NoPlace);
-            RulesChecker.CheckIsNotNull(element.Nom, ErrorMessages.Show_NoName);
-            RulesChecker.CheckIsNotNull(element.URL, ErrorMessages.Show_NoURL);
+            RulesChecker.CheckIsNotNull(element.ImageUrl, ErrorMessages.Show_NoPicture);
+            RulesChecker.CheckIsNotNull(element.Place, ErrorMessages.Show_NoPlace);
+            RulesChecker.CheckIsNotNull(element.Name, ErrorMessages.Show_NoName);
+            RulesChecker.CheckIsNotNull(element.Url, ErrorMessages.Show_NoUrl);
         }
     }
 }

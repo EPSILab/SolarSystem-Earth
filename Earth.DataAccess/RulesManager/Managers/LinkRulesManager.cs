@@ -7,17 +7,17 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.RulesManager.Managers
     /// <summary>
     /// Link rules checker
     /// </summary>
-    class LienRulesManager : IRulesManager<Lien>
+    class LinkRulesManager : IRulesManager<Link>
     {
         /// <summary>
         /// Check if a link is valid
         /// </summary>
         /// <param name="element">Link to check</param>
-        public void Check(Lien element)
+        public void Check(Link element)
         {
             RulesChecker.CheckIsNotNull(element.Description, ErrorMessages.Link_NoDescription);
-            RulesChecker.CheckIsNotNull(element.Image, ErrorMessages.Link_NoPicture);
-            RulesChecker.CheckIsNotNull(element.Nom, ErrorMessages.Link_NoName);
+            RulesChecker.CheckIsNotNull(element.ImageUrl, ErrorMessages.Link_NoPicture);
+            RulesChecker.CheckIsNotNull(element.Label, ErrorMessages.Link_NoName);
         }
     }
 }

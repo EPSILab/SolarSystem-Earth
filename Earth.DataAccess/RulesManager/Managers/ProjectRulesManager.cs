@@ -7,20 +7,20 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.RulesManager.Managers
     /// <summary>
     /// Project rules checker
     /// </summary>
-    class ProjetRulesManager : IRulesManager<Projet>
+    class ProjectRulesManager : IRulesManager<Project>
     {
         /// /// <summary>
         /// Check if a project is valid
         /// </summary>
         /// <param name="element">News to check</param>
-        public void Check(Projet element)
+        public void Check(Project element)
         {
             RulesChecker.CheckIsNotNull(element.Description, ErrorMessages.Project_NoDescription);
-            RulesChecker.CheckIsNotNull(element.Image, ErrorMessages.Project_NoPicture);
-            RulesChecker.CheckIsNotNull(element.Nom, ErrorMessages.Project_NoName);
-            RulesChecker.CheckIsPercentage(element.Avancement, ErrorMessages.Project_IncorrectProgression);
+            RulesChecker.CheckIsNotNull(element.ImageUrl, ErrorMessages.Project_NoPicture);
+            RulesChecker.CheckIsNotNull(element.Name, ErrorMessages.Project_NoName);
+            RulesChecker.CheckIsPercentage(element.Progression, ErrorMessages.Project_IncorrectProgression);
 
-            RulesChecker.CheckIsNotNull(element.Code_Ville, ErrorMessages.Project_NoCitySelected);
+            RulesChecker.CheckIsNotNull(element.Id, ErrorMessages.Project_NoCitySelected);
         }
     }
 }

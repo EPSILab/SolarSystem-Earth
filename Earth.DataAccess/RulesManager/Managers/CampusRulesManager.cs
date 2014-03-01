@@ -7,15 +7,15 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.RulesManager.Managers
     /// <summary>
     /// City rules checker
     /// </summary>
-    class VilleRulesManager : IRulesManager<Ville>
+    class CampusRulesManager : IRulesManager<Campus>
     {
         /// /// <summary>
         /// Check if a city is valid
         /// </summary>
         /// <param name="element">City to check</param>
-        public void Check(Ville element)
+        public void Check(Campus element)
         {
-            RulesChecker.CheckIsNotNull(element.Libelle, ErrorMessages.City_NoName);
+            RulesChecker.CheckIsNotNull(element.Place, ErrorMessages.City_NoName);
         }
     }
 }
