@@ -216,23 +216,26 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         {
             Membre result = (from membre in SunAccess.Instance.Membre
                              where membre.Pseudo == username && membre.Mot_de_passe == password
-                             select membre).First();
+                             select membre).FirstOrDefault();
 
-            DateTime limit = DateTime.Now.AddDays(-2);
-
-            // Clean all old lost password requests
-            IEnumerable<RecupMotDePasse> requests = (from r in SunAccess.Instance.RecupMotDePasse
-                                                     where r.Date < limit
-                                                     select r);
-
-            foreach (var request in requests)
+            if (result != null)
             {
-                SunAccess.Instance.RecupMotDePasse.DeleteObject(request);
+                DateTime limit = DateTime.Now.AddDays(-2);
+
+                // Clean all old lost password requests
+                IEnumerable<RecupMotDePasse> requests = (from r in SunAccess.Instance.RecupMotDePasse
+                                                         where r.Date < limit
+                                                         select r);
+
+                foreach (var request in requests)
+                    SunAccess.Instance.RecupMotDePasse.DeleteObject(request);
+
+                SunAccess.Instance.SaveChanges();
+
+                return result;
             }
 
-            SunAccess.Instance.SaveChanges();
-
-            return result;
+            throw new UserNotExistsException();
         }
 
         /// <summary>
