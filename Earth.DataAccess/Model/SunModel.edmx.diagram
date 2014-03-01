@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6ecd2fd257ff4bf2bcaa622e4fe8c817" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="SunModel.Conference" Width="1.5" PointX="3" PointY="11.875" />
+        <EntityTypeShape EntityType="SunModel.Link" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SunModel.LostPasswordRequest" Width="1.5" PointX="5.25" PointY="5.125" />
+        <EntityTypeShape EntityType="SunModel.Member" Width="1.5" PointX="3" PointY="5" />
+        <EntityTypeShape EntityType="SunModel.News" Width="1.5" PointX="5.25" PointY="7.875" />
+        <EntityTypeShape EntityType="SunModel.Project" Width="1.5" PointX="3" PointY="15.75" />
+        <EntityTypeShape EntityType="SunModel.Promotion" Width="1.5" PointX="0.75" PointY="4.125" />
+        <EntityTypeShape EntityType="SunModel.Show" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SunModel.Slide" Width="1.5" PointX="4.75" PointY="0.75" />
+        <AssociationConnector Association="SunModel.FK_LostPasswordRequest_Member" />
+        <AssociationConnector Association="SunModel.FK_Member_Promotion" />
+        <AssociationConnector Association="SunModel.FK_News_Member" />
+        <EntityTypeShape EntityType="SunModel.Campus" Width="1.5" PointX="0.75" PointY="10.5" />
+        <AssociationConnector Association="SunModel.FK_Conference_Campus" />
+        <AssociationConnector Association="SunModel.FK_Member_Campus" />
+        <AssociationConnector Association="SunModel.FK_Project_Campus" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
