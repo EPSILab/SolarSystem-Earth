@@ -7,50 +7,50 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using MembreDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Membre;
-using MembreDTO = EPSILab.SolarSystem.Earth.Common.Membre;
-using RecupMotDePasseDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.RecupMotDePasse;
-using RecupMotDePasseDTO = EPSILab.SolarSystem.Earth.Common.RecupMotDePasse;
-using VilleDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Ville;
-using VilleDTO = EPSILab.SolarSystem.Earth.Common.Ville;
+using MemberDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Member;
+using MemberDTO = EPSILab.SolarSystem.Earth.Common.Member;
+using LostPasswordRequestDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.LostPasswordRequest;
+using LostPasswordRequestDTO = EPSILab.SolarSystem.Earth.Common.LostPasswordRequest;
+using CampusDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Campus;
+using CampusDTO = EPSILab.SolarSystem.Earth.Common.Campus;
 
 namespace EPSILab.SolarSystem.Earth.Business
 {
     /// <summary>
     /// Business class for members
     /// </summary>
-    public class MembreBusiness : IMembreReader<MembreDTO, VilleDTO>, IManager<MembreDTO>, ISearchable<MembreDTO>, ILogin<MembreDTO, RecupMotDePasseDTO>
+    public class MemberBusiness : IMemberReader<MemberDTO, CampusDTO>, IManager<MemberDTO>, ISearchable<MemberDTO>, ILogin<MemberDTO, LostPasswordRequestDTO>
     {
         #region Attributes
 
         /// <summary>
         /// DAL access
         /// </summary>
-        private readonly MembreDAL _dal = new MembreDAL();
+        private readonly MemberDAL _dal = new MemberDAL();
 
         /// <summary>
         /// Member mapper
         /// </summary>
-        private readonly IMapper<MembreDAO, MembreDTO> _mapperMember = new MembreMapper();
+        private readonly IMapper<MemberDAO, MemberDTO> _mapperMember = new MemberMapper();
 
         /// <summary>
         /// City mapper
         /// </summary>
-        private readonly IMapper<VilleDAO, VilleDTO> _mapperCity = new VilleMapper();
+        private readonly IMapper<CampusDAO, CampusDTO> _mapperCity = new CampusMapper();
 
         #endregion
 
-        #region IMembreReader methods
+        #region IMemberReader methods
 
         /// <summary>
         /// Get a member
         /// </summary>
         /// <param name="code">Member id</param>
         /// <returns>Matching member</returns>
-        public MembreDTO Get(int code)
+        public MemberDTO Get(int code)
         {
-            MembreDAO dao = _dal.Get(code);
-            MembreDTO dto = _mapperMember.ToDTO(dao);
+            MemberDAO dao = _dal.Get(code);
+            MemberDTO dto = _mapperMember.ToDTO(dao);
 
             return dto;
         }
@@ -59,10 +59,10 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// Get all members
         /// </summary>
         /// <returns>List of members</returns>
-        public IEnumerable<MembreDTO> Get()
+        public IEnumerable<MemberDTO> Get()
         {
-            IEnumerable<MembreDAO> dao = _dal.Get();
-            IEnumerable<MembreDTO> dto = dao.Select(m => _mapperMember.ToDTO(m));
+            IEnumerable<MemberDAO> dao = _dal.Get();
+            IEnumerable<MemberDTO> dto = dao.Select(m => _mapperMember.ToDTO(m));
 
             return dto;
         }
@@ -71,10 +71,10 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// Get all bureau members
         /// </summary>
         /// <returns>List of members</returns>
-        public IEnumerable<MembreDTO> GetBureau()
+        public IEnumerable<MemberDTO> GetBureau()
         {
-            IEnumerable<MembreDAO> dao = _dal.GetBureau();
-            IEnumerable<MembreDTO> dto = dao.Select(m => _mapperMember.ToDTO(m));
+            IEnumerable<MemberDAO> dao = _dal.GetBureau();
+            IEnumerable<MemberDTO> dto = dao.Select(m => _mapperMember.ToDTO(m));
 
             return dto;
         }
@@ -82,14 +82,14 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <summary>
         /// Get bureau members of a city
         /// </summary>
-        /// <param name="ville">Concerned city</param>
+        /// <param name="Campus">Concerned city</param>
         /// <returns>List of members</returns>
-        public IEnumerable<MembreDTO> GetBureau(VilleDTO ville)
+        public IEnumerable<MemberDTO> GetBureau(CampusDTO Campus)
         {
-            VilleDAO villeDao = _mapperCity.ToDAO(ville);
+            CampusDAO CampusDao = _mapperCity.ToDAO(Campus);
 
-            IEnumerable<MembreDAO> dao = _dal.GetBureau(villeDao);
-            IEnumerable<MembreDTO> dto = dao.Select(m => _mapperMember.ToDTO(m));
+            IEnumerable<MemberDAO> dao = _dal.GetBureau(CampusDao);
+            IEnumerable<MemberDTO> dto = dao.Select(m => _mapperMember.ToDTO(m));
 
             return dto;
         }
@@ -97,14 +97,14 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <summary>
         /// Get actives members of a city
         /// </summary>
-        /// <param name="ville">Concerned city</param>
+        /// <param name="Campus">Concerned city</param>
         /// <returns>List of members</returns>
-        public IEnumerable<MembreDTO> GetMembresActives(VilleDTO ville)
+        public IEnumerable<MemberDTO> GetMembersActives(CampusDTO Campus)
         {
-            VilleDAO villeDao = _mapperCity.ToDAO(ville);
+            CampusDAO CampusDao = _mapperCity.ToDAO(Campus);
 
-            IEnumerable<MembreDAO> dao = _dal.GetMembresActives(villeDao);
-            IEnumerable<MembreDTO> dto = dao.Select(m => _mapperMember.ToDTO(m));
+            IEnumerable<MemberDAO> dao = _dal.GetMembersActives(CampusDao);
+            IEnumerable<MemberDTO> dto = dao.Select(m => _mapperMember.ToDTO(m));
 
             return dto;
         }
@@ -113,10 +113,10 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// Get bureau and actives members
         /// </summary>
         /// <returns>List of members</returns>
-        public IEnumerable<MembreDTO> GetBureauAndMembresActives()
+        public IEnumerable<MemberDTO> GetBureauAndMembersActives()
         {
-            IEnumerable<MembreDAO> dao = _dal.GetBureauAndMembresActives();
-            IEnumerable<MembreDTO> dto = dao.Select(m => _mapperMember.ToDTO(m));
+            IEnumerable<MemberDAO> dao = _dal.GetBureauAndMembersActives();
+            IEnumerable<MemberDTO> dto = dao.Select(m => _mapperMember.ToDTO(m));
 
             return dto;
         }
@@ -124,14 +124,14 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <summary>
         /// Get bureau and actives members of a city
         /// </summary>
-        /// <param name="ville">Concerned city</param>
+        /// <param name="Campus">Concerned city</param>
         /// <returns>List of members</returns>
-        public IEnumerable<MembreDTO> GetBureauAndMembresActives(VilleDTO ville)
+        public IEnumerable<MemberDTO> GetBureauAndMembersActives(CampusDTO Campus)
         {
-            VilleDAO villeDao = _mapperCity.ToDAO(ville);
+            CampusDAO CampusDao = _mapperCity.ToDAO(Campus);
 
-            IEnumerable<MembreDAO> dao = _dal.GetBureauAndMembresActives(villeDao);
-            IEnumerable<MembreDTO> dto = dao.Select(m => _mapperMember.ToDTO(m));
+            IEnumerable<MemberDAO> dao = _dal.GetBureauAndMembersActives(CampusDao);
+            IEnumerable<MemberDTO> dto = dao.Select(m => _mapperMember.ToDTO(m));
 
             return dto;
         }
@@ -140,10 +140,10 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// Get all alumnis
         /// </summary>
         /// <returns>List of members</returns>
-        public IEnumerable<MembreDTO> GetAlumnis()
+        public IEnumerable<MemberDTO> GetAlumnis()
         {
-            IEnumerable<MembreDAO> dao = _dal.GetAlumnis();
-            IEnumerable<MembreDTO> dto = dao.Select(m => _mapperMember.ToDTO(m));
+            IEnumerable<MemberDAO> dao = _dal.GetAlumnis();
+            IEnumerable<MemberDTO> dto = dao.Select(m => _mapperMember.ToDTO(m));
 
             return dto;
         }
@@ -151,14 +151,14 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <summary>
         /// Get alumnis of a city
         /// </summary>
-        /// <param name="ville">Concerned city</param>
+        /// <param name="Campus">Concerned city</param>
         /// <returns>List of members</returns>
-        public IEnumerable<MembreDTO> GetAlumnis(VilleDTO ville)
+        public IEnumerable<MemberDTO> GetAlumnis(CampusDTO Campus)
         {
-            VilleDAO villeDao = _mapperCity.ToDAO(ville);
+            CampusDAO CampusDao = _mapperCity.ToDAO(Campus);
 
-            IEnumerable<MembreDAO> dao = _dal.GetAlumnis(villeDao);
-            IEnumerable<MembreDTO> dto = dao.Select(m => _mapperMember.ToDTO(m));
+            IEnumerable<MemberDAO> dao = _dal.GetAlumnis(CampusDao);
+            IEnumerable<MemberDTO> dto = dao.Select(m => _mapperMember.ToDTO(m));
 
             return dto;
         }
@@ -167,10 +167,10 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// Get members waiting for an admin validation
         /// </summary>
         /// <returns>List of members</returns>
-        public IEnumerable<MembreDTO> GetWaitingForValidation()
+        public IEnumerable<MemberDTO> GetWaitingForValidation()
         {
-            IEnumerable<MembreDAO> dao = _dal.GetWaitingForValidation();
-            IEnumerable<MembreDTO> dto = dao.Select(m => _mapperMember.ToDTO(m));
+            IEnumerable<MemberDAO> dao = _dal.GetWaitingForValidation();
+            IEnumerable<MemberDTO> dto = dao.Select(m => _mapperMember.ToDTO(m));
 
             return dto;
         }
@@ -194,10 +194,10 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <param name="username">Username</param>
         /// <param name="password">Crypted password</param>
         /// <returns></returns>
-        public MembreDTO Login(string username, string password)
+        public MemberDTO Login(string username, string password)
         {
-            MembreDAO dao = _dal.Login(username, password);
-            MembreDTO dto = _mapperMember.ToDTO(dao);
+            MemberDAO dao = _dal.Login(username, password);
+            MemberDTO dto = _mapperMember.ToDTO(dao);
             return dto;
         }
 
@@ -238,9 +238,9 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// </summary>
         /// <param name="membre">Member to create</param>
         /// <returns>New member id</returns>
-        public int Register(MembreDTO membre)
+        public int Register(MemberDTO membre)
         {
-            MembreDAO dao = _mapperMember.ToDAO(membre);
+            MemberDAO dao = _mapperMember.ToDAO(membre);
             return _dal.Register(dao);
         }
 
@@ -250,22 +250,22 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <param name="username">Username for control</param>
         /// <param name="email">Email for control</param>
         /// <returns>Password recover informations</returns>
-        public RecupMotDePasseDTO RequestLostPassword(string username, string email)
+        public LostPasswordRequestDTO RequestLostPassword(string username, string email)
         {
-            IMapper<RecupMotDePasseDAO, RecupMotDePasseDTO> mapper = new RecupMotDePasseMapper();
-            RecupMotDePasseDAO dao = _dal.RequestLostPassword(username, email);
-            RecupMotDePasseDTO dto = mapper.ToDTO(dao);
+            IMapper<LostPasswordRequestDAO, LostPasswordRequestDTO> mapper = new LostPasswordRequestMapper();
+            LostPasswordRequestDAO dao = _dal.RequestLostPassword(username, email);
+            LostPasswordRequestDTO dto = mapper.ToDTO(dao);
 
             using (MailMessage mail = new MailMessage())
             {
-                MailAddress mailReciever = new MailAddress(dto.Membre.Email_EPSI);
+                MailAddress mailReciever = new MailAddress(dto.Member.EPSIEmail);
                 mail.To.Add(mailReciever);
 
                 mail.Subject = PasswordBackupRessources.Subject;
                 mail.IsBodyHtml = true;
                 mail.Priority = MailPriority.High;
 
-                string url = string.Format(PasswordBackupRessources.Url, dao.Membre.Pseudo, dao.Cle);
+                string url = string.Format(PasswordBackupRessources.Url, dao.Member.Username, dao.GeneratedKey);
                 string message = string.Format(PasswordBackupRessources.Message, Environment.NewLine, url);
                 mail.Body = message;
 
@@ -305,10 +305,10 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// </summary>
         /// <param name="keywords">Search keywords separated by a space</param>
         /// <returns></returns>
-        public IEnumerable<MembreDTO> Search(string keywords)
+        public IEnumerable<MemberDTO> Search(string keywords)
         {
-            IEnumerable<MembreDAO> dao = _dal.Search(keywords);
-            IEnumerable<MembreDTO> dto = dao.Select(m => _mapperMember.ToDTO(m));
+            IEnumerable<MemberDAO> dao = _dal.Search(keywords);
+            IEnumerable<MemberDTO> dto = dao.Select(m => _mapperMember.ToDTO(m));
 
             return dto;
         }
@@ -324,9 +324,9 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <param name="username">Username of an existing member</param>
         /// <param name="password">Password of an existing member</param>
         /// <returns>New conference id</returns>
-        public int Add(MembreDTO element, string username, string password)
+        public int Add(MemberDTO element, string username, string password)
         {
-            MembreDAO dao = _mapperMember.ToDAO(element);
+            MemberDAO dao = _mapperMember.ToDAO(element);
             return _dal.Add(dao, username, password);
         }
 
@@ -336,9 +336,9 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <param name="element">Member conference</param>
         /// <param name="username">Username of an existing member</param>
         /// <param name="password">Password of an existing member</param>
-        public void Edit(MembreDTO element, string username, string password)
+        public void Edit(MemberDTO element, string username, string password)
         {
-            MembreDAO dao = _mapperMember.ToDAO(element);
+            MemberDAO dao = _mapperMember.ToDAO(element);
             _dal.Edit(dao, username, password);
         }
 

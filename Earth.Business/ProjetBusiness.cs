@@ -3,34 +3,34 @@ using EPSILab.SolarSystem.Earth.DataAccess.DAL;
 using EPSILab.SolarSystem.Earth.Mappers;
 using System.Collections.Generic;
 using System.Linq;
-using ProjetDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Projet;
-using ProjetDTO = EPSILab.SolarSystem.Earth.Common.Projet;
-using VilleDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Ville;
-using VilleDTO = EPSILab.SolarSystem.Earth.Common.Ville;
+using ProjectDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Project;
+using ProjectDTO = EPSILab.SolarSystem.Earth.Common.Project;
+using CampusDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Campus;
+using CampusDTO = EPSILab.SolarSystem.Earth.Common.Campus;
 
 namespace EPSILab.SolarSystem.Earth.Business
 {
     /// <summary>
     /// Business class for projects
     /// </summary>
-    public class ProjetBusiness : IReader1Filter<ProjetDTO, VilleDTO>, IManager<ProjetDTO>
+    public class ProjectBusiness : IReader1Filter<ProjectDTO, CampusDTO>, IManager<ProjectDTO>
     {
         #region Attributes
 
         /// <summary>
         /// DAL access
         /// </summary>
-        private readonly ProjetDAL _dal = new ProjetDAL();
+        private readonly ProjectDAL _dal = new ProjectDAL();
 
         /// <summary>
         /// Project mapper
         /// </summary>
-        private readonly IMapper<ProjetDAO, ProjetDTO> _mapperProject = new ProjetMapper();
+        private readonly IMapper<ProjectDAO, ProjectDTO> _mapperProject = new ProjectMapper();
 
         /// <summary>
         /// City mapper
         /// </summary>
-        private readonly IMapper<VilleDAO, VilleDTO> _mapperCity = new VilleMapper();
+        private readonly IMapper<CampusDAO, CampusDTO> _mapperCity = new CampusMapper();
 
         #endregion
 
@@ -41,10 +41,10 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// </summary>
         /// <param name="code">Project id</param>
         /// <returns>Matching project</returns>
-        public ProjetDTO Get(int code)
+        public ProjectDTO Get(int code)
         {
-            ProjetDAO dao = _dal.Get(code);
-            ProjetDTO dto = _mapperProject.ToDTO(dao);
+            ProjectDAO dao = _dal.Get(code);
+            ProjectDTO dto = _mapperProject.ToDTO(dao);
 
             return dto;
         }
@@ -53,10 +53,10 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// Get all projects
         /// </summary>
         /// <returns>List of projects</returns>
-        public IEnumerable<ProjetDTO> Get()
+        public IEnumerable<ProjectDTO> Get()
         {
-            IEnumerable<ProjetDAO> dao = _dal.Get();
-            IEnumerable<ProjetDTO> dto = dao.Select(p => _mapperProject.ToDTO(p));
+            IEnumerable<ProjectDAO> dao = _dal.Get();
+            IEnumerable<ProjectDTO> dto = dao.Select(p => _mapperProject.ToDTO(p));
 
             return dto;
         }
@@ -67,10 +67,10 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <param name="indexFirstElement">Index of the first result</param>
         /// <param name="numberOfResults">Number of results</param>
         /// <returns>List of projects</returns>
-        public IEnumerable<ProjetDTO> Get(int indexFirstElement, int numberOfResults)
+        public IEnumerable<ProjectDTO> Get(int indexFirstElement, int numberOfResults)
         {
-            IEnumerable<ProjetDAO> dao = _dal.Get(indexFirstElement, numberOfResults);
-            IEnumerable<ProjetDTO> dto = dao.Select(p => _mapperProject.ToDTO(p));
+            IEnumerable<ProjectDAO> dao = _dal.Get(indexFirstElement, numberOfResults);
+            IEnumerable<ProjectDTO> dto = dao.Select(p => _mapperProject.ToDTO(p));
 
             return dto;
         }
@@ -78,14 +78,14 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <summary>
         /// Get projects of a city
         /// </summary>
-        /// <param name="ville">Concerned city</param>
+        /// <param name="Campus">Concerned city</param>
         /// <returns>List of projects</returns>
-        public IEnumerable<ProjetDTO> Get(VilleDTO ville)
+        public IEnumerable<ProjectDTO> Get(CampusDTO Campus)
         {
-            VilleDAO villeDao = _mapperCity.ToDAO(ville);
+            CampusDAO CampusDao = _mapperCity.ToDAO(Campus);
 
-            IEnumerable<ProjetDAO> dao = _dal.Get(villeDao);
-            IEnumerable<ProjetDTO> dto = dao.Select(p => _mapperProject.ToDTO(p));
+            IEnumerable<ProjectDAO> dao = _dal.Get(CampusDao);
+            IEnumerable<ProjectDTO> dto = dao.Select(p => _mapperProject.ToDTO(p));
 
             return dto;
         }
@@ -93,16 +93,16 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <summary>
         /// Get a limited list of projects of a city
         /// </summary>
-        /// <param name="ville">City</param>
+        /// <param name="Campus">City</param>
         /// <param name="indexFirstElement">Index of the first result</param>
         /// <param name="numberOfResults">Number of results</param>
         /// <returns>List of projects</returns>
-        public IEnumerable<ProjetDTO> Get(VilleDTO ville, int indexFirstElement, int numberOfResults)
+        public IEnumerable<ProjectDTO> Get(CampusDTO Campus, int indexFirstElement, int numberOfResults)
         {
-            VilleDAO villeDao = _mapperCity.ToDAO(ville);
+            CampusDAO CampusDao = _mapperCity.ToDAO(Campus);
 
-            IEnumerable<ProjetDAO> dao = _dal.Get(villeDao, indexFirstElement, numberOfResults);
-            IEnumerable<ProjetDTO> dto = dao.Select(p => _mapperProject.ToDTO(p));
+            IEnumerable<ProjectDAO> dao = _dal.Get(CampusDao, indexFirstElement, numberOfResults);
+            IEnumerable<ProjectDTO> dto = dao.Select(p => _mapperProject.ToDTO(p));
 
             return dto;
         }
@@ -127,9 +127,9 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <param name="username">Username of an existing member</param>
         /// <param name="password">Password of an existing member</param>
         /// <returns>New project id</returns>
-        public int Add(ProjetDTO element, string username, string password)
+        public int Add(ProjectDTO element, string username, string password)
         {
-            ProjetDAO dao = _mapperProject.ToDAO(element);
+            ProjectDAO dao = _mapperProject.ToDAO(element);
             return _dal.Add(dao, username, password);
         }
 
@@ -139,9 +139,9 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <param name="element">Edited project</param>
         /// <param name="username">Username of an existing member</param>
         /// <param name="password">Password of an existing member</param>
-        public void Edit(ProjetDTO element, string username, string password)
+        public void Edit(ProjectDTO element, string username, string password)
         {
-            ProjetDAO dao = _mapperProject.ToDAO(element);
+            ProjectDAO dao = _mapperProject.ToDAO(element);
             _dal.Edit(dao, username, password);
         }
 

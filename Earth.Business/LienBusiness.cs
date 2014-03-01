@@ -3,27 +3,27 @@ using EPSILab.SolarSystem.Earth.DataAccess.DAL;
 using EPSILab.SolarSystem.Earth.Mappers;
 using System.Collections.Generic;
 using System.Linq;
-using LienDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Lien;
-using LienDTO = EPSILab.SolarSystem.Earth.Common.Lien;
+using LinkDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Link;
+using LinkDTO = EPSILab.SolarSystem.Earth.Common.Link;
 
 namespace EPSILab.SolarSystem.Earth.Business
 {
     /// <summary>
     /// Business class for links
     /// </summary>
-    public class LienBusiness : IReader<LienDTO>, IManager<LienDTO>
+    public class LinkBusiness : IReader<LinkDTO>, IManager<LinkDTO>
     {
         #region Attributes
 
         /// <summary>
         /// DAL access
         /// </summary>
-        private readonly LienDAL _dal = new LienDAL();
+        private readonly LinkDAL _dal = new LinkDAL();
 
         /// <summary>
         /// Mapper
         /// </summary>
-        private readonly IMapper<LienDAO, LienDTO> _mapper = new LienMapper();
+        private readonly IMapper<LinkDAO, LinkDTO> _mapper = new LinkMapper();
 
         #endregion
 
@@ -34,10 +34,10 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// </summary>
         /// <param name="code">Link code</param>
         /// <returns>Matching link</returns>
-        public LienDTO Get(int code)
+        public LinkDTO Get(int code)
         {
-            LienDAO dao = _dal.Get(code);
-            LienDTO dto = _mapper.ToDTO(dao);
+            LinkDAO dao = _dal.Get(code);
+            LinkDTO dto = _mapper.ToDTO(dao);
             return dto;
         }
 
@@ -45,10 +45,10 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// Returns all links
         /// </summary>
         /// <returns>List of links</returns>
-        public IEnumerable<LienDTO> Get()
+        public IEnumerable<LinkDTO> Get()
         {
-            IEnumerable<LienDAO> dao = _dal.Get();
-            IEnumerable<LienDTO> dto = dao.Select(l => _mapper.ToDTO(l));
+            IEnumerable<LinkDAO> dao = _dal.Get();
+            IEnumerable<LinkDTO> dto = dao.Select(l => _mapper.ToDTO(l));
 
             return dto;
         }
@@ -73,9 +73,9 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <param name="username">Username of an existing member</param>
         /// <param name="password">Password of an existing member</param>
         /// <returns>New link id</returns>
-        public int Add(LienDTO element, string username, string password)
+        public int Add(LinkDTO element, string username, string password)
         {
-            LienDAO dao = _mapper.ToDAO(element);
+            LinkDAO dao = _mapper.ToDAO(element);
             return _dal.Add(dao, username, password);
         }
 
@@ -85,9 +85,9 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <param name="element">Edited link</param>
         /// <param name="username">Username of an existing member</param>
         /// <param name="password">Password of an existing member</param>
-        public void Edit(LienDTO element, string username, string password)
+        public void Edit(LinkDTO element, string username, string password)
         {
-            LienDAO dao = _mapper.ToDAO(element);
+            LinkDAO dao = _mapper.ToDAO(element);
             _dal.Edit(dao, username, password);
         }
 

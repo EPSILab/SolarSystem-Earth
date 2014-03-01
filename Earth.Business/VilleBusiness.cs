@@ -3,27 +3,27 @@ using EPSILab.SolarSystem.Earth.DataAccess.DAL;
 using EPSILab.SolarSystem.Earth.Mappers;
 using System.Collections.Generic;
 using System.Linq;
-using VilleDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Ville;
-using VilleDTO = EPSILab.SolarSystem.Earth.Common.Ville;
+using CampusDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Campus;
+using CampusDTO = EPSILab.SolarSystem.Earth.Common.Campus;
 
 namespace EPSILab.SolarSystem.Earth.Business
 {
     /// <summary>
     /// Business class for cities
     /// </summary>
-    public class VilleBusiness : IReader<VilleDTO>, IManager<VilleDTO>
+    public class CampusBusiness : IReader<CampusDTO>, IManager<CampusDTO>
     {
         #region Attributes
 
         /// <summary>
         /// DAL access
         /// </summary>
-        private readonly VilleDAL _dal = new VilleDAL();
+        private readonly CampusDAL _dal = new CampusDAL();
 
         /// <summary>
         /// Mapper
         /// </summary>
-        private readonly IMapper<VilleDAO, VilleDTO> _mapper = new VilleMapper();
+        private readonly IMapper<CampusDAO, CampusDTO> _mapper = new CampusMapper();
 
         #endregion
 
@@ -34,10 +34,10 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// </summary>
         /// <param name="code">City code</param>
         /// <returns>Matching city</returns>
-        public VilleDTO Get(int code)
+        public CampusDTO Get(int code)
         {
-            VilleDAO dao = _dal.Get(code);
-            VilleDTO dto = _mapper.ToDTO(dao);
+            CampusDAO dao = _dal.Get(code);
+            CampusDTO dto = _mapper.ToDTO(dao);
             return dto;
         }
 
@@ -45,10 +45,10 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// Get all cities
         /// </summary>
         /// <returns>List of cities</returns>
-        public IEnumerable<VilleDTO> Get()
+        public IEnumerable<CampusDTO> Get()
         {
-            IEnumerable<VilleDAO> dao = _dal.Get();
-            IEnumerable<VilleDTO> dto = dao.Select(v => _mapper.ToDTO(v));
+            IEnumerable<CampusDAO> dao = _dal.Get();
+            IEnumerable<CampusDTO> dto = dao.Select(v => _mapper.ToDTO(v));
             return dto;
         }
 
@@ -72,9 +72,9 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <param name="username">Username of an existing member</param>
         /// <param name="password">Password of an existing member</param>
         /// <returns>New city id</returns>
-        public int Add(VilleDTO element, string username, string password)
+        public int Add(CampusDTO element, string username, string password)
         {
-            VilleDAO dao = _mapper.ToDAO(element);
+            CampusDAO dao = _mapper.ToDAO(element);
             return _dal.Add(dao, username, password);
         }
 
@@ -84,9 +84,9 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <param name="element">Edited city</param>
         /// <param name="username">Username of an existing member</param>
         /// <param name="password">Password of an existing member</param>
-        public void Edit(VilleDTO element, string username, string password)
+        public void Edit(CampusDTO element, string username, string password)
         {
-            VilleDAO dao = _mapper.ToDAO(element);
+            CampusDAO dao = _mapper.ToDAO(element);
             _dal.Edit(dao, username, password);
         }
 

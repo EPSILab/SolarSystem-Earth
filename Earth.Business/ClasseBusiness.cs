@@ -3,27 +3,27 @@ using EPSILab.SolarSystem.Earth.DataAccess.DAL;
 using EPSILab.SolarSystem.Earth.Mappers;
 using System.Collections.Generic;
 using System.Linq;
-using ClasseDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Classe;
-using ClasseDTO = EPSILab.SolarSystem.Earth.Common.Classe;
+using PromotionDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Promotion;
+using PromotionDTO = EPSILab.SolarSystem.Earth.Common.Promotion;
 
 namespace EPSILab.SolarSystem.Earth.Business
 {
     /// <summary>
     /// Business class for promos
     /// </summary>
-    public class ClasseBusiness : IReader<ClasseDTO>, IAvailable<ClasseDTO>, IManager<ClasseDTO>
+    public class PromotionBusiness : IReader<PromotionDTO>, IAvailable<PromotionDTO>, IManager<PromotionDTO>
     {
         #region Attributes
 
         /// <summary>
         /// DAL access
         /// </summary>
-        private readonly ClasseDAL _dal = new ClasseDAL();
+        private readonly PromotionDAL _dal = new PromotionDAL();
 
         /// <summary>
         /// Mapper
         /// </summary>
-        private readonly IMapper<ClasseDAO, ClasseDTO> _mapper = new ClasseMapper();
+        private readonly IMapper<PromotionDAO, PromotionDTO> _mapper = new PromotionMapper();
 
         #endregion
 
@@ -34,10 +34,10 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// </summary>
         /// <param name="code">Promo id</param>
         /// <returns>Matching promo</returns>
-        public ClasseDTO Get(int code)
+        public PromotionDTO Get(int code)
         {
-            ClasseDAO dao = _dal.Get(code);
-            ClasseDTO dto = _mapper.ToDTO(dao);
+            PromotionDAO dao = _dal.Get(code);
+            PromotionDTO dto = _mapper.ToDTO(dao);
 
             return dto;
         }
@@ -46,10 +46,10 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// Returns all promos
         /// </summary>
         /// <returns>List of promos</returns>
-        public IEnumerable<ClasseDTO> Get()
+        public IEnumerable<PromotionDTO> Get()
         {
-            IEnumerable<ClasseDAO> dao = _dal.Get();
-            IEnumerable<ClasseDTO> dto = dao.Select(c => _mapper.ToDTO(c));
+            IEnumerable<PromotionDAO> dao = _dal.Get();
+            IEnumerable<PromotionDTO> dto = dao.Select(c => _mapper.ToDTO(c));
 
             return dto;
         }
@@ -71,10 +71,10 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// Get all availables promos for new members
         /// </summary>
         /// <returns>List of promos</returns>
-        public IEnumerable<ClasseDTO> GetAvailables()
+        public IEnumerable<PromotionDTO> GetAvailables()
         {
-            IEnumerable<ClasseDAO> dao = _dal.GetAvailables();
-            IEnumerable<ClasseDTO> dto = dao.Select(c => _mapper.ToDTO(c));
+            IEnumerable<PromotionDAO> dao = _dal.GetAvailables();
+            IEnumerable<PromotionDTO> dto = dao.Select(c => _mapper.ToDTO(c));
 
             return dto;
         }
@@ -90,9 +90,9 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <param name="username">Username of an existing member</param>
         /// <param name="password">Password of an existing member</param>
         /// <returns>New promo id</returns>
-        public int Add(ClasseDTO element, string username, string password)
+        public int Add(PromotionDTO element, string username, string password)
         {
-            ClasseDAO dao = _mapper.ToDAO(element);
+            PromotionDAO dao = _mapper.ToDAO(element);
             return _dal.Add(dao, username, password);
         }
 
@@ -102,9 +102,9 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <param name="element">Edited promo</param>
         /// <param name="username">Username of an existing member</param>
         /// <param name="password">Password of an existing member</param>
-        public void Edit(ClasseDTO element, string username, string password)
+        public void Edit(PromotionDTO element, string username, string password)
         {
-            ClasseDAO dao = _mapper.ToDAO(element);
+            PromotionDAO dao = _mapper.ToDAO(element);
             _dal.Edit(dao, username, password);
         }
 
