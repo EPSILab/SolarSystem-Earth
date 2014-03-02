@@ -135,7 +135,7 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
 
             if (campus != null)
                 results = (from m in results
-                           where m.Id == campus.Id
+                           where m.Campus.Id == campus.Id
                            select m);
 
             if (role != null)
