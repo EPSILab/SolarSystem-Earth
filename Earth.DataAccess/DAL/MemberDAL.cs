@@ -27,11 +27,11 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns>Matching member</returns>
         public Member Get(int code)
         {
-            Member membre = (from m in SunAccess.Instance.Member
+            Member member = (from m in SunAccess.Instance.Member
                              where m.Id == code
                              select m).First();
 
-            return membre;
+            return member;
         }
 
         /// <summary>
@@ -162,9 +162,9 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns>Id the last inserted member</returns>
         public int GetLastInsertedId()
         {
-            return (from membre in SunAccess.Instance.Member
-                    orderby membre.Id descending
-                    select membre).First().Id;
+            return (from member in SunAccess.Instance.Member
+                    orderby member.Id descending
+                    select member).First().Id;
         }
 
         #endregion
@@ -179,9 +179,9 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns></returns>
         public Member Login(string username, string password)
         {
-            Member result = (from membre in SunAccess.Instance.Member
-                             where membre.Username == username && membre.Password == password
-                             select membre).FirstOrDefault();
+            Member result = (from member in SunAccess.Instance.Member
+                             where member.Username == username && member.Password == password
+                             select member).FirstOrDefault();
 
             if (result != null)
             {
@@ -211,9 +211,9 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <param name="newPassword">New password crypted</param>
         public void ChangePassword(string username, string oldPassword, string newPassword)
         {
-            Member result = (from membre in SunAccess.Instance.Member
-                             where membre.Username == username && membre.Password == oldPassword
-                             select membre).First();
+            Member result = (from member in SunAccess.Instance.Member
+                             where member.Username == username && member.Password == oldPassword
+                             select member).First();
 
             result.Password = newPassword;
 
@@ -228,9 +228,9 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns>A boolean which determines if the user exists</returns>
         public bool Exists(string username, string password)
         {
-            bool exists = (from membre in SunAccess.Instance.Member
-                           where membre.Username == username && membre.Password == password
-                           select membre).Any();
+            bool exists = (from member in SunAccess.Instance.Member
+                           where member.Username == username && member.Password == password
+                           select member).Any();
 
             return exists;
         }
@@ -242,9 +242,9 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns>A boolean which determines if the user exists</returns>
         public bool Exists(string username)
         {
-            bool exists = (from membre in SunAccess.Instance.Member
-                           where membre.Username == username
-                           select membre).Any();
+            bool exists = (from member in SunAccess.Instance.Member
+                           where member.Username == username
+                           select member).Any();
 
             return exists;
         }
@@ -252,20 +252,22 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <summary>
         /// Register a new user, but inactive
         /// </summary>
-        /// <param name="membre">Member to create</param>
+        /// <param name="member">Member to create</param>
+        /// <param name="newPassword">The member password</param>
         /// <returns>New member id</returns>
-        public int Register(Member membre)
+        public int Register(Member member, string newPassword)
         {
-            membre.Role = (int)Role.Inactive;
-            membre.Url = string.Format("{0}-{1}", membre.FirstName, membre.LastName);
+            member.Role = (int)Role.Inactive;
+            member.Password = newPassword;
+            member.Url = string.Format("{0}-{1}", member.FirstName, member.LastName);
 
             IRulesManager<Member> rulesManager = new MemberRulesManager();
-            rulesManager.Check(membre);
+            rulesManager.Check(member);
 
-            SunAccess.Instance.Member.Add(membre);
+            SunAccess.Instance.Member.Add(member);
             SunAccess.Instance.SaveChanges();
 
-            return membre.Id;
+            return member.Id;
         }
 
         /// <summary>
@@ -276,9 +278,9 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns>Password recover informations</returns>
         public LostPasswordRequest RequestLostPassword(string username, string email)
         {
-            Member result = (from membre in SunAccess.Instance.Member
-                             where membre.Username == username
-                             select membre).FirstOrDefault();
+            Member result = (from member in SunAccess.Instance.Member
+                             where member.Username == username
+                             select member).FirstOrDefault();
 
             if (result != null)
             {
@@ -315,13 +317,13 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
 
             if (recupMotDePasse != null)
             {
-                Member membre = (from m in SunAccess.Instance.Member
+                Member member = (from m in SunAccess.Instance.Member
                                  where m.Id == recupMotDePasse.Id
                                  select m).First();
 
                 if (recupMotDePasse.RequestDateTime.AddDays(2) <= DateTime.Now)
                 {
-                    membre.Password = newPassword;
+                    member.Password = newPassword;
                     SunAccess.Instance.LostPasswordRequest.Remove(recupMotDePasse);
                     SunAccess.Instance.SaveChanges();
                 }
@@ -348,22 +350,22 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns></returns>
         public IEnumerable<Member> Search(string keywords)
         {
-            IEnumerable<Member> membres = new List<Member>();
+            IEnumerable<Member> members = new List<Member>();
 
             if (!string.IsNullOrWhiteSpace(keywords))
             {
                 keywords = keywords.ToLower();
 
-                membres = (from membre in SunAccess.Instance.Member
-                           where membre.LastName.ToLower().Contains(keywords)
-                                 || membre.FirstName.ToLower().Contains(keywords)
-                                 || membre.Campus.Place.ToLower().Contains(keywords)
-                           orderby membre.LastName
-                           orderby membre.FirstName
-                           select membre);
+                members = (from member in SunAccess.Instance.Member
+                           where member.LastName.ToLower().Contains(keywords)
+                                 || member.FirstName.ToLower().Contains(keywords)
+                                 || member.Campus.Place.ToLower().Contains(keywords)
+                           orderby member.LastName
+                           orderby member.FirstName
+                           select member);
             }
 
-            return membres;
+            return members;
         }
 
         #endregion
@@ -446,8 +448,8 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         {
             if (Exists(username, password))
             {
-                Member membre = Get(code);
-                SunAccess.Instance.Member.Remove(membre);
+                Member member = Get(code);
+                SunAccess.Instance.Member.Remove(member);
 
                 SunAccess.Instance.SaveChanges();
             }

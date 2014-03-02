@@ -82,9 +82,9 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <returns>Matching news</returns>
         public IEnumerable<NewsDTO> Get(MemberDTO author)
         {
-            MemberDAO membreDao = _mapperMember.ToDAO(author);
+            MemberDAO memberDao = _mapperMember.ToDAO(author);
 
-            IEnumerable<NewsDAO> dao = _dal.Get(membreDao);
+            IEnumerable<NewsDAO> dao = _dal.Get(memberDao);
             IEnumerable<NewsDTO> dto = dao.Select(n => _mapperNews.ToDTO(n));
 
             return dto;
@@ -99,9 +99,9 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <returns>Matching list of news</returns>
         public IEnumerable<NewsDTO> Get(MemberDTO author, int indexFirstElement, int numberOfResults)
         {
-            MemberDAO membreDao = _mapperMember.ToDAO(author);
+            MemberDAO memberDao = _mapperMember.ToDAO(author);
 
-            IEnumerable<NewsDAO> dao = _dal.Get(membreDao, indexFirstElement, numberOfResults);
+            IEnumerable<NewsDAO> dao = _dal.Get(memberDao, indexFirstElement, numberOfResults);
             IEnumerable<NewsDTO> dto = dao.Select(n => _mapperNews.ToDTO(n));
 
             return dto;
@@ -143,9 +143,9 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <returns>List of news</returns>
         public IEnumerable<NewsDTO> Get(MemberDTO author, bool? published)
         {
-            MemberDAO membreDao = _mapperMember.ToDAO(author);
+            MemberDAO memberDao = _mapperMember.ToDAO(author);
 
-            IEnumerable<NewsDAO> dao = _dal.Get(membreDao, published);
+            IEnumerable<NewsDAO> dao = _dal.Get(memberDao, published);
             IEnumerable<NewsDTO> dto = dao.Select(n => _mapperNews.ToDTO(n));
 
             return dto;
@@ -161,9 +161,9 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <returns>List of news</returns>
         public IEnumerable<NewsDTO> Get(MemberDTO author, bool? published, int indexFirstElement, int numberOfResults)
         {
-            MemberDAO membreDao = _mapperMember.ToDAO(author);
+            MemberDAO memberDao = _mapperMember.ToDAO(author);
 
-            IEnumerable<NewsDAO> dao = _dal.Get(membreDao, published, indexFirstElement, numberOfResults);
+            IEnumerable<NewsDAO> dao = _dal.Get(memberDao, published, indexFirstElement, numberOfResults);
             IEnumerable<NewsDTO> dto = dao.Select(n => _mapperNews.ToDTO(n));
 
             return dto;

@@ -38,7 +38,7 @@ namespace EPSILab.SolarSystem.Earth.WCF.Interfaces.Managers
         bool ExistsMember(string username, string password);
 
         [OperationContract]
-        int Register(Member membre);
+        int Register(Member member, string newPassword);
 
         [OperationContract]
         void RequestLostPassword(string username, string email);
