@@ -11,6 +11,6 @@ namespace EPSILab.SolarSystem.Earth.WCF.Interfaces.Readers
         Campus GetCampus(int code);
 
         [OperationContract]
-        IEnumerable<Campus> GetCampuss();
+        IEnumerable<Campus> GetCampuses();
     }
 }

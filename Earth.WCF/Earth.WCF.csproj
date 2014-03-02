@@ -68,7 +68,7 @@
     <Compile Include="Interfaces\Managers\INewsManager.cs" />
     <Compile Include="Interfaces\Managers\IProjectManager.cs" />
     <Compile Include="Interfaces\Managers\ISlideManager.cs" />
-    <Compile Include="Interfaces\Managers\ISalonManager.cs" />
+    <Compile Include="Interfaces\Managers\IShowManager.cs" />
     <Compile Include="Interfaces\Readers\IConferenceReader.cs" />
     <Compile Include="Interfaces\Readers\ILinkReader.cs" />
     <Compile Include="Interfaces\Readers\IMemberReader.cs" />
@@ -89,14 +89,14 @@
     <Compile Include="Services\Managers\SalonManager.cs" />
     <Compile Include="Services\Managers\ManagersService.cs" />
     <Compile Include="Services\Readers\ConferenceReader.cs" />
-    <Compile Include="Services\Readers\LienReader.cs" />
-    <Compile Include="Services\Readers\MembreReader.cs" />
+    <Compile Include="Services\Readers\LinkReader.cs" />
+    <Compile Include="Services\Readers\MemberReader.cs" />
     <Compile Include="Services\Readers\NewsReader.cs" />
-    <Compile Include="Services\Readers\ProjetReader.cs" />
-    <Compile Include="Services\Readers\PubliciteReader.cs" />
-    <Compile Include="Services\Readers\SalonReader.cs" />
+    <Compile Include="Services\Readers\ProjectReader.cs" />
+    <Compile Include="Services\Readers\SlideReader.cs" />
+    <Compile Include="Services\Readers\ShowReader.cs" />
     <Compile Include="Services\Readers\ReadersService.cs" />
-    <Compile Include="Services\Readers\VilleReader.cs" />
+    <Compile Include="Services\Readers\CampusReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
