@@ -16,11 +16,11 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.RulesManager.Managers
         public void Check(Conference element)
         {
             RulesChecker.CheckIsNotNull(element.Description, ErrorMessages.Conference_NoDescription);
-            RulesChecker.CheckIsNotNull(element.Image, ErrorMessages.Conference_NoPicture);
-            RulesChecker.CheckIsNotNull(element.Lieu, ErrorMessages.Conference_NoPlace);
-            RulesChecker.CheckIsNotNull(element.Nom, ErrorMessages.Conference_NoName);
-            RulesChecker.CheckIsNotNull(element.URL, ErrorMessages.Conference_NoURL);
-            RulesChecker.CheckIsNotNull(element.Code_Ville, ErrorMessages.Conference_NoCity);
+            RulesChecker.CheckIsNotNull(element.ImageUrl, ErrorMessages.Conference_NoPicture);
+            RulesChecker.CheckIsNotNull(element.Place, ErrorMessages.Conference_NoPlace);
+            RulesChecker.CheckIsNotNull(element.Name, ErrorMessages.Conference_NoName);
+            RulesChecker.CheckIsNotNull(element.Url, ErrorMessages.Conference_NoUrl);
+            RulesChecker.CheckIsNotNull(element.Id, ErrorMessages.Conference_NoCity);
         }
     }
 }

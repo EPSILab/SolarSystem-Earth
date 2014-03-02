@@ -11,14 +11,14 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
     /// <summary>
     /// Access to conferences table
     /// </summary>
-    public class ConferenceDAL : IReader2Filters<Conference, Ville, bool?>, ISearchable<Conference>, IManager<Conference>
+    public class ConferenceDAL : IReader2Filters<Conference, Campus, bool?>, ISearchable<Conference>, IManager<Conference>
     {
         #region Attributes
 
         /// <summary>
         /// Access to member table
         /// </summary>
-        private readonly MembreDAL _memberDAL = new MembreDAL();
+        private readonly MemberDAL _memberDAL = new MemberDAL();
 
         #endregion
 
@@ -32,7 +32,7 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         public Conference Get(int code)
         {
             return (from c in SunAccess.Instance.Conference
-                    where c.Code_Conference == code
+                    where c.Id == code
                     select c).First();
         }
 
@@ -81,71 +81,65 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <summary>
         /// Get all conferences of a city
         /// </summary>
-        /// <param name="ville">City concerned</param>
+        /// <param name="campus">City concerned</param>
         /// <returns>Matching list of conferences</returns>
-        public IEnumerable<Conference> Get(Ville ville)
+        public IEnumerable<Conference> Get(Campus campus)
         {
-            return Get(ville, 0, 0);
+            return Get(campus, 0, 0);
         }
 
         /// <summary>
         /// Get a limited list of conferences of a city
         /// </summary>
-        /// <param name="ville">City concerned</param>
+        /// <param name="campus">City concerned</param>
         /// <param name="indexFirstElement">Index of the first result</param>
         /// <param name="numberOfResults">Number of results</param>
         /// <returns>Matching list of conferences</returns>
-        public IEnumerable<Conference> Get(Ville ville, int indexFirstElement, int numberOfResults)
+        public IEnumerable<Conference> Get(Campus campus, int indexFirstElement, int numberOfResults)
         {
-            return Get(ville, null, indexFirstElement, numberOfResults);
+            return Get(campus, null, indexFirstElement, numberOfResults);
         }
 
         /// <summary>
         /// Get all conferences of a city published or not
         /// </summary>
-        /// <param name="ville">City concerned</param>
+        /// <param name="campus">City concerned</param>
         /// <param name="published">Published conferences or not</param>
         /// <returns>Matching list of conferences</returns>
-        public IEnumerable<Conference> Get(Ville ville, bool? published)
+        public IEnumerable<Conference> Get(Campus campus, bool? published)
         {
-            return Get(ville, published, 0, 0);
+            return Get(campus, published, 0, 0);
         }
 
         /// <summary>
         /// Get all/published/not published conferences. The results can be limited
         /// </summary>
-        /// <param name="ville">City concerned</param>
+        /// <param name="campus">City concerned</param>
         /// <param name="published">Published conferences or not</param>
         /// <param name="indexFirstElement">Index of the first result</param>
         /// <param name="numberOfResults">Number of results</param>
         /// <returns>List of conferences</returns>
-        public IEnumerable<Conference> Get(Ville ville, bool? published, int indexFirstElement, int numberOfResults)
+        public IEnumerable<Conference> Get(Campus campus, bool? published, int indexFirstElement, int numberOfResults)
         {
             IEnumerable<Conference> results = (from c in SunAccess.Instance.Conference
-                                               orderby c.Date_Heure_Debut descending
-                                               orderby c.Date_Heure_Fin descending 
+                                               orderby c.Start_DateTime descending
+                                               orderby c.End_DateTime descending
                                                select c);
 
-            if (ville != null)
-            {
+            if (campus != null)
                 results = (from c in results
-                           where c.Code_Ville == ville.Code_Ville
+                           where c.Id == campus.Id
                            select c);
-            }
 
             if (published.HasValue)
-            {
                 results = (from c in results
-                           where c.Publiee == published
+                           where c.IsPublished == published
                            select c);
-            }
 
             results = results.Skip(indexFirstElement);
 
             if (numberOfResults > 0)
-            {
                 results = results.Take(numberOfResults);
-            }
 
             return results;
         }
@@ -157,8 +151,8 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         public int GetLastInsertedId()
         {
             return (from c in SunAccess.Instance.Conference
-                    orderby c.Code_Conference descending
-                    select c).First().Code_Conference;
+                    orderby c.Id descending
+                    select c).First().Id;
         }
 
         #endregion
@@ -179,10 +173,10 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                 keywords = keywords.ToLower();
 
                 conferences = (from c in SunAccess.Instance.Conference
-                               where c.Nom.ToLower().Contains(keywords) ||
-                                     c.Lieu.ToLower().Contains(keywords) ||
-                                     c.Ville.Libelle.ToLower().Contains(keywords)
-                               orderby c.Date_Heure_Debut descending
+                               where c.Name.ToLower().Contains(keywords) ||
+                                     c.Place.ToLower().Contains(keywords) ||
+                                     c.Campus.Place.ToLower().Contains(keywords)
+                               orderby c.Start_DateTime descending
                                select c);
             }
 
@@ -207,10 +201,10 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                 IRulesManager<Conference> rulesManager = new ConferenceRulesManager();
                 rulesManager.Check(element);
 
-                SunAccess.Instance.Conference.AddObject(element);
+                SunAccess.Instance.Conference.Add(element);
                 SunAccess.Instance.SaveChanges();
 
-                return element.Code_Conference;
+                return element.Id;
             }
 
             throw new AccessDeniedException(username);
@@ -229,23 +223,21 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                 IRulesManager<Conference> rulesManager = new ConferenceRulesManager();
                 rulesManager.Check(element);
 
-                Conference c = Get(element.Code_Conference);
-                c.Code_Ville = element.Code_Ville;
-                c.Nom = element.Nom;
-                c.Date_Heure_Debut = element.Date_Heure_Debut;
-                c.Date_Heure_Fin = element.Date_Heure_Fin;
-                c.Lieu = element.Lieu;
+                Conference c = Get(element.Id);
+                c.Id = element.Id;
+                c.Name = element.Name;
+                c.Start_DateTime = element.Start_DateTime;
+                c.End_DateTime = element.End_DateTime;
+                c.Place = element.Place;
                 c.Description = element.Description;
-                c.Image = element.Image;
-                c.URL = element.URL;
-                c.Publiee = element.Publiee;
+                c.ImageUrl = element.ImageUrl;
+                c.Url = element.Url;
+                c.IsPublished = element.IsPublished;
 
                 SunAccess.Instance.SaveChanges();
             }
             else
-            {
                 throw new AccessDeniedException(username);
-            }
         }
 
         /// <summary>
@@ -259,14 +251,12 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
             if (_memberDAL.Exists(username, password))
             {
                 Conference conference = Get(code);
-                SunAccess.Instance.Conference.DeleteObject(conference);
+                SunAccess.Instance.Conference.Remove(conference);
 
                 SunAccess.Instance.SaveChanges();
             }
             else
-            {
                 throw new AccessDeniedException(username);
-            }
         }
 
         #endregion

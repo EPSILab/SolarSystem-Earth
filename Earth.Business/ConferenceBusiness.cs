@@ -5,15 +5,15 @@ using System.Collections.Generic;
 using System.Linq;
 using ConferenceDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Conference;
 using ConferenceDTO = EPSILab.SolarSystem.Earth.Common.Conference;
-using VilleDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Ville;
-using VilleDTO = EPSILab.SolarSystem.Earth.Common.Ville;
+using CampusDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Campus;
+using CampusDTO = EPSILab.SolarSystem.Earth.Common.Campus;
 
 namespace EPSILab.SolarSystem.Earth.Business
 {
     /// <summary>
     /// Business class for conference
     /// </summary>
-    public class ConferenceBusiness : IReader2Filters<ConferenceDTO, VilleDTO, bool?>, ISearchable<ConferenceDTO>, IManager<ConferenceDTO>
+    public class ConferenceBusiness : IReader2Filters<ConferenceDTO, CampusDTO, bool?>, ISearchable<ConferenceDTO>, IManager<ConferenceDTO>
     {
         #region Attributes
 
@@ -30,7 +30,7 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <summary>
         /// City mapper
         /// </summary>
-        private readonly IMapper<VilleDAO, VilleDTO> _mapperCity = new VilleMapper();
+        private readonly IMapper<CampusDAO, CampusDTO> _mapperCity = new CampusMapper();
 
         #endregion
 
@@ -106,13 +106,13 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <summary>
         /// Get all conferences of a city
         /// </summary>
-        /// <param name="ville">City concerned</param>
+        /// <param name="Campus">City concerned</param>
         /// <returns>Matching list of conferences</returns>
-        public IEnumerable<ConferenceDTO> Get(VilleDTO ville)
+        public IEnumerable<ConferenceDTO> Get(CampusDTO Campus)
         {
-            VilleDAO villeDao = _mapperCity.ToDAO(ville);
+            CampusDAO CampusDao = _mapperCity.ToDAO(Campus);
 
-            IEnumerable<ConferenceDAO> dao = _dal.Get(villeDao);
+            IEnumerable<ConferenceDAO> dao = _dal.Get(CampusDao);
             IEnumerable<ConferenceDTO> dto = dao.Select(c => _mapperConference.ToDTO(c));
 
             return dto;
@@ -121,15 +121,15 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <summary>
         /// Get a limited list of conferences of a city
         /// </summary>
-        /// <param name="ville">City concerned</param>
+        /// <param name="Campus">City concerned</param>
         /// <param name="indexFirstElement">Index of the first result</param>
         /// <param name="numberOfResults">Number of results</param>
         /// <returns>Matching list of conferences</returns>
-        public IEnumerable<ConferenceDTO> Get(VilleDTO ville, int indexFirstElement, int numberOfResults)
+        public IEnumerable<ConferenceDTO> Get(CampusDTO Campus, int indexFirstElement, int numberOfResults)
         {
-            VilleDAO villeDao = _mapperCity.ToDAO(ville);
+            CampusDAO CampusDao = _mapperCity.ToDAO(Campus);
 
-            IEnumerable<ConferenceDAO> dao = _dal.Get(villeDao, indexFirstElement, numberOfResults);
+            IEnumerable<ConferenceDAO> dao = _dal.Get(CampusDao, indexFirstElement, numberOfResults);
             IEnumerable<ConferenceDTO> dto = dao.Select(c => _mapperConference.ToDTO(c));
 
             return dto;
@@ -138,14 +138,14 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <summary>
         /// Get all conferences of a city published or not
         /// </summary>
-        /// <param name="ville">City concerned</param>
+        /// <param name="Campus">City concerned</param>
         /// <param name="published">Published conferences or not</param>
         /// <returns>Matching list of conferences</returns>
-        public IEnumerable<ConferenceDTO> Get(VilleDTO ville, bool? published)
+        public IEnumerable<ConferenceDTO> Get(CampusDTO Campus, bool? published)
         {
-            VilleDAO villeDao = _mapperCity.ToDAO(ville);
+            CampusDAO CampusDao = _mapperCity.ToDAO(Campus);
 
-            IEnumerable<ConferenceDAO> dao = _dal.Get(villeDao, published);
+            IEnumerable<ConferenceDAO> dao = _dal.Get(CampusDao, published);
             IEnumerable<ConferenceDTO> dto = dao.Select(c => _mapperConference.ToDTO(c));
 
             return dto;
@@ -154,16 +154,16 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <summary>
         /// Get all/published/not published conferences. The results can be limited
         /// </summary>
-        /// <param name="ville">City concerned</param>
+        /// <param name="Campus">City concerned</param>
         /// <param name="published">Published conferences or not</param>
         /// <param name="indexFirstElement">Index of the first result</param>
         /// <param name="numberOfResults">Number of results</param>
         /// <returns>List of conferences</returns>
-        public IEnumerable<ConferenceDTO> Get(VilleDTO ville, bool? published, int indexFirstElement, int numberOfResults)
+        public IEnumerable<ConferenceDTO> Get(CampusDTO Campus, bool? published, int indexFirstElement, int numberOfResults)
         {
-            VilleDAO villeDao = _mapperCity.ToDAO(ville);
+            CampusDAO CampusDao = _mapperCity.ToDAO(Campus);
 
-            IEnumerable<ConferenceDAO> dao = _dal.Get(villeDao, published, indexFirstElement, numberOfResults);
+            IEnumerable<ConferenceDAO> dao = _dal.Get(CampusDao, published, indexFirstElement, numberOfResults);
             IEnumerable<ConferenceDTO> dto = dao.Select(c => _mapperConference.ToDTO(c));
 
             return dto;

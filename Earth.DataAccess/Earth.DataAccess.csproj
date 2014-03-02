@@ -20,6 +20,8 @@
     </SccAuxPath>
     <SccProvider>
     </SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,7 +48,11 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -55,17 +61,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\RoleDAL.cs" />
     <Compile Include="DAL\SunAccess.cs" />
-    <Compile Include="DAL\ClasseDAL.cs" />
+    <Compile Include="DAL\PromotionDAL.cs" />
     <Compile Include="DAL\ConferenceDAL.cs" />
-    <Compile Include="DAL\LienDAL.cs" />
-    <Compile Include="DAL\MembreDAL.cs" />
+    <Compile Include="DAL\LinkDAL.cs" />
+    <Compile Include="DAL\MemberDAL.cs" />
     <Compile Include="DAL\NewsDAL.cs" />
-    <Compile Include="DAL\ProjetDAL.cs" />
-    <Compile Include="DAL\PubliciteDAL.cs" />
-    <Compile Include="DAL\SalonDAL.cs" />
-    <Compile Include="DAL\VilleDAL.cs" />
+    <Compile Include="DAL\ProjectDAL.cs" />
+    <Compile Include="DAL\SlideDAL.cs" />
+    <Compile Include="DAL\ShowDAL.cs" />
+    <Compile Include="DAL\CampusDAL.cs" />
     <Compile Include="Exceptions\LostPasswordRequestNotFoundException.cs" />
     <Compile Include="Exceptions\LostPasswordTimeElapsedException.cs" />
     <Compile Include="Exceptions\AccessDeniedException.cs" />
@@ -74,6 +79,46 @@
     <Compile Include="Exceptions\UserNotExistsException.cs" />
     <Compile Include="Exceptions\IncorrectValueException.cs" />
     <Compile Include="Exceptions\NullValueException.cs" />
+    <Compile Include="Model\Campus.cs">
+      <DependentUpon>SunModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Conference.cs">
+      <DependentUpon>SunModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Link.cs">
+      <DependentUpon>SunModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LostPasswordRequest.cs">
+      <DependentUpon>SunModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Member.cs">
+      <DependentUpon>SunModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\News.cs">
+      <DependentUpon>SunModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Project.cs">
+      <DependentUpon>SunModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Promotion.cs">
+      <DependentUpon>SunModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Show.cs">
+      <DependentUpon>SunModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Slide.cs">
+      <DependentUpon>SunModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SunModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SunModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SunModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SunModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\SunModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -90,16 +135,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMessages.resx</DependentUpon>
     </Compile>
-    <Compile Include="RulesManager\Managers\VilleRulesManager.cs" />
-    <Compile Include="RulesManager\Managers\ClasseRulesManager.cs" />
+    <Compile Include="RulesManager\Managers\CampusRulesManager.cs" />
+    <Compile Include="RulesManager\Managers\PromotionRulesManager.cs" />
     <Compile Include="RulesManager\Managers\ConferenceRulesManager.cs" />
     <Compile Include="RulesManager\Managers\Interfaces\IRulesManager.cs" />
-    <Compile Include="RulesManager\Managers\LienRulesManager.cs" />
-    <Compile Include="RulesManager\Managers\MembreRulesManager.cs" />
+    <Compile Include="RulesManager\Managers\LinkRulesManager.cs" />
+    <Compile Include="RulesManager\Managers\MemberRulesManager.cs" />
     <Compile Include="RulesManager\Managers\NewsRulesManager.cs" />
-    <Compile Include="RulesManager\Managers\ProjetRulesManager.cs" />
-    <Compile Include="RulesManager\Managers\PubliciteRulesManager.cs" />
-    <Compile Include="RulesManager\Managers\SalonRulesManager.cs" />
+    <Compile Include="RulesManager\Managers\ProjectRulesManager.cs" />
+    <Compile Include="RulesManager\Managers\SlideRulesManager.cs" />
+    <Compile Include="RulesManager\Managers\ShowRulesManager.cs" />
     <Compile Include="RulesManager\RulesChecker.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -123,15 +168,28 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="Model\SunModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SunModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
+    <None Include="Model\SunModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SunModel.edmx</DependentUpon>
+      <LastGenOutput>SunModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Model\SunModel.edmx.diagram">
+      <DependentUpon>SunModel.edmx</DependentUpon>
+    </None>
+    <None Include="Model\SunModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SunModel.edmx</DependentUpon>
+      <LastGenOutput>SunModel.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

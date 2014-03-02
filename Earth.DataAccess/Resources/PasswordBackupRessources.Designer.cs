@@ -115,7 +115,7 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://www.epsilab.net/Admin/Home/ResetPassword?Pseudo={0}&amp;Cle={1}.
+        ///   Looks up a localized string similar to http://www.epsilab.net/Admin/Home/ResetPassword?Username={0}&amp;Cle={1}.
         /// </summary>
         public static string Url {
             get {

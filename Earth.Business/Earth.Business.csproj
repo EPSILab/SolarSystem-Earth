@@ -44,14 +44,14 @@
     <Reference Include="System.Data.Entity" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SalonBusiness.cs" />
-    <Compile Include="PubliciteBusiness.cs" />
-    <Compile Include="ProjetBusiness.cs" />
+    <Compile Include="ShowBusiness.cs" />
+    <Compile Include="SlideBusiness.cs" />
+    <Compile Include="ProjectBusiness.cs" />
     <Compile Include="NewsBusiness.cs" />
-    <Compile Include="VilleBusiness.cs" />
-    <Compile Include="MembreBusiness.cs" />
-    <Compile Include="LienBusiness.cs" />
-    <Compile Include="ClasseBusiness.cs" />
+    <Compile Include="CampusBusiness.cs" />
+    <Compile Include="MemberBusiness.cs" />
+    <Compile Include="LinkBusiness.cs" />
+    <Compile Include="PromotionBusiness.cs" />
     <Compile Include="ConferenceBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
