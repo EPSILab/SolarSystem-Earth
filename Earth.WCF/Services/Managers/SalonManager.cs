@@ -6,35 +6,35 @@ using System.Collections.Generic;
 
 namespace EPSILab.SolarSystem.Earth.WCF
 {
-    public partial class ManagersService : ISalonManager
+    public partial class ManagersService : IShowManager
     {
-        public Salon GetSalon(int code)
+        public Show GetShow(int code)
         {
-            IReader<Salon> business = new SalonBusiness();
+            IReader<Show> business = new ShowBusiness();
             return business.Get(code);
         }
 
-        public IEnumerable<Salon> GetSalons(int indexFirstElement, int numberOfResults)
+        public IEnumerable<Show> GetShows(int indexFirstElement, int numberOfResults)
         {
-            IReaderLimit<Salon> business = new SalonBusiness();
+            IReaderLimit<Show> business = new ShowBusiness();
             return business.Get(indexFirstElement, numberOfResults);
         }
 
-        public int AddSalon(Salon element, string username, string password)
+        public int AddShow(Show element, string username, string password)
         {
-            IManager<Salon> business = new SalonBusiness();
+            IManager<Show> business = new ShowBusiness();
             return business.Add(element, username, password);
         }
 
-        public void EditSalon(Salon element, string username, string password)
+        public void EditShow(Show element, string username, string password)
         {
-            IManager<Salon> business = new SalonBusiness();
+            IManager<Show> business = new ShowBusiness();
             business.Edit(element, username, password);
         }
 
-        public void DeleteSalon(int code, string username, string password)
+        public void DeleteShow(int code, string username, string password)
         {
-            IManager<Salon> business = new SalonBusiness();
+            IManager<Show> business = new ShowBusiness();
             business.Delete(code, username, password);
         }
     }

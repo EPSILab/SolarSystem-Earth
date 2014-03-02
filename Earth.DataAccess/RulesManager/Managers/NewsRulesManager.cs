@@ -15,14 +15,14 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.RulesManager.Managers
         /// <param name="element">News to check</param>
         public void Check(News element)
         {
-            RulesChecker.CheckIsNotNull(element.Image, ErrorMessages.News_NoPicture);
-            RulesChecker.CheckIsNotNull(element.Mots_Cles, ErrorMessages.News_NoKeywords);
-            RulesChecker.CheckIsNotNull(element.Texte_Court, ErrorMessages.News_NoDescription);
-            RulesChecker.CheckIsNotNull(element.Texte_Long, ErrorMessages.News_NoContent);
-            RulesChecker.CheckIsNotNull(element.Titre, ErrorMessages.News_NoTitle);
-            RulesChecker.CheckIsNotNull(element.URL, ErrorMessages.News_NoURL);
+            RulesChecker.CheckIsNotNull(element.ImageUrl, ErrorMessages.News_NoPicture);
+            RulesChecker.CheckIsNotNull(element.Keywords, ErrorMessages.News_NoKeywords);
+            RulesChecker.CheckIsNotNull(element.ShortText, ErrorMessages.News_NoDescription);
+            RulesChecker.CheckIsNotNull(element.Text, ErrorMessages.News_NoContent);
+            RulesChecker.CheckIsNotNull(element.Title, ErrorMessages.News_NoTitle);
+            RulesChecker.CheckIsNotNull(element.Url, ErrorMessages.News_NoUrl);
 
-            RulesChecker.CheckIsNotNull(element.Code_Membre, ErrorMessages.News_NoAuthor);
+            RulesChecker.CheckIsNotNull(element.Id, ErrorMessages.News_NoAuthor);
         }
     }
 }

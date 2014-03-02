@@ -6,35 +6,35 @@ using EPSILab.SolarSystem.Earth.WCF.Interfaces.Readers;
 
 namespace EPSILab.SolarSystem.Earth.WCF
 {
-    public partial class ReadersService : ISalonReader
+    public partial class ReadersService : IShowReader
     {
-        public Salon GetSalon(int code)
+        public Show GetShow(int code)
         {
-            IReader<Salon> business = new SalonBusiness();
+            IReader<Show> business = new ShowBusiness();
             return business.Get(code);
         }
 
-        public IEnumerable<Salon> GetSalons()
+        public IEnumerable<Show> GetShows()
         {
-            IReader<Salon> business = new SalonBusiness();
+            IReader<Show> business = new ShowBusiness();
             return business.Get();
         }
 
-        public IEnumerable<Salon> GetSalonsLimited(int indexFirstElement, int numberOfResults)
+        public IEnumerable<Show> GetShowsLimited(int indexFirstElement, int numberOfResults)
         {
-            IReaderLimit<Salon> business = new SalonBusiness();
+            IReaderLimit<Show> business = new ShowBusiness();
             return business.Get(indexFirstElement, numberOfResults);
         }
 
-        public int GetSalonLastInsertedId()
+        public int GetShowLastInsertedId()
         {
-            IReaderLimit<Salon> business = new SalonBusiness();
+            IReaderLimit<Show> business = new ShowBusiness();
             return business.GetLastInsertedId();
         }
 
-        public IEnumerable<Salon> SearchSalons(string keywords)
+        public IEnumerable<Show> SearchShows(string keywords)
         {
-            ISearchable<Salon> business = new SalonBusiness();
+            ISearchable<Show> business = new ShowBusiness();
             return business.Search(keywords);
         }
     }

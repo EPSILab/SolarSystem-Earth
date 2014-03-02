@@ -3,8 +3,8 @@ using EPSILab.SolarSystem.Earth.DataAccess.DAL;
 using EPSILab.SolarSystem.Earth.Mappers;
 using System.Collections.Generic;
 using System.Linq;
-using MembreDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Membre;
-using MembreDTO = EPSILab.SolarSystem.Earth.Common.Membre;
+using MemberDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Member;
+using MemberDTO = EPSILab.SolarSystem.Earth.Common.Member;
 using NewsDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.News;
 using NewsDTO = EPSILab.SolarSystem.Earth.Common.News;
 
@@ -13,7 +13,7 @@ namespace EPSILab.SolarSystem.Earth.Business
     /// <summary>
     /// Business class for news
     /// </summary>
-    public class NewsBusiness : IReader2Filters<NewsDTO, MembreDTO, bool?>, ISearchable<NewsDTO>, IManager<NewsDTO>
+    public class NewsBusiness : IReader2Filters<NewsDTO, MemberDTO, bool?>, ISearchable<NewsDTO>, IManager<NewsDTO>
     {
         #region Attributes
 
@@ -30,7 +30,7 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <summary>
         /// Member mapper
         /// </summary>
-        private readonly IMapper<MembreDAO, MembreDTO> _mapperMember = new MembreMapper();
+        private readonly IMapper<MemberDAO, MemberDTO> _mapperMember = new MemberMapper();
 
         #endregion
 
@@ -80,9 +80,9 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// </summary>
         /// <param name="author">Author</param>
         /// <returns>Matching news</returns>
-        public IEnumerable<NewsDTO> Get(MembreDTO author)
+        public IEnumerable<NewsDTO> Get(MemberDTO author)
         {
-            MembreDAO membreDao = _mapperMember.ToDAO(author);
+            MemberDAO membreDao = _mapperMember.ToDAO(author);
 
             IEnumerable<NewsDAO> dao = _dal.Get(membreDao);
             IEnumerable<NewsDTO> dto = dao.Select(n => _mapperNews.ToDTO(n));
@@ -97,9 +97,9 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <param name="indexFirstElement">Index of the first result</param>
         /// <param name="numberOfResults">Number of results</param>
         /// <returns>Matching list of news</returns>
-        public IEnumerable<NewsDTO> Get(MembreDTO author, int indexFirstElement, int numberOfResults)
+        public IEnumerable<NewsDTO> Get(MemberDTO author, int indexFirstElement, int numberOfResults)
         {
-            MembreDAO membreDao = _mapperMember.ToDAO(author);
+            MemberDAO membreDao = _mapperMember.ToDAO(author);
 
             IEnumerable<NewsDAO> dao = _dal.Get(membreDao, indexFirstElement, numberOfResults);
             IEnumerable<NewsDTO> dto = dao.Select(n => _mapperNews.ToDTO(n));
@@ -141,9 +141,9 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <param name="author">Author</param>
         /// <param name="published">Determines if news must be published, not published or indifferent</param>
         /// <returns>List of news</returns>
-        public IEnumerable<NewsDTO> Get(MembreDTO author, bool? published)
+        public IEnumerable<NewsDTO> Get(MemberDTO author, bool? published)
         {
-            MembreDAO membreDao = _mapperMember.ToDAO(author);
+            MemberDAO membreDao = _mapperMember.ToDAO(author);
 
             IEnumerable<NewsDAO> dao = _dal.Get(membreDao, published);
             IEnumerable<NewsDTO> dto = dao.Select(n => _mapperNews.ToDTO(n));
@@ -159,9 +159,9 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <param name="indexFirstElement">Index of the first result</param>
         /// <param name="numberOfResults">Number of results</param>
         /// <returns>List of news</returns>
-        public IEnumerable<NewsDTO> Get(MembreDTO author, bool? published, int indexFirstElement, int numberOfResults)
+        public IEnumerable<NewsDTO> Get(MemberDTO author, bool? published, int indexFirstElement, int numberOfResults)
         {
-            MembreDAO membreDao = _mapperMember.ToDAO(author);
+            MemberDAO membreDao = _mapperMember.ToDAO(author);
 
             IEnumerable<NewsDAO> dao = _dal.Get(membreDao, published, indexFirstElement, numberOfResults);
             IEnumerable<NewsDTO> dto = dao.Select(n => _mapperNews.ToDTO(n));

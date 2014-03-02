@@ -1,4 +1,6 @@
 ﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using CampusDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Campus;
+using CampusDTO = EPSILab.SolarSystem.Earth.Common.Campus;
 using ConferenceDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Conference;
 using ConferenceDTO = EPSILab.SolarSystem.Earth.Common.Conference;
 
@@ -9,6 +11,17 @@ namespace EPSILab.SolarSystem.Earth.Mappers
     /// </summary>
     public class ConferenceMapper : IMapper<ConferenceDAO, ConferenceDTO>
     {
+        #region Attributes
+
+        /// <summary>
+        /// Mapper for campuses
+        /// </summary>
+        private readonly IMapper<CampusDAO, CampusDTO> _mapperCampus = new CampusMapper();
+
+        #endregion
+
+        #region Methods
+
         /// <summary>
         /// DAO to DTO
         /// </summary>
@@ -18,16 +31,16 @@ namespace EPSILab.SolarSystem.Earth.Mappers
         {
             return new ConferenceDTO
             {
-                Code_Conference = element.Code_Conference,
-                Nom = element.Nom,
-                Date_Heure_Debut = element.Date_Heure_Debut,
-                Date_Heure_Fin = element.Date_Heure_Fin,
+                Id = element.Id,
+                Name = element.Name,
+                Start_DateTime = element.Start_DateTime,
+                End_DateTime = element.End_DateTime,
                 Description = element.Description,
-                Lieu = element.Lieu,
-                Image = element.Image,
-                Publiee = element.Publiee,
-                URL = element.URL,
-                Ville = new VilleMapper().ToDTO(element.Ville)
+                Place = element.Place,
+                ImageUrl = element.ImageUrl,
+                IsPublished = element.IsPublished,
+                Url = element.Url,
+                Campus = _mapperCampus.ToDTO(element.Campus)
             };
         }
 
@@ -40,17 +53,19 @@ namespace EPSILab.SolarSystem.Earth.Mappers
         {
             return new ConferenceDAO
             {
-                Code_Conference = element.Code_Conference,
-                Code_Ville = element.Ville.Code_Ville,
-                Date_Heure_Debut = element.Date_Heure_Debut,
-                Date_Heure_Fin = element.Date_Heure_Fin,
+                Id = element.Id,
+                IdCampus = element.Campus.Id,
+                Start_DateTime = element.Start_DateTime,
+                End_DateTime = element.End_DateTime,
                 Description = element.Description,
-                Lieu = element.Lieu,
-                Nom = element.Nom,
-                Image = element.Image,
-                Publiee = element.Publiee,
-                URL = element.URL
+                Place = element.Place,
+                Name = element.Name,
+                ImageUrl = element.ImageUrl,
+                IsPublished = element.IsPublished,
+                Url = element.Url
             };
         }
+
+        #endregion
     }
 }

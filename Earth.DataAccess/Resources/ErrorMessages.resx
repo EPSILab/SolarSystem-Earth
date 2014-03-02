@@ -7,7 +7,7 @@
     
     The primary goals of this format is to allow a simple XML format 
     that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+    various data types are done through the TypeConverter Promotions 
     associated with the data types.
     
     Example:
@@ -33,7 +33,7 @@
     Each data row contains a name, and value. The row also contains a 
     type or mimetype. Type corresponds to a .NET class that support 
     text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+    Promotions that don't support this are serialized and stored with the 
     mimetype set.
     
     The mimetype is used for serialized objects, and tells the 
@@ -124,7 +124,7 @@
     <value>L'année de la promo est incorrecte.</value>
   </data>
   <data name="Promo_NoName" xml:space="preserve">
-    <value>La classe ne possède pas de libellé.</value>
+    <value>La Promotion ne possède pas de libellé.</value>
   </data>
   <data name="Conference_NoDescription" xml:space="preserve">
     <value>La conférence ne possède pas de description.</value>
@@ -132,7 +132,7 @@
   <data name="Conference_NoPicture" xml:space="preserve">
     <value>La conférence ne possède pas d'image.</value>
   </data>
-  <data name="Conference_NoURL" xml:space="preserve">
+  <data name="Conference_NoUrl" xml:space="preserve">
     <value>Le permalien de la conférence n'est pas précisé.</value>
   </data>
   <data name="Conference_NoCity" xml:space="preserve">
@@ -163,7 +163,7 @@
     <value>Ce membre n'est pas associé à une promo.</value>
   </data>
   <data name="Member_NoCitySelected" xml:space="preserve">
-    <value>Ce membre n'est pas associé à une ville.</value>
+    <value>Ce membre n'est pas associé à une Campus.</value>
   </data>
   <data name="Member_NoPassword" xml:space="preserve">
     <value>Le mot de passe du membre n'est pas précisé.</value>
@@ -183,7 +183,7 @@
   <data name="Member_NoStatus" xml:space="preserve">
     <value>Le statut du membre n'est pas précisé.</value>
   </data>
-  <data name="Member_NoURL" xml:space="preserve">
+  <data name="Member_NoUrl" xml:space="preserve">
     <value>Le permalien du membre n'est pas précisé.</value>
   </data>
   <data name="Member_NoMailEPSI" xml:space="preserve">
@@ -195,7 +195,7 @@
   <data name="News_NoPicture" xml:space="preserve">
     <value>L'image de la news n'est pas précisé.</value>
   </data>
-  <data name="News_NoURL" xml:space="preserve">
+  <data name="News_NoUrl" xml:space="preserve">
     <value>Le permalien de la news n'est pas précisé.</value>
   </data>
   <data name="News_NoContent" xml:space="preserve">
@@ -240,7 +240,7 @@
   <data name="Show_NoPicture" xml:space="preserve">
     <value>Le salon ne possède d'image.</value>
   </data>
-  <data name="Show_NoURL" xml:space="preserve">
+  <data name="Show_NoUrl" xml:space="preserve">
     <value>Le permalien du salon n'est pas précisé.</value>
   </data>
   <data name="Show_NoPlace" xml:space="preserve">
@@ -256,6 +256,6 @@
     <value>Le nom utilisateur et/ou le mot de passe sont incorrects.</value>
   </data>
   <data name="City_NoName" xml:space="preserve">
-    <value>La ville ne possède aucun libellé.</value>
+    <value>La Campus ne possède aucun libellé.</value>
   </data>
 </root>

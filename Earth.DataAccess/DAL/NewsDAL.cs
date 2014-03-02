@@ -11,11 +11,11 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
     /// <summary>
     /// Access to news table
     /// </summary>
-    public class NewsDAL : IReader2Filters<News, Membre, bool?>, ISearchable<News>, IManager<News>
+    public class NewsDAL : IReader2Filters<News, Member, bool?>, ISearchable<News>, IManager<News>
     {
         #region Attributes
 
-        private readonly MembreDAL _memberDAL = new MembreDAL();
+        private readonly MemberDAL _memberDAL = new MemberDAL();
 
         #endregion
 
@@ -29,7 +29,7 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         public News Get(int code)
         {
             return (from news in SunAccess.Instance.News
-                    where news.Code_News == code
+                    where news.Id == code
                     select news).First();
         }
 
@@ -58,7 +58,7 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// </summary>
         /// <param name="author">Author</param>
         /// <returns>Matching news</returns>
-        public IEnumerable<News> Get(Membre author)
+        public IEnumerable<News> Get(Member author)
         {
             return Get(author, 0, 0);
         }
@@ -70,7 +70,7 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <param name="indexFirstElement">Index of the first result</param>
         /// <param name="numberOfResults">Number of results</param>
         /// <returns>Matching list of news</returns>
-        public IEnumerable<News> Get(Membre author, int indexFirstElement, int numberOfResults)
+        public IEnumerable<News> Get(Member author, int indexFirstElement, int numberOfResults)
         {
             return Get(author, null, indexFirstElement, numberOfResults);
         }
@@ -103,7 +103,7 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <param name="author">Author</param>
         /// <param name="published">Determines if news must be published, not published or indifferent</param>
         /// <returns>List of news</returns>
-        public IEnumerable<News> Get(Membre author, bool? published)
+        public IEnumerable<News> Get(Member author, bool? published)
         {
             return Get(author, published, 0, 0);
         }
@@ -116,32 +116,26 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <param name="indexFirstElement">Index of the first result</param>
         /// <param name="numberOfResults">Number of results</param>
         /// <returns>List of news</returns>
-        public IEnumerable<News> Get(Membre author, bool? published, int indexFirstElement, int numberOfResults)
+        public IEnumerable<News> Get(Member author, bool? published, int indexFirstElement, int numberOfResults)
         {
             IEnumerable<News> results = (from n in SunAccess.Instance.News
-                                         orderby n.Date_Heure descending 
+                                         orderby n.DateTime descending 
                                          select n);
 
             if (author != null)
-            {
                 results = (from n in results
-                           where n.Code_Membre == author.Code_Membre
+                           where n.Id == author.Id
                            select n);
-            }
 
             if (published.HasValue)
-            {
                 results = (from n in results
-                           where n.Publiee == published
+                           where n.IsPublished == published
                            select n);
-            }
 
             results = results.Skip(indexFirstElement);
 
             if (numberOfResults > 0)
-            {
                 results = results.Take(numberOfResults);
-            }
 
             return results;
         }
@@ -153,8 +147,8 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         public int GetLastInsertedId()
         {
             return (from news in SunAccess.Instance.News
-                    orderby news.Code_News descending
-                    select news).First().Code_News;
+                    orderby news.Id descending
+                    select news).First().Id;
         }
 
         #endregion
@@ -175,9 +169,9 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                 keywords = keywords.ToLower();
 
                 news = (from n in SunAccess.Instance.News
-                        where n.Titre.ToLower().Contains(keywords) ||
-                              n.Mots_Cles.ToLower().Contains(keywords)
-                        orderby n.Date_Heure descending
+                        where n.Title.ToLower().Contains(keywords) ||
+                              n.Keywords.ToLower().Contains(keywords)
+                        orderby n.DateTime descending
                         select n);
             }
 
@@ -202,10 +196,10 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                 IRulesManager<News> rulesManager = new NewsRulesManager();
                 rulesManager.Check(element);
 
-                SunAccess.Instance.News.AddObject(element);
+                SunAccess.Instance.News.Add(element);
                 SunAccess.Instance.SaveChanges();
 
-                return element.Code_News;
+                return element.Id;
             }
 
             throw new AccessDeniedException(username);
@@ -224,21 +218,19 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                 IRulesManager<News> rulesManager = new NewsRulesManager();
                 rulesManager.Check(element);
 
-                News n = Get(element.Code_News);
-                n.Code_Membre = element.Code_Membre;
-                n.Titre = element.Titre;
-                n.Texte_Court = element.Texte_Court;
-                n.Texte_Long = element.Texte_Long;
-                n.Date_Heure = element.Date_Heure;
-                n.Image = element.Image;
-                n.Mots_Cles = element.Mots_Cles;
+                News n = Get(element.Id);
+                n.Id = element.Id;
+                n.Title = element.Title;
+                n.ShortText = element.ShortText;
+                n.Text = element.Text;
+                n.DateTime = element.DateTime;
+                n.ImageUrl = element.ImageUrl;
+                n.Keywords = element.Keywords;
 
                 SunAccess.Instance.SaveChanges();
             }
             else
-            {
                 throw new AccessDeniedException(username);
-            }
         }
 
         /// <summary>
@@ -252,14 +244,12 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
             if (_memberDAL.Exists(username, password))
             {
                 News news = Get(code);
-                SunAccess.Instance.News.DeleteObject(news);
+                SunAccess.Instance.News.Remove(news);
 
                 SunAccess.Instance.SaveChanges();
             }
             else
-            {
                 throw new AccessDeniedException(username);
-            }
         }
 
         #endregion

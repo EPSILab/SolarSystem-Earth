@@ -1,8 +1,9 @@
 ﻿namespace EPSILab.SolarSystem.Earth.Common
 {
-    public class Role
+    public enum Role
     {
-        public int Code_Role { get; set; }
-        public string Libelle { get; set; }
+        Inactive = 0,
+        MemberActive = 1,
+        Bureau = 2
     }
 }

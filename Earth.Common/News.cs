@@ -4,15 +4,15 @@ namespace EPSILab.SolarSystem.Earth.Common
 {
     public class News
     {
-        public int Code_News { get; set; }
-        public Membre Membre { get; set; }
-        public string Titre { get; set; }
-        public string Texte_Court { get; set; }
-        public string Texte_Long { get; set; }
-        public DateTime Date_Heure { get; set; }
-        public string Image { get; set; }
-        public string Mots_Cles { get; set; }
-        public bool Publiee { get; set; }
-        public string URL { get; set; }
+        public int Id { get; set; }
+        public Member Member { get; set; }
+        public string Title { get; set; }
+        public string ShortText { get; set; }
+        public string Text { get; set; }
+        public DateTime DateTime { get; set; }
+        public string ImageUrl { get; set; }
+        public string Keywords { get; set; }
+        public bool IsPublished { get; set; }
+        public string Url { get; set; }
     }
 }
