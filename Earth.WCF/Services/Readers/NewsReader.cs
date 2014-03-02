@@ -3,7 +3,6 @@ using EPSILab.SolarSystem.Earth.Common;
 using EPSILab.SolarSystem.Earth.Common.Interfaces;
 using EPSILab.SolarSystem.Earth.WCF.Interfaces.Readers;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 
 namespace EPSILab.SolarSystem.Earth.WCF
 {
