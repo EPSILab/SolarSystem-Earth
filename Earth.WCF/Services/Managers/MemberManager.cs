@@ -68,10 +68,10 @@ namespace EPSILab.SolarSystem.Earth.WCF
             return business.Exists(username);
         }
 
-        public int Register(Member membre)
+        public int Register(Member member, string newPassword)
         {
             ILogin<Member, LostPasswordRequest> business = new MemberBusiness();
-            return business.Register(membre);
+            return business.Register(member, newPassword);
         }
 
         public void RequestLostPassword(string username, string email)
