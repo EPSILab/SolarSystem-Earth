@@ -236,12 +236,13 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <summary>
         /// Register a new user, but inactive
         /// </summary>
-        /// <param name="membre">Member to create</param>
+        /// <param name="member">Member to create</param>
+        /// <param name="newPassword">The member password</param>
         /// <returns>New member id</returns>
-        public int Register(MemberDTO membre)
+        public int Register(MemberDTO member, string newPassword)
         {
-            MemberDAO dao = _mapperMember.ToDAO(membre);
-            return _dal.Register(dao);
+            MemberDAO dao = _mapperMember.ToDAO(member);
+            return _dal.Register(dao, newPassword);
         }
 
         /// <summary>
