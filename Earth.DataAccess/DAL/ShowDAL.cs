@@ -182,6 +182,7 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                 s.Place = element.Place;
                 s.ImageUrl = element.ImageUrl;
                 s.Description = element.Description;
+                s.IsPublished = element.IsPublished;
 
                 SunAccess.Instance.SaveChanges();
             }
