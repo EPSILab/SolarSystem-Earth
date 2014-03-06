@@ -226,6 +226,7 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                 n.DateTime = element.DateTime;
                 n.ImageUrl = element.ImageUrl;
                 n.Keywords = element.Keywords;
+                n.IsPublished = element.IsPublished;
 
                 SunAccess.Instance.SaveChanges();
             }
