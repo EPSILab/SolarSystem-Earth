@@ -44,6 +44,11 @@
     <Reference Include="System.Data.Entity" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ressources\PasswordBackupRessources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PasswordBackupRessources.resx</DependentUpon>
+    </Compile>
     <Compile Include="ShowBusiness.cs" />
     <Compile Include="SlideBusiness.cs" />
     <Compile Include="ProjectBusiness.cs" />
@@ -68,6 +73,12 @@
       <Project>{aac21b50-6a74-47fb-9e7b-aaad054a5a80}</Project>
       <Name>Earth.DataAccess</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ressources\PasswordBackupRessources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PasswordBackupRessources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
