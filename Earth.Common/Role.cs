@@ -1,9 +1,12 @@
-﻿namespace EPSILab.SolarSystem.Earth.Common
+﻿using System;
+
+namespace EPSILab.SolarSystem.Earth.Common
 {
+    [Flags]
     public enum Role
     {
-        Inactive = 0,
-        MemberActive = 1,
-        Bureau = 2
+        Inactive = 0x0,
+        MemberActive = 0x1,
+        Bureau = 0x2 | MemberActive
     }
 }
