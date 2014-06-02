@@ -5,6 +5,5 @@ namespace EPSILab.SolarSystem.Earth.WCF
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
     public partial class ReadersService
     {
-
     }
 }
