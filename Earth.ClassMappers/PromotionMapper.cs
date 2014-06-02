@@ -7,7 +7,7 @@ namespace EPSILab.SolarSystem.Earth.Mappers
     /// <summary>
     /// Promo mapper
     /// </summary>
-    public class PromotionMapper : IMapper<PromotionDAO, PromotionDTO>
+    class PromotionMapper : IMapper<PromotionDAO, PromotionDTO>
     {
         /// <summary>
         /// DAO to DTO

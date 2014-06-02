@@ -7,7 +7,7 @@ namespace EPSILab.SolarSystem.Earth.Mappers
     /// <summary>
     /// Lost password request mapper
     /// </summary>
-    public class LostPasswordRequestMapper : IMapper<LostPasswordRequestDAO, LostPasswordRequestDTO>
+    class LostPasswordRequestMapper : IMapper<LostPasswordRequestDAO, LostPasswordRequestDTO>
     {
         /// <summary>
         /// DAO to DTO

@@ -1,8 +1,7 @@
 ﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
-using EPSILab.SolarSystem.Earth.DataAccess.DAL;
-using EPSILab.SolarSystem.Earth.Mappers;
 using System.Collections.Generic;
 using System.Linq;
+using EPSILab.SolarSystem.Earth.DataAccess.DAL.Abstract;
 using ShowDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Show;
 using ShowDTO = EPSILab.SolarSystem.Earth.Common.Show;
 
@@ -11,19 +10,29 @@ namespace EPSILab.SolarSystem.Earth.Business
     /// <summary>
     /// Business class for shows
     /// </summary>
-    public class ShowBusiness : IReader1Filter<ShowDTO, bool?>, ISearchable<ShowDTO>, IManager<ShowDTO>
+    class ShowBusiness : IReader1Filter<ShowDTO, bool?>, ISearchable<ShowDTO>, IManager<ShowDTO>
     {
         #region Attributes
 
         /// <summary>
         /// DAL access
         /// </summary>
-        private readonly ShowDAL _dal = new ShowDAL();
+        private readonly IShowDAL _dal;
 
         /// <summary>
         /// Mapper
         /// </summary>
-        private readonly IMapper<ShowDAO, ShowDTO> _mapper = new ShowMapper();
+        private readonly IMapper<ShowDAO, ShowDTO> _mapper;
+
+        #endregion
+
+        #region Constructor
+
+        public ShowBusiness(IShowDAL dal, IMapper<ShowDAO, ShowDTO> mapper)
+        {
+            _dal = dal;
+            _mapper = mapper;
+        }
 
         #endregion
 

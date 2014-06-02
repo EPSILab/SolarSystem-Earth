@@ -1,8 +1,7 @@
 ﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
-using EPSILab.SolarSystem.Earth.DataAccess.DAL;
-using EPSILab.SolarSystem.Earth.Mappers;
 using System.Collections.Generic;
 using System.Linq;
+using EPSILab.SolarSystem.Earth.DataAccess.DAL.Abstract;
 using LinkDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Link;
 using LinkDTO = EPSILab.SolarSystem.Earth.Common.Link;
 
@@ -11,19 +10,29 @@ namespace EPSILab.SolarSystem.Earth.Business
     /// <summary>
     /// Business class for links
     /// </summary>
-    public class LinkBusiness : IReader<LinkDTO>, IManager<LinkDTO>
+    class LinkBusiness : IReader<LinkDTO>, IManager<LinkDTO>
     {
         #region Attributes
 
         /// <summary>
         /// DAL access
         /// </summary>
-        private readonly LinkDAL _dal = new LinkDAL();
+        private readonly ILinkDAL _dal;
 
         /// <summary>
         /// Mapper
         /// </summary>
-        private readonly IMapper<LinkDAO, LinkDTO> _mapper = new LinkMapper();
+        private readonly IMapper<LinkDAO, LinkDTO> _mapper;
+
+        #endregion
+
+        #region Constructor
+
+        public LinkBusiness(ILinkDAL _dal, IMapper<LinkDAO, LinkDTO> mapper)
+        {
+            _dal = _dal;
+            _mapper = mapper;
+        }
 
         #endregion
 

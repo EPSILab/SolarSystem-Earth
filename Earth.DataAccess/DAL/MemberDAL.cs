@@ -1,6 +1,6 @@
 ﻿using EPSILab.SolarSystem.Earth.Common;
-using EPSILab.SolarSystem.Earth.Common.Interfaces;
 using EPSILab.SolarSystem.Earth.Common.Utils;
+using EPSILab.SolarSystem.Earth.DataAccess.DAL.Abstract;
 using EPSILab.SolarSystem.Earth.DataAccess.Exceptions;
 using EPSILab.SolarSystem.Earth.DataAccess.RulesManager.Managers;
 using EPSILab.SolarSystem.Earth.DataAccess.RulesManager.Managers.Interfaces;
@@ -16,7 +16,7 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
     /// <summary>
     /// Access to members table
     /// </summary>
-    public class MemberDAL : IMemberReader<Member, Campus>, ISearchable<Member>, ILogin<Member, LostPasswordRequest>, IManager<Member>
+    class MemberDAL : IMemberDAL
     {
         #region IMemberReader methods
 

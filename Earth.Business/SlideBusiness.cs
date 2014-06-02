@@ -1,8 +1,7 @@
 ﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
-using EPSILab.SolarSystem.Earth.DataAccess.DAL;
-using EPSILab.SolarSystem.Earth.Mappers;
 using System.Collections.Generic;
 using System.Linq;
+using EPSILab.SolarSystem.Earth.DataAccess.DAL.Abstract;
 using SlideDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Slide;
 using SlideDTO = EPSILab.SolarSystem.Earth.Common.Slide;
 
@@ -11,19 +10,29 @@ namespace EPSILab.SolarSystem.Earth.Business
     /// <summary>
     /// Business class for advertisings
     /// </summary>
-    public class SlideBusiness : IReader1Filter<SlideDTO, bool?>, IManager<SlideDTO>
+    class SlideBusiness : IReader1Filter<SlideDTO, bool?>, IManager<SlideDTO>
     {
         #region Attributes
 
         /// <summary>
         /// DAL access
         /// </summary>
-        private readonly SlideDAL _dal = new SlideDAL();
+        private readonly ISlideDAL _dal;
 
         /// <summary>
         /// Mapper
         /// </summary>
-        private readonly IMapper<SlideDAO, SlideDTO> _mapper = new SlideMapper();
+        private readonly IMapper<SlideDAO, SlideDTO> _mapper;
+
+        #endregion
+
+        #region Constructor
+
+        public SlideBusiness(ISlideDAL dal, IMapper<SlideDAO, SlideDTO> mapper)
+        {
+            _dal = dal;
+            _mapper = mapper;
+        }
 
         #endregion
 

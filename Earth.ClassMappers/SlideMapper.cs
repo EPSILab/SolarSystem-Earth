@@ -7,7 +7,7 @@ namespace EPSILab.SolarSystem.Earth.Mappers
     /// <summary>
     /// Advertising mapper
     /// </summary>
-    public class SlideMapper : IMapper<SlideDAO, SlideDTO>
+    class SlideMapper : IMapper<SlideDAO, SlideDTO>
     {
         /// <summary>
         /// DAO to DTO

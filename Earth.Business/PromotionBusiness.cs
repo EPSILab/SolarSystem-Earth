@@ -1,8 +1,7 @@
 ﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
-using EPSILab.SolarSystem.Earth.DataAccess.DAL;
-using EPSILab.SolarSystem.Earth.Mappers;
 using System.Collections.Generic;
 using System.Linq;
+using EPSILab.SolarSystem.Earth.DataAccess.DAL.Abstract;
 using PromotionDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Promotion;
 using PromotionDTO = EPSILab.SolarSystem.Earth.Common.Promotion;
 
@@ -11,19 +10,29 @@ namespace EPSILab.SolarSystem.Earth.Business
     /// <summary>
     /// Business class for promos
     /// </summary>
-    public class PromotionBusiness : IReader<PromotionDTO>, IAvailable<PromotionDTO>, IManager<PromotionDTO>
+    class PromotionBusiness : IReader<PromotionDTO>, IAvailable<PromotionDTO>, IManager<PromotionDTO>
     {
         #region Attributes
 
         /// <summary>
         /// DAL access
         /// </summary>
-        private readonly PromotionDAL _dal = new PromotionDAL();
+        private readonly IPromotionDAL _dal;
 
         /// <summary>
         /// Mapper
         /// </summary>
-        private readonly IMapper<PromotionDAO, PromotionDTO> _mapper = new PromotionMapper();
+        private readonly IMapper<PromotionDAO, PromotionDTO> _mapper;
+
+        #endregion
+
+        #region Constructor
+
+        public PromotionBusiness(IPromotionDAL dal, IMapper<PromotionDAO, PromotionDTO> mapper)
+        {
+            _dal = dal;
+            _mapper = mapper;
+        }
 
         #endregion
 

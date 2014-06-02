@@ -1,8 +1,6 @@
 ﻿using EPSILab.SolarSystem.Earth.Business.Ressources;
 using EPSILab.SolarSystem.Earth.Common.Interfaces;
-using EPSILab.SolarSystem.Earth.DataAccess.DAL;
-using EPSILab.SolarSystem.Earth.DataAccess.Resources;
-using EPSILab.SolarSystem.Earth.Mappers;
+using EPSILab.SolarSystem.Earth.DataAccess.DAL.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,24 +18,42 @@ namespace EPSILab.SolarSystem.Earth.Business
     /// <summary>
     /// Business class for members
     /// </summary>
-    public class MemberBusiness : IMemberReader<MemberDTO, CampusDTO>, IManager<MemberDTO>, ISearchable<MemberDTO>, ILogin<MemberDTO, LostPasswordRequestDTO>
+    class MemberBusiness : IMemberReader<MemberDTO, CampusDTO>, IManager<MemberDTO>, ISearchable<MemberDTO>, ILogin<MemberDTO, LostPasswordRequestDTO>
     {
         #region Attributes
 
         /// <summary>
         /// DAL access
         /// </summary>
-        private readonly MemberDAL _dal = new MemberDAL();
+        private readonly IMemberDAL _dal;
 
         /// <summary>
         /// Member mapper
         /// </summary>
-        private readonly IMapper<MemberDAO, MemberDTO> _mapperMember = new MemberMapper();
+        private readonly IMapper<MemberDAO, MemberDTO> _mapperMember;
 
         /// <summary>
         /// City mapper
         /// </summary>
-        private readonly IMapper<CampusDAO, CampusDTO> _mapperCity = new CampusMapper();
+        private readonly IMapper<CampusDAO, CampusDTO> _mapperCity;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private readonly IMapper<LostPasswordRequestDAO, LostPasswordRequestDTO> _mapperLostPassword;
+
+        #endregion
+
+        #region Constructor
+
+        public MemberBusiness(IMemberDAL dal, IMapper<MemberDAO, MemberDTO> mapperMember, IMapper<CampusDAO, CampusDTO> mapperCity, 
+            IMapper<LostPasswordRequestDAO, LostPasswordRequestDTO> mapperLostPassword)
+        {
+            _dal = dal;
+            _mapperMember = mapperMember;
+            _mapperCity = mapperCity;
+            _mapperLostPassword = mapperLostPassword;
+        }
 
         #endregion
 
@@ -254,9 +270,8 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <returns>Password recover informations</returns>
         public LostPasswordRequestDTO RequestLostPassword(string username, string email)
         {
-            IMapper<LostPasswordRequestDAO, LostPasswordRequestDTO> mapper = new LostPasswordRequestMapper();
             LostPasswordRequestDAO dao = _dal.RequestLostPassword(username, email);
-            LostPasswordRequestDTO dto = mapper.ToDTO(dao);
+            LostPasswordRequestDTO dto = _mapperLostPassword.ToDTO(dao);
 
             using (MailMessage mail = new MailMessage())
             {

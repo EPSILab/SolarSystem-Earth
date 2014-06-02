@@ -1,4 +1,4 @@
-﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
+﻿using EPSILab.SolarSystem.Earth.DataAccess.DAL.Abstract;
 using EPSILab.SolarSystem.Earth.DataAccess.Exceptions;
 using EPSILab.SolarSystem.Earth.DataAccess.Model;
 using EPSILab.SolarSystem.Earth.DataAccess.RulesManager.Managers;
@@ -11,14 +11,23 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
     /// <summary>
     /// Access to city table
     /// </summary>
-    public class CampusDAL : IReader<Campus>, IManager<Campus>
+    class CampusDAL : ICampusDAL
     {
         #region Attributes
 
         /// <summary>
         /// Access to member table
         /// </summary>
-        private readonly MemberDAL _memberDAL = new MemberDAL();
+        private readonly IMemberDAL _memberDAL;
+
+        #endregion
+
+        #region Constructor
+
+        public CampusDAL(IMemberDAL memberDAL)
+        {
+            _memberDAL = memberDAL;
+        }
 
         #endregion
 

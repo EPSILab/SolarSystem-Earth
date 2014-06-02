@@ -1,6 +1,5 @@
 ﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
-using EPSILab.SolarSystem.Earth.DataAccess.DAL;
-using EPSILab.SolarSystem.Earth.Mappers;
+using EPSILab.SolarSystem.Earth.DataAccess.DAL.Abstract;
 using System.Collections.Generic;
 using System.Linq;
 using ProjectDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Project;
@@ -13,24 +12,35 @@ namespace EPSILab.SolarSystem.Earth.Business
     /// <summary>
     /// Business class for projects
     /// </summary>
-    public class ProjectBusiness : IReader1Filter<ProjectDTO, CampusDTO>, IManager<ProjectDTO>
+    class ProjectBusiness : IReader1Filter<ProjectDTO, CampusDTO>, IManager<ProjectDTO>
     {
         #region Attributes
 
         /// <summary>
         /// DAL access
         /// </summary>
-        private readonly ProjectDAL _dal = new ProjectDAL();
+        private readonly IProjectDAL _dal;
 
         /// <summary>
         /// Project mapper
         /// </summary>
-        private readonly IMapper<ProjectDAO, ProjectDTO> _mapperProject = new ProjectMapper();
+        private readonly IMapper<ProjectDAO, ProjectDTO> _mapperProject;
 
         /// <summary>
         /// City mapper
         /// </summary>
-        private readonly IMapper<CampusDAO, CampusDTO> _mapperCity = new CampusMapper();
+        private readonly IMapper<CampusDAO, CampusDTO> _mapperCity;
+
+        #endregion
+
+        #region Constructor
+
+        public ProjectBusiness(IProjectDAL dal, IMapper<ProjectDAO, ProjectDTO> mapperProject, IMapper<CampusDAO, CampusDTO> mapperCity)
+        {
+            _dal = dal;
+            _mapperProject = mapperProject;
+            _mapperCity = mapperCity;
+        }
 
         #endregion
 

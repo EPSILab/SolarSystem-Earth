@@ -7,7 +7,7 @@ namespace EPSILab.SolarSystem.Earth.Mappers
     /// <summary>
     /// Link mapper
     /// </summary>
-    public class LinkMapper : IMapper<LinkDAO, LinkDTO>
+    class LinkMapper : IMapper<LinkDAO, LinkDTO>
     {
         /// <summary>
         /// DAO to DTO

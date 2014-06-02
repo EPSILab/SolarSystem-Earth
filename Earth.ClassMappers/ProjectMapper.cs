@@ -9,7 +9,7 @@ namespace EPSILab.SolarSystem.Earth.Mappers
     /// <summary>
     /// Project mapper
     /// </summary>
-    public class ProjectMapper : IMapper<ProjectDAO, ProjectDTO>
+    class ProjectMapper : IMapper<ProjectDAO, ProjectDTO>
     {
         #region Attributes
 

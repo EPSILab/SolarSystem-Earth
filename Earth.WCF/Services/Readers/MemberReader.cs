@@ -1,8 +1,9 @@
-﻿using EPSILab.SolarSystem.Earth.Business;
-using EPSILab.SolarSystem.Earth.Common;
+﻿using EPSILab.SolarSystem.Earth.Common;
 using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using EPSILab.SolarSystem.Earth.WCF.Infrastructure;
 using EPSILab.SolarSystem.Earth.WCF.Interfaces.Readers;
 using System.Collections.Generic;
+using Ninject;
 
 namespace EPSILab.SolarSystem.Earth.WCF
 {
@@ -10,50 +11,42 @@ namespace EPSILab.SolarSystem.Earth.WCF
     {
         public Member GetMember(int code)
         {
-            IReader<Member> business = new MemberBusiness();
-            return business.Get(code);
+            return NinjectKernel.Kernel.Get<IReader<Member>>().Get(code);
         }
 
         public IEnumerable<Member> GetMembers()
         {
-            IMemberReader<Member, Campus> business = new MemberBusiness();
-            return business.GetBureauAndMembersActives();
+            return NinjectKernel.Kernel.Get<IMemberReader<Member, Campus>>().GetBureauAndMembersActives();
         }
 
         public IEnumerable<Member> GetMembersByCampus(Campus campus)
         {
-            IMemberReader<Member, Campus> business = new MemberBusiness();
-            return business.GetBureauAndMembersActives(campus);
+            return NinjectKernel.Kernel.Get<IMemberReader<Member, Campus>>().GetBureauAndMembersActives(campus);
         }
 
         public IEnumerable<Member> GetMembersBureau()
         {
-            IMemberReader<Member, Campus> business = new MemberBusiness();
-            return business.GetBureau();
+            return NinjectKernel.Kernel.Get<IMemberReader<Member, Campus>>().GetBureau();
         }
 
         public IEnumerable<Member> GetMembersBureauByCampus(Campus campus)
         {
-            IMemberReader<Member, Campus> business = new MemberBusiness();
-            return business.GetBureau(campus);
+            return NinjectKernel.Kernel.Get<IMemberReader<Member, Campus>>().GetBureau(campus);
         }
 
         public IEnumerable<Member> GetMembersAlumnis(Campus campus)
         {
-            IMemberReader<Member, Campus> business = new MemberBusiness();
-            return business.GetAlumnis(campus);
+            return NinjectKernel.Kernel.Get<IMemberReader<Member, Campus>>().GetAlumnis(campus);
         }
 
         public int GetMemberLastInsertedId()
         {
-            IReader<Member> business = new MemberBusiness();
-            return business.GetLastInsertedId();
+            return NinjectKernel.Kernel.Get<IReader<Member>>().GetLastInsertedId();
         }
 
         public IEnumerable<Member> SearchMembers(string keywords)
         {
-            ISearchable<Member> business = new MemberBusiness();
-            return business.Search(keywords);
+            return NinjectKernel.Kernel.Get<ISearchable<Member>>().Search(keywords);
         }
     }
 }

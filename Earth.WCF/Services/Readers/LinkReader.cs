@@ -1,8 +1,9 @@
-﻿using EPSILab.SolarSystem.Earth.Business;
-using EPSILab.SolarSystem.Earth.Common;
+﻿using EPSILab.SolarSystem.Earth.Common;
 using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using EPSILab.SolarSystem.Earth.WCF.Infrastructure;
 using EPSILab.SolarSystem.Earth.WCF.Interfaces.Readers;
 using System.Collections.Generic;
+using Ninject;
 
 namespace EPSILab.SolarSystem.Earth.WCF
 {
@@ -10,14 +11,12 @@ namespace EPSILab.SolarSystem.Earth.WCF
     {
         public Link GetLink(int code)
         {
-            IReader<Link> business = new LinkBusiness();
-            return business.Get(code);
+            return NinjectKernel.Kernel.Get<IReader<Link>>().Get(code);
         }
 
         public IEnumerable<Link> GetLinks()
         {
-            IReader<Link> business = new LinkBusiness();
-            return business.Get();
+            return NinjectKernel.Kernel.Get<IReader<Link>>().Get();
         }
     }
 }

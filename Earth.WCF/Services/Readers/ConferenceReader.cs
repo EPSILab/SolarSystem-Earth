@@ -1,8 +1,9 @@
-﻿using EPSILab.SolarSystem.Earth.Business;
-using EPSILab.SolarSystem.Earth.Common;
+﻿using EPSILab.SolarSystem.Earth.Common;
 using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using EPSILab.SolarSystem.Earth.WCF.Infrastructure;
 using EPSILab.SolarSystem.Earth.WCF.Interfaces.Readers;
 using System.Collections.Generic;
+using Ninject;
 
 namespace EPSILab.SolarSystem.Earth.WCF
 {
@@ -10,44 +11,37 @@ namespace EPSILab.SolarSystem.Earth.WCF
     {
         public Conference GetConference(int code)
         {
-            IReader<Conference> business = new ConferenceBusiness();
-            return business.Get(code);
+            return NinjectKernel.Kernel.Get<IReader<Conference>>().Get(code);
         }
 
         public IEnumerable<Conference> GetConferences()
         {
-            IReader2Filters<Conference, Campus, bool?> business = new ConferenceBusiness();
-            return business.Get(true);
+            return NinjectKernel.Kernel.Get<IReader2Filters<Conference, Campus, bool?>>().Get(true);
         }
 
         public IEnumerable<Conference> GetConferencesLimited(int indexFirstResult, int numberOfResults)
         {
-            IReader2Filters<Conference, Campus, bool?> business = new ConferenceBusiness();
-            return business.Get(true, indexFirstResult, numberOfResults);
+            return NinjectKernel.Kernel.Get<IReader2Filters<Conference, Campus, bool?>>().Get(true, indexFirstResult, numberOfResults);
         }
 
         public IEnumerable<Conference> GetConferencesByCampus(Campus campus)
         {
-            IReader2Filters<Conference, Campus, bool?> business = new ConferenceBusiness();
-            return business.Get(campus, true);
+            return NinjectKernel.Kernel.Get<IReader2Filters<Conference, Campus, bool?>>().Get(campus, true);
         }
 
         public IEnumerable<Conference> GetConferencesByCampusLimited(Campus campus, int indexFirstElement, int numberOfResults)
         {
-            IReader2Filters<Conference, Campus, bool?> business = new ConferenceBusiness();
-            return business.Get(campus, true, indexFirstElement, numberOfResults);
+            return NinjectKernel.Kernel.Get<IReader2Filters<Conference, Campus, bool?>>().Get(campus, true, indexFirstElement, numberOfResults);
         }
 
         public int GetConferenceLastInsertedId()
         {
-            IReaderLimit<Conference> business = new ConferenceBusiness();
-            return business.GetLastInsertedId();
+            return NinjectKernel.Kernel.Get<IReader2Filters<Conference, Campus, bool?>>().GetLastInsertedId();
         }
 
         public IEnumerable<Conference> SearchConferences(string keywords)
         {
-            ISearchable<Conference> business = new ConferenceBusiness();
-            return business.Search(keywords);
+            return NinjectKernel.Kernel.Get<ISearchable<Conference>>().Search(keywords);
         }
     }
 }

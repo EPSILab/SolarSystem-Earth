@@ -1,6 +1,5 @@
 ﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
-using EPSILab.SolarSystem.Earth.DataAccess.DAL;
-using EPSILab.SolarSystem.Earth.Mappers;
+using EPSILab.SolarSystem.Earth.DataAccess.DAL.Abstract;
 using System.Collections.Generic;
 using System.Linq;
 using MemberDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Member;
@@ -13,24 +12,35 @@ namespace EPSILab.SolarSystem.Earth.Business
     /// <summary>
     /// Business class for news
     /// </summary>
-    public class NewsBusiness : IReader2Filters<NewsDTO, MemberDTO, bool?>, ISearchable<NewsDTO>, IManager<NewsDTO>
+    class NewsBusiness : IReader2Filters<NewsDTO, MemberDTO, bool?>, ISearchable<NewsDTO>, IManager<NewsDTO>
     {
         #region Attributes
 
         /// <summary>
         /// DAL access
         /// </summary>
-        private readonly NewsDAL _dal = new NewsDAL();
+        private readonly INewsDAL _dal;
 
         /// <summary>
         /// News mapper
         /// </summary>
-        private readonly IMapper<NewsDAO, NewsDTO> _mapperNews = new NewsMapper();
+        private readonly IMapper<NewsDAO, NewsDTO> _mapperNews;
 
         /// <summary>
         /// Member mapper
         /// </summary>
-        private readonly IMapper<MemberDAO, MemberDTO> _mapperMember = new MemberMapper();
+        private readonly IMapper<MemberDAO, MemberDTO> _mapperMember;
+
+        #endregion
+
+        #region Constructor
+
+        public NewsBusiness(INewsDAL dal, IMapper<NewsDAO, NewsDTO> mapperNews, IMapper<MemberDAO, MemberDTO> mapperMember)
+        {
+            _dal = dal;
+            _mapperNews = mapperNews;
+            _mapperMember = mapperMember;
+        }
 
         #endregion
 
