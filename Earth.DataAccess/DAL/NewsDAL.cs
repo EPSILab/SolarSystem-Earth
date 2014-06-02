@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using EPSILab.SolarSystem.Earth.DataAccess.DAL.Abstract;
 using EPSILab.SolarSystem.Earth.DataAccess.Exceptions;
 using EPSILab.SolarSystem.Earth.DataAccess.Model;
 using EPSILab.SolarSystem.Earth.DataAccess.RulesManager.Managers;
@@ -11,11 +11,20 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
     /// <summary>
     /// Access to news table
     /// </summary>
-    public class NewsDAL : IReader2Filters<News, Member, bool?>, ISearchable<News>, IManager<News>
+    class NewsDAL : INewsDAL
     {
         #region Attributes
 
-        private readonly MemberDAL _memberDAL = new MemberDAL();
+        private readonly IMemberDAL _memberDAL;
+
+        #endregion
+
+        #region Constructor
+
+        public NewsDAL(IMemberDAL memberDAL)
+        {
+            _memberDAL = memberDAL;
+        }
 
         #endregion
 

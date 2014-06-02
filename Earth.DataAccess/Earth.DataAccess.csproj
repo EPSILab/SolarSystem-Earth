@@ -64,6 +64,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\Abstract\ICampusDAL.cs" />
+    <Compile Include="DAL\Abstract\IConferenceDAL.cs" />
+    <Compile Include="DAL\Abstract\ILinkDAL.cs" />
+    <Compile Include="DAL\Abstract\IMemberDAL.cs" />
+    <Compile Include="DAL\Abstract\INewsDAL.cs" />
+    <Compile Include="DAL\Abstract\IProjectDAL.cs" />
+    <Compile Include="DAL\Abstract\IPromotionDAL.cs" />
+    <Compile Include="DAL\Abstract\IShowDAL.cs" />
+    <Compile Include="DAL\Abstract\ISlideDAL.cs" />
     <Compile Include="DAL\SunAccess.cs" />
     <Compile Include="DAL\PromotionDAL.cs" />
     <Compile Include="DAL\ConferenceDAL.cs" />

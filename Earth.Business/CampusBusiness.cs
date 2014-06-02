@@ -1,7 +1,7 @@
 ﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
-using EPSILab.SolarSystem.Earth.DataAccess.DAL;
 using System.Collections.Generic;
 using System.Linq;
+using EPSILab.SolarSystem.Earth.DataAccess.DAL.Abstract;
 using CampusDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Campus;
 using CampusDTO = EPSILab.SolarSystem.Earth.Common.Campus;
 
@@ -17,7 +17,7 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <summary>
         /// DAL access
         /// </summary>
-        private readonly CampusDAL _dal = new CampusDAL();
+        private readonly ICampusDAL _dal;
 
         /// <summary>
         /// Mapper
@@ -28,8 +28,9 @@ namespace EPSILab.SolarSystem.Earth.Business
 
         #region Constructor
 
-        public CampusBusiness(IMapper<CampusDAO, CampusDTO> mapper)
+        public CampusBusiness(ICampusDAL dal, IMapper<CampusDAO, CampusDTO> mapper)
         {
+            _dal = dal;
             _mapper = mapper;
         }
 

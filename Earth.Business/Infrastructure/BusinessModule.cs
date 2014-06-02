@@ -1,4 +1,5 @@
 ﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using EPSILab.SolarSystem.Earth.DataAccess.Infrastructure;
 using EPSILab.SolarSystem.Earth.Mappers.Infrastructure;
 using Ninject;
 using Ninject.Modules;
@@ -71,6 +72,8 @@ namespace EPSILab.SolarSystem.Earth.Business.Infrastructure
             Kernel.Bind<IReader2Filters<NewsDTO, MemberDTO, bool?>>().ToMethod(c => c.Kernel.Get<NewsBusiness>());
             Kernel.Bind<ISearchable<NewsDTO>>().ToMethod(c => c.Kernel.Get<NewsBusiness>());
 
+            Kernel.Bind<IReader<ProjectDTO>>().ToMethod(c => c.Kernel.Get<ProjectBusiness>());
+            Kernel.Bind<IReaderLimit<ProjectDTO>>().ToMethod(c => c.Kernel.Get<ProjectBusiness>());
             Kernel.Bind<IReader1Filter<ProjectDTO, CampusDTO>>().ToMethod(c => c.Kernel.Get<ProjectBusiness>());
 
             Kernel.Bind<IReader<PromotionDTO>>().ToMethod(c => c.Kernel.Get<PromotionBusiness>());
@@ -106,6 +109,9 @@ namespace EPSILab.SolarSystem.Earth.Business.Infrastructure
 
             // Load Mappers
             Kernel.Load(new MapperModule());
+
+            // Load DAL
+            Kernel.Load(new DataAccessModule());
         }
     }
 }

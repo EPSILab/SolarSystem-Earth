@@ -1,6 +1,5 @@
 ﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
-using EPSILab.SolarSystem.Earth.DataAccess.DAL;
-using EPSILab.SolarSystem.Earth.Mappers;
+using EPSILab.SolarSystem.Earth.DataAccess.DAL.Abstract;
 using System.Collections.Generic;
 using System.Linq;
 using MemberDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Member;
@@ -20,7 +19,7 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <summary>
         /// DAL access
         /// </summary>
-        private readonly NewsDAL _dal = new NewsDAL();
+        private readonly INewsDAL _dal;
 
         /// <summary>
         /// News mapper
@@ -36,8 +35,9 @@ namespace EPSILab.SolarSystem.Earth.Business
 
         #region Constructor
 
-        public NewsBusiness(IMapper<NewsDAO, NewsDTO> mapperNews, IMapper<MemberDAO, MemberDTO> mapperMember)
+        public NewsBusiness(INewsDAL dal, IMapper<NewsDAO, NewsDTO> mapperNews, IMapper<MemberDAO, MemberDTO> mapperMember)
         {
+            _dal = dal;
             _mapperNews = mapperNews;
             _mapperMember = mapperMember;
         }

@@ -1,7 +1,6 @@
 ﻿using EPSILab.SolarSystem.Earth.Business.Ressources;
 using EPSILab.SolarSystem.Earth.Common.Interfaces;
-using EPSILab.SolarSystem.Earth.DataAccess.DAL;
-using EPSILab.SolarSystem.Earth.Mappers;
+using EPSILab.SolarSystem.Earth.DataAccess.DAL.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +25,7 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <summary>
         /// DAL access
         /// </summary>
-        private readonly MemberDAL _dal = new MemberDAL();
+        private readonly IMemberDAL _dal;
 
         /// <summary>
         /// Member mapper
@@ -47,9 +46,10 @@ namespace EPSILab.SolarSystem.Earth.Business
 
         #region Constructor
 
-        public MemberBusiness(IMapper<MemberDAO, MemberDTO> mapperMember, IMapper<CampusDAO, CampusDTO> mapperCity, 
+        public MemberBusiness(IMemberDAL dal, IMapper<MemberDAO, MemberDTO> mapperMember, IMapper<CampusDAO, CampusDTO> mapperCity, 
             IMapper<LostPasswordRequestDAO, LostPasswordRequestDTO> mapperLostPassword)
         {
+            _dal = dal;
             _mapperMember = mapperMember;
             _mapperCity = mapperCity;
             _mapperLostPassword = mapperLostPassword;
