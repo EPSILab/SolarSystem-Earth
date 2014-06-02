@@ -13,7 +13,7 @@ namespace EPSILab.SolarSystem.Earth.Business
     /// <summary>
     /// Business class for conference
     /// </summary>
-    public class ConferenceBusiness : IReader2Filters<ConferenceDTO, CampusDTO, bool?>, ISearchable<ConferenceDTO>, IManager<ConferenceDTO>
+    class ConferenceBusiness : IReader2Filters<ConferenceDTO, CampusDTO, bool?>, ISearchable<ConferenceDTO>, IManager<ConferenceDTO>
     {
         #region Attributes
 

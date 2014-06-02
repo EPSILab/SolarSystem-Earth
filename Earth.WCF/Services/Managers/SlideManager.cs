@@ -1,8 +1,9 @@
-﻿using EPSILab.SolarSystem.Earth.Business;
-using EPSILab.SolarSystem.Earth.Common;
+﻿using EPSILab.SolarSystem.Earth.Common;
 using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using EPSILab.SolarSystem.Earth.WCF.Infrastructure;
 using EPSILab.SolarSystem.Earth.WCF.Interfaces.Managers;
 using System.Collections.Generic;
+using Ninject;
 
 namespace EPSILab.SolarSystem.Earth.WCF
 {
@@ -10,32 +11,27 @@ namespace EPSILab.SolarSystem.Earth.WCF
     {
         public Slide GetSlide(int code)
         {
-            IReader<Slide> business = new SlideBusiness();
-            return business.Get(code);
+            return NinjectKernel.Kernel.Get<IReader<Slide>>().Get(code);
         }
 
         public IEnumerable<Slide> GetSlides()
         {
-            IReader<Slide> business = new SlideBusiness();
-            return business.Get();
+            return NinjectKernel.Kernel.Get<IReader<Slide>>().Get();
         }
 
         public int AddSlide(Slide element, string username, string password)
         {
-            IManager<Slide> business = new SlideBusiness();
-            return business.Add(element, username, password);
+            return NinjectKernel.Kernel.Get<IManager<Slide>>().Add(element, username, password);
         }
 
         public void EditSlide(Slide element, string username, string password)
         {
-            IManager<Slide> business = new SlideBusiness();
-            business.Edit(element, username, password);
+             NinjectKernel.Kernel.Get<IManager<Slide>>().Edit(element, username, password);
         }
 
         public void DeleteSlide(int code, string username, string password)
         {
-            IManager<Slide> business = new SlideBusiness();
-            business.Delete(code, username, password);
+            NinjectKernel.Kernel.Get<IManager<Slide>>().Delete(code, username, password);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace EPSILab.SolarSystem.Earth.Business
     /// <summary>
     /// Business class for advertisings
     /// </summary>
-    public class SlideBusiness : IReader1Filter<SlideDTO, bool?>, IManager<SlideDTO>
+    class SlideBusiness : IReader1Filter<SlideDTO, bool?>, IManager<SlideDTO>
     {
         #region Attributes
 

@@ -1,7 +1,6 @@
 ﻿using EPSILab.SolarSystem.Earth.Business.Ressources;
 using EPSILab.SolarSystem.Earth.Common.Interfaces;
 using EPSILab.SolarSystem.Earth.DataAccess.DAL;
-using EPSILab.SolarSystem.Earth.DataAccess.Resources;
 using EPSILab.SolarSystem.Earth.Mappers;
 using System;
 using System.Collections.Generic;
@@ -20,7 +19,7 @@ namespace EPSILab.SolarSystem.Earth.Business
     /// <summary>
     /// Business class for members
     /// </summary>
-    public class MemberBusiness : IMemberReader<MemberDTO, CampusDTO>, IManager<MemberDTO>, ISearchable<MemberDTO>, ILogin<MemberDTO, LostPasswordRequestDTO>
+    class MemberBusiness : IMemberReader<MemberDTO, CampusDTO>, IManager<MemberDTO>, ISearchable<MemberDTO>, ILogin<MemberDTO, LostPasswordRequestDTO>
     {
         #region Attributes
 

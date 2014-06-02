@@ -11,7 +11,7 @@ namespace EPSILab.SolarSystem.Earth.Business
     /// <summary>
     /// Business class for links
     /// </summary>
-    public class LinkBusiness : IReader<LinkDTO>, IManager<LinkDTO>
+    class LinkBusiness : IReader<LinkDTO>, IManager<LinkDTO>
     {
         #region Attributes
 

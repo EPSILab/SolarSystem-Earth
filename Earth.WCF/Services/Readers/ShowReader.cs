@@ -1,8 +1,9 @@
-﻿using EPSILab.SolarSystem.Earth.Business;
-using EPSILab.SolarSystem.Earth.Common;
+﻿using EPSILab.SolarSystem.Earth.Common;
 using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using EPSILab.SolarSystem.Earth.WCF.Infrastructure;
 using EPSILab.SolarSystem.Earth.WCF.Interfaces.Readers;
 using System.Collections.Generic;
+using Ninject;
 
 namespace EPSILab.SolarSystem.Earth.WCF
 {
@@ -10,32 +11,27 @@ namespace EPSILab.SolarSystem.Earth.WCF
     {
         public Show GetShow(int code)
         {
-            IReader<Show> business = new ShowBusiness();
-            return business.Get(code);
+            return NinjectKernel.Kernel.Get<IReader<Show>>().Get(code);
         }
 
         public IEnumerable<Show> GetShows()
         {
-            IReader<Show> business = new ShowBusiness();
-            return business.Get();
+            return NinjectKernel.Kernel.Get<IReader<Show>>().Get();
         }
 
         public IEnumerable<Show> GetShowsLimited(int indexFirstElement, int numberOfResults)
         {
-            IReaderLimit<Show> business = new ShowBusiness();
-            return business.Get(indexFirstElement, numberOfResults);
+            return NinjectKernel.Kernel.Get<IReaderLimit<Show>>().Get(indexFirstElement, numberOfResults);
         }
 
         public int GetShowLastInsertedId()
         {
-            IReaderLimit<Show> business = new ShowBusiness();
-            return business.GetLastInsertedId();
+            return NinjectKernel.Kernel.Get<IReader<Show>>().GetLastInsertedId();
         }
 
         public IEnumerable<Show> SearchShows(string keywords)
         {
-            ISearchable<Show> business = new ShowBusiness();
-            return business.Search(keywords);
+            return NinjectKernel.Kernel.Get<ISearchable<Show>>().Search(keywords);
         }
     }
 }

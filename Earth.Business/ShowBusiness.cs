@@ -11,7 +11,7 @@ namespace EPSILab.SolarSystem.Earth.Business
     /// <summary>
     /// Business class for shows
     /// </summary>
-    public class ShowBusiness : IReader1Filter<ShowDTO, bool?>, ISearchable<ShowDTO>, IManager<ShowDTO>
+    class ShowBusiness : IReader1Filter<ShowDTO, bool?>, ISearchable<ShowDTO>, IManager<ShowDTO>
     {
         #region Attributes
 

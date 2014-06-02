@@ -11,7 +11,7 @@ namespace EPSILab.SolarSystem.Earth.Business
     /// <summary>
     /// Business class for promos
     /// </summary>
-    public class PromotionBusiness : IReader<PromotionDTO>, IAvailable<PromotionDTO>, IManager<PromotionDTO>
+    class PromotionBusiness : IReader<PromotionDTO>, IAvailable<PromotionDTO>, IManager<PromotionDTO>
     {
         #region Attributes
 

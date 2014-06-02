@@ -11,7 +11,7 @@ namespace EPSILab.SolarSystem.Earth.Business
     /// <summary>
     /// Business class for cities
     /// </summary>
-    public class CampusBusiness : IReader<CampusDTO>, IManager<CampusDTO>
+    class CampusBusiness : IReader<CampusDTO>, IManager<CampusDTO>
     {
         #region Attributes
 

@@ -13,7 +13,7 @@ namespace EPSILab.SolarSystem.Earth.Business
     /// <summary>
     /// Business class for projects
     /// </summary>
-    public class ProjectBusiness : IReader1Filter<ProjectDTO, CampusDTO>, IManager<ProjectDTO>
+    class ProjectBusiness : IReader1Filter<ProjectDTO, CampusDTO>, IManager<ProjectDTO>
     {
         #region Attributes
 

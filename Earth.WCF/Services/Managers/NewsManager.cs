@@ -1,8 +1,9 @@
-﻿using EPSILab.SolarSystem.Earth.Business;
-using EPSILab.SolarSystem.Earth.Common;
+﻿using EPSILab.SolarSystem.Earth.Common;
 using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using EPSILab.SolarSystem.Earth.WCF.Infrastructure;
 using EPSILab.SolarSystem.Earth.WCF.Interfaces.Managers;
 using System.Collections.Generic;
+using Ninject;
 
 namespace EPSILab.SolarSystem.Earth.WCF
 {
@@ -10,38 +11,32 @@ namespace EPSILab.SolarSystem.Earth.WCF
     {
         public News GetNews(int code)
         {
-            IReader<News> business = new NewsBusiness();
-            return business.Get(code);
+            return NinjectKernel.Kernel.Get<IReader<News>>().Get(code);
         }
 
         public IEnumerable<News> GetListNews()
         {
-            IReader<News> business = new NewsBusiness();
-            return business.Get();
+            return NinjectKernel.Kernel.Get<IReader<News>>().Get();
         }
 
         public IEnumerable<News> GetListNewsLimited(int indexFirstElement, int numberOfResults)
         {
-            IReaderLimit<News> business = new NewsBusiness();
-            return business.Get(indexFirstElement, numberOfResults);
+            return NinjectKernel.Kernel.Get<IReaderLimit<News>>().Get(indexFirstElement, numberOfResults);
         }
 
         public int AddNews(News element, string username, string password)
         {
-            IManager<News> business = new NewsBusiness();
-            return business.Add(element, username, password);
+            return NinjectKernel.Kernel.Get<IManager<News>>().Add(element, username, password);
         }
 
         public void EditNews(News element, string username, string password)
         {
-            IManager<News> business = new NewsBusiness();
-            business.Edit(element, username, password);
+            NinjectKernel.Kernel.Get<IManager<News>>().Edit(element, username, password);
         }
 
         public void DeleteNews(int code, string username, string password)
         {
-            IManager<News> business = new NewsBusiness();
-            business.Delete(code, username, password);
+            NinjectKernel.Kernel.Get<IManager<News>>().Delete(code, username, password);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace EPSILab.SolarSystem.Earth.Business
     /// <summary>
     /// Business class for news
     /// </summary>
-    public class NewsBusiness : IReader2Filters<NewsDTO, MemberDTO, bool?>, ISearchable<NewsDTO>, IManager<NewsDTO>
+    class NewsBusiness : IReader2Filters<NewsDTO, MemberDTO, bool?>, ISearchable<NewsDTO>, IManager<NewsDTO>
     {
         #region Attributes
 

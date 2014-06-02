@@ -1,8 +1,9 @@
-﻿using EPSILab.SolarSystem.Earth.Business;
-using EPSILab.SolarSystem.Earth.Common;
+﻿using EPSILab.SolarSystem.Earth.Common;
 using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using EPSILab.SolarSystem.Earth.WCF.Infrastructure;
 using EPSILab.SolarSystem.Earth.WCF.Interfaces.Readers;
 using System.Collections.Generic;
+using Ninject;
 
 namespace EPSILab.SolarSystem.Earth.WCF
 {
@@ -10,32 +11,27 @@ namespace EPSILab.SolarSystem.Earth.WCF
     {
         public News GetNews(int code)
         {
-            IReader<News> business = new NewsBusiness();
-            return business.Get(code);
+            return NinjectKernel.Kernel.Get<IReader<News>>().Get(code);
         }
 
         public IEnumerable<News> GetListNews()
         {
-            IReader2Filters<News, Member, bool?> business = new NewsBusiness();
-            return business.Get(true);
+            return NinjectKernel.Kernel.Get<IReader2Filters<News, Member, bool?>>().Get(true);
         }
 
         public IEnumerable<News> GetListNewsLimited(int indexFirstElement, int numberOfResults)
         {
-            IReader2Filters<News, Member, bool?> business = new NewsBusiness();
-            return business.Get(true, indexFirstElement, numberOfResults);
+            return NinjectKernel.Kernel.Get<IReader2Filters<News, Member, bool?>>().Get(true, indexFirstElement, numberOfResults);
         }
 
         public int GetNewsLastInsertedId()
         {
-            IReaderLimit<News> business = new NewsBusiness();
-            return business.GetLastInsertedId();
+            return NinjectKernel.Kernel.Get<IReader2Filters<News, Member, bool?>>().GetLastInsertedId();
         }
 
         public IEnumerable<News> SearchNews(string keywords)
         {
-            ISearchable<News> business = new NewsBusiness();
-            return business.Search(keywords);
+            return NinjectKernel.Kernel.Get<ISearchable<News>>().Search(keywords);
         }
     }
 }
