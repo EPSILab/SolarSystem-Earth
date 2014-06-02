@@ -9,7 +9,7 @@ namespace EPSILab.SolarSystem.Earth.Mappers
     /// <summary>
     /// Conference mapper
     /// </summary>
-    public class ConferenceMapper : IMapper<ConferenceDAO, ConferenceDTO>
+    class ConferenceMapper : IMapper<ConferenceDAO, ConferenceDTO>
     {
         #region Attributes
 

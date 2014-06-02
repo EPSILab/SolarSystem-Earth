@@ -25,12 +25,22 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <summary>
         /// Conference mapper
         /// </summary>
-        private readonly IMapper<ConferenceDAO, ConferenceDTO> _mapperConference = new ConferenceMapper();
+        private readonly IMapper<ConferenceDAO, ConferenceDTO> _mapperConference;
 
         /// <summary>
         /// City mapper
         /// </summary>
-        private readonly IMapper<CampusDAO, CampusDTO> _mapperCity = new CampusMapper();
+        private readonly IMapper<CampusDAO, CampusDTO> _mapperCity;
+
+        #endregion
+
+        #region Constructor
+
+        public ConferenceBusiness(IMapper<ConferenceDAO, ConferenceDTO> mapperConference, IMapper<CampusDAO, CampusDTO> mapperCity)
+        {
+            _mapperConference = mapperConference;
+            _mapperCity = mapperCity;
+        }
 
         #endregion
 

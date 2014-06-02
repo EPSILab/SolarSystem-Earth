@@ -7,7 +7,7 @@ namespace EPSILab.SolarSystem.Earth.Mappers
     /// <summary>
     /// Show mapper
     /// </summary>
-    public class ShowMapper : IMapper<ShowDAO, ShowDTO>
+    class ShowMapper : IMapper<ShowDAO, ShowDTO>
     {
         /// <summary>
         /// DAO to DTO

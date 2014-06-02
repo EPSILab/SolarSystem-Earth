@@ -1,6 +1,5 @@
 ﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
 using EPSILab.SolarSystem.Earth.DataAccess.DAL;
-using EPSILab.SolarSystem.Earth.Mappers;
 using System.Collections.Generic;
 using System.Linq;
 using CampusDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Campus;
@@ -23,7 +22,16 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <summary>
         /// Mapper
         /// </summary>
-        private readonly IMapper<CampusDAO, CampusDTO> _mapper = new CampusMapper();
+        private readonly IMapper<CampusDAO, CampusDTO> _mapper;
+
+        #endregion
+
+        #region Constructor
+
+        public CampusBusiness(IMapper<CampusDAO, CampusDTO> mapper)
+        {
+            _mapper = mapper;
+        }
 
         #endregion
 

@@ -1,6 +1,5 @@
 ﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
 using EPSILab.SolarSystem.Earth.DataAccess.DAL;
-using EPSILab.SolarSystem.Earth.Mappers;
 using System.Collections.Generic;
 using System.Linq;
 using LinkDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Link;
@@ -23,7 +22,16 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <summary>
         /// Mapper
         /// </summary>
-        private readonly IMapper<LinkDAO, LinkDTO> _mapper = new LinkMapper();
+        private readonly IMapper<LinkDAO, LinkDTO> _mapper;
+
+        #endregion
+
+        #region Constructor
+
+        public LinkBusiness(IMapper<LinkDAO, LinkDTO> mapper)
+        {
+            _mapper = mapper;
+        }
 
         #endregion
 

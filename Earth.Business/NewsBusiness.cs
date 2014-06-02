@@ -25,12 +25,22 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <summary>
         /// News mapper
         /// </summary>
-        private readonly IMapper<NewsDAO, NewsDTO> _mapperNews = new NewsMapper();
+        private readonly IMapper<NewsDAO, NewsDTO> _mapperNews;
 
         /// <summary>
         /// Member mapper
         /// </summary>
-        private readonly IMapper<MemberDAO, MemberDTO> _mapperMember = new MemberMapper();
+        private readonly IMapper<MemberDAO, MemberDTO> _mapperMember;
+
+        #endregion
+
+        #region Constructor
+
+        public NewsBusiness(IMapper<NewsDAO, NewsDTO> mapperNews, IMapper<MemberDAO, MemberDTO> mapperMember)
+        {
+            _mapperNews = mapperNews;
+            _mapperMember = mapperMember;
+        }
 
         #endregion
 

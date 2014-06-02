@@ -23,7 +23,16 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <summary>
         /// Mapper
         /// </summary>
-        private readonly IMapper<SlideDAO, SlideDTO> _mapper = new SlideMapper();
+        private readonly IMapper<SlideDAO, SlideDTO> _mapper;
+
+        #endregion
+
+        #region Constructor
+
+        public SlideBusiness(IMapper<SlideDAO, SlideDTO> mapper)
+        {
+            _mapper = mapper;
+        }
 
         #endregion
 

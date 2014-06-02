@@ -1,15 +1,36 @@
 ﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
+using EPSILab.SolarSystem.Earth.Mappers.Infrastructure;
 using Ninject;
 using Ninject.Modules;
+
+using CampusDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Campus;
 using CampusDTO = EPSILab.SolarSystem.Earth.Common.Campus;
+
+using ConferenceDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Conference;
 using ConferenceDTO = EPSILab.SolarSystem.Earth.Common.Conference;
+
+using LinkDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Link;
 using LinkDTO = EPSILab.SolarSystem.Earth.Common.Link;
+
+using MemberDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Member;
 using MemberDTO = EPSILab.SolarSystem.Earth.Common.Member;
+
+using LostPasswordRequestDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.LostPasswordRequest;
 using LostPasswordRequestDTO = EPSILab.SolarSystem.Earth.Common.LostPasswordRequest;
+
+using NewsDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.News;
 using NewsDTO = EPSILab.SolarSystem.Earth.Common.News;
+
+using ProjectDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Project;
 using ProjectDTO = EPSILab.SolarSystem.Earth.Common.Project;
+
+using PromotionDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Promotion;
 using PromotionDTO = EPSILab.SolarSystem.Earth.Common.Promotion;
+
+using ShowDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Show;
 using ShowDTO = EPSILab.SolarSystem.Earth.Common.Show;
+
+using SlideDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Slide;
 using SlideDTO = EPSILab.SolarSystem.Earth.Common.Slide;
 
 namespace EPSILab.SolarSystem.Earth.Business.Infrastructure
@@ -82,6 +103,9 @@ namespace EPSILab.SolarSystem.Earth.Business.Infrastructure
             Kernel.Bind<IManager<ShowDTO>>().ToMethod(c => c.Kernel.Get<ShowBusiness>());
 
             Kernel.Bind<IManager<SlideDTO>>().ToMethod(c => c.Kernel.Get<SlideBusiness>());
+
+            // Load Mappers
+            Kernel.Load(new MapperModule());
         }
     }
 }

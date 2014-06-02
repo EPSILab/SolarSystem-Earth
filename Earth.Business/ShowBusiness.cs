@@ -1,6 +1,5 @@
 ﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
 using EPSILab.SolarSystem.Earth.DataAccess.DAL;
-using EPSILab.SolarSystem.Earth.Mappers;
 using System.Collections.Generic;
 using System.Linq;
 using ShowDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Show;
@@ -23,7 +22,16 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <summary>
         /// Mapper
         /// </summary>
-        private readonly IMapper<ShowDAO, ShowDTO> _mapper = new ShowMapper();
+        private readonly IMapper<ShowDAO, ShowDTO> _mapper;
+
+        #endregion
+
+        #region Constructor
+
+        public ShowBusiness(IMapper<ShowDAO, ShowDTO> mapper)
+        {
+            _mapper = mapper;
+        }
 
         #endregion
 

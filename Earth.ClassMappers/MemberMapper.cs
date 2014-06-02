@@ -12,7 +12,7 @@ namespace EPSILab.SolarSystem.Earth.Mappers
     /// <summary>
     /// Member mapper
     /// </summary>
-    public class MemberMapper : IMapper<MemberDAO, MemberDTO>
+    class MemberMapper : IMapper<MemberDAO, MemberDTO>
     {
         #region Attributes
 

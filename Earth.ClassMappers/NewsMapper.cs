@@ -9,7 +9,7 @@ namespace EPSILab.SolarSystem.Earth.Mappers
     /// <summary>
     /// News mapper
     /// </summary>
-    public class NewsMapper : IMapper<NewsDAO, NewsDTO>
+    class NewsMapper : IMapper<NewsDAO, NewsDTO>
     {
         #region Attributes
 

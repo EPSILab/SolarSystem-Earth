@@ -1,6 +1,5 @@
 ﻿using EPSILab.SolarSystem.Earth.Common.Interfaces;
 using EPSILab.SolarSystem.Earth.DataAccess.DAL;
-using EPSILab.SolarSystem.Earth.Mappers;
 using System.Collections.Generic;
 using System.Linq;
 using PromotionDAO = EPSILab.SolarSystem.Earth.DataAccess.Model.Promotion;
@@ -23,7 +22,16 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <summary>
         /// Mapper
         /// </summary>
-        private readonly IMapper<PromotionDAO, PromotionDTO> _mapper = new PromotionMapper();
+        private readonly IMapper<PromotionDAO, PromotionDTO> _mapper;
+
+        #endregion
+
+        #region Constructor
+
+        public PromotionBusiness(IMapper<PromotionDAO, PromotionDTO> mapper)
+        {
+            _mapper = mapper;
+        }
 
         #endregion
 

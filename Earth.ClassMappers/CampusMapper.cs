@@ -7,7 +7,7 @@ namespace EPSILab.SolarSystem.Earth.Mappers
     /// <summary>
     /// Campus mapper
     /// </summary>
-    public class CampusMapper : IMapper<CampusDAO, CampusDTO>
+    class CampusMapper : IMapper<CampusDAO, CampusDTO>
     {
         /// <summary>
         /// DAO to DTO

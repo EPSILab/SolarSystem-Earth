@@ -25,12 +25,22 @@ namespace EPSILab.SolarSystem.Earth.Business
         /// <summary>
         /// Project mapper
         /// </summary>
-        private readonly IMapper<ProjectDAO, ProjectDTO> _mapperProject = new ProjectMapper();
+        private readonly IMapper<ProjectDAO, ProjectDTO> _mapperProject;
 
         /// <summary>
         /// City mapper
         /// </summary>
-        private readonly IMapper<CampusDAO, CampusDTO> _mapperCity = new CampusMapper();
+        private readonly IMapper<CampusDAO, CampusDTO> _mapperCity;
+
+        #endregion
+
+        #region Constructor
+
+        public ProjectBusiness(IMapper<ProjectDAO, ProjectDTO> mapperProject, IMapper<CampusDAO, CampusDTO> mapperCity)
+        {
+            _mapperProject = mapperProject;
+            _mapperCity = mapperCity;
+        }
 
         #endregion
 
