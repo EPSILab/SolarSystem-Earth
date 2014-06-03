@@ -40,6 +40,12 @@ namespace EPSILab.SolarSystem.Earth.Business.Infrastructure
     {
         public override void Load()
         {
+            // Load Mappers
+            Kernel.Load(new MapperModule());
+
+            // Load DAL
+            Kernel.Load(new DataAccessModule());
+
             // Business bindings
 
             // Business Singleton
@@ -106,12 +112,6 @@ namespace EPSILab.SolarSystem.Earth.Business.Infrastructure
             Kernel.Bind<IManager<ShowDTO>>().ToMethod(c => c.Kernel.Get<ShowBusiness>());
 
             Kernel.Bind<IManager<SlideDTO>>().ToMethod(c => c.Kernel.Get<SlideBusiness>());
-
-            // Load Mappers
-            Kernel.Load(new MapperModule());
-
-            // Load DAL
-            Kernel.Load(new DataAccessModule());
         }
     }
 }

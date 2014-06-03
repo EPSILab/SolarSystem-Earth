@@ -1,10 +1,13 @@
-﻿using EPSILab.SolarSystem.Earth.DataAccess.DAL.Abstract;
+﻿using System;
+using EPSILab.SolarSystem.Earth.DataAccess.DAL.Abstract;
 using EPSILab.SolarSystem.Earth.DataAccess.Exceptions;
 using EPSILab.SolarSystem.Earth.DataAccess.Model;
+using EPSILab.SolarSystem.Earth.DataAccess.Resources;
 using EPSILab.SolarSystem.Earth.DataAccess.RulesManager.Managers;
 using EPSILab.SolarSystem.Earth.DataAccess.RulesManager.Managers.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using log4net;
 
 namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
 {
@@ -20,12 +23,18 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// </summary>
         private readonly IMemberDAL _memberDAL;
 
+        /// <summary>
+        /// Logger
+        /// </summary>
+        private readonly ILog _log;
+
         #endregion
 
         #region Constructor
 
-        public CampusDAL(IMemberDAL memberDAL)
+        public CampusDAL(ILog log, IMemberDAL memberDAL)
         {
+            _log = log;
             _memberDAL = memberDAL;
         }
 
@@ -40,9 +49,18 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns>Matching city</returns>
         public Campus Get(int code)
         {
-            return (from campus in SunAccess.Instance.Campus
-                    where campus.Id == code
-                    select campus).First();
+            Campus campus = (from c in SunAccess.Instance.Campus
+                             where c.Id == code
+                             select c).FirstOrDefault();
+
+            if (campus != null)
+            {
+                _log.Info(string.Format("{0} {1}", LogMessages.GetCampusByCode, code));
+                return campus;
+            }
+
+            _log.Error(string.Format("{0} by code {1}", LogMessages.CampusNotFound, code));
+            throw new ArgumentNullException();
         }
 
         /// <summary>
@@ -51,6 +69,8 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns>List of cities</returns>
         public IEnumerable<Campus> Get()
         {
+            _log.Info(LogMessages.GetAllCampus);
+
             return SunAccess.Instance.Campus;
         }
 
@@ -60,9 +80,18 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns>Id the last city inserted</returns>
         public int GetLastInsertedId()
         {
-            return (from campus in SunAccess.Instance.Campus
-                    orderby campus.Id descending
-                    select campus).First().Id;
+            Campus campus = (from c in SunAccess.Instance.Campus
+                             orderby c.Id descending
+                             select c).FirstOrDefault();
+
+            if (campus != null)
+            {
+                _log.Info(string.Format("{0} : {1}", LogMessages.GetLastCityInsertedID));
+                return campus.Id;
+            }
+
+            _log.Error(string.Format("{0} - {1}", LogMessages.GetLastCityInsertedID, LogMessages.CampusNotFound));
+            throw new ArgumentNullException();
         }
 
         #endregion
@@ -83,9 +112,12 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                 SunAccess.Instance.Campus.Add(element);
                 SunAccess.Instance.SaveChanges();
 
+                _log.Info(string.Format("'{0}' {1} '{2}'", element.Place, LogMessages.AddCampusByUser, username));
+
                 return element.Id;
             }
 
+            _log.Error(string.Format("{0} '{1}'", LogMessages.AccessDeniedToUser, username));
             throw new AccessDeniedException(username);
         }
 
@@ -106,9 +138,14 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                 v.Place = element.Place;
 
                 SunAccess.Instance.SaveChanges();
+
+                _log.Info(string.Format("'{0}' {1} '{2}'", element.Place, LogMessages.EditCampusByUser, username));
             }
             else
+            {
+                _log.Error(string.Format("{0} '{1}'", LogMessages.AccessDeniedToUser, username));
                 throw new AccessDeniedException(username);
+            }
         }
 
         /// <summary>
@@ -121,13 +158,18 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         {
             if (_memberDAL.Exists(username, password))
             {
-                Campus v = Get(code);
-                SunAccess.Instance.Campus.Remove(v);
+                Campus campus = Get(code);
+                SunAccess.Instance.Campus.Remove(campus);
 
                 SunAccess.Instance.SaveChanges();
+
+                _log.Info(string.Format("'{0}' {1} '{2}'", campus.Place, LogMessages.DeleteCampusByUser, username));
             }
             else
+            {
+                _log.Error(string.Format("{0} '{1}'", LogMessages.AccessDeniedToUser, username));
                 throw new AccessDeniedException(username);
+            }
         }
 
         #endregion
