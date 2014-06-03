@@ -55,11 +55,11 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
 
             if (campus != null)
             {
-                _log.Info(string.Format("{0} {1}", LogMessages.GetCampusByCode, code));
+                _log.Info(string.Format(LogMessages.GetCampusByCode, code));
                 return campus;
             }
 
-            _log.Error(string.Format("{0} by code {1}", LogMessages.CampusNotFound, code));
+            _log.Error(string.Format("{0} - code '{1}'", LogMessages.CampusNotFound, code));
             throw new ArgumentNullException();
         }
 
@@ -86,7 +86,7 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
 
             if (campus != null)
             {
-                _log.Info(string.Format("{0} : {1}", LogMessages.GetLastCityInsertedID));
+                _log.Info(string.Format("{0} : {1}", LogMessages.GetLastCityInsertedID, campus.Id));
                 return campus.Id;
             }
 
@@ -112,12 +112,12 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                 SunAccess.Instance.Campus.Add(element);
                 SunAccess.Instance.SaveChanges();
 
-                _log.Info(string.Format("'{0}' {1} '{2}'", element.Place, LogMessages.AddCampusByUser, username));
+                _log.Info(string.Format(LogMessages.AddCampusByUser, element.Place, username));
 
                 return element.Id;
             }
 
-            _log.Error(string.Format("{0} '{1}'", LogMessages.AccessDeniedToUser, username));
+            _log.Error(string.Format(LogMessages.AccessDeniedToUser, username));
             throw new AccessDeniedException(username);
         }
 
@@ -139,11 +139,11 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
 
                 SunAccess.Instance.SaveChanges();
 
-                _log.Info(string.Format("'{0}' {1} '{2}'", element.Place, LogMessages.EditCampusByUser, username));
+                _log.Info(string.Format(LogMessages.EditCampusByUser, element.Place, username));
             }
             else
             {
-                _log.Error(string.Format("{0} '{1}'", LogMessages.AccessDeniedToUser, username));
+                _log.Error(string.Format(LogMessages.AccessDeniedToUser, username));
                 throw new AccessDeniedException(username);
             }
         }
@@ -163,11 +163,11 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
 
                 SunAccess.Instance.SaveChanges();
 
-                _log.Info(string.Format("'{0}' {1} '{2}'", campus.Place, LogMessages.DeleteCampusByUser, username));
+                _log.Info(string.Format(LogMessages.DeleteCampusByUser, campus.Place, username));
             }
             else
             {
-                _log.Error(string.Format("{0} '{1}'", LogMessages.AccessDeniedToUser, username));
+                _log.Error(string.Format(LogMessages.AccessDeniedToUser, username));
                 throw new AccessDeniedException(username);
             }
         }

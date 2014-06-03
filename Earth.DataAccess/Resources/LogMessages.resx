@@ -118,25 +118,25 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessDeniedToUser" xml:space="preserve">
-    <value>Access denied to user</value>
+    <value>Access denied to user '{0}'</value>
   </data>
   <data name="AddCampusByUser" xml:space="preserve">
-    <value>campus added by</value>
+    <value>'{0}' campus added by '{1}'</value>
   </data>
   <data name="CampusNotFound" xml:space="preserve">
     <value>Campus not found</value>
   </data>
   <data name="DeleteCampusByUser" xml:space="preserve">
-    <value>campus deleted by</value>
+    <value>'{0}' campus deleted by '{1}'</value>
   </data>
   <data name="EditCampusByUser" xml:space="preserve">
-    <value>campus edited by</value>
+    <value>'{0}' campus edited by '{1}'</value>
   </data>
   <data name="GetAllCampus" xml:space="preserve">
     <value>Get all campus</value>
   </data>
   <data name="GetCampusByCode" xml:space="preserve">
-    <value>Get campus by code</value>
+    <value>Get campus by code '{0}'</value>
   </data>
   <data name="GetLastCityInsertedID" xml:space="preserve">
     <value>Get last city inserted ID</value>

@@ -61,7 +61,7 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Resources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Access denied to user.
+        ///   Recherche une chaîne localisée semblable à Access denied to user &apos;{0}&apos;.
         /// </summary>
         internal static string AccessDeniedToUser {
             get {
@@ -70,7 +70,7 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Resources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à campus added by.
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; campus added by &apos;{1}&apos;.
         /// </summary>
         internal static string AddCampusByUser {
             get {
@@ -88,7 +88,7 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Resources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à campus deleted by.
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; campus deleted by &apos;{1}&apos;.
         /// </summary>
         internal static string DeleteCampusByUser {
             get {
@@ -97,7 +97,7 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Resources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à campus edited by.
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; campus edited by &apos;{1}&apos;.
         /// </summary>
         internal static string EditCampusByUser {
             get {
@@ -115,7 +115,7 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Resources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Get campus by code.
+        ///   Recherche une chaîne localisée semblable à Get campus by code &apos;{0}&apos;.
         /// </summary>
         internal static string GetCampusByCode {
             get {
