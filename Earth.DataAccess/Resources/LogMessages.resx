@@ -120,25 +120,283 @@
   <data name="AccessDeniedToUser" xml:space="preserve">
     <value>Access denied to user '{0}'</value>
   </data>
+  <data name="ActivesOnly" xml:space="preserve">
+    <value>Actives only</value>
+  </data>
   <data name="AddCampusByUser" xml:space="preserve">
     <value>'{0}' campus added by '{1}'</value>
+  </data>
+  <data name="AddConferenceByUser" xml:space="preserve">
+    <value>'{0}' conference added by '{1}'</value>
+  </data>
+  <data name="AddLinkByUser" xml:space="preserve">
+    <value>'{0}' link added by '{1}'</value>
+  </data>
+  <data name="AddMemberByUser" xml:space="preserve">
+    <value>'{0}' member added by '{1}'</value>
+  </data>
+  <data name="AddNewsByUser" xml:space="preserve">
+    <value>'{0}' news added by '{1}'</value>
+  </data>
+  <data name="AddProjectByUser" xml:space="preserve">
+    <value>'{0}' project added by '{1}'</value>
+  </data>
+  <data name="AddPromotionByUser" xml:space="preserve">
+    <value>'{0}' promotion added by '{1}'</value>
+  </data>
+  <data name="AddShowByUser" xml:space="preserve">
+    <value>'{0}' show added by '{1}'</value>
+  </data>
+  <data name="AddSlideByUser" xml:space="preserve">
+    <value>'{0}' slide added by '{1}'</value>
+  </data>
+  <data name="AlumnisOnly" xml:space="preserve">
+    <value>Alumnis only</value>
+  </data>
+  <data name="Author" xml:space="preserve">
+    <value>Author</value>
+  </data>
+  <data name="Campus" xml:space="preserve">
+    <value>Campus</value>
   </data>
   <data name="CampusNotFound" xml:space="preserve">
     <value>Campus not found</value>
   </data>
+  <data name="ChangePasswordFailed" xml:space="preserve">
+    <value>'{0}' failed to change password</value>
+  </data>
+  <data name="ChangePasswordSuccess" xml:space="preserve">
+    <value>'{0}' change password successfully</value>
+  </data>
+  <data name="ConferenceNotFound" xml:space="preserve">
+    <value>Conference not found</value>
+  </data>
   <data name="DeleteCampusByUser" xml:space="preserve">
     <value>'{0}' campus deleted by '{1}'</value>
+  </data>
+  <data name="DeleteConferenceByUser" xml:space="preserve">
+    <value>'{0}' conference deleted by '{1}'</value>
+  </data>
+  <data name="DeleteLinkByUser" xml:space="preserve">
+    <value>'{0}' link deleted by '{1}'</value>
+  </data>
+  <data name="DeleteMemberByUser" xml:space="preserve">
+    <value>'{0}' member deleted by '{1}'</value>
+  </data>
+  <data name="DeleteNewsByUser" xml:space="preserve">
+    <value>'{0}' news deleted by '{1}'</value>
+  </data>
+  <data name="DeleteProjectByUser" xml:space="preserve">
+    <value>'{0}' project deleted by '{1}'</value>
+  </data>
+  <data name="DeletePromotionByUser" xml:space="preserve">
+    <value>'{0}' promotion deleted by '{1}'</value>
+  </data>
+  <data name="DeletePromotionFailed" xml:space="preserve">
+    <value>Delete promotion failed for code '{0}'</value>
+  </data>
+  <data name="DeleteShowByUser" xml:space="preserve">
+    <value>'{0}' show deleted by '{1}'</value>
+  </data>
+  <data name="DeleteSlideByUser" xml:space="preserve">
+    <value>'{0}' slide deleted by '{1}'</value>
   </data>
   <data name="EditCampusByUser" xml:space="preserve">
     <value>'{0}' campus edited by '{1}'</value>
   </data>
+  <data name="EditConferenceByUser" xml:space="preserve">
+    <value>'{0}' conference edited by '{1}'</value>
+  </data>
+  <data name="EditLinkByUser" xml:space="preserve">
+    <value>'{0}' link edited by '{1}'</value>
+  </data>
+  <data name="EditMemberByUser" xml:space="preserve">
+    <value>'{0}' member edited by '{1}'</value>
+  </data>
+  <data name="EditNewsByUser" xml:space="preserve">
+    <value>'{0}' news edited by '{1}'</value>
+  </data>
+  <data name="EditProjectByUser" xml:space="preserve">
+    <value>'{0}' project edited by '{1}'</value>
+  </data>
+  <data name="EditPromotionByUser" xml:space="preserve">
+    <value>'{0}' promotion edited by '{1}'</value>
+  </data>
+  <data name="EditShowByUser" xml:space="preserve">
+    <value>'{0}' show edited by '{1}'</value>
+  </data>
+  <data name="EditSlideByUser" xml:space="preserve">
+    <value>'{0}' slide edited by '{1}'</value>
+  </data>
   <data name="GetAllCampus" xml:space="preserve">
     <value>Get all campus</value>
+  </data>
+  <data name="GetAllConferences" xml:space="preserve">
+    <value>Get all conferences</value>
+  </data>
+  <data name="GetAllLinks" xml:space="preserve">
+    <value>Get all links</value>
+  </data>
+  <data name="GetAllMembers" xml:space="preserve">
+    <value>Get all members</value>
+  </data>
+  <data name="GetAllNews" xml:space="preserve">
+    <value>Get all news</value>
+  </data>
+  <data name="GetAllProjects" xml:space="preserve">
+    <value>Get all projects</value>
+  </data>
+  <data name="GetAllPromotions" xml:space="preserve">
+    <value>Get all promotions</value>
+  </data>
+  <data name="GetAllShows" xml:space="preserve">
+    <value>Get all shows</value>
+  </data>
+  <data name="GetAllSlides" xml:space="preserve">
+    <value>Get all slides</value>
+  </data>
+  <data name="GetAvailablePromotions" xml:space="preserve">
+    <value>Get available promotions</value>
   </data>
   <data name="GetCampusByCode" xml:space="preserve">
     <value>Get campus by code '{0}'</value>
   </data>
+  <data name="GetConferenceByCode" xml:space="preserve">
+    <value>Get conference by code '{0}'</value>
+  </data>
   <data name="GetLastCityInsertedID" xml:space="preserve">
     <value>Get last city inserted ID</value>
+  </data>
+  <data name="GetLastConferenceInsertedID" xml:space="preserve">
+    <value>Get last conference inserted ID</value>
+  </data>
+  <data name="GetLastLinkInsertedID" xml:space="preserve">
+    <value>Get last link inserted ID</value>
+  </data>
+  <data name="GetLastMemberInsertedID" xml:space="preserve">
+    <value>Get last member inserted ID</value>
+  </data>
+  <data name="GetLastNewsInsertedID" xml:space="preserve">
+    <value>Get last news inserted ID</value>
+  </data>
+  <data name="GetLastProjectInsertedID" xml:space="preserve">
+    <value>Get last project inserted ID</value>
+  </data>
+  <data name="GetLastPromotionInsertedID" xml:space="preserve">
+    <value>Get last promotion inserted ID</value>
+  </data>
+  <data name="GetLastShowInsertedID" xml:space="preserve">
+    <value>Get last show inserted ID</value>
+  </data>
+  <data name="GetLastSlideInsertedID" xml:space="preserve">
+    <value>Get last slide inserted ID</value>
+  </data>
+  <data name="GetLinkByCode" xml:space="preserve">
+    <value>Get link by code '{0}'</value>
+  </data>
+  <data name="GetMemberByCode" xml:space="preserve">
+    <value>Get member by code '{0}'</value>
+  </data>
+  <data name="GetNewsByCode" xml:space="preserve">
+    <value>Get news by code '{0}'</value>
+  </data>
+  <data name="GetProjectByCode" xml:space="preserve">
+    <value>Get project by code '{0}'</value>
+  </data>
+  <data name="GetPromotionByCode" xml:space="preserve">
+    <value>Get promotion by code '{0}'</value>
+  </data>
+  <data name="GetShowByCode" xml:space="preserve">
+    <value>Get show by code '{0}'</value>
+  </data>
+  <data name="GetSlideByCode" xml:space="preserve">
+    <value>Get slide by code '{0}'</value>
+  </data>
+  <data name="IndexFirstElement" xml:space="preserve">
+    <value>Index First Element</value>
+  </data>
+  <data name="LinkNotFound" xml:space="preserve">
+    <value>Link not found</value>
+  </data>
+  <data name="LoginFailed" xml:space="preserve">
+    <value>'{0}' failed to login</value>
+  </data>
+  <data name="LoginSuccess" xml:space="preserve">
+    <value>'{0}' login successfully</value>
+  </data>
+  <data name="MemberNotFound" xml:space="preserve">
+    <value>Member not found</value>
+  </data>
+  <data name="NewsNotFound" xml:space="preserve">
+    <value>News not found</value>
+  </data>
+  <data name="NumberOfResults" xml:space="preserve">
+    <value>Number of Results</value>
+  </data>
+  <data name="ProjectNotFound" xml:space="preserve">
+    <value>Project not found</value>
+  </data>
+  <data name="PromotionNotFound" xml:space="preserve">
+    <value>Promotion not found</value>
+  </data>
+  <data name="Published" xml:space="preserve">
+    <value>Published</value>
+  </data>
+  <data name="RegisterFailed" xml:space="preserve">
+    <value>'{0}' failed to register</value>
+  </data>
+  <data name="RegisterSuccess" xml:space="preserve">
+    <value>'{0}' register successfully</value>
+  </data>
+  <data name="RequestLostPasswordExpired" xml:space="preserve">
+    <value>Request lost password expired to user '{0}'</value>
+  </data>
+  <data name="RequestLostPasswordFailed" xml:space="preserve">
+    <value>Request lost password failed to user '{0}'</value>
+  </data>
+  <data name="RequestLostPasswordNotFound" xml:space="preserve">
+    <value>Request lost password not found to user '{0}'</value>
+  </data>
+  <data name="RequestLostPasswordSuccess" xml:space="preserve">
+    <value>Request lost password successful to user '{0}'</value>
+  </data>
+  <data name="RequestNewPasswordAfterLostFailed" xml:space="preserve">
+    <value>Request new password after lost failed to user '{0}'</value>
+  </data>
+  <data name="RequestNewPasswordAfterLostSuccess" xml:space="preserve">
+    <value>Request new password after lost successful to user '{0}'</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="SearchConferences" xml:space="preserve">
+    <value>Search all conferences</value>
+  </data>
+  <data name="SearchConferencesWithKeywords" xml:space="preserve">
+    <value>Search conferences by keyword '{0}'</value>
+  </data>
+  <data name="SearchMembers" xml:space="preserve">
+    <value>Search all members</value>
+  </data>
+  <data name="SearchMembersWithKeywords" xml:space="preserve">
+    <value>Search members by keyword '{0}'</value>
+  </data>
+  <data name="SearchNews" xml:space="preserve">
+    <value>Search all news</value>
+  </data>
+  <data name="SearchNewsWithKeywords" xml:space="preserve">
+    <value>Search news by keyword '{0}'</value>
+  </data>
+  <data name="SearchShows" xml:space="preserve">
+    <value>Search all shows</value>
+  </data>
+  <data name="SearchShowsWithKeywords" xml:space="preserve">
+    <value>Search shows by keyword '{0}'</value>
+  </data>
+  <data name="ShowNotFound" xml:space="preserve">
+    <value>Show not found</value>
+  </data>
+  <data name="SlideNotFound" xml:space="preserve">
+    <value>Slide not found</value>
   </data>
 </root>

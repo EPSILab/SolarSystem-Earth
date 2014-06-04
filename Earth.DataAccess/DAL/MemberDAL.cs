@@ -1,12 +1,15 @@
-﻿using EPSILab.SolarSystem.Earth.Common;
+﻿using System.Text;
+using EPSILab.SolarSystem.Earth.Common;
 using EPSILab.SolarSystem.Earth.Common.Utils;
 using EPSILab.SolarSystem.Earth.DataAccess.DAL.Abstract;
 using EPSILab.SolarSystem.Earth.DataAccess.Exceptions;
+using EPSILab.SolarSystem.Earth.DataAccess.Resources;
 using EPSILab.SolarSystem.Earth.DataAccess.RulesManager.Managers;
 using EPSILab.SolarSystem.Earth.DataAccess.RulesManager.Managers.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using log4net;
 using Campus = EPSILab.SolarSystem.Earth.DataAccess.Model.Campus;
 using LostPasswordRequest = EPSILab.SolarSystem.Earth.DataAccess.Model.LostPasswordRequest;
 using Member = EPSILab.SolarSystem.Earth.DataAccess.Model.Member;
@@ -18,6 +21,24 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
     /// </summary>
     class MemberDAL : IMemberDAL
     {
+        #region Attributes
+
+        /// <summary>
+        /// Logger
+        /// </summary>
+        private readonly ILog _log;
+
+        #endregion
+
+        #region Constructor
+
+        public MemberDAL(ILog log)
+        {
+            _log = log;
+        }
+
+        #endregion
+
         #region IMemberReader methods
 
         /// <summary>
@@ -29,9 +50,16 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         {
             Member member = (from m in SunAccess.Instance.Member
                              where m.Id == code
-                             select m).First();
+                             select m).FirstOrDefault();
 
-            return member;
+            if (member != null)
+            {
+                _log.Info(string.Format(LogMessages.GetMemberByCode, code));
+                return member;
+            }
+
+            _log.Error(string.Format("{0} - code '{1}'", LogMessages.MemberNotFound, code));
+            throw new ArgumentNullException();
         }
 
         /// <summary>
@@ -129,29 +157,45 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns></returns>
         private IEnumerable<Member> Get(Campus campus, Role? role, bool? activesOnly, bool? alumnisOnly)
         {
+            StringBuilder logBuilder = new StringBuilder(LogMessages.GetAllMembers);
+
             IEnumerable<Member> results = (from m in SunAccess.Instance.Member
                                            orderby m.LastName, m.FirstName
                                            select m);
 
             if (campus != null)
+            {
                 results = (from m in results
                            where m.Campus.Id == campus.Id
                            select m);
+                logBuilder.Append(string.Format(" - {0} : {1}", LogMessages.Campus, campus.Place));
+            }
 
             if (role != null)
+            {
                 results = (from m in results
                            where m.Role == (int)role
                            select m);
+                logBuilder.Append(string.Format(" - {0} : {1}", LogMessages.Role, role));
+            }
 
             if (activesOnly.HasValue)
+            {
                 results = (from m in results
                            where m.Active == activesOnly.Value
                            select m);
+                logBuilder.Append(string.Format(" - {0} : {1}", LogMessages.ActivesOnly, activesOnly));
+            }
 
             if (alumnisOnly.HasValue)
+            {
                 results = (from m in results
                            where !m.Promotion.StillPresent == alumnisOnly.Value
                            select m);
+                logBuilder.Append(string.Format(" - {0} : {1}", LogMessages.AlumnisOnly, alumnisOnly));
+            }
+
+            _log.Info(logBuilder.ToString());
 
             return results;
         }
@@ -162,9 +206,19 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns>Id the last inserted member</returns>
         public int GetLastInsertedId()
         {
-            return (from member in SunAccess.Instance.Member
-                    orderby member.Id descending
-                    select member).First().Id;
+            Member member = (from m in SunAccess.Instance.Member
+                             orderby m.Id descending
+                             select m).FirstOrDefault();
+
+
+            if (member != null)
+            {
+                _log.Info(string.Format("{0} : {1}", LogMessages.GetLastMemberInsertedID, member.Id));
+                return member.Id;
+            }
+
+            _log.Error(string.Format("{0} - {1}", LogMessages.GetLastMemberInsertedID, LogMessages.MemberNotFound));
+            throw new ArgumentNullException();
         }
 
         #endregion
@@ -197,9 +251,12 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
 
                 SunAccess.Instance.SaveChanges();
 
+                _log.Info(string.Format(LogMessages.LoginSuccess, username));
+
                 return result;
             }
 
+            _log.Error(string.Format(LogMessages.LoginFailed, username));
             throw new UserNotExistsException();
         }
 
@@ -213,11 +270,19 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         {
             Member result = (from member in SunAccess.Instance.Member
                              where member.Username == username && member.Password == oldPassword
-                             select member).First();
+                             select member).FirstOrDefault();
 
-            result.Password = newPassword;
+            if (result != null)
+            {
+                result.Password = newPassword;
+                SunAccess.Instance.SaveChanges();
 
-            SunAccess.Instance.SaveChanges();
+                _log.Info(string.Format(LogMessages.ChangePasswordSuccess, username));
+            }
+            else
+            {
+                _log.Error(string.Format(LogMessages.ChangePasswordFailed, username));
+            }
         }
 
         /// <summary>
@@ -257,15 +322,24 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns>New member id</returns>
         public int Register(Member member, string newPassword)
         {
-            member.Role = (int)Role.Inactive;
-            member.Password = newPassword;
-            member.Url = string.Format("{0}-{1}", member.FirstName, member.LastName);
+            try
+            {
+                member.Role = (int)Role.Inactive;
+                member.Password = newPassword;
+                member.Url = string.Format("{0}-{1}", member.FirstName, member.LastName);
 
-            IRulesManager<Member> rulesManager = new MemberRulesManager();
-            rulesManager.Check(member);
+                IRulesManager<Member> rulesManager = new MemberRulesManager();
+                rulesManager.Check(member);
 
-            SunAccess.Instance.Member.Add(member);
-            SunAccess.Instance.SaveChanges();
+                SunAccess.Instance.Member.Add(member);
+                SunAccess.Instance.SaveChanges();
+
+                _log.Info(string.Format(LogMessages.RegisterSuccess, member.Username));
+            }
+            catch (Exception exception)
+            {
+                _log.Error(string.Format(LogMessages.RegisterFailed, member.Username), exception);
+            }
 
             return member.Id;
         }
@@ -284,7 +358,6 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
 
             if (result != null)
             {
-
                 LostPasswordRequest recupMotDePasse = new LostPasswordRequest
                 {
                     Id = result.Id,
@@ -297,9 +370,12 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
 
                 recupMotDePasse.Member = null;
 
+                _log.Info(string.Format(LogMessages.RequestLostPasswordSuccess, username));
+
                 return recupMotDePasse;
             }
 
+            _log.Error(string.Format(LogMessages.RequestLostPasswordFailed, username));
             throw new UserNotExistsException();
         }
 
@@ -319,24 +395,35 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
             {
                 Member member = (from m in SunAccess.Instance.Member
                                  where m.Id == recupMotDePasse.Id
-                                 select m).First();
+                                 select m).FirstOrDefault();
 
-                if (recupMotDePasse.RequestDateTime.AddDays(2) <= DateTime.Now)
+                if (member == null)
+                {
+                    _log.Error(string.Format(LogMessages.RequestNewPasswordAfterLostFailed, username));
+                }
+                else if (recupMotDePasse.RequestDateTime.AddDays(2) <= DateTime.Now)
                 {
                     member.Password = newPassword;
                     SunAccess.Instance.LostPasswordRequest.Remove(recupMotDePasse);
                     SunAccess.Instance.SaveChanges();
+
+                    _log.Info(string.Format(LogMessages.RequestNewPasswordAfterLostSuccess, username));
                 }
                 else
                 {
                     SunAccess.Instance.LostPasswordRequest.Remove(recupMotDePasse);
                     SunAccess.Instance.SaveChanges();
 
+                    _log.Error(string.Format(LogMessages.RequestLostPasswordExpired, username));
+
                     throw new LostPasswordTimeElapsedException();
                 }
             }
             else
+            {
+                _log.Error(string.Format(LogMessages.RequestLostPasswordNotFound, username));
                 throw new LostPasswordRequestNotFoundException();
+            }
         }
 
         #endregion
@@ -350,7 +437,7 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns></returns>
         public IEnumerable<Member> Search(string keywords)
         {
-            IEnumerable<Member> members = new List<Member>();
+            IEnumerable<Member> members;
 
             if (!string.IsNullOrWhiteSpace(keywords))
             {
@@ -363,6 +450,17 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                            orderby member.LastName
                            orderby member.FirstName
                            select member);
+
+                _log.Info(string.Format(LogMessages.SearchMembersWithKeywords, keywords));
+            }
+            else
+            {
+                members = (from member in SunAccess.Instance.Member
+                           orderby member.LastName
+                           orderby member.FirstName
+                           select member);
+
+                _log.Info(LogMessages.SearchMembers);
             }
 
             return members;
@@ -389,9 +487,12 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                 SunAccess.Instance.Member.Add(element);
                 SunAccess.Instance.SaveChanges();
 
+                _log.Info(string.Format(LogMessages.AddMemberByUser, element.Username, username));
+
                 return element.Id;
             }
 
+            _log.Error(string.Format(LogMessages.AccessDeniedToUser, username));
             throw new AccessDeniedException(username);
         }
 
@@ -433,9 +534,14 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                 m.Url = element.Url;
 
                 SunAccess.Instance.SaveChanges();
+
+                _log.Info(string.Format(LogMessages.EditMemberByUser, element.Username, username));
             }
             else
+            {
+                _log.Error(string.Format(LogMessages.AccessDeniedToUser, username));
                 throw new AccessDeniedException(username);
+            }
         }
 
         /// <summary>
@@ -452,9 +558,14 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                 SunAccess.Instance.Member.Remove(member);
 
                 SunAccess.Instance.SaveChanges();
+
+                _log.Info(string.Format(LogMessages.DeleteMemberByUser, member.Username, username));
             }
             else
+            {
+                _log.Error(string.Format(LogMessages.AccessDeniedToUser, username));
                 throw new AccessDeniedException(username);
+            }
         }
 
         #endregion

@@ -1,10 +1,13 @@
-﻿using EPSILab.SolarSystem.Earth.DataAccess.DAL.Abstract;
+﻿using System;
+using EPSILab.SolarSystem.Earth.DataAccess.DAL.Abstract;
 using EPSILab.SolarSystem.Earth.DataAccess.Exceptions;
 using EPSILab.SolarSystem.Earth.DataAccess.Model;
+using EPSILab.SolarSystem.Earth.DataAccess.Resources;
 using EPSILab.SolarSystem.Earth.DataAccess.RulesManager.Managers;
 using EPSILab.SolarSystem.Earth.DataAccess.RulesManager.Managers.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using log4net;
 
 namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
 {
@@ -20,12 +23,18 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// </summary>
         private readonly IMemberDAL _memberDAL;
 
+        /// <summary>
+        /// Logger
+        /// </summary>
+        private readonly ILog _log;
+
         #endregion
 
         #region Constructor
 
-        public PromotionDAL(IMemberDAL memberDAL)
+        public PromotionDAL(ILog log, IMemberDAL memberDAL)
         {
+            _log = log;
             _memberDAL = memberDAL;
         }
 
@@ -40,9 +49,18 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns>Matching promo</returns>
         public Promotion Get(int code)
         {
-            return (from p in SunAccess.Instance.Promotion
-                    where p.Id == code
-                    select p).First();
+            Promotion promotion = (from p in SunAccess.Instance.Promotion
+                                   where p.Id == code
+                                   select p).FirstOrDefault();
+
+            if (promotion != null)
+            {
+                _log.Info(string.Format(LogMessages.GetPromotionByCode, code));
+                return promotion;
+            }
+
+            _log.Error(string.Format("{0} - code '{1}'", LogMessages.PromotionNotFound, code));
+            throw new ArgumentNullException();
         }
 
         /// <summary>
@@ -51,6 +69,8 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns>List of promos</returns>
         public IEnumerable<Promotion> Get()
         {
+            _log.Info(LogMessages.GetAllPromotions);
+
             return (from p in SunAccess.Instance.Promotion
                     orderby p.Id descending
                     select p);
@@ -62,9 +82,18 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns>Id the last inserted promo</returns>
         public int GetLastInsertedId()
         {
-            return (from c in SunAccess.Instance.Promotion
-                    orderby c.Id descending
-                    select c).First().Id;
+            Promotion promotion = (from c in SunAccess.Instance.Promotion
+                                   orderby c.Id descending
+                                   select c).FirstOrDefault();
+
+            if (promotion != null)
+            {
+                _log.Info(string.Format("{0} : {1}", LogMessages.GetLastPromotionInsertedID, promotion.Id));
+                return promotion.Id;
+            }
+
+            _log.Error(string.Format("{0} - {1}", LogMessages.GetLastPromotionInsertedID, LogMessages.PromotionNotFound));
+            throw new ArgumentNullException();
         }
 
         #endregion
@@ -81,6 +110,8 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                                               where c.StillPresent
                                               orderby c.GraduationYear descending
                                               select c);
+
+            _log.Info(LogMessages.GetAvailablePromotions);
 
             return results;
         }
@@ -106,9 +137,12 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                 SunAccess.Instance.Promotion.Add(element);
                 SunAccess.Instance.SaveChanges();
 
+                _log.Info(string.Format(LogMessages.AddPromotionByUser, element.Name, username));
+
                 return element.Id;
             }
 
+            _log.Error(string.Format(LogMessages.AccessDeniedToUser, username));
             throw new AccessDeniedException(username);
         }
 
@@ -131,9 +165,12 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                 p.StillPresent = element.StillPresent;
 
                 SunAccess.Instance.SaveChanges();
+
+                _log.Info(string.Format(LogMessages.EditPromotionByUser, element.Name, username));
             }
             else
             {
+                _log.Error(string.Format(LogMessages.AccessDeniedToUser, username));
                 throw new AccessDeniedException(username);
             }
         }
@@ -154,10 +191,15 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                 {
                     SunAccess.Instance.Promotion.Remove(p);
                     SunAccess.Instance.SaveChanges();
+
+                    _log.Info(string.Format(LogMessages.DeletePromotionByUser, p.Name, username));
                 }
+                else
+                    _log.Error(string.Format(LogMessages.DeletePromotionFailed, code));
             }
             else
             {
+                _log.Error(string.Format(LogMessages.AccessDeniedToUser, username));
                 throw new AccessDeniedException(username);
             }
         }

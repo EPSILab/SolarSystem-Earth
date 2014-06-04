@@ -1,10 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using EPSILab.SolarSystem.Earth.DataAccess.DAL.Abstract;
 using EPSILab.SolarSystem.Earth.DataAccess.Exceptions;
 using EPSILab.SolarSystem.Earth.DataAccess.Model;
+using EPSILab.SolarSystem.Earth.DataAccess.Resources;
 using EPSILab.SolarSystem.Earth.DataAccess.RulesManager.Managers;
 using EPSILab.SolarSystem.Earth.DataAccess.RulesManager.Managers.Interfaces;
+using log4net;
 
 namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
 {
@@ -15,14 +19,23 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
     {
         #region Attributes
 
+        /// <summary>
+        /// Access to member table
+        /// </summary>
         private readonly IMemberDAL _memberDAL;
+
+        /// <summary>
+        /// Logger
+        /// </summary>
+        private readonly ILog _log;
 
         #endregion
 
         #region Constructor
 
-        public NewsDAL(IMemberDAL memberDAL)
+        public NewsDAL(ILog log, IMemberDAL memberDAL)
         {
+            _log = log;
             _memberDAL = memberDAL;
         }
 
@@ -37,9 +50,18 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns>Matching news</returns>
         public News Get(int code)
         {
-            return (from news in SunAccess.Instance.News
-                    where news.Id == code
-                    select news).First();
+            News news = (from n in SunAccess.Instance.News
+                         where n.Id == code
+                         select n).FirstOrDefault();
+
+            if (news != null)
+            {
+                _log.Info(string.Format(LogMessages.GetNewsByCode, code));
+                return news;
+            }
+
+            _log.Error(string.Format("{0} - code '{1}'", LogMessages.NewsNotFound, code));
+            throw new ArgumentNullException();
         }
 
         /// <summary>
@@ -127,24 +149,38 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns>List of news</returns>
         public IEnumerable<News> Get(Member author, bool? published, int indexFirstElement, int numberOfResults)
         {
+            StringBuilder logBuilder = new StringBuilder(LogMessages.GetAllNews);
+
             IEnumerable<News> results = (from n in SunAccess.Instance.News
-                                         orderby n.DateTime descending 
+                                         orderby n.DateTime descending
                                          select n);
 
             if (author != null)
+            {
                 results = (from n in results
                            where n.Id == author.Id
                            select n);
+                logBuilder.Append(string.Format(" - {0} : {1}", LogMessages.Author, author.Username));
+            }
 
             if (published.HasValue)
+            {
                 results = (from n in results
                            where n.IsPublished == published
                            select n);
+                logBuilder.Append(string.Format(" - {0} : {1}", LogMessages.Published, published));
+            }
 
             results = results.Skip(indexFirstElement);
+            logBuilder.Append(string.Format(" - {0} : {1}", LogMessages.IndexFirstElement, indexFirstElement));
 
             if (numberOfResults > 0)
+            {
                 results = results.Take(numberOfResults);
+                logBuilder.Append(string.Format(" - {0} : {1}", LogMessages.NumberOfResults, numberOfResults));
+            }
+
+            _log.Info(logBuilder.ToString());
 
             return results;
         }
@@ -155,9 +191,18 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns>Id the last inserted news</returns>
         public int GetLastInsertedId()
         {
-            return (from news in SunAccess.Instance.News
-                    orderby news.Id descending
-                    select news).First().Id;
+            News news = (from n in SunAccess.Instance.News
+                         orderby n.Id descending
+                         select n).FirstOrDefault();
+
+            if (news != null)
+            {
+                _log.Info(string.Format("{0} : {1}", LogMessages.GetLastNewsInsertedID, news.Id));
+                return news.Id;
+            }
+
+            _log.Error(string.Format("{0} - {1}", LogMessages.GetLastNewsInsertedID, LogMessages.NewsNotFound));
+            throw new ArgumentNullException();
         }
 
         #endregion
@@ -171,7 +216,7 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns>List of matching news</returns>
         public IEnumerable<News> Search(string keywords)
         {
-            IEnumerable<News> news = new List<News>();
+            IEnumerable<News> news;
 
             if (!string.IsNullOrWhiteSpace(keywords))
             {
@@ -182,6 +227,16 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                               n.Keywords.ToLower().Contains(keywords)
                         orderby n.DateTime descending
                         select n);
+
+                _log.Info(string.Format(LogMessages.SearchNewsWithKeywords, keywords));
+            }
+            else
+            {
+                news = (from n in SunAccess.Instance.News
+                        orderby n.DateTime descending
+                        select n);
+
+                _log.Info(LogMessages.SearchNews);
             }
 
             return news;
@@ -208,9 +263,12 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                 SunAccess.Instance.News.Add(element);
                 SunAccess.Instance.SaveChanges();
 
+                _log.Info(string.Format(LogMessages.AddNewsByUser, element.Title, username));
+
                 return element.Id;
             }
 
+            _log.Error(string.Format(LogMessages.AccessDeniedToUser, username));
             throw new AccessDeniedException(username);
         }
 
@@ -238,9 +296,14 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                 n.IsPublished = element.IsPublished;
 
                 SunAccess.Instance.SaveChanges();
+
+                _log.Info(string.Format(LogMessages.EditNewsByUser, element.Title, username));
             }
             else
+            {
+                _log.Error(string.Format(LogMessages.AccessDeniedToUser, username));
                 throw new AccessDeniedException(username);
+            }
         }
 
         /// <summary>
@@ -257,9 +320,14 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                 SunAccess.Instance.News.Remove(news);
 
                 SunAccess.Instance.SaveChanges();
+
+                _log.Info(string.Format(LogMessages.DeleteNewsByUser, news.Title, username));
             }
             else
+            {
+                _log.Error(string.Format(LogMessages.AccessDeniedToUser, username));
                 throw new AccessDeniedException(username);
+            }
         }
 
         #endregion

@@ -1,10 +1,14 @@
-﻿using EPSILab.SolarSystem.Earth.DataAccess.DAL.Abstract;
+﻿using System;
+using System.Text;
+using EPSILab.SolarSystem.Earth.DataAccess.DAL.Abstract;
 using EPSILab.SolarSystem.Earth.DataAccess.Exceptions;
 using EPSILab.SolarSystem.Earth.DataAccess.Model;
+using EPSILab.SolarSystem.Earth.DataAccess.Resources;
 using EPSILab.SolarSystem.Earth.DataAccess.RulesManager.Managers;
 using EPSILab.SolarSystem.Earth.DataAccess.RulesManager.Managers.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using log4net;
 
 namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
 {
@@ -20,12 +24,18 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// </summary>
         private readonly IMemberDAL _memberDAL;
 
+        /// <summary>
+        /// Logger
+        /// </summary>
+        private readonly ILog _log;
+
         #endregion
 
         #region Constructor
 
-        public SlideDAL(IMemberDAL memberDAL)
+        public SlideDAL(ILog log, IMemberDAL memberDAL)
         {
+            _log = log;
             _memberDAL = memberDAL;
         }
 
@@ -40,9 +50,18 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns>Matching advertising</returns>
         public Slide Get(int code)
         {
-            return (from publicite in SunAccess.Instance.Slide
-                    where publicite.Id == code
-                    select publicite).First();
+            Slide slide = (from publicite in SunAccess.Instance.Slide
+                           where publicite.Id == code
+                           select publicite).FirstOrDefault();
+
+            if (slide != null)
+            {
+                _log.Info(string.Format(LogMessages.GetSlideByCode, code));
+                return slide;
+            }
+
+            _log.Error(string.Format("{0} - code '{1}'", LogMessages.SlideNotFound, code));
+            throw new ArgumentNullException();
         }
 
         /// <summary>
@@ -84,19 +103,30 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns>List of advertising</returns>
         public IEnumerable<Slide> Get(bool? published, int indexFirstElement, int numberOfResults)
         {
+            StringBuilder logBuilder = new StringBuilder(LogMessages.GetAllSlides);
+
             IEnumerable<Slide> results = (from p in SunAccess.Instance.Slide
-                                              orderby p.Id descending
-                                              select p);
+                                          orderby p.Id descending
+                                          select p);
 
             if (published.HasValue)
+            {
                 results = (from p in results
                            where p.IsPublished == published
                            select p);
+                logBuilder.Append(string.Format(" - {0} : {1}", LogMessages.Published, published));
+            }
 
             results = results.Skip(indexFirstElement);
+            logBuilder.Append(string.Format(" - {0} : {1}", LogMessages.IndexFirstElement, indexFirstElement));
 
             if (numberOfResults > 0)
+            {
                 results = results.Take(numberOfResults);
+                logBuilder.Append(string.Format(" - {0} : {1}", LogMessages.NumberOfResults, numberOfResults));
+            }
+
+            _log.Info(logBuilder.ToString());
 
             return results;
         }
@@ -107,9 +137,18 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns>Id the last advertising inserted</returns>
         public int GetLastInsertedId()
         {
-            return (from p in SunAccess.Instance.Slide
-                    orderby p.Id descending
-                    select p).First().Id;
+            Slide slide = (from p in SunAccess.Instance.Slide
+                           orderby p.Id descending
+                           select p).FirstOrDefault();
+
+            if (slide != null)
+            {
+                _log.Info(string.Format("{0} : {1}", LogMessages.GetLastSlideInsertedID, slide.Id));
+                return slide.Id;
+            }
+
+            _log.Error(string.Format("{0} - {1}", LogMessages.GetLastSlideInsertedID, LogMessages.SlideNotFound));
+            throw new ArgumentNullException();
         }
 
         #endregion
@@ -133,9 +172,12 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                 SunAccess.Instance.Slide.Add(element);
                 SunAccess.Instance.SaveChanges();
 
+                _log.Info(string.Format(LogMessages.AddSlideByUser, element.Name, username));
+
                 return element.Id;
             }
 
+            _log.Error(string.Format(LogMessages.AccessDeniedToUser, username));
             throw new AccessDeniedException(username);
         }
 
@@ -149,17 +191,22 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         {
             if (_memberDAL.Exists(username, password))
             {
-                Slide p = Get(element.Id);
+                Slide slide = Get(element.Id);
 
-                p.Name = element.Name;
-                p.Presentation = element.Presentation;
-                p.Url = element.Url;
-                p.ImageUrl = element.ImageUrl;
+                slide.Name = element.Name;
+                slide.Presentation = element.Presentation;
+                slide.Url = element.Url;
+                slide.ImageUrl = element.ImageUrl;
 
                 SunAccess.Instance.SaveChanges();
+
+                _log.Info(string.Format(LogMessages.EditSlideByUser, slide.Name, username));
             }
             else
+            {
+                _log.Error(string.Format(LogMessages.AccessDeniedToUser, username));
                 throw new AccessDeniedException(username);
+            }
         }
 
         /// <summary>
@@ -172,13 +219,18 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         {
             if (_memberDAL.Exists(username, password))
             {
-                Slide publicite = Get(code);
+                Slide slide = Get(code);
 
-                SunAccess.Instance.Slide.Remove(publicite);
+                SunAccess.Instance.Slide.Remove(slide);
                 SunAccess.Instance.SaveChanges();
+
+                _log.Info(string.Format(LogMessages.DeleteSlideByUser, slide.Name, username));
             }
             else
+            {
+                _log.Error(string.Format(LogMessages.AccessDeniedToUser, username));
                 throw new AccessDeniedException(username);
+            }
         }
 
         #endregion

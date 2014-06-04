@@ -1,10 +1,14 @@
-﻿using EPSILab.SolarSystem.Earth.DataAccess.DAL.Abstract;
+﻿using System;
+using System.Text;
+using EPSILab.SolarSystem.Earth.DataAccess.DAL.Abstract;
 using EPSILab.SolarSystem.Earth.DataAccess.Exceptions;
 using EPSILab.SolarSystem.Earth.DataAccess.Model;
+using EPSILab.SolarSystem.Earth.DataAccess.Resources;
 using EPSILab.SolarSystem.Earth.DataAccess.RulesManager.Managers;
 using EPSILab.SolarSystem.Earth.DataAccess.RulesManager.Managers.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using log4net;
 
 namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
 {
@@ -20,12 +24,18 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// </summary>
         private readonly IMemberDAL _memberDAL;
 
+        /// <summary>
+        /// Logger
+        /// </summary>
+        private readonly ILog _log;
+
         #endregion
 
         #region Constructor
 
-        public ShowDAL(IMemberDAL memberDAL)
+        public ShowDAL(ILog log, IMemberDAL memberDAL)
         {
+            _log = log;
             _memberDAL = memberDAL;
         }
 
@@ -40,9 +50,18 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns>Matching code</returns>
         public Show Get(int code)
         {
-            return (from salon in SunAccess.Instance.Show
-                    where salon.Id == code
-                    select salon).First();
+            Show show = (from salon in SunAccess.Instance.Show
+                         where salon.Id == code
+                         select salon).FirstOrDefault();
+
+            if (show != null)
+            {
+                _log.Info(string.Format(LogMessages.GetShowByCode, code));
+                return show;
+            }
+
+            _log.Error(string.Format("{0} - code '{1}'", LogMessages.ShowNotFound, code));
+            throw new ArgumentNullException();
         }
 
         /// <summary>
@@ -84,23 +103,30 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns>List of show</returns>
         public IEnumerable<Show> Get(bool? published, int indexFirstElement, int numberOfResults)
         {
+            StringBuilder logBuilder = new StringBuilder(LogMessages.GetAllShows);
+
             IEnumerable<Show> results = (from s in SunAccess.Instance.Show
-                                          orderby s.Start_DateTime descending, s.End_DateTime descending
-                                          select s);
+                                         orderby s.Start_DateTime descending, s.End_DateTime descending
+                                         select s);
 
             if (published.HasValue)
             {
                 results = (from s in results
                            where s.IsPublished == published
                            select s);
+                logBuilder.Append(string.Format(" - {0} : {1}", LogMessages.Published, published));
             }
 
             results = results.Skip(indexFirstElement);
+            logBuilder.Append(string.Format(" - {0} : {1}", LogMessages.IndexFirstElement, indexFirstElement));
 
             if (numberOfResults > 0)
             {
                 results = results.Take(numberOfResults);
+                logBuilder.Append(string.Format(" - {0} : {1}", LogMessages.NumberOfResults, numberOfResults));
             }
+
+            _log.Info(logBuilder.ToString());
 
             return results;
         }
@@ -111,9 +137,18 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns>Id the last show inserted</returns>
         public int GetLastInsertedId()
         {
-            return (from salon in SunAccess.Instance.Show
-                    orderby salon.Id descending
-                    select salon).First().Id;
+            Show show = (from s in SunAccess.Instance.Show
+                         orderby s.Id descending
+                         select s).FirstOrDefault();
+
+            if (show != null)
+            {
+                _log.Info(string.Format("{0} : {1}", LogMessages.GetLastShowInsertedID, show.Id));
+                return show.Id;
+            }
+
+            _log.Error(string.Format("{0} - {1}", LogMessages.GetLastShowInsertedID, LogMessages.ShowNotFound));
+            throw new ArgumentNullException();
         }
 
         #endregion
@@ -127,7 +162,7 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns>List of matching news</returns>
         public IEnumerable<Show> Search(string keywords)
         {
-            IEnumerable<Show> salons = new List<Show>();
+            IEnumerable<Show> salons;
 
             if (!string.IsNullOrWhiteSpace(keywords))
             {
@@ -139,6 +174,17 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                           orderby salon.Start_DateTime descending
                           orderby salon.End_DateTime descending
                           select salon);
+
+                _log.Info(string.Format(LogMessages.SearchShowsWithKeywords, keywords));
+            }
+            else
+            {
+                salons = (from salon in SunAccess.Instance.Show
+                          orderby salon.Start_DateTime descending
+                          orderby salon.End_DateTime descending
+                          select salon);
+
+                _log.Info(LogMessages.SearchShows);
             }
 
             return salons;
@@ -165,9 +211,12 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                 SunAccess.Instance.Show.Add(element);
                 SunAccess.Instance.SaveChanges();
 
+                _log.Info(string.Format(LogMessages.AddShowByUser, element.Name, username));
+
                 return element.Id;
             }
 
+            _log.Error(string.Format(LogMessages.AccessDeniedToUser, username));
             throw new AccessDeniedException(username);
         }
 
@@ -194,9 +243,12 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                 s.IsPublished = element.IsPublished;
 
                 SunAccess.Instance.SaveChanges();
+
+                _log.Info(string.Format(LogMessages.EditShowByUser, element.Name, username));
             }
             else
             {
+                _log.Error(string.Format(LogMessages.AccessDeniedToUser, username));
                 throw new AccessDeniedException(username);
             }
         }
@@ -214,9 +266,12 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                 Show salon = Get(code);
                 SunAccess.Instance.Show.Remove(salon);
                 SunAccess.Instance.SaveChanges();
+
+                _log.Info(string.Format(LogMessages.DeleteShowByUser, salon.Name, username));
             }
             else
             {
+                _log.Error(string.Format(LogMessages.AccessDeniedToUser, username));
                 throw new AccessDeniedException(username);
             }
         }

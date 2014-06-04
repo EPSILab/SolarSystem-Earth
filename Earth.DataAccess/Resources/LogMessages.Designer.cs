@@ -70,11 +70,119 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Actives only.
+        /// </summary>
+        internal static string ActivesOnly {
+            get {
+                return ResourceManager.GetString("ActivesOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; campus added by &apos;{1}&apos;.
         /// </summary>
         internal static string AddCampusByUser {
             get {
                 return ResourceManager.GetString("AddCampusByUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; conference added by &apos;{1}&apos;.
+        /// </summary>
+        internal static string AddConferenceByUser {
+            get {
+                return ResourceManager.GetString("AddConferenceByUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; link added by &apos;{1}&apos;.
+        /// </summary>
+        internal static string AddLinkByUser {
+            get {
+                return ResourceManager.GetString("AddLinkByUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; member added by &apos;{1}&apos;.
+        /// </summary>
+        internal static string AddMemberByUser {
+            get {
+                return ResourceManager.GetString("AddMemberByUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; news added by &apos;{1}&apos;.
+        /// </summary>
+        internal static string AddNewsByUser {
+            get {
+                return ResourceManager.GetString("AddNewsByUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; project added by &apos;{1}&apos;.
+        /// </summary>
+        internal static string AddProjectByUser {
+            get {
+                return ResourceManager.GetString("AddProjectByUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; promotion added by &apos;{1}&apos;.
+        /// </summary>
+        internal static string AddPromotionByUser {
+            get {
+                return ResourceManager.GetString("AddPromotionByUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; show added by &apos;{1}&apos;.
+        /// </summary>
+        internal static string AddShowByUser {
+            get {
+                return ResourceManager.GetString("AddShowByUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; slide added by &apos;{1}&apos;.
+        /// </summary>
+        internal static string AddSlideByUser {
+            get {
+                return ResourceManager.GetString("AddSlideByUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Alumnis only.
+        /// </summary>
+        internal static string AlumnisOnly {
+            get {
+                return ResourceManager.GetString("AlumnisOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Author.
+        /// </summary>
+        internal static string Author {
+            get {
+                return ResourceManager.GetString("Author", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Campus.
+        /// </summary>
+        internal static string Campus {
+            get {
+                return ResourceManager.GetString("Campus", resourceCulture);
             }
         }
         
@@ -88,11 +196,119 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; failed to change password.
+        /// </summary>
+        internal static string ChangePasswordFailed {
+            get {
+                return ResourceManager.GetString("ChangePasswordFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; change password successfully.
+        /// </summary>
+        internal static string ChangePasswordSuccess {
+            get {
+                return ResourceManager.GetString("ChangePasswordSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Conference not found.
+        /// </summary>
+        internal static string ConferenceNotFound {
+            get {
+                return ResourceManager.GetString("ConferenceNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; campus deleted by &apos;{1}&apos;.
         /// </summary>
         internal static string DeleteCampusByUser {
             get {
                 return ResourceManager.GetString("DeleteCampusByUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; conference deleted by &apos;{1}&apos;.
+        /// </summary>
+        internal static string DeleteConferenceByUser {
+            get {
+                return ResourceManager.GetString("DeleteConferenceByUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; link deleted by &apos;{1}&apos;.
+        /// </summary>
+        internal static string DeleteLinkByUser {
+            get {
+                return ResourceManager.GetString("DeleteLinkByUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; member deleted by &apos;{1}&apos;.
+        /// </summary>
+        internal static string DeleteMemberByUser {
+            get {
+                return ResourceManager.GetString("DeleteMemberByUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; news deleted by &apos;{1}&apos;.
+        /// </summary>
+        internal static string DeleteNewsByUser {
+            get {
+                return ResourceManager.GetString("DeleteNewsByUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; project deleted by &apos;{1}&apos;.
+        /// </summary>
+        internal static string DeleteProjectByUser {
+            get {
+                return ResourceManager.GetString("DeleteProjectByUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; promotion deleted by &apos;{1}&apos;.
+        /// </summary>
+        internal static string DeletePromotionByUser {
+            get {
+                return ResourceManager.GetString("DeletePromotionByUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Delete promotion failed for code &apos;{0}&apos;.
+        /// </summary>
+        internal static string DeletePromotionFailed {
+            get {
+                return ResourceManager.GetString("DeletePromotionFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; show deleted by &apos;{1}&apos;.
+        /// </summary>
+        internal static string DeleteShowByUser {
+            get {
+                return ResourceManager.GetString("DeleteShowByUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; slide deleted by &apos;{1}&apos;.
+        /// </summary>
+        internal static string DeleteSlideByUser {
+            get {
+                return ResourceManager.GetString("DeleteSlideByUser", resourceCulture);
             }
         }
         
@@ -106,11 +322,164 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; conference edited by &apos;{1}&apos;.
+        /// </summary>
+        internal static string EditConferenceByUser {
+            get {
+                return ResourceManager.GetString("EditConferenceByUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; link edited by &apos;{1}&apos;.
+        /// </summary>
+        internal static string EditLinkByUser {
+            get {
+                return ResourceManager.GetString("EditLinkByUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; member edited by &apos;{1}&apos;.
+        /// </summary>
+        internal static string EditMemberByUser {
+            get {
+                return ResourceManager.GetString("EditMemberByUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; news edited by &apos;{1}&apos;.
+        /// </summary>
+        internal static string EditNewsByUser {
+            get {
+                return ResourceManager.GetString("EditNewsByUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; project edited by &apos;{1}&apos;.
+        /// </summary>
+        internal static string EditProjectByUser {
+            get {
+                return ResourceManager.GetString("EditProjectByUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; promotion edited by &apos;{1}&apos;.
+        /// </summary>
+        internal static string EditPromotionByUser {
+            get {
+                return ResourceManager.GetString("EditPromotionByUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; show edited by &apos;{1}&apos;.
+        /// </summary>
+        internal static string EditShowByUser {
+            get {
+                return ResourceManager.GetString("EditShowByUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; slide edited by &apos;{1}&apos;.
+        /// </summary>
+        internal static string EditSlideByUser {
+            get {
+                return ResourceManager.GetString("EditSlideByUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Get all campus.
         /// </summary>
         internal static string GetAllCampus {
             get {
                 return ResourceManager.GetString("GetAllCampus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Get all conferences.
+        /// </summary>
+        internal static string GetAllConferences {
+            get {
+                return ResourceManager.GetString("GetAllConferences", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Get all links.
+        /// </summary>
+        internal static string GetAllLinks {
+            get {
+                return ResourceManager.GetString("GetAllLinks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Get all members.
+        /// </summary>
+        internal static string GetAllMembers {
+            get {
+                return ResourceManager.GetString("GetAllMembers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Get all news.
+        /// </summary>
+        internal static string GetAllNews {
+            get {
+                return ResourceManager.GetString("GetAllNews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Get all projects.
+        /// </summary>
+        internal static string GetAllProjects {
+            get {
+                return ResourceManager.GetString("GetAllProjects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Get all promotions.
+        /// </summary>
+        internal static string GetAllPromotions {
+            get {
+                return ResourceManager.GetString("GetAllPromotions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Get all shows.
+        /// </summary>
+        internal static string GetAllShows {
+            get {
+                return ResourceManager.GetString("GetAllShows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Get all slides.
+        /// </summary>
+        internal static string GetAllSlides {
+            get {
+                return ResourceManager.GetString("GetAllSlides", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Get available promotions.
+        /// </summary>
+        internal static string GetAvailablePromotions {
+            get {
+                return ResourceManager.GetString("GetAvailablePromotions", resourceCulture);
             }
         }
         
@@ -124,11 +493,416 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Get conference by code &apos;{0}&apos;.
+        /// </summary>
+        internal static string GetConferenceByCode {
+            get {
+                return ResourceManager.GetString("GetConferenceByCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Get last city inserted ID.
         /// </summary>
         internal static string GetLastCityInsertedID {
             get {
                 return ResourceManager.GetString("GetLastCityInsertedID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Get last conference inserted ID.
+        /// </summary>
+        internal static string GetLastConferenceInsertedID {
+            get {
+                return ResourceManager.GetString("GetLastConferenceInsertedID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Get last link inserted ID.
+        /// </summary>
+        internal static string GetLastLinkInsertedID {
+            get {
+                return ResourceManager.GetString("GetLastLinkInsertedID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Get last member inserted ID.
+        /// </summary>
+        internal static string GetLastMemberInsertedID {
+            get {
+                return ResourceManager.GetString("GetLastMemberInsertedID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Get last news inserted ID.
+        /// </summary>
+        internal static string GetLastNewsInsertedID {
+            get {
+                return ResourceManager.GetString("GetLastNewsInsertedID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Get last project inserted ID.
+        /// </summary>
+        internal static string GetLastProjectInsertedID {
+            get {
+                return ResourceManager.GetString("GetLastProjectInsertedID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Get last promotion inserted ID.
+        /// </summary>
+        internal static string GetLastPromotionInsertedID {
+            get {
+                return ResourceManager.GetString("GetLastPromotionInsertedID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Get last show inserted ID.
+        /// </summary>
+        internal static string GetLastShowInsertedID {
+            get {
+                return ResourceManager.GetString("GetLastShowInsertedID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Get last slide inserted ID.
+        /// </summary>
+        internal static string GetLastSlideInsertedID {
+            get {
+                return ResourceManager.GetString("GetLastSlideInsertedID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Get link by code &apos;{0}&apos;.
+        /// </summary>
+        internal static string GetLinkByCode {
+            get {
+                return ResourceManager.GetString("GetLinkByCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Get member by code &apos;{0}&apos;.
+        /// </summary>
+        internal static string GetMemberByCode {
+            get {
+                return ResourceManager.GetString("GetMemberByCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Get news by code &apos;{0}&apos;.
+        /// </summary>
+        internal static string GetNewsByCode {
+            get {
+                return ResourceManager.GetString("GetNewsByCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Get project by code &apos;{0}&apos;.
+        /// </summary>
+        internal static string GetProjectByCode {
+            get {
+                return ResourceManager.GetString("GetProjectByCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Get promotion by code &apos;{0}&apos;.
+        /// </summary>
+        internal static string GetPromotionByCode {
+            get {
+                return ResourceManager.GetString("GetPromotionByCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Get show by code &apos;{0}&apos;.
+        /// </summary>
+        internal static string GetShowByCode {
+            get {
+                return ResourceManager.GetString("GetShowByCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Get slide by code &apos;{0}&apos;.
+        /// </summary>
+        internal static string GetSlideByCode {
+            get {
+                return ResourceManager.GetString("GetSlideByCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Index First Element.
+        /// </summary>
+        internal static string IndexFirstElement {
+            get {
+                return ResourceManager.GetString("IndexFirstElement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Link not found.
+        /// </summary>
+        internal static string LinkNotFound {
+            get {
+                return ResourceManager.GetString("LinkNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; failed to login.
+        /// </summary>
+        internal static string LoginFailed {
+            get {
+                return ResourceManager.GetString("LoginFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; login successfully.
+        /// </summary>
+        internal static string LoginSuccess {
+            get {
+                return ResourceManager.GetString("LoginSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Member not found.
+        /// </summary>
+        internal static string MemberNotFound {
+            get {
+                return ResourceManager.GetString("MemberNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à News not found.
+        /// </summary>
+        internal static string NewsNotFound {
+            get {
+                return ResourceManager.GetString("NewsNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Number of Results.
+        /// </summary>
+        internal static string NumberOfResults {
+            get {
+                return ResourceManager.GetString("NumberOfResults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Project not found.
+        /// </summary>
+        internal static string ProjectNotFound {
+            get {
+                return ResourceManager.GetString("ProjectNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Promotion not found.
+        /// </summary>
+        internal static string PromotionNotFound {
+            get {
+                return ResourceManager.GetString("PromotionNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Published.
+        /// </summary>
+        internal static string Published {
+            get {
+                return ResourceManager.GetString("Published", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; failed to register.
+        /// </summary>
+        internal static string RegisterFailed {
+            get {
+                return ResourceManager.GetString("RegisterFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &apos;{0}&apos; register successfully.
+        /// </summary>
+        internal static string RegisterSuccess {
+            get {
+                return ResourceManager.GetString("RegisterSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Request lost password expired to user &apos;{0}&apos;.
+        /// </summary>
+        internal static string RequestLostPasswordExpired {
+            get {
+                return ResourceManager.GetString("RequestLostPasswordExpired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Request lost password failed to user &apos;{0}&apos;.
+        /// </summary>
+        internal static string RequestLostPasswordFailed {
+            get {
+                return ResourceManager.GetString("RequestLostPasswordFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Request lost password not found to user &apos;{0}&apos;.
+        /// </summary>
+        internal static string RequestLostPasswordNotFound {
+            get {
+                return ResourceManager.GetString("RequestLostPasswordNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Request lost password successful to user &apos;{0}&apos;.
+        /// </summary>
+        internal static string RequestLostPasswordSuccess {
+            get {
+                return ResourceManager.GetString("RequestLostPasswordSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Request new password after lost failed to user &apos;{0}&apos;.
+        /// </summary>
+        internal static string RequestNewPasswordAfterLostFailed {
+            get {
+                return ResourceManager.GetString("RequestNewPasswordAfterLostFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Request new password after lost successful to user &apos;{0}&apos;.
+        /// </summary>
+        internal static string RequestNewPasswordAfterLostSuccess {
+            get {
+                return ResourceManager.GetString("RequestNewPasswordAfterLostSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Role.
+        /// </summary>
+        internal static string Role {
+            get {
+                return ResourceManager.GetString("Role", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Search all conferences.
+        /// </summary>
+        internal static string SearchConferences {
+            get {
+                return ResourceManager.GetString("SearchConferences", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Search conferences by keyword &apos;{0}&apos;.
+        /// </summary>
+        internal static string SearchConferencesWithKeywords {
+            get {
+                return ResourceManager.GetString("SearchConferencesWithKeywords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Search all members.
+        /// </summary>
+        internal static string SearchMembers {
+            get {
+                return ResourceManager.GetString("SearchMembers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Search members by keyword &apos;{0}&apos;.
+        /// </summary>
+        internal static string SearchMembersWithKeywords {
+            get {
+                return ResourceManager.GetString("SearchMembersWithKeywords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Search all news.
+        /// </summary>
+        internal static string SearchNews {
+            get {
+                return ResourceManager.GetString("SearchNews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Search news by keyword &apos;{0}&apos;.
+        /// </summary>
+        internal static string SearchNewsWithKeywords {
+            get {
+                return ResourceManager.GetString("SearchNewsWithKeywords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Search all shows.
+        /// </summary>
+        internal static string SearchShows {
+            get {
+                return ResourceManager.GetString("SearchShows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Search shows by keyword &apos;{0}&apos;.
+        /// </summary>
+        internal static string SearchShowsWithKeywords {
+            get {
+                return ResourceManager.GetString("SearchShowsWithKeywords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Show not found.
+        /// </summary>
+        internal static string ShowNotFound {
+            get {
+                return ResourceManager.GetString("ShowNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Slide not found.
+        /// </summary>
+        internal static string SlideNotFound {
+            get {
+                return ResourceManager.GetString("SlideNotFound", resourceCulture);
             }
         }
     }

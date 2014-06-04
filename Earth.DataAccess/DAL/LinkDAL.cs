@@ -1,10 +1,13 @@
-﻿using EPSILab.SolarSystem.Earth.DataAccess.DAL.Abstract;
+﻿using System;
+using EPSILab.SolarSystem.Earth.DataAccess.DAL.Abstract;
 using EPSILab.SolarSystem.Earth.DataAccess.Exceptions;
 using EPSILab.SolarSystem.Earth.DataAccess.Model;
+using EPSILab.SolarSystem.Earth.DataAccess.Resources;
 using EPSILab.SolarSystem.Earth.DataAccess.RulesManager.Managers;
 using EPSILab.SolarSystem.Earth.DataAccess.RulesManager.Managers.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using log4net;
 
 namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
 {
@@ -20,12 +23,18 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// </summary>
         private readonly IMemberDAL _memberDAL;
 
+        /// <summary>
+        /// Logger
+        /// </summary>
+        private readonly ILog _log;
+
         #endregion
 
         #region Constructor
 
-        public LinkDAL(IMemberDAL memberDAL)
+        public LinkDAL(ILog log, IMemberDAL memberDAL)
         {
+            _log = log;
             _memberDAL = memberDAL;
         }
 
@@ -40,9 +49,18 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns>Matching link</returns>
         public Link Get(int code)
         {
-            return (from lien in SunAccess.Instance.Link
-                    where lien.Id == code
-                    select lien).First();
+            Link link = (from lien in SunAccess.Instance.Link
+                             where lien.Id == code
+                             select lien).FirstOrDefault();
+
+            if (link != null)
+            {
+                _log.Info(string.Format(LogMessages.GetLinkByCode, code));
+                return link;
+            }
+
+            _log.Error(string.Format("{0} - code '{1}'", LogMessages.LinkNotFound, code));
+            throw new ArgumentNullException();
         }
 
         /// <summary>
@@ -55,6 +73,8 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                                          orderby l.Order
                                          select l);
 
+            _log.Info(LogMessages.GetAllLinks);
+
             return results;
         }
 
@@ -64,9 +84,18 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         /// <returns>Last link id</returns>
         public int GetLastInsertedId()
         {
-            return (from l in SunAccess.Instance.Link
+            Link link = (from l in SunAccess.Instance.Link
                     orderby l.Id descending
-                    select l).First().Id;
+                    select l).FirstOrDefault();
+
+            if (link != null)
+            {
+                _log.Info(string.Format("{0} : {1}", LogMessages.GetLastLinkInsertedID, link.Id));
+                return link.Id;
+            }
+
+            _log.Error(string.Format("{0} - {1}", LogMessages.GetLastLinkInsertedID, LogMessages.LinkNotFound));
+            throw new ArgumentNullException();
         }
 
         #endregion
@@ -90,9 +119,12 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                 SunAccess.Instance.Link.Add(element);
                 SunAccess.Instance.SaveChanges();
 
+                _log.Info(string.Format(LogMessages.AddLinkByUser, element.Label, username));
+
                 return element.Id;
             }
 
+            _log.Error(string.Format(LogMessages.AccessDeniedToUser, username));
             throw new AccessDeniedException(username);
         }
 
@@ -117,9 +149,14 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
                 l.Order = element.Order;
 
                 SunAccess.Instance.SaveChanges();
+
+                _log.Info(string.Format(LogMessages.EditLinkByUser, element.Label, username));
             }
             else
+            {
+                _log.Error(string.Format(LogMessages.AccessDeniedToUser, username));
                 throw new AccessDeniedException(username);
+            }
         }
 
         /// <summary>
@@ -132,13 +169,18 @@ namespace EPSILab.SolarSystem.Earth.DataAccess.DAL
         {
             if (_memberDAL.Exists(username, password))
             {
-                Link lien = Get(code);
-                SunAccess.Instance.Link.Remove(lien);
+                Link link = Get(code);
+                SunAccess.Instance.Link.Remove(link);
 
                 SunAccess.Instance.SaveChanges();
+
+                _log.Info(string.Format(LogMessages.DeleteLinkByUser, link.Label, username));
             }
             else
+            {
+                _log.Error(string.Format(LogMessages.AccessDeniedToUser, username));
                 throw new AccessDeniedException(username);
+            }
         }
 
         #endregion
